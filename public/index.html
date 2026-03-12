@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bezplatná e-kniha | Biznis & Marketing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f7f5f0; --ink: #1a1612; --muted: #7a7068;
+      --accent: #c8602a; --accent-light: #f2e8de;
+      --border: #e2ddd6; --white: #ffffff;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; overflow-x: hidden; }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: rgba(247,245,240,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem; height: 60px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 100;
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.1rem; color: var(--ink); }
+    .nav-cta {
+      background: var(--accent); color: white; border: none;
+      padding: 0.45rem 1.1rem; border-radius: 4px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+      cursor: pointer; transition: opacity 0.2s; text-decoration: none;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    .hero {
+      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; max-width: 1200px; margin: 0 auto;
+      padding: 100px 2rem 4rem; gap: 5rem;
+    }
+    .hero-text { animation: fadeUp 0.8s ease both; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--accent-light); color: var(--accent);
+      border: 1px solid #e8c8a8; border-radius: 100px;
+      padding: 0.3rem 0.85rem; font-size: 0.78rem; font-weight: 500;
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.5rem;
+    }
+    .badge::before { content: '★'; font-size: 0.7rem; }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900;
+      line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em;
+    }
+    h1 em { font-style: normal; color: var(--accent); position: relative; }
+    h1 em::after {
+      content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
+      height: 3px; background: var(--accent); opacity: 0.3; border-radius: 2px;
+    }
+    .subtitle { font-size: 1.05rem; color: var(--muted); max-width: 440px; margin-bottom: 2rem; font-weight: 300; }
+
+    .values { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2.5rem; }
+    .values li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.95rem; }
+    .values li .check {
+      width: 20px; height: 20px; background: var(--accent); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    }
+    .values li .check::after { content: '✓'; color: white; font-size: 0.65rem; font-weight: 700; }
+
+    .form-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; margin-top: 0.5rem; }
+    .form-label { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.8rem; }
+    .input-row { display: flex; gap: 0.6rem; }
+    input[type="email"] {
+      flex: 1; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s;
+    }
+    input[type="email"]:focus { border-color: var(--accent); }
+    input[type="email"]::placeholder { color: #bbb; }
+    .btn-download {
+      background: var(--accent); color: white; border: none;
+      padding: 0.75rem 1.4rem; border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500;
+      cursor: pointer; white-space: nowrap; transition: transform 0.15s, opacity 0.2s;
+      min-width: 130px;
+    }
+    .btn-download:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+    .btn-download:disabled { opacity: 0.6; cursor: not-allowed; }
+    .privacy-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
+    .privacy-note::before { content: '🔒'; font-size: 0.7rem; }
+
+    .success-msg { display: none; text-align: center; padding: 1rem; }
+    .success-msg .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .success-msg p { font-size: 0.88rem; color: var(--muted); }
+
+    .error-msg { font-size: 0.8rem; color: #e05050; margin-top: 0.5rem; display: none; }
+
+    .hero-visual { display: flex; align-items: center; justify-content: center; animation: fadeUp 0.8s 0.2s ease both; }
+    .book-scene { position: relative; width: 280px; height: 360px; }
+    .book-shadow { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 200px; height: 30px; background: radial-gradient(ellipse, rgba(0,0,0,0.18) 0%, transparent 70%); }
+    .book {
+      position: relative; width: 240px; height: 320px;
+      transform: perspective(800px) rotateY(-18deg) rotateX(4deg);
+      transform-style: preserve-3d; transition: transform 0.4s ease;
+    }
+    .book:hover { transform: perspective(800px) rotateY(-10deg) rotateX(2deg) translateY(-6px); }
+    .book-front {
+      position: absolute; inset: 0;
+      background: linear-gradient(145deg, #fff8f2 0%, #f5e8d8 100%);
+      border-radius: 4px 12px 12px 4px; border: 1px solid #e8d5bc;
+      display: flex; flex-direction: column; padding: 2rem 1.6rem;
+      box-shadow: 6px 8px 30px rgba(0,0,0,0.15), 2px 2px 0 #e0c8a8; overflow: hidden;
+    }
+    .book-front::before {
+      content: ''; position: absolute; top: 0; bottom: 0; left: 0;
+      width: 18px; background: linear-gradient(to right, #c8602a, #e07840); border-radius: 4px 0 0 4px;
+    }
+    .book-tag { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; margin-left: 1.2rem; margin-bottom: 1rem; }
+    .book-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 900; line-height: 1.2; color: var(--ink); margin-left: 1.2rem; margin-bottom: auto; }
+    .book-deco { width: 40px; height: 3px; background: var(--accent); margin: 1rem 0 0.8rem 1.2rem; border-radius: 2px; }
+    .book-author { font-size: 0.72rem; color: var(--muted); margin-left: 1.2rem; font-weight: 500; }
+    .book-cover-graphic {
+      position: absolute; right: 1rem; top: 3rem; width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-light), #f8d8b8); border: 2px solid #e8c898;
+      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+    }
+
+    .benefits { background: var(--white); border-top: 1px solid var(--border); padding: 6rem 2rem; }
+    .benefits-inner { max-width: 900px; margin: 0 auto; }
+    .section-eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; margin-bottom: 3rem; line-height: 1.2; }
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .benefit-card { padding: 1.8rem; border: 1px solid var(--border); border-radius: 10px; background: var(--bg); transition: transform 0.2s, box-shadow 0.2s; }
+    .benefit-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .benefit-icon { font-size: 1.6rem; margin-bottom: 1rem; }
+    .benefit-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .benefit-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+
+    .about { padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
+    .about-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-light), #f8d0a8); border: 3px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; }
+    .about p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
+    .about-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--ink); }
+    .about-role { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
+
+    .cta-bottom { background: var(--ink); padding: 5rem 2rem; text-align: center; }
+    .cta-bottom h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: white; margin-bottom: 0.6rem; }
+    .cta-bottom p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
+    .cta-form { display: flex; gap: 0.6rem; max-width: 420px; margin: 0 auto; }
+    .cta-form input { flex: 1; padding: 0.8rem 1rem; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 6px; background: rgba(255,255,255,0.07); color: white; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s; }
+    .cta-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .cta-form input:focus { border-color: var(--accent); }
+    .cta-form button { background: var(--accent); color: white; border: none; padding: 0.8rem 1.4rem; border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; white-space: nowrap; transition: opacity 0.2s; min-width: 130px; }
+    .cta-form button:hover:not(:disabled) { opacity: 0.85; }
+    .cta-form button:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 1rem; }
+    .cta-error { font-size: 0.8rem; color: #ff8080; margin-top: 0.5rem; display: none; }
+    .cta-success { display: none; color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-top: 1rem; }
+
+    footer { padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
+
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 90px; text-align: center; }
+      .hero-visual { order: -1; }
+      .input-row { flex-direction: column; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .cta-form { flex-direction: column; }
+      .book-scene { width: 220px; height: 290px; }
+      .book { width: 190px; height: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Tvoja e-Kniha</div>
+  <a href="#stiahnut" class="nav-cta">Stiahnuť zadarmo →</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-text">
+    <span class="badge">Zadarmo · PDF · Okamžité stiahnutie</span>
+    <h1>Nauč sa rásť<br/>tvoj biznis<br/><em>systematicky</em></h1>
+    <p class="subtitle">Praktický sprievodca moderným marketingom — bez zbytočnej teórie. Len stratégie, ktoré reálne fungujú.</p>
+
+    <ul class="values">
+      <li><span class="check"></span>Ako získať prvých 100 zákazníkov bez veľkého rozpočtu</li>
+      <li><span class="check"></span>Systém obsahu, ktorý predáva za teba 24/7</li>
+      <li><span class="check"></span>Chyby, ktoré robia aj skúsení podnikatelia</li>
+      <li><span class="check"></span>Šablóny a checklisty na okamžité použitie</li>
+    </ul>
+
+    <div class="form-wrap" id="stiahnut">
+      <label class="form-label">Zadaj email a stiahni zadarmo</label>
+      <div id="form-container">
+        <div class="input-row">
+          <input type="email" id="hero-email" placeholder="tvoj@email.sk" />
+          <button class="btn-download" id="hero-btn" onclick="handleDownload('hero')">Stiahnuť →</button>
+        </div>
+        <p class="error-msg" id="hero-error"></p>
+        <p class="privacy-note">Žiadny spam. Odhlásenie kedykoľvek jedným klikom.</p>
+      </div>
+      <div class="success-msg" id="hero-success">
+        <div class="icon">✅</div>
+        <h3>Výborne! Sťahovanie začína.</h3>
+        <p>Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="book-scene">
+      <div class="book">
+        <div class="book-front">
+          <div class="book-tag">Biznis & Marketing</div>
+          <div class="book-cover-graphic">📈</div>
+          <div class="book-title">Rast<br/>bez<br/>náhody</div>
+          <div class="book-deco"></div>
+          <div class="book-author">Tvoje Meno · 2024</div>
+        </div>
+      </div>
+      <div class="book-shadow"></div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="benefits-inner">
+    <p class="section-eyebrow">Čo získaš</p>
+    <h2 class="section-title">Obsah, ktorý ti ušetrí<br/>mesiace pokusov a omylov</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card"><div class="benefit-icon">🎯</div><h3>Jasná stratégia</h3><p>Krok za krokom postup ako nastaviť marketing, ktorý generuje výsledky — nie len "reach".</p></div>
+      <div class="benefit-card"><div class="benefit-icon">⚡</div><h3>Rýchle výsledky</h3><p>Techniky, ktoré môžeš implementovať tento týždeň. Žiadne mesiace čakania na efekt.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🔧</div><h3>Hotové šablóny</h3><p>Skopíruj, uprav, spusti. Ušetri desiatky hodín tvorby od nuly.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">📊</div><h3>Merateľné metriky</h3><p>Zisti presne, čo sledovať a ako vyhodnocovať úspech tvojich kampaní.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🧠</div><h3>Psychológia kupujúcich</h3><p>Pochop prečo ľudia kupujú a ako komunikovať hodnotu tvojej ponuky.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🚀</div><h3>Škálovanie</h3><p>Ako z malého biznisu vybudovať systém, ktorý rastie aj bez tvojej neustálej prítomnosti.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-avatar">👤</div>
+  <div class="about-name">Tvoje Meno</div>
+  <div class="about-role">Podnikateľ · Marketing konzultant</div>
+  <p>Posledných 8 rokov pomáham firmám a jednotlivcom budovať udržateľné biznis modely. Túto knihu som napísal, pretože väčšina marketingových rád na internete je buď zastaraná, alebo skrátka nefunguje pre menšie firmy.</p>
+</section>
+
+<section class="cta-bottom">
+  <h2>Začni čítať ešte dnes</h2>
+  <p>Bezplatne. Bez záväzkov. Okamžité stiahnutie.</p>
+  <div class="cta-form">
+    <input type="email" id="cta-email" placeholder="tvoj@email.sk" />
+    <button id="cta-btn" onclick="handleDownload('cta')">Stiahnuť →</button>
+  </div>
+  <p class="cta-error" id="cta-error"></p>
+  <p class="cta-success" id="cta-success">✅ Výborne! Sťahovanie začína...</p>
+  <p class="cta-note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam.</p>
+</section>
+
+<footer>© 2024 Radovan Vaník · Všetky práva vyhradené · <a href="#" style="color: var(--muted);">Ochrana súkromia</a></footer>
+
+<script>
+  async function handleDownload(formId) {
+    const emailEl = document.getElementById(formId + '-email');
+    const btnEl   = document.getElementById(formId + '-btn');
+    const errEl   = document.getElementById(formId + '-error');
+    const email   = emailEl.value.trim();
+
+    // Reset
+    if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      emailEl.style.borderColor = '#e05050';
+      if (errEl) { errEl.textContent = 'Zadaj platný email.'; errEl.style.display = 'block'; }
+      emailEl.focus();
+      setTimeout(() => emailEl.style.borderColor = '', 1500);
+      return;
+    }
+
+    btnEl.textContent = 'Posielam...';
+    btnEl.disabled = true;
+
+    try {
+      const res = await fetch('http://localhost:3000/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email })
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        // Spusti sťahovanie
+        window.location.href = data.downloadUrl;
+
+        if (formId === 'hero') {
+          document.getElementById('form-container').style.display = 'none';
+          document.getElementById('hero-success').style.display = 'block';
+        } else {
+          document.getElementById('cta-success').style.display = 'block';
+          btnEl.textContent = '✓ Hotovo!';
+          btnEl.style.background = '#2a8a4a';
+          emailEl.value = '';
+        }
+      } else {
+        throw new Error(data.error || 'Neznáma chyba');
+      }
+
+    } catch (err) {
+      btnEl.textContent = 'Stiahnuť →';
+      btnEl.disabled = false;
+      emailEl.style.borderColor = '#e05050';
+      if (errEl) { errEl.textContent = 'Nastala chyba. Skús to znova.'; errEl.style.display = 'block'; }
+      setTimeout(() => emailEl.style.borderColor = '', 2000);
+    }
+  }
+
+  // Enter key
+  document.querySelectorAll('input[type="email"]').forEach(input => {
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        const formId = input.id.replace('-email', '');
+        handleDownload(formId);
+      }
+    });
+  });
+
+  document.querySelector('.nav-cta').addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('stiahnut').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+</body>
+</html>
