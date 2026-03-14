@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bezplatná e-kniha | Predaj nehnuteľnosti bez chýb | Reality Najbývanie</title>
+  <title>Bezplatné e-knihy | Reality Najbývanie | Radovan Vaník</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- ✅ Google Analytics 4 — zmeň G-XXXXXXXXXX na tvoje GA4 ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -33,12 +43,11 @@
     .nav-cta:hover { opacity: 0.85; }
 
     .hero {
-      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; max-width: 1200px; margin: 0 auto;
-      padding: 100px 2rem 4rem; gap: 5rem;
+      min-height: 60vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      max-width: 800px; margin: 0 auto; padding: 120px 2rem 4rem;
+      animation: fadeUp 0.8s ease both;
     }
-    .hero-text { animation: fadeUp 0.8s ease both; }
-
     .badge {
       display: inline-flex; align-items: center; gap: 0.4rem;
       background: var(--accent-light); color: var(--accent);
@@ -47,10 +56,9 @@
       letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 1.5rem;
     }
     .badge::before { content: '★'; font-size: 0.7rem; }
-
     h1 {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900;
+      font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 900;
       line-height: 1.1; margin-bottom: 1.2rem; letter-spacing: -0.02em;
     }
     h1 em { font-style: normal; color: var(--accent); position: relative; }
@@ -58,75 +66,94 @@
       content: ''; position: absolute; bottom: 2px; left: 0; right: 0;
       height: 3px; background: var(--accent); opacity: 0.3; border-radius: 2px;
     }
-    .subtitle { font-size: 1.05rem; color: var(--muted); max-width: 440px; margin-bottom: 2rem; font-weight: 300; }
+    .subtitle { font-size: 1.1rem; color: var(--muted); max-width: 560px; margin: 0 auto; font-weight: 300; }
 
-    .values { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; margin-bottom: 2.5rem; }
-    .values li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.95rem; }
-    .values li .check {
-      width: 20px; height: 20px; background: var(--accent); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px;
+    /* EBOOK GRID */
+    .ebooks-section { padding: 2rem 2rem 6rem; max-width: 1200px; margin: 0 auto; }
+    .ebooks-section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; text-align: center; margin-bottom: 0.5rem; }
+    .ebooks-section-sub { text-align: center; color: var(--muted); font-size: 0.95rem; margin-bottom: 3rem; }
+    .ebooks-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+    .ebook-card {
+      background: var(--white); border: 1.5px solid var(--border);
+      border-radius: 14px; padding: 2rem; cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      position: relative; overflow: hidden;
     }
-    .values li .check::after { content: '✓'; color: white; font-size: 0.65rem; font-weight: 700; }
+    .ebook-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); border-color: var(--accent); }
+    .ebook-card-header { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+    .ebook-emoji {
+      font-size: 2rem; flex-shrink: 0; width: 52px; height: 52px;
+      background: var(--accent-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ebook-tag { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; margin-bottom: 0.3rem; }
+    .ebook-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; line-height: 1.3; color: var(--ink); }
+    .ebook-hook {
+      font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.4rem;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .ebook-cta-btn {
+      background: var(--accent); color: white; border: none;
+      padding: 0.65rem 1.4rem; border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; transition: opacity 0.2s; width: 100%;
+    }
+    .ebook-cta-btn:hover { opacity: 0.85; }
+    .ebook-free-badge {
+      position: absolute; top: 1rem; right: 1rem;
+      background: #e8f5e9; color: #2a7a3a;
+      font-size: 0.7rem; font-weight: 600;
+      padding: 0.2rem 0.6rem; border-radius: 100px;
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
 
-    .form-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.8rem; margin-top: 0.5rem; }
-    .form-label { font-size: 0.8rem; font-weight: 500; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 0.8rem; }
-    .input-row { display: flex; gap: 0.6rem; }
-    input[type="email"] {
+    /* MODAL */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 1rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.25s;
+    }
+    .modal-overlay.active { opacity: 1; pointer-events: all; }
+    .modal {
+      background: var(--white); border-radius: 16px; padding: 2.5rem;
+      max-width: 460px; width: 100%;
+      transform: translateY(20px); transition: transform 0.25s;
+      position: relative;
+    }
+    .modal-overlay.active .modal { transform: translateY(0); }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--muted); line-height: 1; }
+    .modal-close:hover { color: var(--ink); }
+    .modal-book-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; padding-right: 2rem; }
+    .modal-book-tag { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); font-weight: 600; margin-bottom: 1.2rem; }
+    .modal-hook { font-size: 0.88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1.6rem; padding: 1rem; background: var(--bg); border-radius: 8px; border-left: 3px solid var(--accent); font-style: italic; }
+    .modal-form-label { font-size: 0.78rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.7rem; }
+    .modal-input-row { display: flex; gap: 0.6rem; }
+    .modal-input-row input[type="email"] {
       flex: 1; padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 6px;
       font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
       background: var(--bg); color: var(--ink); outline: none; transition: border-color 0.2s;
     }
-    input[type="email"]:focus { border-color: var(--accent); }
-    input[type="email"]::placeholder { color: #bbb; }
-    .btn-download {
+    .modal-input-row input:focus { border-color: var(--accent); }
+    .modal-input-row input::placeholder { color: #bbb; }
+    .modal-btn {
       background: var(--accent); color: white; border: none;
-      padding: 0.75rem 1.4rem; border-radius: 6px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.92rem; font-weight: 500;
-      cursor: pointer; white-space: nowrap; transition: transform 0.15s, opacity 0.2s;
-      min-width: 130px;
+      padding: 0.75rem 1.3rem; border-radius: 6px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+      cursor: pointer; white-space: nowrap; transition: opacity 0.2s; min-width: 120px;
     }
-    .btn-download:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
-    .btn-download:disabled { opacity: 0.6; cursor: not-allowed; }
-    .privacy-note { font-size: 0.75rem; color: var(--muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.4rem; }
-    .privacy-note::before { content: '🔒'; font-size: 0.7rem; }
+    .modal-btn:hover:not(:disabled) { opacity: 0.85; }
+    .modal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .modal-privacy { font-size: 0.73rem; color: var(--muted); margin-top: 0.7rem; display: flex; align-items: center; gap: 0.4rem; }
+    .modal-privacy::before { content: '🔒'; font-size: 0.68rem; }
+    .modal-error { font-size: 0.8rem; color: #e05050; margin-top: 0.5rem; display: none; }
+    .modal-success { display: none; text-align: center; padding: 1rem 0; }
+    .modal-success .icon { font-size: 2.5rem; margin-bottom: 0.7rem; }
+    .modal-success h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+    .modal-success p { font-size: 0.88rem; color: var(--muted); }
 
-    .success-msg { display: none; text-align: center; padding: 1rem; }
-    .success-msg .icon { font-size: 2rem; margin-bottom: 0.5rem; }
-    .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
-    .success-msg p { font-size: 0.88rem; color: var(--muted); }
-
-    .error-msg { font-size: 0.8rem; color: #e05050; margin-top: 0.5rem; display: none; }
-
-    .hero-visual { display: flex; align-items: center; justify-content: center; animation: fadeUp 0.8s 0.2s ease both; }
-    .book-scene { position: relative; width: 280px; height: 360px; }
-    .book-shadow { position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 200px; height: 30px; background: radial-gradient(ellipse, rgba(0,0,0,0.18) 0%, transparent 70%); }
-    .book {
-      position: relative; width: 240px; height: 320px;
-      transform: perspective(800px) rotateY(-18deg) rotateX(4deg);
-      transform-style: preserve-3d; transition: transform 0.4s ease;
-    }
-    .book:hover { transform: perspective(800px) rotateY(-10deg) rotateX(2deg) translateY(-6px); }
-    .book-front {
-      position: absolute; inset: 0;
-      background: linear-gradient(145deg, #fff8f2 0%, #f5e8d8 100%);
-      border-radius: 4px 12px 12px 4px; border: 1px solid #e8d5bc;
-      display: flex; flex-direction: column; padding: 2rem 1.6rem;
-      box-shadow: 6px 8px 30px rgba(0,0,0,0.15), 2px 2px 0 #e0c8a8; overflow: hidden;
-    }
-    .book-front::before {
-      content: ''; position: absolute; top: 0; bottom: 0; left: 0;
-      width: 18px; background: linear-gradient(to right, #c8602a, #e07840); border-radius: 4px 0 0 4px;
-    }
-    .book-tag { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-weight: 700; margin-left: 1.2rem; margin-bottom: 1rem; }
-    .book-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 900; line-height: 1.2; color: var(--ink); margin-left: 1.2rem; margin-bottom: auto; }
-    .book-deco { width: 40px; height: 3px; background: var(--accent); margin: 1rem 0 0.8rem 1.2rem; border-radius: 2px; }
-    .book-author { font-size: 0.72rem; color: var(--muted); margin-left: 1.2rem; font-weight: 500; }
-    .book-cover-graphic {
-      position: absolute; right: 1rem; top: 3rem; width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-light), #f8d8b8); border: 2px solid #e8c898;
-      display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
-    }
-
+    /* BENEFITS */
     .benefits { background: var(--white); border-top: 1px solid var(--border); padding: 6rem 2rem; }
     .benefits-inner { max-width: 900px; margin: 0 auto; }
     .section-eyebrow { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); font-weight: 600; margin-bottom: 0.8rem; }
@@ -138,6 +165,7 @@
     .benefit-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
     .benefit-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
 
+    /* ABOUT */
     .about { padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
     .about-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-light), #f8d0a8); border: 3px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; }
     .about p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
@@ -147,41 +175,30 @@
     .about-contact a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .about-contact a:hover { text-decoration: underline; }
 
+    /* CTA BOTTOM */
     .cta-bottom { background: var(--ink); padding: 5rem 2rem; text-align: center; }
     .cta-bottom h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 3vw, 2.2rem); color: white; margin-bottom: 0.6rem; }
-    .cta-bottom p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
-    .cta-form { display: flex; gap: 0.6rem; max-width: 420px; margin: 0 auto; }
-    .cta-form input {
-      flex: 1; padding: 0.8rem 1rem; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 6px;
-      background: rgba(255,255,255,0.07); color: white;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+    .cta-bottom > p { color: rgba(255,255,255,0.5); font-size: 0.9rem; margin-bottom: 2rem; }
+    .ebook-cards-mini { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; max-width: 760px; margin: 0 auto; }
+    .ebook-mini-btn {
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      color: white; padding: 0.8rem 1.2rem; border-radius: 8px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif; font-size: 0.85rem;
+      transition: background 0.2s; text-align: left; min-width: 160px;
     }
-    .cta-form input::placeholder { color: rgba(255,255,255,0.3); }
-    .cta-form input:focus { border-color: var(--accent); }
-    .cta-form button {
-      background: var(--accent); color: white; border: none;
-      padding: 0.8rem 1.4rem; border-radius: 6px;
-      font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
-      cursor: pointer; white-space: nowrap; transition: opacity 0.2s; min-width: 120px;
-    }
-    .cta-form button:hover:not(:disabled) { opacity: 0.85; }
-    .cta-form button:disabled { opacity: 0.6; cursor: not-allowed; }
-    .cta-error { font-size: 0.8rem; color: #ff8080; margin-top: 0.6rem; display: none; }
-    .cta-success { display: none; color: #7defa0; font-size: 1rem; margin-top: 1rem; }
-    .cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 1rem; }
+    .ebook-mini-btn:hover { background: rgba(255,255,255,0.14); }
+    .ebook-mini-btn span { display: block; font-size: 0.72rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+    .cta-note { font-size: 0.75rem; color: rgba(255,255,255,0.3); margin-top: 1.5rem; }
 
     footer { padding: 2rem; text-align: center; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; gap: 3rem; padding-top: 90px; text-align: center; }
-      .hero-visual { order: -1; }
-      .subtitle, .values li { text-align: left; }
-      .input-row, .cta-form { flex-direction: column; }
+      .ebooks-grid { grid-template-columns: 1fr; }
       .benefits-grid { grid-template-columns: 1fr; }
-      .book-scene { width: 220px; height: 290px; }
-      .book { width: 190px; height: 260px; }
+      .modal-input-row { flex-direction: column; }
+      .ebook-cards-mini { flex-direction: column; align-items: stretch; }
     }
   </style>
 </head>
@@ -189,138 +206,212 @@
 
 <nav>
   <div class="nav-logo">Reality Najbývanie</div>
-  <a href="#stiahnut" class="nav-cta">Stiahnuť zadarmo →</a>
+  <a href="#knihy" class="nav-cta">Vybrať e-knihu →</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-text">
-    <span class="badge">Zadarmo · PDF · Okamžité stiahnutie</span>
+  <span class="badge">4 e-knihy · Zadarmo · PDF</span>
+  <h1>Nehnuteľnosti bez<br/><em>zbytočných chýb</em></h1>
+  <p class="subtitle">Vyber si tému, ktorá sa ťa týka. Zadaj email a stiahni praktickú príručku zadarmo — od predaja cez rozvod až po dedičstvo.</p>
+</section>
 
-    <h1>Predaj svoju<br/>nehnuteľnosť<br/><em>bez chýb</em></h1>
+<!-- EBOOK SELECTION -->
+<section class="ebooks-section" id="knihy">
+  <h2 class="ebooks-section-title">Vyber si svoju e-knihu</h2>
+  <p class="ebooks-section-sub">Každá je zadarmo. Stačí zadať email.</p>
+  <div class="ebooks-grid">
 
-    <p class="subtitle">
-      Praktický sprievodca pre každého, kto plánuje predať nehnuteľnosť — ako ju správne pripraviť, naceniť a vyhnúť sa najčastejším chybám, ktoré predražujú alebo zdržiavajú predaj.
-    </p>
-
-    <ul class="values">
-      <li><span class="check"></span>Ako pripraviť nehnuteľnosť na predaj a maximalizovať jej hodnotu</li>
-      <li><span class="check"></span>Najčastejšie chyby predávajúcich a ako sa im vyhnúť</li>
-      <li><span class="check"></span>Ako správne naceniť nehnuteľnosť aby sa predala rýchlo</li>
-      <li><span class="check"></span>Čo skontrolovať pred podpisom zmluvy — právne nástrahy</li>
-    </ul>
-
-    <div class="form-wrap" id="stiahnut">
-      <label class="form-label">Zadaj email a stiahni zadarmo</label>
-      <div id="form-container">
-        <div class="input-row">
-          <input type="email" id="hero-email" placeholder="tvoj@email.sk" />
-          <button class="btn-download" id="hero-btn" onclick="handleDownload('hero')">Stiahnuť →</button>
-        </div>
-        <p class="error-msg" id="hero-error"></p>
-        <p class="privacy-note">Žiadny spam. Odhlásenie kedykoľvek jedným klikom.</p>
-      </div>
-      <div class="success-msg" id="hero-success">
-        <div class="icon">✅</div>
-        <h3>Výborne! Sťahovanie začína.</h3>
-        <p>Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-visual">
-    <div class="book-scene">
-      <div class="book">
-        <div class="book-front">
-          <div class="book-tag">Predaj nehnuteľností</div>
-          <div class="book-cover-graphic">🏠</div>
-          <div class="book-title">Predaj bez<br/>chýb &<br/>bez stresu</div>
-          <div class="book-deco"></div>
-          <div class="book-author">Radovan Vaník · 2025</div>
+    <div class="ebook-card" onclick="openModal('predaj')">
+      <span class="ebook-free-badge">Zadarmo</span>
+      <div class="ebook-card-header">
+        <div class="ebook-emoji">🏠</div>
+        <div>
+          <div class="ebook-tag">Predaj nehnuteľnosti</div>
+          <h3>Predaj svoju nehnuteľnosť bez chýb</h3>
         </div>
       </div>
-      <div class="book-shadow"></div>
+      <p class="ebook-hook">Praktický sprievodca pre každého, kto plánuje predať nehnuteľnosť — ako ju správne pripraviť, naceniť a vyhnúť sa najčastejším chybám, ktoré predražujú alebo zdržiavajú predaj.</p>
+      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
     </div>
+
+    <div class="ebook-card" onclick="openModal('exekucia')">
+      <span class="ebook-free-badge">Zadarmo</span>
+      <div class="ebook-card-header">
+        <div class="ebook-emoji">⚠️</div>
+        <div>
+          <div class="ebook-tag">Exekúcia & Dlhy</div>
+          <h3>Exekúcia na dverách</h3>
+        </div>
+      </div>
+      <p class="ebook-hook">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova s čistým štítom.</p>
+      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
+    </div>
+
+    <div class="ebook-card" onclick="openModal('rozvod')">
+      <span class="ebook-free-badge">Zadarmo</span>
+      <div class="ebook-card-header">
+        <div class="ebook-emoji">⚖️</div>
+        <div>
+          <div class="ebook-tag">Rozvod & Majetok</div>
+          <h3>Rozvod a predaj majetku</h3>
+        </div>
+      </div>
+      <p class="ebook-hook">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
+      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
+    </div>
+
+    <div class="ebook-card" onclick="openModal('dedicstvo')">
+      <span class="ebook-free-badge">Zadarmo</span>
+      <div class="ebook-card-header">
+        <div class="ebook-emoji">📜</div>
+        <div>
+          <div class="ebook-tag">Dedičstvo & Prevod</div>
+          <h3>Zdedený byt</h3>
+        </div>
+      </div>
+      <p class="ebook-hook">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj — bez mesiacov behania po úradoch.</p>
+      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
+    </div>
+
   </div>
 </section>
 
+<!-- BENEFITS -->
 <section class="benefits">
   <div class="benefits-inner">
-    <p class="section-eyebrow">Čo sa dozvieš</p>
-    <h2 class="section-title">Chyby pri predaji nehnuteľnosti<br/>ťa môžu stáť tisíce eur</h2>
+    <p class="section-eyebrow">Prečo tieto príručky</p>
+    <h2 class="section-title">Každá situácia si zaslúži<br/>konkrétny návod</h2>
     <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon">🏠</div>
-        <h3>Príprava nehnuteľnosti</h3>
-        <p>Ako pripraviť byt alebo dom na predaj tak, aby zaujal kupujúcich na prvý pohľad a dosiahol lepšiu cenu.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">💰</div>
-        <h3>Správne nacenenie</h3>
-        <p>Príliš vysoká cena odstraší kupujúcich, príliš nízka ťa pripraví o peniaze. Nauč sa nájsť správnu trhovú hodnotu.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">⚠️</div>
-        <h3>Najčastejšie chyby</h3>
-        <p>Konkrétne chyby, ktoré robia predávajúci znova a znova — a ako sa im jednoducho vyhnúť.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">📋</div>
-        <h3>Dokumentácia a zmluvy</h3>
-        <p>Čo musíš mať pripravené pred predajom a na čo si dať pozor pri podpise zmluvy o prevode nehnuteľnosti.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">📸</div>
-        <h3>Prezentácia a fotografie</h3>
-        <p>Ako nafotiť a prezentovať nehnuteľnosť online tak, aby inzerát vyčnieval a prilákal serióznych záujemcov.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon">🤝</div>
-        <h3>Rokovanie s kupujúcimi</h3>
-        <p>Ako viesť obhliadky, rokovať o cene a rozoznať seriózneho kupujúceho od toho, kto len pozerá.</p>
-      </div>
+      <div class="benefit-card"><div class="benefit-icon">🎯</div><h3>Priamo k veci</h3><p>Žiadna teória navyše. Každá e-kniha je zameraná presne na situáciu, v ktorej sa nachádzate — a dáva vám konkrétne kroky.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">⚡</div><h3>Okamžité stiahnutie</h3><p>Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam. Len užitočný obsah.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🛡️</div><h3>Z praxe makléra</h3><p>Obsah vychádza z reálnych prípadov — nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">💰</div><h3>Ušetrite tisíce eur</h3><p>Jedna prehliadnutá chyba pri predaji môže stáť tisíce. Tieto príručky sú investícia s okamžitou návratnosťou.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">📋</div><h3>Checklisty a vzory</h3><p>Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.</p></div>
+      <div class="benefit-card"><div class="benefit-icon">🤝</div><h3>Osobná konzultácia</h3><p>Ak po prečítaní budete potrebovať pomoc, som tu. Kontaktujte ma priamo — bez záväzkov.</p></div>
     </div>
   </div>
 </section>
 
+<!-- ABOUT -->
 <section class="about">
   <div class="about-avatar">🏡</div>
   <div class="about-name">Radovan Vaník</div>
   <div class="about-role">Reality Najbývanie · Realitný maklér</div>
-  <p>
-    Pomáham ľuďom predávať a kupovať nehnuteľnosti na Slovensku. Túto e-knihu som napísal preto, lebo každý deň vidím, ako predávajúci robia rovnaké chyby, ktoré ich stoja čas aj peniaze. Chcel som to zmeniť — a dať vám do ruky praktický návod zadarmo.
-  </p>
+  <p>Pomáham ľuďom predávať a kupovať nehnuteľnosti na Slovensku. Tieto e-knihy som napísal preto, lebo každý deň vidím, ako ľudia v ťažkých situáciách robia rovnaké chyby — nie zo zlej vôle, ale preto, že nikto im to vopred nepovedal. Chcem to zmeniť.</p>
   <div class="about-contact">
     📞 <a href="tel:0948310950">0948 310 950</a> &nbsp;·&nbsp;
     🌐 <a href="https://www.najbyvanie.sk" target="_blank">Reality Najbývanie</a>
   </div>
 </section>
 
+<!-- CTA BOTTOM -->
 <section class="cta-bottom">
-  <h2>Stiahni e-knihu zadarmo</h2>
-  <p>Žiadne poplatky. Žiadny záväzok. Len užitočné informácie.</p>
-  <div class="cta-form">
-    <input type="email" id="cta-email" placeholder="tvoj@email.sk" />
-    <button id="cta-btn" onclick="handleDownload('cta')">Stiahnuť →</button>
+  <h2>Ktorá situácia sa vás týka?</h2>
+  <p>Vyberte e-knihu a stiahnite ju zadarmo.</p>
+  <div class="ebook-cards-mini">
+    <button class="ebook-mini-btn" onclick="openModal('predaj')">🏠 Predaj nehnuteľnosti<span>Príprava, nacenenie, chyby</span></button>
+    <button class="ebook-mini-btn" onclick="openModal('exekucia')">⚠️ Exekúcia na dverách<span>Akčný plán pred dražbou</span></button>
+    <button class="ebook-mini-btn" onclick="openModal('rozvod')">⚖️ Rozvod a majetok<span>Predaj bez hádok a sporov</span></button>
+    <button class="ebook-mini-btn" onclick="openModal('dedicstvo')">📜 Zdedený byt<span>Od dedičstva po predaj</span></button>
   </div>
-  <p class="cta-error" id="cta-error"></p>
-  <p class="cta-success" id="cta-success">✅ Výborne! Sťahovanie začína...</p>
   <p class="cta-note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam.</p>
 </section>
 
 <footer>© 2025 Radovan Vaník · Reality Najbývanie · <a href="tel:0948310950" style="color: var(--muted);">0948 310 950</a> · <a href="#" style="color: var(--muted);">Ochrana súkromia</a></footer>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-content">
+      <div class="modal-book-tag" id="modal-tag"></div>
+      <div class="modal-book-title" id="modal-title"></div>
+      <div class="modal-hook" id="modal-hook"></div>
+      <label class="modal-form-label">Zadaj email a stiahni zadarmo</label>
+      <div class="modal-input-row">
+        <input type="email" id="modal-email" placeholder="tvoj@email.sk" />
+        <button class="modal-btn" id="modal-btn" onclick="handleModalDownload()">Stiahnuť →</button>
+      </div>
+      <p class="modal-error" id="modal-error"></p>
+      <p class="modal-privacy">Žiadny spam. Odhlásenie kedykoľvek.</p>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="icon">✅</div>
+      <h3>Výborne! Sťahovanie začína.</h3>
+      <p>Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+    </div>
+  </div>
+</div>
+
 <script>
-  async function handleDownload(formId) {
-    const emailEl = document.getElementById(formId + '-email');
-    const btnEl   = document.getElementById(formId + '-btn');
-    const errEl   = document.getElementById(formId + '-error');
+  const BOOKS = {
+    predaj: {
+      tag: 'Predaj nehnuteľnosti',
+      title: 'Predaj svoju nehnuteľnosť bez chýb',
+      hook: 'Praktický sprievodca pre každého, kto plánuje predať nehnuteľnosť — ako ju správne pripraviť, naceniť a vyhnúť sa najčastejším chybám, ktoré predražujú alebo zdržiavajú predaj.',
+      file: 'ebook.pdf'
+    },
+    exekucia: {
+      tag: 'Exekúcia & Dlhy',
+      title: 'Exekúcia na dverách',
+      hook: 'Pocit, že vám pod nohami horí pôda, poznám. V tejto situácii nie je priestor na chyby ani na vyčkávanie. Táto e-kniha nie je teoretická príručka – je to váš akčný plán, ako predísť dražbe, komunikovať s bankou a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova s čistým štítom, nie so záväzkami.',
+      file: 'ebook-exekucia.pdf'
+    },
+    rozvod: {
+      tag: 'Rozvod & Majetok',
+      title: 'Rozvod a predaj majetku',
+      hook: 'Rozchod je sám o sebe dosť ťažký. Posledné, čo potrebujete, je nekonečný boj o cenu bytu s človekom, s ktorým už nechcete zdieľať ani dvere. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
+      file: 'ebook-rozvod.pdf'
+    },
+    dedicstvo: {
+      tag: 'Dedičstvo & Prevod',
+      title: 'Zdedený byt',
+      hook: 'Dedičstvo by malo byť darom, nie bremenom. Často však prichádza spolu s právnymi záludnosťami, dlhmi alebo nezhodami v rodine, ktoré nikto nečakal. Táto príručka vás prevedie procesom od kontroly listu vlastníctva až po úspešný predaj.',
+      file: 'ebook-dedicstvo.pdf'
+    }
+  };
+
+  let currentBook = null;
+
+  function openModal(bookId) {
+    currentBook = bookId;
+    const book = BOOKS[bookId];
+    document.getElementById('modal-tag').textContent = book.tag;
+    document.getElementById('modal-title').textContent = book.title;
+    document.getElementById('modal-hook').textContent = book.hook;
+    document.getElementById('modal-content').style.display = 'block';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('modal-email').value = '';
+    document.getElementById('modal-error').style.display = 'none';
+    document.getElementById('modal-btn').textContent = 'Stiahnuť →';
+    document.getElementById('modal-btn').disabled = false;
+    document.getElementById('modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (typeof gtag !== 'undefined') gtag('event', 'ebook_modal_open', { ebook: bookId });
+  }
+
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+
+  async function handleModalDownload() {
+    const emailEl = document.getElementById('modal-email');
+    const btnEl   = document.getElementById('modal-btn');
+    const errEl   = document.getElementById('modal-error');
     const email   = emailEl.value.trim();
 
-    if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+    errEl.style.display = 'none';
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailEl.style.borderColor = '#e05050';
-      if (errEl) { errEl.textContent = 'Zadaj platný email.'; errEl.style.display = 'block'; }
+      errEl.textContent = 'Zadaj platný email.';
+      errEl.style.display = 'block';
       emailEl.focus();
       setTimeout(() => emailEl.style.borderColor = '', 1500);
       return;
@@ -333,49 +424,40 @@
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email, book: currentBook })
       });
 
       const data = await res.json();
 
       if (res.ok && data.success) {
+        if (typeof gtag !== 'undefined') gtag('event', 'ebook_downloaded', { ebook: currentBook });
         window.location.href = data.downloadUrl;
-
-        if (formId === 'hero') {
-          document.getElementById('form-container').style.display = 'none';
-          document.getElementById('hero-success').style.display = 'block';
-        } else {
-          document.getElementById('cta-success').style.display = 'block';
-          btnEl.textContent = '✓ Hotovo!';
-          btnEl.style.background = '#2a8a4a';
-          emailEl.value = '';
-        }
+        document.getElementById('modal-content').style.display = 'none';
+        document.getElementById('modal-success').style.display = 'block';
       } else {
         throw new Error(data.error || 'Neznáma chyba');
       }
-
     } catch (err) {
       btnEl.textContent = 'Stiahnuť →';
       btnEl.disabled = false;
       emailEl.style.borderColor = '#e05050';
-      if (errEl) { errEl.textContent = 'Nastala chyba. Skús to znova.'; errEl.style.display = 'block'; }
+      errEl.textContent = 'Nastala chyba. Skús to znova.';
+      errEl.style.display = 'block';
       setTimeout(() => emailEl.style.borderColor = '', 2000);
     }
   }
 
-  document.querySelectorAll('input[type="email"]').forEach(input => {
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        const formId = input.id.replace('-email', '');
-        handleDownload(formId);
-      }
-    });
+  document.getElementById('modal-email').addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); handleModalDownload(); }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
   });
 
   document.querySelector('.nav-cta').addEventListener('click', e => {
     e.preventDefault();
-    document.getElementById('stiahnut').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('knihy').scrollIntoView({ behavior: 'smooth' });
   });
 </script>
 </body>
