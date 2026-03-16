@@ -14,7 +14,24 @@
     gtag('js', new Date());
     gtag('config', 'G-X4R17WCR42');
   </script>
+<script>
+  async function sendData(event, bookType) {
+    event.preventDefault(); // Zastaví klasické odoslanie formulára
+    
+    const email = event.target.querySelector('input[type="email"]').value;
+    
+    // Pošleme e-mail a typ e-booku na náš server
+    const response = await fetch('/subscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, bookType: bookType })
+    });
 
+    if (response.ok) {
+      alert("Ďakujeme! E-mail s e-bookom ti čoskoro príde.");
+    }
+  }
+</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -471,10 +488,13 @@
 
     try {
       const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, book: currentBook })
-      });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ 
+    email: email, 
+    bookType: BOOKS[currentBook].file // TOTO JE TO, ČO POTREBUJEME!
+  })
+});
 
       const data = await res.json();
 

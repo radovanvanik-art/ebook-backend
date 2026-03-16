@@ -27,11 +27,13 @@ app.post('/api/subscribe', async (req, res) => {
         'api-key': process.env.BREVO_API_KEY
       },
       body: JSON.stringify({
-        email,
-        listIds: [parseInt(process.env.BREVO_LIST_ID)],
-        updateEnabled: true
-      })
-    });
+  email,
+  listIds: [parseInt(process.env.BREVO_LIST_ID)],
+  updateEnabled: true,
+  attributes: { // TOTO MUSÍŠ PRIDAŤ
+    "BOOK_TYPE": req.body.bookType // Preberie hodnotu, ktorú pošle tvoj formulár
+  }
+})
 
     if (!brevoRes.ok && brevoRes.status !== 204) {
       const errBody = await brevoRes.json().catch(() => ({}));
