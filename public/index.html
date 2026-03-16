@@ -7,14 +7,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4R17WCR42"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-X4R17WCR42');
-</script>
+  <!-- ✅ Google Analytics 4 — zmeň G-XXXXXXXXXX na tvoje GA4 ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -166,12 +166,35 @@
     .benefit-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
 
     /* ABOUT */
-    .about { padding: 5rem 2rem; max-width: 700px; margin: 0 auto; text-align: center; }
-    .about-avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-light), #f8d0a8); border: 3px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.5rem; }
+    .about { padding: 5rem 2rem; max-width: 720px; margin: 0 auto; text-align: center; }
+    .about-avatar {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-light), #f8d0a8);
+      border: 3px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; margin: 0 auto 1.2rem;
+    }
+    .about-name { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--ink); }
+    .about-role { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.8rem; }
+    .about-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--accent-light); color: var(--accent);
+      border: 1px solid #e8c8a8; border-radius: 100px;
+      padding: 0.3rem 1rem; font-size: 0.78rem; font-weight: 600;
+      margin-bottom: 1.4rem;
+    }
     .about p { color: var(--muted); font-size: 0.95rem; line-height: 1.7; }
-    .about-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.3rem; color: var(--ink); }
-    .about-role { font-size: 0.8rem; color: var(--accent); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; }
-    .about-contact { margin-top: 1rem; font-size: 0.88rem; color: var(--muted); }
+    .about p + p { margin-top: 0.8rem; }
+    .about-stats {
+      display: flex; gap: 2rem; justify-content: center;
+      flex-wrap: wrap; margin: 1.8rem 0 1.4rem;
+      padding: 1.4rem; background: var(--bg);
+      border: 1px solid var(--border); border-radius: 12px;
+    }
+    .about-stat { text-align: center; }
+    .about-stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .about-stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.3rem; }
+    .about-contact { font-size: 0.88rem; color: var(--muted); }
     .about-contact a { color: var(--accent); text-decoration: none; font-weight: 500; }
     .about-contact a:hover { text-decoration: underline; }
 
@@ -199,6 +222,7 @@
       .benefits-grid { grid-template-columns: 1fr; }
       .modal-input-row { flex-direction: column; }
       .ebook-cards-mini { flex-direction: column; align-items: stretch; }
+      .about-stats { gap: 1.2rem; }
     }
   </style>
 </head>
@@ -213,7 +237,7 @@
 <section class="hero">
   <span class="badge">4 e-knihy · Zadarmo · PDF</span>
   <h1>Nehnuteľnosti bez<br/><em>zbytočných chýb</em></h1>
-  <p class="subtitle">Vyber si tému, ktorá sa ťa týka. Zadaj email a stiahni praktickú príručku zadarmo — od predaja cez rozvod až po dedičstvo.</p>
+  <p class="subtitle">Vyber si tému, ktorá sa ťa týka. Zadaj email a stiahni praktickú príručku zadarmo — od prvého bytu cez rozvod až po dedičstvo.</p>
 </section>
 
 <!-- EBOOK SELECTION -->
@@ -222,16 +246,29 @@
   <p class="ebooks-section-sub">Každá je zadarmo. Stačí zadať email.</p>
   <div class="ebooks-grid">
 
-    <div class="ebook-card" onclick="openModal('predaj')">
+    <div class="ebook-card" onclick="openModal('prvy-byt')">
       <span class="ebook-free-badge">Zadarmo</span>
       <div class="ebook-card-header">
-        <div class="ebook-emoji">🏠</div>
+        <div class="ebook-emoji">✨</div>
         <div>
-          <div class="ebook-tag">Predaj nehnuteľnosti</div>
-          <h3>Predaj svoju nehnuteľnosť bez chýb</h3>
+          <div class="ebook-tag">Prvá kúpa · Nový začiatok</div>
+          <h3>Váš prvý byt</h3>
         </div>
       </div>
-      <p class="ebook-hook">Praktický sprievodca pre každého, kto plánuje predať nehnuteľnosť — ako ju správne pripraviť, naceniť a vyhnúť sa najčastejším chybám, ktoré predražujú alebo zdržiavajú predaj.</p>
+      <p class="ebook-hook">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
+      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
+    </div>
+
+    <div class="ebook-card" onclick="openModal('dedicstvo')">
+      <span class="ebook-free-badge">Zadarmo</span>
+      <div class="ebook-card-header">
+        <div class="ebook-emoji">📜</div>
+        <div>
+          <div class="ebook-tag">Dedičstvo · Zmätok, papierovačky</div>
+          <h3>Zdedený byt</h3>
+        </div>
+      </div>
+      <p class="ebook-hook">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj — bez mesiacov behania po úradoch.</p>
       <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
     </div>
 
@@ -240,7 +277,7 @@
       <div class="ebook-card-header">
         <div class="ebook-emoji">⚠️</div>
         <div>
-          <div class="ebook-tag">Exekúcia & Dlhy</div>
+          <div class="ebook-tag">Dlhová kríza · Strach, naliehavosť</div>
           <h3>Exekúcia na dverách</h3>
         </div>
       </div>
@@ -253,24 +290,11 @@
       <div class="ebook-card-header">
         <div class="ebook-emoji">⚖️</div>
         <div>
-          <div class="ebook-tag">Rozvod & Majetok</div>
+          <div class="ebook-tag">Rozvod · Bolesť, nový začiatok</div>
           <h3>Rozvod a predaj majetku</h3>
         </div>
       </div>
       <p class="ebook-hook">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
-      <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
-    </div>
-
-    <div class="ebook-card" onclick="openModal('dedicstvo')">
-      <span class="ebook-free-badge">Zadarmo</span>
-      <div class="ebook-card-header">
-        <div class="ebook-emoji">📜</div>
-        <div>
-          <div class="ebook-tag">Dedičstvo & Prevod</div>
-          <h3>Zdedený byt</h3>
-        </div>
-      </div>
-      <p class="ebook-hook">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj — bez mesiacov behania po úradoch.</p>
       <button class="ebook-cta-btn">Stiahnuť zadarmo →</button>
     </div>
 
@@ -295,10 +319,31 @@
 
 <!-- ABOUT -->
 <section class="about">
-  <div class="about-avatar">🏡</div>
+  <div class="about-avatar" style="overflow:hidden; padding:0;">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCADgASwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD6riXOKsoOKhiHFWUHSkBInTNSAcU1Rnp2qVVoAVRgCnUUhoAGOKYaU8nmkqkQwo+lFHamAuRjmgkdMU2lFAC5460ZHpSUd6AA0CivPPil4+tdEgudIgOLtowDIWGFDegByTWdWoqceZl06bqS5UVviZ8U7Lw88mnaU1vcXqDEsrtlIT6AD7ze3avn7xP8Q/FWv3UgutSme2z8sauVXjvgVW1pPtWpD7TL5cKrud8guCe3oOKwNMngMsiw24kgB3OGOGYA9ien414868qjvJnrQw8aeiHzeJ9WVvKhm2kj7xOC3596taB4p8QxajHeQag0NxGeGebLZ9gev0rnNQlt7lI4bNCpVzhGbDNjHTtnjpWfcXqzLIu7OWG4OuCrepHYH+8Oh9qcbW0FNJH0x8MfjgHuJdO8UXUaqAHS5xznPKkV7b4Y8RaN4ksDeaNqVvewg4LRnofcHkV+dX70TfaBK4ZSck9j3B9RXqXwO+In/CO6lJFdKDDL829WOVYDHUZGPY11U8RKOj2OOpRT1R9s0VheB/E+n+KtGS+sZVZgAJUzypP9K3a74yUldHI007MKXoaQdeKDTEODc04MKj+lFKw7koopgYinBgaVhpi0tJRQA1uOKjYfpUrDvUbDFAytKOTVWVcirkg/Sq8i4/Ck1cClKOKpyL81X5hVGQfNUCNeId6sxiooxxU44FaXGPUbcVLkCowelKDmiwri5NG7NJQOlVYkKKQn0pM0XAcSODRTOtKDii4DhwaKBzRQAUtJSCgBRyQK+P8A4l3k8/i3WH09irSX8xDBAcDeR17fhX2Bt3fKe/FfJmh+E7+58ST2TA/LPJCxIOVAcg/pXBj3aKPQy6HNNmBoGg3Wq2zyGF3zhAT0JA5IPp7Vj6zpEmmPOrxMgUbQoAJY/wCFfVOn+FtNsLCKC0hWNkXG6ue8ReE7S6V96xvL1Py15TjKLue3BUpRsnqfJg0qa+tZZZGMCwlf3YI3OeKtatoz2m+CSGQSZwJWILKcdMjqOa9H8b+AQ0oDbVG7OFPYCqNj4ZuZHSO4ZhCoG1SfQdferVS5g8I9zz1NNmhV3igcmVRyB0YDrSaKh0+5e7ZhCXAEyBOMjo2K9sOjWcFkiYyCvZelcF478LSOkl7ZkhkG4gDtVRq62FUwfu8yPSf2VPEst540uNNKJHm3feE4VuhBH4/zr6dGK+O/2Rbhf+FnQW2z96bW4dhj7oAHP8q+w/SvVwnwHiYle+LRRR2rrOcO9GaOT0oxSAKdwKQCjBzQA4NzinA1GQRSjPrSa7DQ89KjbkEU5SR1pDSKInxVeQD61YfoRUMik0AUpl74qlLgNitGUcVTk+9U7gaSdqkFMXinqOatkEqnIxSg0xDzin0AA5oycUlFAC0CjFJQK4UUfQ0dKGhjl9qWkX2xilxTRN9QFKOBSHrxRimMOc15Z4atTafEHxJbXEWJFu2njb+9HJyDXqTnarMBnAJx615J4Ia9u9fbWr0xh9RhlJCrtI8uUhc++3HNedjpfDE9TLqTanUvotPvv/kd0xwT1rM1PbFE0nAI65Oc1PPOYkJXGR61z+tajZTs8LyEyAYPbFcM2tkelQptyRxev3lrPeNGz5JGACO9ZZjRGLTTISBnEfNaN7FGu9mdXUHcBjOR71R1SSJrVi7hYOMKoA4x/nmudQZ6uiRmy3MMjeWAz+/PFCDzYmQjcpOOua5vUNftoZGit3yCcBEOcVr+G7sSxg5xu4IIxTjBpmM5Jo6b9mfSLe2+IWq3TCBHisWiQcBiWdScd+i819GV8tfDuK+f43WbWU3lxJqAWYAcmMRsSPoTj86+pc5Fe1g5XhbsfMY6nyTT76/jYKKAKXHFdZxAODQTk0lFACg+lKDz2ptFFgHn86KYMigE0rDuOPHSkpevNHQdKChh6YqKQ8VK456VC4xSYFaUdapyY3Vcl6+1U5M7u1ZiNEU9etMXtTx1rZkki0pNMBJ6U6kFhaXgDmm0HJFILD6TvSLS1QC+9Jgk0Y5FKvWk9yW7bDgMClPTvRg80Y5oIG459qUHilI4603FMtO4E815BFp2pab8XZJpG26ZcRyQ2gDcIVXJXHb1zXr+K5XUIh/bLeaAzCZpEJ6jI7VxY2HMk+zPWyyq4OcejRgeLZtVVPL0poYpSv8ArJQSF/Dua8E+IXifx3o+v28VncWxjC7rhpY9y7s/d4xkEc8etfR+rwiSFtyAgrivJ9c8Hwajek3kaNH5mB3NeZy8s7vU9ulH2lJKLsxngea/8Y+Fv7Xh0r+z5lyskZkDIzDrjv8AnXlvxU8RatpMQtYLZnnLYILfKvOM+9fTPhbRLXSrKK3s4hBbIhOwdCTXh/xHs7S+1q686NHjLFSpHWhR5bM0u5qST1PHtGn8TXM7i5niiXqjqAoY/wBBXo/g1tV86IXjo6ZAyo5rN0/QbK1kDRopQHjPaup0gBHVlAxkce1KrJN6GVOjKMfeZ0Pwftbw/tEzSBSLNIZjn1YRj+WR+dfTecduteB/CyK5HxdDWzkQ+TK9wo9CgHP47a96Oa9TB/B8zwszt7WK8v8AMeDxSDmmnPenDpXajzgpSaSjFABS0lAoAOSaUDmgCgkCkyXfoBOaAfWkFFBaFfgYqGQ5FSMajccVNyivKPlqlIPnNXpOlU5AN54pNdgLininio0qQdK0IJBjFLTVOTTsc1ICdqXIFBPpRjNNAxR6U6kC4pTQQ32A4FANGKSkSiRTxQSKYPu04DIzTCw4eppCaOn1pDQMD1rK161hMYvvLHnxYAfJ6HjmtSsTxzrul+G/Cmo6zrNwsFnbwszEnljj5VUd2J4AqakOeNjelNwkpGRd3HGFHzD2715t421q406YRRIZLiVv3Uajkk967yzuodR0+3voBmOeNJQCMcMoYfzrgdWuBZeKtOtZNPnup725kaeaNARGoztBJ7AfwjrXhTetj63CSUVdHbaHPPHoKi9nQ3CwbnUcYPp9K8L8X3EFyL8G68qVnbyueS/Ye9d98Stfjs9ML2V2sLhCqrJGy59iSOleH6jLpJvxeR3wlkKDrkgHvinujeMeRN9ybR7+SQiC5QrIvUV09pIq7CpPFcRaXi6hfPEkEsTRsPLlYY3evFdV9pFnZT3CQtcPFE8gRVyTtUscD6KT+FTy3ZhUqrlZ9Q/DXRLHTtBt9SSyji1C+gV7mbks4/hHPQYxwK6oV4L8N/2lvAup6DaL4gW40G6SJFIELTQMAoAZWUEgexHHvXp3h74keAfEJC6P4w0a6c9I/tKo5/4C+DXvxpOEUrHx1Sp7STbZ1hOeKVT2po5UMOVIyCOh/GjjsaYJWH5o3Cm0CgY6l4AplHXrQA4t7UlJQWAobGkDYNGaaT7UHpSvoHUUnHU1ExPSlPWo3rMqxHIaruQG5qZzVWQ5bJNUnYC8p6VIp7VAh6VMp5rRMkevWn9qjHWnHhaTAcvPIp2aapytLSIeug7OaWmqPeg8mgkUn0pKMUYoYhw4FKDgVHmsfxN4q8OeGIRLr+tWWnAjKrNIN7D/AGVHzH8BQlfYLG4TjmmTXEUEDzzyJFFGNzu7BVUepJ4FeHeLf2kPDlijpoOl3epOAQks58iIn1xyxH4CvnD4pfFfxT40ncapqLraZzHZwHZAn/Af4j7nJreNCT30FzI+oPiD+0H4N8PSPaaOX1++HAFu22BT7yHr/wABBr5z+KfxM8RfEZZDqphtrKGNhb2dvkRqxGCxzyzY4yfwxXlVtcMC0sjElmwCTW2sm22KZ6jOa6YUox23Jcmz7Ut5Wi+H2g+I9OTz7a80q2MgX+CTylAPsDjGfUe9c7pd5NqN0J7pPJlKB9rY4xx/nvVv9jvXItd+EL6BdhZZNHuZLR43Gcwv86Z9sMw/4DVv4k+BNS00NqvhvdMiZLxMdzKPp/EPfr9a+cx+DfO5RPo8ux0YxUJb9zB8c6bcXmlsWljHy9c8147f6BNb3BlM8JPbbngV1mp+ItSn0gW8sLb1IAljYFWA649/auG1rVJ3QrEjLLjG5uAK4oJpWPXnXg0U7y9SC78uFiWXJzjr9K9N+BekPqzatqt4hNpDay20O4ZDSSRkOR/uqcf8CryPRNM1LVdbg020XzdRvHwhK/Kg7ufQAfnwK+svDuhw+GvBUOk2akmGE5c9XcjLMfcmuvDU7y5ux42Nr+7y9z4D05z9gECH/V8D6VWuGdG3YyRyQe1Rx+bbXNzG33kldWHuGNLLcKU3bct02+tfRxeh89JWZ1HhL4ieMfDbD+xPEuq2Kj+CK5bZ/wB8klf0r0PSv2jvidalSfECXQ7rd2cUgP4gA/rXhYDA9h9KsRNzzT0e6FZrZn1j4U/avvY1CeJvDVtdDH+t0+UxN+KPkfkRXo3hj9pL4eavMkF6dS0Z3OA91CHjH1ZCcfiK+DVY55qxDO46EipdKDGpyR+oGg61o+vWAv8ARNTs9StSxXzraYSLkdQSOh9qv5xXw9+xv4yn0X4oxaHJMxsdcDWzqT8omUFo2+vBX6NX29nPNc1SnyOxtGXMh5ajtTM4IpGY9AazZaHZxSE5OPSmijvUspKwpxUTtTzUTVIEMnSq0n3u1TyHj3qs+M0AXYzwKmU5FV4jxUyHtWqJJqUHk4OaaDmlAI6UMTHpg8U84zTAAOlOApESsxQacKZS8mgkcTxxXKfETx94Z8B6fHeeIb0xNPkQQRoXllI64A6DpycDmupxXyD+2c003xCjiZmMcWlxCMemWcn9a1o01OVmKT5UWfG37Rfi2+llg0K3tdFtjwrKvmz49S54B+grxnV9XvdSvpL6/uprm5lOXlmcu7H6msu2ufPtopz1ZPm9j0NR3DnAr0YQjHZGbbYXd1I4OTkVj3chLYHOauybmUgCs6dSp6c0pIES/vDHGPKO1Ody8/XIrahffJuP0A9KzGK+UiplVdQT6mrkT4YZ7elKO4M9z/Y48QnSfifeaPLIRFq1pwvYyI2QfyJr7JkUOvNfnF4J1qTw7450TWoc5huQrY/utwf519pfETxzqa+FivhGI3F4yL9ru0G5bIMP1k56dup7VxYlWmdNLVHjP7U918NNF8TrBFqt/a+JpcNcwaOgkCA9GnXIUE+n3iK8KuPE+h2t8kcus3V5E3LTLYOGT/gJYZP413/i34SappNo3ivSWl1SG+cvfRuTJKHPJbceST79a8c8TaSkDRXVthoZD970NKOX0qsOfqaPG1aT5eh678PvjV4Q8KX4hTwXqV3BMVWTUzOhvJG/65Y2hPRQ2fUmvp/w74h0XxRpIvtHvVuIdoDoRtkiJ7Oh5U18c/s/eBf+Eo16fWLs7NO00hRkcSSkZC/gOT9RX0V4f8GJpmiX2s2lxPa6iwZop4TtwB0yO49jxWVSnCnLlihRqSqLmm9T478ZWws/GWuWwHEeoTr+G81jHGRzg11XxSt5Lfx3qZlOXndZ34wNzqGP4ZJrmVAPWu2PwqxzS0kxsgG0HAzkDNSxrwKZOoESkcfMKmQcAkVSJuJjBzilBwetNLfNjn86cB3piNXwHrDaF4t0vWAZM2OoxT/IfmIV1Yge5GRX6VeFfEOk+KvD9rr2iXIuLC7XdG2MFTnBVh2YHgivy3gfb5hzyJf6V9S/sP8AxA8rVr3wFfZ8u+3Xli5bpKijzEx/tKAw91PrWFaN43NYOzPragUg6UVynQKT70Uz+PPan1DARjgVDIccU6Qk/SonPU0gIXNVZT89TynHSqkh+agC/CeOanQ85qpGasoc1oSTjjkU8Go06Yp4NMGiZQMUuR+NNU8UuOfekYsU0Ck+lBNAJXFJJ4HeviT4/eLLXxl48v72yUGztALOB+8ixlgX/Fice2K+x/FOrw6B4c1HXJwDHY2zzlc43FRwv4nA/Gvz8u5jNcz3DKqGaRnZV6AsSSB+JrtwsdWyamlkc3pTYa8tjjMUu4D2bn+eaS+kOdtChYfFOz+G4hIA9xz/AI1DqPyXB7AV0rYgmtgCmO/1qC7iwScVJYuGI74qW7XIzjGKb2EigG/dD1Rv0NWEk2suO9V8fPgng/KaFJBA6YqbDNO9do7UTRn95ERID7qcj+VfcXwbktL3wuqQxp5F5As+McNuAP8AI18Ng+ZbFT6YNfXP7KWpfbfhno8u7L2bPZS/WNsD/wAdK1zYqO0jai90ei3OmLp0csVvGJLCcfvID/D7ivlD9o+x0OLx3rcGjRtbQJbwXM1unC/aGXMhHp1GQO5PrX2TqcYkNzAflwu5DXw94wuG1bU9f1Wc7zczSlXP93cQPwwBW+Xw5pN+RnipJJI7b9lfVbS58Jal4aAjiura+NyFA+eSKUAbs98FcewIr6OntlGgTxKAFWLAFfCXwr19vC/xC0rVN58oTiC59DE52tn6ZB/CvvdAJdGuccny65MTT5anqaUJc0T4f/aQ082HxCwFwJbC3k+vDD/2WvNExzmvcv2wbQQ+OtLlA4l0iP8AHbLIK8OjHatqfwozn8THTjKIMnlhUp4WmTnmIf7X9KJ3GMc5q0SQswLcVOG+TPtVIMSasZxHSTG0Ug58yVRyTJx+Vdb8O/EF74T8WaZr+mugu7GYSxhxlW4IKn2IJB+tccskcc0sh5OamtxNMfMdikWfXk1nFltH6meD9es/FHhbTPEFgQbe/tknVc52Ej5lPuDkfhWpXyX+wr4pvf7d1XwnNdk6fLafa7aCR/uSqyhtg91OSB/dzX1oa5akeV2N4S5kHFKScUgHeg1kUMc4GKryHipXPU1XfjNICGU1WdgGqaY4BqnIRuqRbF+I1YiaqcZ6VYQ+hrYRbQ96kB71XQkipU60DLEbZ4zUmarqcVN70GUlqLmoWnAk24qUZ9KjaEF92OewqkNI8a/a38QpYeBbTQ4pitxqV0HdVPJhj5JPsWKj8K+SbltjlwM5PNep/tI+L7fxP8RruG0B8jR0OnoSf9a6sS7ew3EgfSvHry+VAd6FF6Z6ivSox5YIwm7szvEUnkXFtqKc+RIGOPTv+maTXcefuXBRuQexFR37pPbsCQ0eDxUJf7Rols4Yt5YMef8AdOP5YpvcXQl058n2NaEijbWRYNggenWtZCXXn0px1QjPnXr1GfSmZJ2sRy386s3Kc8VVYH5h/wADH9aTAvWz5THXFfQf7Fus/vvEfh2RuVeO+iXPZhsb9VWvnS1Y4IyOa9G/Zv1c6N8Z9LDNti1CKSzfnqSNy/qtZV1zQZpTdpH2v4ruvsenf2gOi277vwU18J302zSHjHPmDOO9fcPjVTP4E1Bl+9HBIf8Axw18JSK14I7eOSOMySCNXlbYgPuT045rXLpqEZNmeLTbikcm0RZ3UZBOfzr71+FOs/258PrS9LZebTIpG+u0A/qDXw8+l3jPfSRCKWKzQvJKJFVSoOPlzy2fQc19S/sjXsl14Ga0lziGKW3GemRIWA+uG6VljHGUU0x4ZSUrNHnf7acY/wCEg8OSgHDaXIM/SY/418+wrnr3r6P/AG1Au/wpL/EbW5Q/hIh/rXzfCwJGKmn8KLnuwuziaEdepqG5bJ9DTrlv9LQei1XmOWPOP51Te5KQ2M/vMHipJpV5AJ6dapgsG6fjSqc5Gc5rNS0KaIFw12284UNWnvRlG5tijoB3rKiGbt8nODwKvJ8p3nlu2egpQY5HV+A/EV74Y8TWGu6ZKYrmxnWaP/ax1U+xGQR6Gv0I+GfxF8LfELTZLrw9fCSa3C/a7V1Ky27EdCD1GcgMMg4r807dZG4DEKOrev0r239kzx1pvgz4jCDVbiOCx1aEWUkjtgROWDRufbdwT/tZ7UqsOaN+o6crOx94bsCo2OeO9HPemsetcR0DHIqtIwzUsp96rueKQyCU8E1SkY7uBmrUx4NUpG+brSEX4TVhCM571Ujb0qwjetaiLUbdqlU1VQ1YjOaALC84qUNxg1XU4P8AKpVOaCWiUHIqnr2qWuiaJfaxfMVtrG3e4lI67UGTj34xVoZz1rjvjfd2Vr8JfE0l+CYXsHh2g4LM+FUD/gRFaxV3YG7I+HfGF42q+I9R8QW1usR1C5kuZLZT8ql2LED6ZrCnMMyZPOOvYj61blJtnMbkmMdGrPvG2qZFKnIr09kcZjagnklmU5X2o0J1l067t1ydkocZHTI5/lUGqSs6Z5Q/SofCsp/tSeBznzIDj6g5/wAaxb95FxXus0LYbXOSetaluwxjvWZLhJOePSrtmWJyR9K1iSS3WdtUn+UhiOAf071cuhkE8V3fwP8AAUHjTWL641iO6XQ9NtmkuZIjs3yHhIw2OD1Y45wPes61SNOLnLZGlKlKrNQjuzhNGXTlv7dL5rh4mn2SpAvzLHtyHz9eMda6bR9MtdI8QWusTasYUsJo7mF0j3O5BDD5CVOOxI79PWnLo+kaB401SK5us6daJ+6kmOCysDtDEDg9s47VxnjjUlF4ZrKaMJtAjPmrIBx2IPP4iuCpiOb4XozqWGlG947H1Yfj9puo6Deaba6f9qklgYFyrQqB0J5LE9a8M1jw1r2u6baN4d0e5vLa1bEphK7t8hIQkE5y21sY7Yrzzwxf6tfWkGmRW8bWsEzSvKV2sAR90v6E4p0ej3Onlrmz8R3FpdFtxaESoM9eGBFZ3drE2V7nTWjLpQMGqWdzDcKCVgubZ48sBn+IDPUV0Pwx+JF3oFxdaYuRA9x54jT5WZuASoP3jwOBz6Vh+CLHU9e8WaWnj7xTqF54ft98iSG8MmX2hRGC2dhbCjPoK9N1n4e/DTU5ZLaFr2zLfckSUSbfoG6H8a4sRVgvcnsz0MJQqte1p207nT+M7PQPibpljFq13e2s9oHETxEKyF8bgysOeVFeWeI/gZ4i062kvND1Cz1qBclYlBiuCB/sngn2BrpD8LdW8P24bwr4nttSxyYrrdE59MHlc/iK9S8BeH9as9Njutfv0aRlB8mJM7fYsScn6VzRxtWi/dldeZ2ywVGvG8o8r8j4qu/NS/kilR0dPlZWXBUjqCOxqFsY/wAa+ufi38K9L8cQPe6akena7GPkuSPkuB2WXHX2bqPccV8u+LvC+v8AhTUHsde0u4s5V6My5jcequPlYfQ17OHxcK6utGeJicJOhLyMNxxUTNgH2pJJfmwOfWo5GwCc1s2jnS7kSu3nSMuM57mrMEoLfvHDADkDp+NZzHLsamgQyDHROrE96mLLa7mnFcNIzS7iI0HA9amghSX5pmIz3qlHcRDCBC6qe3c1cW5uCMxwwgf7RP8AhW0WnuZtW2PsX9jf4n3moQv8PvEF693NbwmXSbiVsu0a/fgYnklR8y+2R2FfSZPFfmH4F8Wat4V8V6b4isbeFp9PuUnASTAYDqp9iMj8a/RP4a+ONC+IHhKDxHoTyCF2Mc0EoAlt5RjdG4HcZBBHBBBrkrRSd0a03dWZ0kpwKqyNmpJGJ61XkPNYs0IJmyDmqTn5qsTNwaoyv81TIDQjbtVmNs8ZqlG1WY2/KtiS2hqdHwaqRtmp1NAFpDU8ZBBqrGcirCdOKLEy2JAa8G/bB8Ux2eg6b4UhbNxeyi8nA/hiTIX82J/75r3jtXwh+0147svE/wAV9R/4RyRb+C0jjsxcZPlAoDuwf4huJ6da3w6vLUzlL3bHHXTq3GRn3rA1S4srR8yTKiN/Ceefaq89rqknz3GpSAHqseFArKuLB87vP3H1fBrvcnbRGNl1Y++1iyKMtvGXbsTnArO8P3DDxBbsW+8zKfxBpLsm3XnymY9NtVLGdo9St5Wb7sqkn8a5ZzfMrm0Iq2h2t0gMoOKsowRQeuelQ3LDAIOcVUkuWLLjIA9K7L2Zhua1la3Wp39vYWMRmubmVYYUAyWdjtA/MivszXrbR/h98KV8N2xjhFrbBHZeDPKR87n1LHJz9B2rxH9jnR4b/wCJlxqlxAsqaVp7zxFhnZK7BFb6gF8V6R8dbPWNWu3itbZ5LcD7y9FPrXg5vWbapo+gyeileoz5S8ba/Nd3t6i8m4kEZGOdiA/1JrijFbmczXG5YgcBU4Zz3A9PrXW+ItGm0vxbqNhdb/MgiBiZxgsHPB/z6VyF6yvdOqcoh2KfXHU/iea0hGKS5djgquTm3Lc2o/FF/b2Ys9Kt7bT7YAghF3u3uWbv+VOs/FmsQSBpJEuE6FGGAR+Fc9KzbSFOMECoxvU5VjmqsjM9Q0zxHpWpiGKNWsrpz88cmNsh9j3/AJ1SufF+p+HdakhJN0u7KA8YHcE964ZAJIg/OM4OO1W9XnkuLW0lkctIoZXZupYEDPvxisp0oy+JXNadacPhdj3nwR44fV7KOcShM5EkW7LAjtXqfh/xPdz4tj/qCcjPUV4v8DPBV1cafFqV7bzWkYQnDrgyHJwcdhgivV9kdpCWUYK9CB1rxq0Ixm0nofQYecqkE5HbwasqEruJPvS3c1pqNjNb30cTw7S2JFDAY781xVtducDPOOtWGv8AMkNtI4VLmVYWOccMQDj88fiKwnLlR0csbGl4g+HHgTW9Hl09tG03TpLjasF3bxIsltM/3Gyp5QnAKnI25PBr5D1TTEtb+5sL60WO4t5XhmQrgq6sVYfmDX2XeyI9vqkk0wjlhVkXYwwvGNgHpgY/D1r5q/aPtI7L4r39xApWPU4LfURnjJliUsf++gx/GvSyDGuqpUpu9j5/NcKqXLNdTzxtLsCP9SgP1IqKSxs12jyT/uljSmTcpGeaZ5xljMLn5hyp719E1HseRd9yxHFbrtEagEjjjFTKF7gH8Kz4n3qY34bqG96ljnz8jHD9j/e+tCkhcrZLdRRSrhflfsRX0F+wVr723izxB4YmmCxXtmt3FGTwZYmCsVHrsfkf7NfPG/vnpWr4C8R3Pg3x9pHii0YqbK6SZwDw0edsin2KFhWdVJo0hofpfIcZqtK9OeVJEDxNujcBkOeqnkH8qrSNwa886SGdxg1Rd8NU07dapSP81JgaiNxirERqjGxqdWxgg1uSX4yKmRqpRNmrEbY70gLsZwasoelU4W4qwrUMynqzjvjzrF3onwh8SXtjI0V0bTyIpF6o0rLHuH0DGvgy6so7W122bxxInLO38819wftLX1pZfBbXTdso84QwxA9WcyqQB6ng18NG0mu5luLti0ZbMcH8K+nHc9+eld2FXumU9zCuCJpPLN7d3DHnEKcYrOu7Boxv+yXbrn+OQf0rvVtYUQ7FAOcsR1JqE2oXLPyR94nt7Vu6d9yVK2x5lPHIjfvLcKO3BFRwxyzzpFBC0kjMAqoMkkngfnXo17Eo8uOOEPLK2EGOnuantNNVZ0SUIyR9FUYye7N/QVi8N2Zoq3kY0aXLAwyW8wmjJSRNvKsDgj8xWloXhbXNc1KDTtMsHnu7lwkMQPzOx7AVuBolB2gZ7V7t+xppEN5461PV5UVjYWISE/3WlfBP/fKsPxNa1HywuyILmlY7T9m/4W6r8ONM1SXxBcWkmpakYlaK3YusCJk7S3RiS3OOBjvXpuoaZbzwMhUYbqCM5q3Fdx3SNKp6u6n2IYqf5VBcXGxgrZwe4r5utL2knKR9HhoOEVGJ84/tN/C7UdXsoNX0G0Q3tl94rx5kfUqT7YyP/r18ZwnLAnua/Ve5iS5jMTAHjkHvX53/ALQ3gP8A4V98T73SYG3afdj7bYNjGI3J+Q+6tlfoBWuGnZ8hhjaadqi36nm0/wAsp9eCKGmd0AZuFzjj1qw0ayDa+QexHanwachOZbkKncKvNdh5xJYQsdMlmYHaZNq/gOf5ivQPg54es9e1iZr9lWLTWSZAwyHZl6H6YzXJF4JoorVB5NpCMu3U46n6k/qSK73wPFPomiyanextax30u8SOQqADOBuPHfH4Vz4mVoaHVhIKVVX2PdJNXtbOBYBtWNF3E561z4uZb6Uz5fylPCZ4rjv+Eo0CbTxNJrdk8cZCklzgH06cmqv/AAsXwzbhlOqhx0xHE5/LivKdGcuh7jr0o9UekQXG3kqCMYwDWJqmpIvizQBIrOI79HVEPPBznH4ZrzLXfi2sbrHodi0ihgWluSVBHcBRz+NUfDPjy3fVBfXM32LUVc+VcXLs6IDjhWVTsPUZ2ng9aqeDqOL0OaWNpXsmfUvi/VdFittQvJbhGg2bo4UALTOeFjXHJLMQM9s18+ftOSY+INpbsQZLXSba2kI6FkBB/XNdh4PiTUNRtdW1DxVpt/BZH7THYWcpkQMo+RnZsE4JBxj0ryv4vakuqeLXud4kJQjdnOfm61tk+DeGk3LdnDmWIVZK3Q45mOM1HM2CJVNK5GKj3Lt29a99s8lIfKSU85Oncehp5fzIw4HI4P19aig43L2I6UQcb1PQ1KepXKTK+cZ60TqZIHUDJCOP/HajUE16V+zl4Jk8bfEuys7i3eTSrIi71FsfL5an5UJ9XbC/TPpQ5LqHLY+5fB/nx+DdDjus/aF0y1WXPXcIUz+tXJn61JO/PQD6dKpysa4TcimbrVJ2+bg1NO/FU3bmlcDTR/Q1Mj8jms+J8fhVmNu5roIL8T4NWI3yetZ6NxU8TnPPSlYZqRtirCSVno+KmR80Ixep8/ft4ancWng/w5HGxERvZ5WHYyLEqx/kZCa+c4ZUXavUKoUf419M/tw6U+o/CixvUQsbHVELnHRZFK/lkLXyoJtuSewH8q7sN8JnLsawmU8Zxjv6VBcXPl2/mkZ3HbCnqfU1REwUjng9QaZv+1X6DACRDCg9B7103M7WLzHyY45N+6Udz3Y//WqZbgQRqh5kcZNY/wBpN3qQC8QxcD3pI7lrnUJDuG1OAM9KOZDsbPnDA6V9D/sP3+PFPiKwZsGWwilUeuyRgf8A0OvmoPj0zivRP2ffFR8LfEzT78k+RKrQzAd0OM1jiP4bNaa95H1CNfj0jx/rvhS4YI5uPt1mSeHjmAYgfR99b5uxKBjG4ds1wH7R+ky3+mWPxA8OBrm70yIrcrBy8lvncHAHUoc5HoT6V5f4W+N016UgudNupVUc3EQAGB1PPavmK9Kam7H02Gr03TV9z3u41WS2n3rJtIPzIx4YV5N+054Qtvif4Ni1Xw0i3HiDRCztarjzZIT99AO5BAYevNUbX41+CdTj48S28e7+C6jKEfmKzdT8beHba5W/0PXrKKZAT50N4gIz1GM5qafPTknY3r+wrU7XPlEh4yVkUllJBB4YVJGQzBRG5z2zXq3jvxT8OtX1S81LU9OF9qNywZ308+Xlu5yPlyeveuJk1fQI0vJdD0i5R4Yg6NeTBsfMAeF+vrXqQqcyvys8CpQUH8SZP4c0O3ZRqmu3K2OmQNnnhpWH8K9yf5VL478fvrmmnRLGyFvpoKjLnLsEPy4HRR+tcnf315qMwmvJ2kYDCjoqD0UDgD6VWKVvHCptSmZvE8seSHXfzLdqC3h+/C/wTRsfof8A9VZjDnnrWxoo3WerW/8AftQw+qtn+tZJHzFu2aGtWRfQbjjim7eakFIRSsJM1/D+pvayCJp5LclSsdxG204P8DH+6aSdpJdRuTLL5rKwXfkHOB6ispcjpU0e4HAY49qqKUXcHqi4FXODtZ9xwuCTgDjp61t2HhDxBqNq8+neGdbuhwFeLTZ2U56nO3FfQf7BOoQDV/E+kSRwtK1tBdRlkBYbWKNgnkfeWvrQyydN7f8AfRpSdmEVdH5zaH8Hfifq7j7H4I1oKf454PIX85Ctej+Gf2U/G1+Fk1zVdI0WNuSgc3Mo9sJhf/Hq+zWbu3P1qN5Kl1X0HyHztoX7KPhOzlV9Y8TavqIH3o4oo7dW/H5jXs3g7wp4d8GaR/ZXhrS4bC2Lb32ks8rf3nc8sfr07YrddqgmbANZuTe5SikRTtjmqcz8U+aWmQW012JfJUny0LH39vrUFFGd/eqjNz1p871TaXBwDSsBpI+RViN/U1nRF+m1/wDvk1Zj34+43/fJre5maEbjirMTgms6Iv3VvyNWYt3GVb8qYPY0Y5PyqdXxVBGbsrfkamRm64b8qSWpmR+J9G07xP4dvtB1WMyWV9CYpQPvDuGHuCAR7ivhL4oeDNW8DeKLrRNTXdgb7edRhLiL+F1/qOxyK++FYkdG/Ks3xR4a8P8AivTxYeItHtdSt1O5FmjOUPqrDlT9DW9Opy6dCZRufndv3MD09adJIYraaRfvbetfaOofs8fDG7DeVpupWRPe3vn4/Bg1cxqP7LPhyVXGneKNZtw4wUnt45R+Y2mt1WiTyvsfJenyGKykfPzngH60aewiSRmPzMMnNfSF1+yhqscZSy8Y6fIucgTWcin8cE1z2vfs0eN9Ksrm7W60i+ggiaVnguHjdFUZJ2uvzcA8A80e1iJRPHrR1Iy5wx/SrK3501475CQITuOPTpULaZLHIGeG72fe2+VLyCcBc7e3XPp1oTTr6S0kgmtLlyQybhA2GHY9O4qub2icR25Xc7+0+Oviqw08w6dDBDbRJl5bkk8f7KgivNNe+JfifVftAV7DT0uSTKLKzSJmz6sBn8c1kXNvqhsvsJ0q8Dg7ZZTC53AHgAY4qj/ZWof9A+8/8B3/AMK8+NLudXO+hSAqQID1A/KrQ0zUc/8AHhef+A7/AOFPGnX462F5/wCA7/4VqokFRV+ar+nIVa8iKkF7OTg/QMD+lJFp1+Gz9gvAQcj/AEd/8K1rHTr2S/d10+7jVreVQphc9VJPOKbi7BfUxkTjinFDjOKvHTr2OQqbO64/6YP/AIUrWN5jiyuz/wBsH/wruUEct7jPDoB1Xyj0mhkQ/wDfOf6VjshA2556H2roNFsb6PXLJjY3YBmCn9w/fI9PequraVf2+p3MP2G7+WVgP3D9M/SuKpG02dENYmQQelGOatnT788/YLz/AMB3/wAKBp9//wA+F5/4Dv8A4VJZWAwKen3uKm+wX+P+PC8/8B3/AMKethf7gfsF5/4Dv/hQgPWf2SddXRPjbpIkfbDqKyWD+mZF+X/x9Vr71Z+K/MHRTqum6ta31paXqT20yTRsIHBDIwYc49RX6U6RqSavo9lqsKsI7y3juFBUjAdQ2PwziordGEF0L7vnPaoy1RszY+6fyqJ3bP3W/I1gWSSOAOtU55evNJMz/wB1vyNU5mf+63/fJouAk0g9a2dE1q2S3limjSHykMmUGA4HXj1rmpi/PyP/AN8mqspc9Ef/AL5NSm7jLGs3wvbppvIjhz2Qcn6+prKZ+afJ5n/PN/8Avk1WcSbv9W//AHyaLgf/2Q==" alt="Radovan Vaník" style="width:100%; height:100%; object-fit:cover; object-position: center top;" />
+  </div>
   <div class="about-name">Radovan Vaník</div>
-  <div class="about-role">Reality Najbývanie · Realitný maklér</div>
-  <p>Pomáham ľuďom predávať a kupovať nehnuteľnosti na Slovensku. Tieto e-knihy som napísal preto, lebo každý deň vidím, ako ľudia v ťažkých situáciách robia rovnaké chyby — nie zo zlej vôle, ale preto, že nikto im to vopred nepovedal. Chcem to zmeniť.</p>
+  <div class="about-role">Realitný maklér · Reality Najbývanie</div>
+  <div class="about-badge">✅ Certifikovaný maklér · Reality Najbývanie</div>
+
+  <p>Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe. Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života.</p>
+  <p>Tieto e-knihy som vytvoril preto, lebo verím, že informovaný klient je spokojný klient. Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.</p>
+
+  <div class="about-stats">
+    <div class="about-stat">
+      <div class="about-stat-num">4</div>
+      <div class="about-stat-label">E-knihy zadarmo</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num">Reality<br/>Najbývanie</div>
+      <div class="about-stat-label" style="font-size:0.65rem;">Zastrešená kancelária</div>
+    </div>
+    <div class="about-stat">
+      <div class="about-stat-num">📞</div>
+      <div class="about-stat-label">Bezplatná konzultácia</div>
+    </div>
+  </div>
+
   <div class="about-contact">
     📞 <a href="tel:0948310950">0948 310 950</a> &nbsp;·&nbsp;
     🌐 <a href="https://www.najbyvanie.sk" target="_blank">Reality Najbývanie</a>
@@ -310,10 +355,10 @@
   <h2>Ktorá situácia sa vás týka?</h2>
   <p>Vyberte e-knihu a stiahnite ju zadarmo.</p>
   <div class="ebook-cards-mini">
-    <button class="ebook-mini-btn" onclick="openModal('predaj')">🏠 Predaj nehnuteľnosti<span>Príprava, nacenenie, chyby</span></button>
+    <button class="ebook-mini-btn" onclick="openModal('prvy-byt')">✨ Váš prvý byt<span>Prvá kúpa bez stresu</span></button>
+    <button class="ebook-mini-btn" onclick="openModal('dedicstvo')">📜 Zdedený byt<span>Od dedičstva po predaj</span></button>
     <button class="ebook-mini-btn" onclick="openModal('exekucia')">⚠️ Exekúcia na dverách<span>Akčný plán pred dražbou</span></button>
     <button class="ebook-mini-btn" onclick="openModal('rozvod')">⚖️ Rozvod a majetok<span>Predaj bez hádok a sporov</span></button>
-    <button class="ebook-mini-btn" onclick="openModal('dedicstvo')">📜 Zdedený byt<span>Od dedičstva po predaj</span></button>
   </div>
   <p class="cta-note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam.</p>
 </section>
@@ -346,29 +391,29 @@
 
 <script>
   const BOOKS = {
-    predaj: {
-      tag: 'Predaj nehnuteľnosti',
-      title: 'Predaj svoju nehnuteľnosť bez chýb',
-      hook: 'Praktický sprievodca pre každého, kto plánuje predať nehnuteľnosť — ako ju správne pripraviť, naceniť a vyhnúť sa najčastejším chybám, ktoré predražujú alebo zdržiavajú predaj.',
-      file: 'ebook.pdf'
-    },
-    exekucia: {
-      tag: 'Exekúcia & Dlhy',
-      title: 'Exekúcia na dverách',
-      hook: 'Pocit, že vám pod nohami horí pôda, poznám. V tejto situácii nie je priestor na chyby ani na vyčkávanie. Táto e-kniha nie je teoretická príručka – je to váš akčný plán, ako predísť dražbe, komunikovať s bankou a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova s čistým štítom, nie so záväzkami.',
-      file: 'ebook-exekucia.pdf'
-    },
-    rozvod: {
-      tag: 'Rozvod & Majetok',
-      title: 'Rozvod a predaj majetku',
-      hook: 'Rozchod je sám o sebe dosť ťažký. Posledné, čo potrebujete, je nekonečný boj o cenu bytu s človekom, s ktorým už nechcete zdieľať ani dvere. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
-      file: 'ebook-rozvod.pdf'
+    'prvy-byt': {
+      tag: 'Prvá kúpa · Nový začiatok',
+      title: 'Váš prvý byt',
+      hook: 'Pamätám si ten pocit – chcete vlastné bývanie, ale neviete, kde začať. Hypotéka, právnik, kataster, skryté vady... Každý vám radí niečo iné a vy sa bojíte urobiť chybu za desaťtisíce eur. Tento e-book je váš kompas.',
+      file: 'ebook-prvy-byt'
     },
     dedicstvo: {
-      tag: 'Dedičstvo & Prevod',
+      tag: 'Dedičstvo · Zmätok, papierovačky',
       title: 'Zdedený byt',
       hook: 'Dedičstvo by malo byť darom, nie bremenom. Často však prichádza spolu s právnymi záludnosťami, dlhmi alebo nezhodami v rodine, ktoré nikto nečakal. Táto príručka vás prevedie procesom od kontroly listu vlastníctva až po úspešný predaj.',
-      file: 'ebook-dedicstvo.pdf'
+      file: 'ebook-dedicstvo'
+    },
+    exekucia: {
+      tag: 'Dlhová kríza · Strach, naliehavosť',
+      title: 'Exekúcia na dverách',
+      hook: 'Pocit, že vám pod nohami horí pôda, poznám. V tejto situácii nie je priestor na chyby ani na vyčkávanie. Táto e-kniha nie je teoretická príručka – je to váš akčný plán, ako predísť dražbe, komunikovať s bankou a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova s čistým štítom, nie so záväzkami.',
+      file: 'ebook-exekucia'
+    },
+    rozvod: {
+      tag: 'Rozvod · Bolesť, nový začiatok',
+      title: 'Rozvod a predaj majetku',
+      hook: 'Rozchod je sám o sebe dosť ťažký. Posledné, čo potrebujete, je nekonečný boj o cenu bytu s človekom, s ktorým už nechcete zdieľať ani dvere. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
+      file: 'ebook-rozvod'
     }
   };
 
