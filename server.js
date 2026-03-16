@@ -13,51 +13,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ─── POST /api/subscribe ───────────────────────────────────────────────────
 app.post('/api/subscribe', async (req, res) => {
-  const { email } = req.body;
+    const { email, bookType } = req.body;
+    try {
+        const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'api-key': process.env.BREVO_API_KEY
+            },
+            body: JSON.stringify({
+                email,
+                listIds: [parseInt(process.env.BREVO_LIST_ID)],
+                updateEnabled: true,
+                attributes: {
+                    "BOOK_TYPE": bookType
+                }
+            })
+        });
 
-  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return res.status(400).json({ error: 'Neplatný email.' });
-  }
-
-  try {
-    const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'api-key': process.env.BREVO_API_KEY
-      },
-      body: JSON.stringify({
-  email,
-  listIds: [parseInt(process.env.BREVO_LIST_ID)],
-  updateEnabled: true,
-  attributes: { // TOTO MUSÍŠ PRIDAŤ
-    "BOOK_TYPE": req.body.bookType // Preberie hodnotu, ktorú pošle tvoj formulár
-  }
-})
-
-    if (!brevoRes.ok && brevoRes.status !== 204) {
-      const errBody = await brevoRes.json().catch(() => ({}));
-      console.error('Brevo error:', errBody);
-      return res.status(502).json({ error: 'Chyba pri ukladaní emailu.' });
+        if (!brevoRes.ok && brevoRes.status !== 204) {
+            const errBody = await brevoRes.json().catch(() => ({}));
+            console.error('Brevo error:', errBody);
+            return res.status(502).json({ error: 'Chyba pri ukladaní emailu.' });
+        }
+        return res.json({ success: true, downloadUrl: '/download' });
+    } catch (err) {
+        console.error('Server error:', err);
+        return res.status(500).json({ error: 'Interná chyba servera.' });
     }
+}); // Toto je správne uzavretie app.post
 
-    return res.json({ success: true, downloadUrl: '/download' });
-
-  } catch (err) {
-    console.error('Server error:', err);
-    return res.status(500).json({ error: 'Interná chyba servera.' });
-  }
-});
-
-// ─── GET /download ─────────────────────────────────────────────────────────
 app.get('/download', (req, res) => {
-  const file = path.join(__dirname, 'public', 'ebook.pdf');
-  res.download(file, 'ebook.pdf', (err) => {
-    if (err) {
-      console.error('PDF download error:', err);
-      res.status(404).send('Súbor nebol nájdený. Skontroluj či je ebook.pdf v priečinku public/');
-    }
-  });
+    const file = path.join(__dirname, 'public', 'ebook.pdf');
+    res.download(file, 'ebook.pdf', (err) => {
+        if (err) {
+            console.error('PDF download error:', err);
+            res.status(404).send('Súbor nebol nájdený.');
+        }
+    });
 });
 
 app.get('*', (req, res) => {
