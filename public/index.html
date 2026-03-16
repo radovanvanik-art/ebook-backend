@@ -487,34 +487,39 @@
     btnEl.disabled = true;
 
     try {
-      const res = await fetch('/api/subscribe', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ 
-    email: email, 
-    bookType: BOOKS[currentBook].file // TOTO JE TO, ČO POTREBUJEME!
-  })
-});
+        const res = await fetch('/api/subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                email: email,
+                bookType: BOOKS[currentBook].file // Dynamický názov podľa výberu
+            })
+        });
 
-      const data = await res.json();
+      // ... (tvoj kód v index.html)
+const data = await res.json(); 
 
-      if (res.ok && data.success) {
-        if (typeof gtag !== 'undefined') gtag('event', 'ebook_downloaded', { ebook: currentBook });
-        window.location.href = data.downloadUrl;
-        document.getElementById('modal-content').style.display = 'none';
-        document.getElementById('modal-success').style.display = 'block';
-      } else {
-        throw new Error(data.error || 'Neznáma chyba');
-      }
-    } catch (err) {
+if (res.ok && data.success) {
+    // TOTO JE TO MIESTO:
+    window.location.href = `/download/${BOOKS[currentBook].file}`; 
+    
+    // Zvyšok kódu, ktorý ti schová modálne okno a ukáže úspech
+    document.getElementById('modal-content').style.display = 'none';
+    document.getElementById('modal-success').style.display = 'block';
+}
+    } catch (err) { // TOTO musí nasledovať hneď za '}' bloku try
+        console.error(err);
+        // ... tvoj kód na zobrazenie chyby ...
+    } // TOTO uzavrie blok catch
+
       btnEl.textContent = 'Stiahnuť →';
       btnEl.disabled = false;
       emailEl.style.borderColor = '#e05050';
       errEl.textContent = 'Nastala chyba. Skús to znova.';
       errEl.style.display = 'block';
       setTimeout(() => emailEl.style.borderColor = '', 2000);
-    }
-  }
+      }
+
 
   document.getElementById('modal-email').addEventListener('keydown', e => {
     if (e.key === 'Enter') { e.preventDefault(); handleModalDownload(); }

@@ -43,9 +43,11 @@ app.post('/api/subscribe', async (req, res) => {
     }
 }); // Toto je správne uzavretie app.post
 
-app.get('/download', (req, res) => {
-    const file = path.join(__dirname, 'public', 'ebook.pdf');
-    res.download(file, 'ebook.pdf', (err) => {
+app.get('/download/:bookName', (req, res) => {
+    const bookName = req.params.bookName; // Získa názov z URL
+    const file = path.join(__dirname, 'public', `${bookName}.pdf`);
+    
+    res.download(file, `${bookName}.pdf`, (err) => {
         if (err) {
             console.error('PDF download error:', err);
             res.status(404).send('Súbor nebol nájdený.');
