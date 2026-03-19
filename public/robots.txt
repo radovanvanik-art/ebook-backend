@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ebook-backend-pt4l.onrender.com/sitemap.xml
+Sitemap: https://www.radovanvanik.com/sitemap.xml
