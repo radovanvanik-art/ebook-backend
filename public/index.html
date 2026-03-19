@@ -82,6 +82,12 @@
       --shadow-lg:  0 16px 48px rgba(0,0,0,0.14);
     }
     html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb { background: rgba(200,133,31,0.4); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(200,133,31,0.65); }
+    * { scrollbar-width: thin; scrollbar-color: rgba(200,133,31,0.4) var(--dark); }
     body {
       font-family: 'Inter', system-ui, sans-serif;
       background: var(--cream);
@@ -397,6 +403,7 @@
     }
     @media (max-width: 860px) { .benefits-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
     .benefits-sticky { position: sticky; top: 90px; }
+    @media (max-width: 860px) { .benefits-sticky { position: static; } }
     .benefits-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
