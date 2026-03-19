@@ -562,6 +562,24 @@
     .modal-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
     .modal-success p { font-size: 0.875rem; color: var(--muted); }
 
+    /* ── LANGUAGE SWITCHER ─────────────────────────────────────── */
+    .lang-switcher {
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 3px;
+    }
+    .lang-btn {
+      background: transparent; color: rgba(255,255,255,0.45);
+      border: none; cursor: pointer; font-family: inherit;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em;
+      padding: 0.26rem 0.55rem; border-radius: 4px;
+      transition: background 0.18s, color 0.18s;
+    }
+    .lang-btn:hover { color: rgba(255,255,255,0.8); }
+    .lang-btn.active { background: var(--gold); color: var(--white); }
+
     /* ── FLOATING BUTTONS ──────────────────────────────────────── */
     .floats {
       position: fixed; bottom: 1.75rem; right: 1.5rem;
@@ -599,8 +617,14 @@
     Reality Najbývanie
   </a>
   <div class="nav-actions">
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')">SK</button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
+    </div>
     <span class="nav-phone">0948 310 950</span>
-    <button class="nav-cta" onclick="scrollToBooks()">Vybrať e-knihu →</button>
+    <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
   </div>
 </header>
 
@@ -609,33 +633,33 @@
   <div class="hero-inner">
     <div class="hero-pill">
       <span class="hero-pill-dot"></span>
-      4 e-knihy · Zadarmo · PDF · Okamžité stiahnutie
+      <span data-i18n="hero_pill">4 e-knihy · Zadarmo · PDF · Okamžité stiahnutie</span>
     </div>
     <h1>
-      Nehnuteľnosti bez<br/>
-      <span class="hl">zbytočných chýb</span>
+      <span data-i18n="hero_h1_1">Nehnuteľnosti bez</span><br/>
+      <span class="hl" data-i18n="hero_h1_hl">zbytočných chýb</span>
     </h1>
-    <p class="hero-sub">
+    <p class="hero-sub" data-i18n="hero_sub">
       Vyber si situáciu, ktorá sa ťa týka. Zadaj email a stiahni praktickú príručku zadarmo — od prvého bytu cez rozvod až po dedičstvo.
     </p>
     <div class="hero-btns">
-      <button class="btn-primary" onclick="scrollToBooks()">Stiahnuť e-knihu zadarmo</button>
-      <a href="tel:0948310950" class="btn-ghost">📞 Poradiť sa bezplatne</a>
+      <button class="btn-primary" onclick="scrollToBooks()" data-i18n="hero_btn_primary">Stiahnuť e-knihu zadarmo</button>
+      <a href="tel:0948310950" class="btn-ghost" data-i18n="hero_btn_ghost">📞 Poradiť sa bezplatne</a>
     </div>
     <div class="hero-trust">
       <div class="hero-trust-item">
         <div class="hero-trust-num">4</div>
-        <div class="hero-trust-label">E-knihy zdarma</div>
+        <div class="hero-trust-label" data-i18n="trust_ebooks">E-knihy zdarma</div>
       </div>
       <div class="hero-trust-sep"></div>
       <div class="hero-trust-item">
         <div class="hero-trust-num">250+</div>
-        <div class="hero-trust-label">Stiahnutí</div>
+        <div class="hero-trust-label" data-i18n="trust_downloads">Stiahnutí</div>
       </div>
       <div class="hero-trust-sep"></div>
       <div class="hero-trust-item">
         <div class="hero-trust-num">PDF</div>
-        <div class="hero-trust-label">Ihneď po zadaní emailu</div>
+        <div class="hero-trust-label" data-i18n="trust_instant">Ihneď po zadaní emailu</div>
       </div>
     </div>
   </div>
@@ -645,50 +669,50 @@
 <section class="section books-section" id="books" aria-label="E-knihy">
   <div class="section-inner">
     <div class="books-header reveal">
-      <p class="eyebrow">Bezplatné príručky</p>
-      <h2 class="section-title">Vyber si svoju e-knihu</h2>
-      <p class="section-sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
+      <p class="eyebrow" data-i18n="books_eyebrow">Bezplatné príručky</p>
+      <h2 class="section-title" data-i18n="books_title">Vyber si svoju e-knihu</h2>
+      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
     </div>
     <div class="books-grid">
 
       <article class="book-card reveal reveal-d1" onclick="openModal('prvy-byt')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Váš prvý byt">
-        <span class="book-badge">Zadarmo</span>
+        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">✨</div>
-        <div class="book-tag">Prvá kúpa · Nový začiatok</div>
-        <h3>Váš prvý byt</h3>
-        <p class="book-desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span>54 stiahnutí tento mesiac</div>
-        <button class="book-btn" tabindex="-1">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <div class="book-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
+        <h3 data-i18n="book1_title">Váš prvý byt</h3>
+        <p class="book-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
+        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book1_meta">54 stiahnutí tento mesiac</span></div>
+        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
       </article>
 
       <article class="book-card reveal reveal-d2" onclick="openModal('dedicstvo')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Zdedený byt">
-        <span class="book-badge">Zadarmo</span>
+        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">📜</div>
-        <div class="book-tag">Dedičstvo · Papierovačky</div>
-        <h3>Zdedený byt</h3>
-        <p class="book-desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span>61 stiahnutí tento mesiac</div>
-        <button class="book-btn" tabindex="-1">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <div class="book-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
+        <h3 data-i18n="book2_title">Zdedený byt</h3>
+        <p class="book-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</p>
+        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book2_meta">61 stiahnutí tento mesiac</span></div>
+        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
       </article>
 
       <article class="book-card reveal reveal-d1" onclick="openModal('exekucia')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Exekúcia na dverách">
-        <span class="book-badge">Zadarmo</span>
+        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">⚠️</div>
-        <div class="book-tag">Dlhová kríza · Naliehavosť</div>
-        <h3>Exekúcia na dverách</h3>
-        <p class="book-desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span>58 stiahnutí tento mesiac</div>
-        <button class="book-btn" tabindex="-1">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <div class="book-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
+        <h3 data-i18n="book3_title">Exekúcia na dverách</h3>
+        <p class="book-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</p>
+        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book3_meta">58 stiahnutí tento mesiac</span></div>
+        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
       </article>
 
       <article class="book-card reveal reveal-d2" onclick="openModal('rozvod')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Rozvod a predaj majetku">
-        <span class="book-badge">Zadarmo</span>
+        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">⚖️</div>
-        <div class="book-tag">Rozvod · Nový začiatok</div>
-        <h3>Rozvod a predaj majetku</h3>
-        <p class="book-desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span>52 stiahnutí tento mesiac</div>
-        <button class="book-btn" tabindex="-1">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <div class="book-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
+        <h3 data-i18n="book4_title">Rozvod a predaj majetku</h3>
+        <p class="book-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
+        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book4_meta">52 stiahnutí tento mesiac</span></div>
+        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
       </article>
 
     </div>
@@ -700,22 +724,22 @@
   <div class="stats-inner">
     <div class="stat reveal">
       <div class="stat-num">250+</div>
-      <div class="stat-label">Stiahnutých e-kníh</div>
+      <div class="stat-label" data-i18n="stat1">Stiahnutých e-kníh</div>
     </div>
     <div class="stat-sep"></div>
     <div class="stat reveal reveal-d1">
       <div class="stat-num">4</div>
-      <div class="stat-label">Príručky zadarmo</div>
+      <div class="stat-label" data-i18n="stat2">Príručky zadarmo</div>
     </div>
     <div class="stat-sep"></div>
     <div class="stat reveal reveal-d2">
       <div class="stat-num">0€</div>
-      <div class="stat-label">Cena stiahnutia</div>
+      <div class="stat-label" data-i18n="stat3">Cena stiahnutia</div>
     </div>
     <div class="stat-sep"></div>
     <div class="stat reveal reveal-d3">
       <div class="stat-num">PDF</div>
-      <div class="stat-label">Okamžitý download</div>
+      <div class="stat-label" data-i18n="stat4">Okamžitý download</div>
     </div>
   </div>
 </div>
@@ -725,40 +749,40 @@
   <div class="section-inner">
     <div class="benefits-layout">
       <div class="benefits-sticky reveal">
-        <p class="eyebrow">Prečo tieto príručky</p>
-        <h2 class="section-title">Každá situácia si zaslúži konkrétny návod</h2>
-        <p class="section-sub" style="margin-top:0.5rem;">Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.</p>
+        <p class="eyebrow" data-i18n="ben_eyebrow">Prečo tieto príručky</p>
+        <h2 class="section-title" data-i18n="ben_title">Každá situácia si zaslúži konkrétny návod</h2>
+        <p class="section-sub" style="margin-top:0.5rem;" data-i18n="ben_sub">Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.</p>
       </div>
       <div class="benefits-grid">
         <div class="benefit-item reveal reveal-d1">
           <div class="benefit-icon">🎯</div>
-          <h3>Priamo k veci</h3>
-          <p>Žiadna teória navyše. Každá e-kniha je zameraná presne na vašu situáciu a dáva konkrétne kroky.</p>
+          <h3 data-i18n="ben1_h">Priamo k veci</h3>
+          <p data-i18n="ben1_p">Žiadna teória navyše. Každá e-kniha je zameraná presne na vašu situáciu a dáva konkrétne kroky.</p>
         </div>
         <div class="benefit-item reveal reveal-d2">
           <div class="benefit-icon">⚡</div>
-          <h3>Okamžité stiahnutie</h3>
-          <p>Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam.</p>
+          <h3 data-i18n="ben2_h">Okamžité stiahnutie</h3>
+          <p data-i18n="ben2_p">Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam.</p>
         </div>
         <div class="benefit-item reveal reveal-d1">
           <div class="benefit-icon">🛡️</div>
-          <h3>Z praxe makléra</h3>
-          <p>Obsah vychádza z reálnych prípadov — nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.</p>
+          <h3 data-i18n="ben3_h">Z praxe makléra</h3>
+          <p data-i18n="ben3_p">Obsah vychádza z reálnych prípadov — nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.</p>
         </div>
         <div class="benefit-item reveal reveal-d2">
           <div class="benefit-icon">💰</div>
-          <h3>Ušetrite tisíce eur</h3>
-          <p>Jedna prehliadnutá chyba pri predaji môže stáť tisíce. Tieto príručky sú investícia s okamžitou návratnosťou.</p>
+          <h3 data-i18n="ben4_h">Ušetrite tisíce eur</h3>
+          <p data-i18n="ben4_p">Jedna prehliadnutá chyba pri predaji môže stáť tisíce. Tieto príručky sú investícia s okamžitou návratnosťou.</p>
         </div>
         <div class="benefit-item reveal reveal-d1">
           <div class="benefit-icon">📋</div>
-          <h3>Checklisty a vzory</h3>
-          <p>Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.</p>
+          <h3 data-i18n="ben5_h">Checklisty a vzory</h3>
+          <p data-i18n="ben5_p">Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.</p>
         </div>
         <div class="benefit-item reveal reveal-d2">
           <div class="benefit-icon">🤝</div>
-          <h3>Osobná konzultácia</h3>
-          <p>Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo — bez záväzkov.</p>
+          <h3 data-i18n="ben6_h">Osobná konzultácia</h3>
+          <p data-i18n="ben6_p">Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo — bez záväzkov.</p>
         </div>
       </div>
     </div>
@@ -779,15 +803,15 @@
         </div>
       </div>
       <div class="about-content reveal reveal-d2">
-        <p class="eyebrow">O mne</p>
+        <p class="eyebrow" data-i18n="about_eyebrow">O mne</p>
         <h2 class="section-title" style="color:var(--white);">Radovan Vaník</h2>
         <div class="about-verify">
           <span class="about-verify-dot"></span>
-          Certifikovaný maklér · Reality Najbývanie
+          <span data-i18n="about_verify">Certifikovaný maklér · Reality Najbývanie</span>
         </div>
-        <p>Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.</p>
-        <p>Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.</p>
-        <p>Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.</p>
+        <p data-i18n="about_p1">Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.</p>
+        <p data-i18n="about_p2">Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.</p>
+        <p data-i18n="about_p3">Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.</p>
         <div class="about-contact-list">
           <div class="about-contact-item">
             <span class="about-contact-icon">📞</span>
@@ -799,7 +823,7 @@
           </div>
           <div class="about-contact-item">
             <span class="about-contact-icon">📍</span>
-            <span>Ružomberok a okolie</span>
+            <span data-i18n="about_location">Ružomberok a okolie</span>
           </div>
         </div>
       </div>
@@ -810,16 +834,16 @@
 <!-- BOTTOM CTA -->
 <section class="cta-section" aria-label="Vybrať e-knihu">
   <div class="section-inner">
-    <p class="eyebrow" style="color:var(--gold);">Začni hneď</p>
-    <h2 class="section-title">Ktorá situácia sa vás týka?</h2>
-    <p>Vyberte e-knihu a stiahnite ju zadarmo.</p>
+    <p class="eyebrow" style="color:var(--gold);" data-i18n="cta_eyebrow">Začni hneď</p>
+    <h2 class="section-title" data-i18n="cta_title">Ktorá situácia sa vás týka?</h2>
+    <p data-i18n="cta_sub">Vyberte e-knihu a stiahnite ju zadarmo.</p>
     <div class="cta-books-grid">
-      <button class="cta-book-btn" onclick="openModal('prvy-byt')">✨ Váš prvý byt<span>Prvá kúpa bez stresu</span></button>
-      <button class="cta-book-btn" onclick="openModal('dedicstvo')">📜 Zdedený byt<span>Od dedičstva po predaj</span></button>
-      <button class="cta-book-btn" onclick="openModal('exekucia')">⚠️ Exekúcia na dverách<span>Akčný plán pred dražbou</span></button>
-      <button class="cta-book-btn" onclick="openModal('rozvod')">⚖️ Rozvod a majetok<span>Predaj bez hádok a sporov</span></button>
+      <button class="cta-book-btn" onclick="openModal('prvy-byt')">✨ <span data-i18n="book1_title">Váš prvý byt</span><span data-i18n="cta_b1_sub">Prvá kúpa bez stresu</span></button>
+      <button class="cta-book-btn" onclick="openModal('dedicstvo')">📜 <span data-i18n="book2_title">Zdedený byt</span><span data-i18n="cta_b2_sub">Od dedičstva po predaj</span></button>
+      <button class="cta-book-btn" onclick="openModal('exekucia')">⚠️ <span data-i18n="book3_title">Exekúcia na dverách</span><span data-i18n="cta_b3_sub">Akčný plán pred dražbou</span></button>
+      <button class="cta-book-btn" onclick="openModal('rozvod')">⚖️ <span data-i18n="book4_title">Rozvod a majetok</span><span data-i18n="cta_b4_sub">Predaj bez hádok a sporov</span></button>
     </div>
-    <p class="cta-note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
+    <p class="cta-note" data-i18n="cta_note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
   </div>
 </section>
 
@@ -841,18 +865,18 @@
       <div class="modal-tag" id="modal-tag-el"></div>
       <h2 class="modal-title" id="modal-title-el"></h2>
       <div class="modal-hook" id="modal-hook-el"></div>
-      <label class="modal-label" for="modal-email-input">Zadaj email a stiahni zadarmo</label>
+      <label class="modal-label" for="modal-email-input" data-i18n="modal_label">Zadaj email a stiahni zadarmo</label>
       <div class="modal-row">
         <input type="email" id="modal-email-input" class="modal-email" placeholder="tvoj@email.sk" autocomplete="email" />
-        <button class="modal-submit" id="modal-submit-btn" onclick="handleDownload()">Stiahnuť →</button>
+        <button class="modal-submit" id="modal-submit-btn" onclick="handleDownload()" data-i18n="modal_submit">Stiahnuť →</button>
       </div>
       <p class="modal-err" id="modal-err-el"></p>
-      <p class="modal-privacy">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
+      <p class="modal-privacy" data-i18n="modal_privacy">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
     </div>
     <div class="modal-success" id="modal-success-wrap">
       <div class="modal-success-icon">✅</div>
-      <h3>Výborne! Sťahovanie začína.</h3>
-      <p>Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+      <h3 data-i18n="success_h3">Výborne! Sťahovanie začína.</h3>
+      <p data-i18n="success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
     </div>
   </div>
 </div>
@@ -988,6 +1012,296 @@
   document.querySelectorAll('.book-card').forEach(card => {
     card.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); } });
   });
+
+  /* ─── LANGUAGE SWITCHER ─────────────────────────────── */
+  const TRANSLATIONS = {
+    sk: {
+      nav_cta: 'Vybrať e-knihu →',
+      hero_pill: '4 e-knihy · Zadarmo · PDF · Okamžité stiahnutie',
+      hero_h1_1: 'Nehnuteľnosti bez',
+      hero_h1_hl: 'zbytočných chýb',
+      hero_sub: 'Vyber si situáciu, ktorá sa ťa týka. Zadaj email a stiahni praktickú príručku zadarmo — od prvého bytu cez rozvod až po dedičstvo.',
+      hero_btn_primary: 'Stiahnuť e-knihu zadarmo',
+      hero_btn_ghost: '📞 Poradiť sa bezplatne',
+      trust_ebooks: 'E-knihy zdarma',
+      trust_downloads: 'Stiahnutí',
+      trust_instant: 'Ihneď po zadaní emailu',
+      books_eyebrow: 'Bezplatné príručky',
+      books_title: 'Vyber si svoju e-knihu',
+      books_sub: 'Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.',
+      badge_free: 'Zadarmo',
+      btn_download: 'Stiahnuť zadarmo',
+      book1_tag: 'Prvá kúpa · Nový začiatok',
+      book1_title: 'Váš prvý byt',
+      book1_desc: 'Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.',
+      book1_meta: '54 stiahnutí tento mesiac',
+      book2_tag: 'Dedičstvo · Papierovačky',
+      book2_title: 'Zdedený byt',
+      book2_desc: 'Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.',
+      book2_meta: '61 stiahnutí tento mesiac',
+      book3_tag: 'Dlhová kríza · Naliehavosť',
+      book3_title: 'Exekúcia na dverách',
+      book3_desc: 'Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.',
+      book3_meta: '58 stiahnutí tento mesiac',
+      book4_tag: 'Rozvod · Nový začiatok',
+      book4_title: 'Rozvod a predaj majetku',
+      book4_desc: 'Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.',
+      book4_meta: '52 stiahnutí tento mesiac',
+      stat1: 'Stiahnutých e-kníh',
+      stat2: 'Príručky zadarmo',
+      stat3: 'Cena stiahnutia',
+      stat4: 'Okamžitý download',
+      ben_eyebrow: 'Prečo tieto príručky',
+      ben_title: 'Každá situácia si zaslúži konkrétny návod',
+      ben_sub: 'Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.',
+      ben1_h: 'Priamo k veci', ben1_p: 'Žiadna teória navyše. Každá e-kniha je zameraná presne na vašu situáciu a dáva konkrétne kroky.',
+      ben2_h: 'Okamžité stiahnutie', ben2_p: 'Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam.',
+      ben3_h: 'Z praxe makléra', ben3_p: 'Obsah vychádza z reálnych prípadov — nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.',
+      ben4_h: 'Ušetrite tisíce eur', ben4_p: 'Jedna prehliadnutá chyba pri predaji môže stáť tisíce. Tieto príručky sú investícia s okamžitou návratnosťou.',
+      ben5_h: 'Checklisty a vzory', ben5_p: 'Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.',
+      ben6_h: 'Osobná konzultácia', ben6_p: 'Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo — bez záväzkov.',
+      about_eyebrow: 'O mne',
+      about_verify: 'Certifikovaný maklér · Reality Najbývanie',
+      about_p1: 'Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.',
+      about_p2: 'Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.',
+      about_p3: 'Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.',
+      about_location: 'Ružomberok a okolie',
+      cta_eyebrow: 'Začni hneď',
+      cta_title: 'Ktorá situácia sa vás týka?',
+      cta_sub: 'Vyberte e-knihu a stiahnite ju zadarmo.',
+      cta_b1_sub: 'Prvá kúpa bez stresu',
+      cta_b2_sub: 'Od dedičstva po predaj',
+      cta_b3_sub: 'Akčný plán pred dražbou',
+      cta_b4_sub: 'Predaj bez hádok a sporov',
+      cta_note: '🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.',
+      modal_label: 'Zadaj email a stiahni zadarmo',
+      modal_submit: 'Stiahnuť →',
+      modal_privacy: '🔒 Žiadny spam. Odhlásenie kedykoľvek.',
+      success_h3: 'Výborne! Sťahovanie začína.',
+      success_p: 'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
+    },
+    en: {
+      nav_cta: 'Get free e-book →',
+      hero_pill: '4 e-books · Free · PDF · Instant download',
+      hero_h1_1: 'Real estate without',
+      hero_h1_hl: 'costly mistakes',
+      hero_sub: 'Choose the situation that applies to you. Enter your email and download a practical guide for free — from your first home to divorce or inheritance.',
+      hero_btn_primary: 'Download free e-book',
+      hero_btn_ghost: '📞 Get free advice',
+      trust_ebooks: 'Free e-books',
+      trust_downloads: 'Downloads',
+      trust_instant: 'Instant after email',
+      books_eyebrow: 'Free guides',
+      books_title: 'Choose your e-book',
+      books_sub: 'All free. Just enter your email and receive the PDF instantly.',
+      badge_free: 'Free',
+      btn_download: 'Download free',
+      book1_tag: 'First purchase · New beginning',
+      book1_title: 'Your first home',
+      book1_desc: 'Buying your first property? A guide that saves you thousands and months of stress. Mortgage, lawyer, land registry, hidden defects — your compass from day one.',
+      book1_meta: '54 downloads this month',
+      book2_tag: 'Inheritance · Paperwork',
+      book2_title: 'Inherited property',
+      book2_desc: 'Inherited a property full of paperwork and uncertainty? Don\'t waste time in dead ends. From checking the title deed to a successful sale.',
+      book2_meta: '61 downloads this month',
+      book3_tag: 'Debt crisis · Urgency',
+      book3_title: 'Bailiff at the door',
+      book3_desc: 'Time is against you. Save what you can before the bailiff decides. Your action plan to avoid auction and sell on terms that let you start fresh.',
+      book3_meta: '58 downloads this month',
+      book4_tag: 'Divorce · New beginning',
+      book4_title: 'Divorce and property sale',
+      book4_desc: 'Ending a relationship, not your life. Sell the property without unnecessary arguments and legal disputes. Turn shared real estate into capital that lets you both move on.',
+      book4_meta: '52 downloads this month',
+      stat1: 'E-books downloaded',
+      stat2: 'Free guides',
+      stat3: 'Download price',
+      stat4: 'Instant download',
+      ben_eyebrow: 'Why these guides',
+      ben_title: 'Every situation deserves a concrete plan',
+      ben_sub: 'No fluff. Every guide is based on real cases and gives you specific steps.',
+      ben1_h: 'Straight to the point', ben1_p: 'No extra theory. Each e-book is focused on your exact situation and provides concrete steps.',
+      ben2_h: 'Instant download', ben2_p: 'Enter your email, download the PDF. No waiting, no registration, no spam.',
+      ben3_h: 'From a broker\'s practice', ben3_p: 'Content is based on real cases — not textbooks. The mistakes described here I\'ve witnessed first-hand.',
+      ben4_h: 'Save thousands', ben4_p: 'One overlooked mistake can cost thousands. These guides are an investment with instant returns.',
+      ben5_h: 'Checklists & templates', ben5_p: 'Every book includes practical checklists and document templates you can use right away.',
+      ben6_h: 'Personal consultation', ben6_p: 'If you need help, I\'m here. Contact me directly — no strings attached.',
+      about_eyebrow: 'About me',
+      about_verify: 'Certified broker · Reality Najbývanie',
+      about_p1: 'I am a real estate broker operating under <strong>Reality Najbývanie</strong> — a modern agency built on transparency and personal approach.',
+      about_p2: 'Every day I work with people facing one of the biggest decisions of their lives. I created these e-books because I believe an <strong>informed client is a satisfied client</strong>.',
+      about_p3: 'I want you to come to us prepared — not lost. And if you need someone by your side when buying or selling, I\'m here.',
+      about_location: 'Ružomberok and surroundings',
+      cta_eyebrow: 'Start now',
+      cta_title: 'Which situation applies to you?',
+      cta_sub: 'Choose an e-book and download it for free.',
+      cta_b1_sub: 'First purchase without stress',
+      cta_b2_sub: 'From inheritance to sale',
+      cta_b3_sub: 'Action plan before auction',
+      cta_b4_sub: 'Sale without disputes',
+      cta_note: '🔒 Your data is safe. No spam. Unsubscribe anytime.',
+      modal_label: 'Enter email to download free',
+      modal_submit: 'Download →',
+      modal_privacy: '🔒 No spam. Unsubscribe anytime.',
+      success_h3: 'Great! Download starting.',
+      success_p: 'Check your inbox — we\'ll also send you a confirmation.',
+    },
+    ua: {
+      nav_cta: 'Отримати е-книгу →',
+      hero_pill: '4 е-книги · Безкоштовно · PDF · Миттєве завантаження',
+      hero_h1_1: 'Нерухомість без',
+      hero_h1_hl: 'зайвих помилок',
+      hero_sub: 'Оберіть ситуацію, яка вас стосується. Введіть email і завантажте практичний посібник безкоштовно.',
+      hero_btn_primary: 'Завантажити е-книгу безкоштовно',
+      hero_btn_ghost: '📞 Безкоштовна консультація',
+      trust_ebooks: 'Безкоштовні е-книги',
+      trust_downloads: 'Завантажень',
+      trust_instant: 'Одразу після email',
+      books_eyebrow: 'Безкоштовні посібники',
+      books_title: 'Оберіть свою е-книгу',
+      books_sub: 'Всі безкоштовно. Просто введіть email і отримайте PDF миттєво.',
+      badge_free: 'Безкоштовно',
+      btn_download: 'Завантажити безкоштовно',
+      book1_tag: 'Перша покупка · Новий початок',
+      book1_title: 'Ваша перша квартира',
+      book1_desc: 'Купуєте першу нерухомість? Посібник, який заощадить тисячі євро і місяці стресу. Іпотека, юрист, реєстрація — ваш компас з першого кроку.',
+      book1_meta: '54 завантаження цього місяця',
+      book2_tag: 'Спадщина · Документи',
+      book2_title: 'Успадкована квартира',
+      book2_desc: 'Успадкували нерухомість, сповнену паперів і невизначеності? Не гайте час. Від перевірки документів до успішного продажу.',
+      book2_meta: '61 завантаження цього місяця',
+      book3_tag: 'Боргова криза · Терміново',
+      book3_title: 'Виконавець під дверима',
+      book3_desc: 'Час працює проти вас. Збережіть, що можна, до рішення виконавця. Ваш план дій, щоб уникнути аукціону та продати нерухомість.',
+      book3_meta: '58 завантажень цього місяця',
+      book4_tag: 'Розлучення · Новий початок',
+      book4_title: 'Розлучення і продаж майна',
+      book4_desc: 'Завершуєте стосунки, а не своє життя. Продайте квартиру без зайвих суперечок. Перетворіть спільну нерухомість на капітал для нового старту.',
+      book4_meta: '52 завантаження цього місяця',
+      stat1: 'Завантажень е-книг',
+      stat2: 'Безкоштовних посібники',
+      stat3: 'Ціна завантаження',
+      stat4: 'Миттєве завантаження',
+      ben_eyebrow: 'Чому ці посібники',
+      ben_title: 'Кожна ситуація потребує конкретного плану',
+      ben_sub: 'Без зайвої теорії. Кожен посібник базується на реальних випадках і дає конкретні кроки.',
+      ben1_h: 'По суті', ben1_p: 'Без зайвої теорії. Кожна е-книга сфокусована на вашій ситуації та надає конкретні кроки.',
+      ben2_h: 'Миттєве завантаження', ben2_p: 'Введіть email — отримайте PDF. Без очікування, реєстрації і спаму.',
+      ben3_h: 'З практики маклера', ben3_p: 'Зміст базується на реальних випадках, а не підручниках. Помилки, описані тут, я бачив на власні очі.',
+      ben4_h: 'Заощадьте тисячі', ben4_p: 'Одна упущена помилка може коштувати тисячі. Ці посібники — інвестиція з миттєвою окупністю.',
+      ben5_h: 'Чеклісти і шаблони', ben5_p: 'Кожна книга містить практичні чеклісти і шаблони документів для негайного використання.',
+      ben6_h: 'Особиста консультація', ben6_p: 'Якщо вам потрібна допомога — я тут. Звертайтеся напряму — без зобов\'язань.',
+      about_eyebrow: 'Про мене',
+      about_verify: 'Сертифікований маклер · Reality Najbývanie',
+      about_p1: 'Я — маклер з нерухомості під брендом <strong>Reality Najbývanie</strong> — сучасного агентства, що будується на прозорості та особистому підході.',
+      about_p2: 'Щодня я працюю з людьми, які стоять перед одним з найважливіших рішень у житті. Я створив ці е-книги, бо вірю: <strong>поінформований клієнт — задоволений клієнт</strong>.',
+      about_p3: 'Хочу, щоб ви прийшли до нас підготовленими. І якщо знадобиться хтось поруч при купівлі чи продажу — я тут.',
+      about_location: 'Ружомберок і околиці',
+      cta_eyebrow: 'Починай зараз',
+      cta_title: 'Яка ситуація вас стосується?',
+      cta_sub: 'Оберіть е-книгу і завантажте безкоштовно.',
+      cta_b1_sub: 'Перша покупка без стресу',
+      cta_b2_sub: 'Від спадщини до продажу',
+      cta_b3_sub: 'План дій до аукціону',
+      cta_b4_sub: 'Продаж без суперечок',
+      cta_note: '🔒 Ваші дані в безпеці. Без спаму. Відписатись будь-коли.',
+      modal_label: 'Введіть email для завантаження',
+      modal_submit: 'Завантажити →',
+      modal_privacy: '🔒 Без спаму. Відписатись будь-коли.',
+      success_h3: 'Чудово! Завантаження починається.',
+      success_p: 'Перевірте свою поштову скриньку — надішлемо також підтвердження.',
+    },
+    de: {
+      nav_cta: 'E-Book auswählen →',
+      hero_pill: '4 E-Books · Kostenlos · PDF · Sofort-Download',
+      hero_h1_1: 'Immobilien ohne',
+      hero_h1_hl: 'unnötige Fehler',
+      hero_sub: 'Wählen Sie Ihre Situation. Geben Sie Ihre E-Mail ein und laden Sie den praktischen Leitfaden kostenlos herunter — vom ersten Zuhause bis zur Erbschaft oder Scheidung.',
+      hero_btn_primary: 'E-Book kostenlos herunterladen',
+      hero_btn_ghost: '📞 Kostenlos beraten lassen',
+      trust_ebooks: 'Kostenlose E-Books',
+      trust_downloads: 'Downloads',
+      trust_instant: 'Sofort nach E-Mail-Eingabe',
+      books_eyebrow: 'Kostenlose Ratgeber',
+      books_title: 'Wählen Sie Ihr E-Book',
+      books_sub: 'Alle kostenlos. Geben Sie einfach Ihre E-Mail ein und erhalten Sie sofort das PDF.',
+      badge_free: 'Kostenlos',
+      btn_download: 'Kostenlos herunterladen',
+      book1_tag: 'Erstkauf · Neuer Anfang',
+      book1_title: 'Ihre erste Wohnung',
+      book1_desc: 'Kaufen Sie Ihre erste Immobilie? Ein Ratgeber, der Ihnen Tausende und Monate an Stress erspart. Hypothek, Anwalt, Grundbuch, versteckte Mängel — Ihr Kompass von Anfang an.',
+      book1_meta: '54 Downloads diesen Monat',
+      book2_tag: 'Erbschaft · Papierkram',
+      book2_title: 'Geerbte Wohnung',
+      book2_desc: 'Eine Immobilie voller Papierkram und Unsicherheit geerbt? Verschwenden Sie keine Zeit. Von der Prüfung des Grundbuchauszugs bis zum erfolgreichen Verkauf.',
+      book2_meta: '61 Downloads diesen Monat',
+      book3_tag: 'Schuldenkrise · Dringlichkeit',
+      book3_title: 'Gerichtsvollzieher vor der Tür',
+      book3_desc: 'Die Zeit arbeitet gegen Sie. Retten Sie, was möglich ist, bevor der Gerichtsvollzieher entscheidet. Ihr Aktionsplan, um die Versteigerung zu vermeiden.',
+      book3_meta: '58 Downloads diesen Monat',
+      book4_tag: 'Scheidung · Neuer Anfang',
+      book4_title: 'Scheidung und Immobilienverkauf',
+      book4_desc: 'Sie beenden die Beziehung, nicht Ihr Leben. Verkaufen Sie die Wohnung ohne unnötige Streitigkeiten. Verwandeln Sie gemeinsames Eigentum in Kapital für einen neuen Start.',
+      book4_meta: '52 Downloads diesen Monat',
+      stat1: 'E-Books heruntergeladen',
+      stat2: 'Kostenlose Ratgeber',
+      stat3: 'Preis des Downloads',
+      stat4: 'Sofort-Download',
+      ben_eyebrow: 'Warum diese Ratgeber',
+      ben_title: 'Jede Situation verdient einen konkreten Plan',
+      ben_sub: 'Kein Blabla. Jeder Ratgeber basiert auf echten Fällen und gibt konkrete Schritte vor.',
+      ben1_h: 'Direkt auf den Punkt', ben1_p: 'Keine überflüssige Theorie. Jedes E-Book ist genau auf Ihre Situation zugeschnitten.',
+      ben2_h: 'Sofort-Download', ben2_p: 'E-Mail eingeben, PDF herunterladen. Kein Warten, keine Registrierung, kein Spam.',
+      ben3_h: 'Aus der Makler-Praxis', ben3_p: 'Inhalte basieren auf echten Fällen — nicht auf Lehrbüchern. Die hier beschriebenen Fehler habe ich selbst erlebt.',
+      ben4_h: 'Tausende sparen', ben4_p: 'Ein übersehener Fehler beim Verkauf kann Tausende kosten. Diese Ratgeber sind eine Investition mit sofortigem Nutzen.',
+      ben5_h: 'Checklisten & Vorlagen', ben5_p: 'Jedes Buch enthält praktische Checklisten und Dokumentvorlagen, die sofort einsetzbar sind.',
+      ben6_h: 'Persönliche Beratung', ben6_p: 'Wenn Sie Hilfe brauchen, bin ich da. Kontaktieren Sie mich direkt — unverbindlich.',
+      about_eyebrow: 'Über mich',
+      about_verify: 'Zertifizierter Makler · Reality Najbývanie',
+      about_p1: 'Ich bin Immobilienmakler unter der Marke <strong>Reality Najbývanie</strong> — einer modernen Agentur, die auf Transparenz und persönlichen Kontakt setzt.',
+      about_p2: 'Jeden Tag arbeite ich mit Menschen, die vor einer der größten Entscheidungen ihres Lebens stehen. Diese E-Books habe ich erstellt, weil ich glaube: <strong>Ein informierter Kunde ist ein zufriedener Kunde</strong>.',
+      about_p3: 'Ich möchte, dass Sie vorbereitet zu uns kommen — nicht verloren. Und wenn Sie jemanden beim Kauf oder Verkauf an Ihrer Seite brauchen, bin ich da.',
+      about_location: 'Ružomberok und Umgebung',
+      cta_eyebrow: 'Jetzt starten',
+      cta_title: 'Welche Situation betrifft Sie?',
+      cta_sub: 'Wählen Sie ein E-Book und laden Sie es kostenlos herunter.',
+      cta_b1_sub: 'Erstkauf ohne Stress',
+      cta_b2_sub: 'Von der Erbschaft zum Verkauf',
+      cta_b3_sub: 'Aktionsplan vor der Versteigerung',
+      cta_b4_sub: 'Verkauf ohne Streit',
+      cta_note: '🔒 Ihre Daten sind sicher. Kein Spam. Abmeldung jederzeit.',
+      modal_label: 'E-Mail eingeben und kostenlos herunterladen',
+      modal_submit: 'Herunterladen →',
+      modal_privacy: '🔒 Kein Spam. Abmeldung jederzeit.',
+      success_h3: 'Super! Der Download beginnt.',
+      success_p: 'Prüfen Sie Ihren Posteingang — wir senden Ihnen auch eine Bestätigung.',
+    }
+  };
+
+  function setLang(lang) {
+    if (!TRANSLATIONS[lang]) return;
+    const t = TRANSLATIONS[lang];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) el.innerHTML = t[key];
+    });
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+    const activeBtn = document.getElementById('lang-' + lang);
+    if (activeBtn) activeBtn.classList.add('active');
+    // Update BOOKS data for modal
+    BOOKS['prvy-byt'].tag   = t.book1_tag;   BOOKS['prvy-byt'].title   = t.book1_title;
+    BOOKS['dedicstvo'].tag  = t.book2_tag;   BOOKS['dedicstvo'].title  = t.book2_title;
+    BOOKS['exekucia'].tag   = t.book3_tag;   BOOKS['exekucia'].title   = t.book3_title;
+    BOOKS['rozvod'].tag     = t.book4_tag;   BOOKS['rozvod'].title     = t.book4_title;
+    // Persist
+    localStorage.setItem('lang', lang);
+  }
+
+  // Init language on load
+  (function() {
+    const saved = localStorage.getItem('lang');
+    if (saved && TRANSLATIONS[saved]) setLang(saved);
+  })();
 
   /* ─── SCROLL TO BOOKS ────────────────────────────────── */
   function scrollToBooks() {
