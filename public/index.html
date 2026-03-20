@@ -364,13 +364,14 @@
     .fire-icon { font-size: 0.78rem; }
     .book-btn {
       width: 100%; padding: 0.72rem 1rem;
-      background: var(--ink); color: var(--white);
+      background: var(--gold); color: var(--white);
       border: none; border-radius: var(--r-sm);
       font-family: inherit; font-size: 0.88rem; font-weight: 600;
-      cursor: pointer; transition: background 0.2s, transform 0.15s;
+      cursor: pointer; transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      box-shadow: 0 3px 14px rgba(200,133,31,0.35);
     }
-    .book-btn:hover { background: var(--dark3); }
+    .book-btn:hover { background: var(--gold-mid); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(200,133,31,0.45); }
     .book-btn svg { transition: transform 0.2s; }
     .book-card:hover .book-btn svg { transform: translateX(3px); }
 
@@ -584,7 +585,14 @@
     .modal-submit:hover:not(:disabled) { background: var(--gold-mid); transform: translateY(-1px); }
     .modal-submit:disabled { opacity: 0.55; cursor: not-allowed; }
     .modal-err { font-size: 0.78rem; color: var(--red); margin-top: 0.5rem; display: none; }
-    .modal-privacy { font-size: 0.72rem; color: var(--muted); margin-top: 0.75rem; display: flex; align-items: center; gap: 0.35rem; }
+    .modal-quote {
+      font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+      padding: 0.75rem 1rem; background: var(--cream);
+      border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0;
+      margin-bottom: 1.2rem; font-style: italic;
+    }
+    .modal-quote-author { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; font-style: normal; font-weight: 600; }
+    .modal-lock-row { display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.9rem; }
     .modal-success { display: none; text-align: center; padding: 0.5rem 0; }
     .modal-success-icon { font-size: 2.8rem; margin-bottom: 0.75rem; }
     .modal-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
@@ -844,9 +852,9 @@
           <span class="about-verify-dot"></span>
           <span data-i18n="about_verify">Certifikovaný maklér · Reality Najbývanie</span>
         </div>
-        <p data-i18n="about_p1">Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.</p>
-        <p data-i18n="about_p2">Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.</p>
-        <p data-i18n="about_p3">Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.</p>
+        <p data-i18n="about_p1">Pomáham ľuďom v regiónoch <strong>Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami — predajom, dedičstvom aj rozvodom — bez stresu a zbytočných finančných strát.</p>
+        <p data-i18n="about_p2">Od roku 2025 pôsobím pod značkou <strong>Reality Najbývanie</strong>. Verím, že každý klient si zaslúži niekoho, kto mu situáciu vysvetlí po ľudsky — nie v právnickom jazyku.</p>
+        <p data-i18n="about_p3">Tieto e-knihy som vytvoril preto, aby ste prišli pripravení. A keď budete potrebovať niekoho po svojom boku pri kúpe alebo predaji — som tu.</p>
         <div class="about-contact-list">
           <div class="about-contact-item">
             <span class="about-contact-icon">📞</span>
@@ -858,7 +866,7 @@
           </div>
           <div class="about-contact-item">
             <span class="about-contact-icon">📍</span>
-            <span data-i18n="about_location">Ružomberok a okolie</span>
+            <span data-i18n="about_location">Ružomberok · Liptovský Mikuláš · Dolný Kubín</span>
           </div>
         </div>
       </div>
@@ -884,7 +892,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Radovan Vaník · Reality Najbývanie</p>
+  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="tel:0948310950" style="color:rgba(255,255,255,0.4)">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
   <div class="footer-links">
     <a href="tel:0948310950">0948 310 950</a>
     <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">najbyvanie.sk</a>
@@ -909,6 +917,10 @@
       <h2 class="modal-title" id="modal-title-el"></h2>
       <div class="modal-hook" id="modal-hook-el"></div>
       <label class="modal-label" for="modal-email-input" data-i18n="modal_label">Zadaj email a stiahni zadarmo</label>
+      <div class="modal-lock-row">
+        <svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1.2"/></svg>
+        Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.
+      </div>
       <div class="modal-row">
         <input type="email" id="modal-email-input" class="modal-email" placeholder="tvoj@email.sk" autocomplete="email" />
         <button class="modal-submit" id="modal-submit-btn" onclick="handleDownload()" data-i18n="modal_submit">Stiahnuť →</button>
@@ -920,6 +932,14 @@
       <div class="modal-success-icon">✅</div>
       <h3 data-i18n="success_h3">Výborne! Sťahovanie začína.</h3>
       <p data-i18n="success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+      <div style="margin-top:1.5rem; padding:1rem; background:var(--cream); border-radius:10px; text-align:left;">
+        <p style="font-size:0.82rem; color:var(--muted); margin-bottom:0.75rem;">Chceš sa poradiť osobne? Zavolaj mi — bezplatne a bez záväzkov.</p>
+        <a href="tel:0948310950" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:var(--gold); color:var(--white); padding:0.75rem 1.25rem; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none; box-shadow:0 4px 16px rgba(200,133,31,0.35);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          Zavolajte mi: 0948 310 950
+        </a>
+        <p style="font-size:0.7rem; color:var(--muted); text-align:center; margin-top:0.5rem;">Konzultácia zadarmo · Online aj osobne · RK, LM, DK</p>
+      </div>
     </div>
   </div>
 </div>
@@ -948,24 +968,28 @@
       tag: 'Prvá kúpa · Nový začiatok',
       title: 'Váš prvý byt',
       hook: 'Pamätám si ten pocit – chcete vlastné bývanie, ale neviete, kde začať. Hypotéka, právnik, kataster, skryté vady... Každý vám radí niečo iné a vy sa bojíte urobiť chybu za desaťtisíce eur. Tento e-book je váš kompas.',
+      quote: '„Konečne som rozumel, čo podpisujem. Táto príručka mi ušetrila veľa stresu." — Klient, január 2025',
       file: 'ebook-prvy-byt'
     },
     dedicstvo: {
       tag: 'Dedičstvo · Zmätok, papierovačky',
       title: 'Zdedený byt',
       hook: 'Dedičstvo by malo byť darom, nie bremenom. Často však prichádza spolu s právnymi záludnosťami, dlhmi alebo nezhodami v rodine. Táto príručka vás prevedie procesom od kontroly listu vlastníctva až po úspešný predaj.',
+      quote: '„Vedel nám poradiť aj v situáciách, keď si notár nebol istý. Odporúčam." — Klientka, marec 2025',
       file: 'ebook-dedicstvo'
     },
     exekucia: {
       tag: 'Dlhová kríza · Strach, naliehavosť',
       title: 'Exekúcia na dverách',
       hook: 'Pocit, že vám pod nohami horí pôda, poznám. V tejto situácii nie je priestor na chyby ani na vyčkávanie. Táto e-kniha je váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova s čistým štítom.',
+      quote: '„Pomohol mi vyriešiť situáciu, o ktorej som sa bál hovoriť. Profesionálne a diskrétne." — Klient, február 2025',
       file: 'ebook-exekucia'
     },
     rozvod: {
       tag: 'Rozvod · Bolesť, nový začiatok',
       title: 'Rozvod a predaj majetku',
       hook: 'Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
+      quote: '„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetril som tisíce." — Klientka, máj 2025',
       file: 'ebook-rozvod'
     }
   };
@@ -980,6 +1004,15 @@
     document.getElementById('modal-tag-el').textContent   = b.tag;
     document.getElementById('modal-title-el').textContent = b.title;
     document.getElementById('modal-hook-el').textContent  = b.hook;
+    // Quote
+    let quoteEl = document.getElementById('modal-quote-el');
+    if (!quoteEl) {
+      quoteEl = document.createElement('div');
+      quoteEl.id = 'modal-quote-el';
+      quoteEl.className = 'modal-quote';
+      document.getElementById('modal-hook-el').after(quoteEl);
+    }
+    quoteEl.textContent = b.quote || '';
     document.getElementById('modal-form-wrap').style.display    = '';
     document.getElementById('modal-success-wrap').style.display = 'none';
     document.getElementById('modal-email-input').value = '';
@@ -1073,7 +1106,7 @@
       books_title: 'Vyber si svoju e-knihu',
       books_sub: 'Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.',
       badge_free: 'Zadarmo',
-      btn_download: 'Stiahnuť zadarmo',
+      btn_download: 'Chcem tento plán zadarmo →',
       book1_tag: 'Prvá kúpa · Nový začiatok',
       book1_title: 'Váš prvý byt',
       book1_desc: 'Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.',
