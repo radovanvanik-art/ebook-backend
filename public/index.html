@@ -293,7 +293,10 @@
     .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.65; max-width: 500px; }
 
     /* ── BOOKS SECTION ─────────────────────────────────────────── */
-    .books-section { background: var(--cream); }
+    .books-section { background: var(--dark); }
+    .books-header .eyebrow { color: var(--gold); }
+    .books-header .section-title { color: var(--white); }
+    .books-header .section-sub { color: rgba(255,255,255,0.45); }
     .books-header {
       display: flex; flex-direction: column;
       align-items: center; text-align: center;
@@ -696,6 +699,99 @@
       transition: opacity 0.2s; font-family: inherit;
     }
     .float-btn:hover .float-tip { opacity: 1; }
+    /* ── BOOKSHELF ─────────────────────────────────────────────── */
+    .bookshelf-wrap { max-width: 700px; margin: 0 auto; }
+    .bs-shelf {
+      position: relative;
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 8px; padding: 0 2rem;
+      min-height: 240px;
+    }
+    .bs-board {
+      position: absolute; bottom: 0; left: -2rem; right: -2rem; height: 22px; z-index: 10;
+      background: linear-gradient(180deg,#9a6e3a 0%,#6a4420 40%,#3e2810 100%);
+      border-radius: 6px;
+      box-shadow: 0 10px 32px rgba(0,0,0,0.7), inset 0 2px 0 rgba(255,200,120,0.2), inset 0 -1px 0 rgba(0,0,0,0.3);
+    }
+    .bs-board::after {
+      content: ''; position: absolute; top: 2px; left: 2rem; right: 2rem; height: 1px;
+      background: linear-gradient(90deg,transparent,rgba(255,220,140,0.3) 30%,rgba(255,220,140,0.15) 70%,transparent);
+      border-radius: 2px;
+    }
+    .bs-book {
+      position: relative; width: 76px; margin-bottom: 22px; cursor: pointer;
+      transform-origin: bottom center;
+      transition: transform 0.4s cubic-bezier(.34,1.4,.64,1);
+      flex-shrink: 0;
+    }
+    .bs-book:hover, .bs-book.on { transform: translateY(-40px); }
+    .bs-spine {
+      width: 100%; height: 200px;
+      border-radius: 6px 14px 14px 6px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: space-between;
+      padding: 14px 7px 12px;
+      position: relative; overflow: hidden;
+      box-shadow: inset -4px 0 10px rgba(0,0,0,0.3), inset 4px 0 6px rgba(255,255,255,0.07), 6px 10px 28px rgba(0,0,0,0.55);
+    }
+    .bs-spine::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 12px;
+      background: rgba(0,0,0,0.25); border-radius: 6px 0 0 6px;
+    }
+    .bs-spine::after {
+      content: ''; position: absolute; left: 12px; top: 0; width: 2px; bottom: 0;
+      background: rgba(255,255,255,0.1);
+    }
+    .bs-shine {
+      position: absolute; top: 0; left: 12px; right: 0; bottom: 0;
+      background: linear-gradient(110deg,rgba(255,255,255,0.12) 0%,transparent 45%,rgba(0,0,0,0.08) 100%);
+      border-radius: 0 14px 14px 0;
+      pointer-events: none;
+    }
+    .bs-top {
+      position: absolute; top: -5px; left: 6px; right: 3px; height: 6px;
+      background: rgba(255,255,255,0.18); border-radius: 3px 8px 8px 3px;
+    }
+    .bs-ico { font-size: 22px; position: relative; z-index: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+    .bs-ttl {
+      writing-mode: vertical-rl; transform: rotate(180deg);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 11px; font-weight: 800; letter-spacing: 0.05em;
+      color: #ffffff; position: relative; z-index: 1;
+      text-align: center; line-height: 1.25; max-height: 126px; overflow: hidden;
+      text-shadow: 0 0 8px rgba(0,0,0,1), 0 1px 3px rgba(0,0,0,1), 0 2px 6px rgba(0,0,0,0.9);
+    }
+    .bs-yr { font-size: 9px; color: rgba(255,255,255,0.5); position: relative; z-index: 1; font-weight: 600; letter-spacing: 0.06em; }
+    .bs-bshadow {
+      position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%);
+      width: 60px; height: 20px;
+      background: radial-gradient(ellipse,rgba(0,0,0,0.5) 0%,transparent 70%);
+    }
+    .bs-panel { margin-top: 1.75rem; min-height: 116px; }
+    .bs-pinner {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,133,31,0.2);
+      border-radius: 20px; padding: 1.5rem 1.75rem;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+    }
+    .bs-pinner.on { opacity: 1; transform: none; }
+    .bs-pico { font-size: 32px; flex-shrink: 0; margin-top: 1px; line-height: 1; }
+    .bs-ptag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .bs-ptitle { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; line-height: 1.2; }
+    .bs-pdesc { font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.65; margin-bottom: 0.8rem; }
+    .bs-pbtn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: var(--gold); color: var(--white);
+      padding: 0.55rem 1.1rem; border-radius: 7px;
+      font-size: 0.8rem; font-weight: 600; text-decoration: none;
+      box-shadow: 0 4px 14px rgba(200,133,31,0.4);
+      transition: background 0.2s, transform 0.15s;
+    }
+    .bs-pbtn:hover { background: var(--gold-mid); transform: translateY(-1px); }
+    .bs-hint { text-align: center; font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 1.1rem; letter-spacing: 0.05em; }
+
   </style>
 </head>
 <body>
@@ -769,61 +865,85 @@
     <div class="books-header reveal">
       <p class="eyebrow" data-i18n="books_eyebrow">Bezplatné príručky</p>
       <h2 class="section-title" data-i18n="books_title">Vyber si svoju e-knihu</h2>
-      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
+      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Kliknite na knihu a zistite, čo v nej nájdete.</p>
     </div>
-    <div class="books-grid">
 
-      <article class="book-card reveal reveal-d1" onclick="window.location.href='/prvy-byt'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Váš prvý byt">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">✨</div>
-        <div class="book-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
-        <h3 data-i18n="book1_title">Váš prvý byt</h3>
-        <p class="book-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book1_meta">54 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
-      </article>
+    <!-- POLIČKA -->
+    <div class="bookshelf-wrap reveal reveal-d1">
+      <div class="bs-shelf">
 
-      <article class="book-card reveal reveal-d2" onclick="window.location.href='/dedicstvo'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Zdedený byt">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">📜</div>
-        <div class="book-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
-        <h3 data-i18n="book2_title">Zdedený byt</h3>
-        <p class="book-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book2_meta">61 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
-      </article>
+        <div class="bs-book" onclick="bsPick(0)">
+          <div class="bs-top"></div>
+          <div class="bs-spine" style="background:linear-gradient(165deg,#2a5fa0 0%,#1a3f72 50%,#0f2850 100%);">
+            <div class="bs-shine"></div>
+            <span class="bs-ico">✨</span>
+            <span class="bs-ttl">Váš prvý byt</span>
+            <span class="bs-yr">2025</span>
+          </div>
+          <div class="bs-bshadow"></div>
+        </div>
 
-      <article class="book-card reveal reveal-d1" onclick="window.location.href='/exekucia'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Exekúcia na dverách">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">⚠️</div>
-        <div class="book-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
-        <h3 data-i18n="book3_title">Exekúcia na dverách</h3>
-        <p class="book-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book3_meta">58 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
-      </article>
+        <div class="bs-book" onclick="bsPick(1)">
+          <div class="bs-top"></div>
+          <div class="bs-spine" style="background:linear-gradient(165deg,#3a7028 0%,#254a18 50%,#163010 100%);">
+            <div class="bs-shine"></div>
+            <span class="bs-ico">📜</span>
+            <span class="bs-ttl">Zdedený byt</span>
+            <span class="bs-yr">2025</span>
+          </div>
+          <div class="bs-bshadow"></div>
+        </div>
 
-      <article class="book-card reveal reveal-d2" onclick="window.location.href='/rozvod'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Rozvod a predaj majetku">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">⚖️</div>
-        <div class="book-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
-        <h3 data-i18n="book4_title">Rozvod a predaj majetku</h3>
-        <p class="book-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book4_meta">52 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
-      </article>
+        <div class="bs-book" onclick="bsPick(2)">
+          <div class="bs-top"></div>
+          <div class="bs-spine" style="background:linear-gradient(165deg,#8a2a2a 0%,#5e1a1a 50%,#3e1010 100%);">
+            <div class="bs-shine"></div>
+            <span class="bs-ico">⚠️</span>
+            <span class="bs-ttl">Exekúcia na dverách</span>
+            <span class="bs-yr">2025</span>
+          </div>
+          <div class="bs-bshadow"></div>
+        </div>
 
-      <article class="book-card reveal reveal-d1" onclick="window.location.href='/retazovy-obchod'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Reťazový obchod">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">🔗</div>
-        <div class="book-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
-        <h3 data-i18n="book5_title">Reťazový obchod</h3>
-        <p class="book-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book5_meta">38 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
-      </article>
+        <div class="bs-book" onclick="bsPick(3)">
+          <div class="bs-top"></div>
+          <div class="bs-spine" style="background:linear-gradient(165deg,#7a5018 0%,#52340e 50%,#342208 100%);">
+            <div class="bs-shine"></div>
+            <span class="bs-ico">⚖️</span>
+            <span class="bs-ttl">Rozvod a majetok</span>
+            <span class="bs-yr">2025</span>
+          </div>
+          <div class="bs-bshadow"></div>
+        </div>
 
+        <div class="bs-book" onclick="bsPick(4)">
+          <div class="bs-top"></div>
+          <div class="bs-spine" style="background:linear-gradient(165deg,#4e2a80 0%,#321858 50%,#1e0e38 100%);">
+            <div class="bs-shine"></div>
+            <span class="bs-ico">🔗</span>
+            <span class="bs-ttl">Reťazový obchod</span>
+            <span class="bs-yr">2025</span>
+          </div>
+          <div class="bs-bshadow"></div>
+        </div>
+
+        <div class="bs-board"></div>
+      </div>
+
+      <div class="bs-panel">
+        <div class="bs-pinner" id="bs-pi">
+          <span class="bs-pico" id="bs-ico"></span>
+          <div>
+            <div class="bs-ptag" id="bs-tag"></div>
+            <div class="bs-ptitle" id="bs-title"></div>
+            <div class="bs-pdesc" id="bs-desc"></div>
+            <a class="bs-pbtn" id="bs-btn" href="#">Chcem túto príručku →</a>
+          </div>
+        </div>
+      </div>
+      <p class="bs-hint">Kliknite znovu na knihu pre zatvorenie</p>
     </div>
+
   </div>
 </section>
 
@@ -1532,6 +1652,32 @@ calc();
       document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     });
   });
+
+  /* ─── BOOKSHELF ─────────────────────────────────────── */
+  const BS_DATA = [
+    {ico:'✨',tag:'Prvá kúpa · Nový začiatok',title:'Váš prvý byt',desc:'Kompas pre každého, kto kupuje prvú nehnuteľnosť. Hypotéka, obhliadky, zmluvy, skryté vady — krok za krokom bez zbytočného stresu.',url:'/prvy-byt'},
+    {ico:'📜',tag:'Dedičstvo · Papierovačky',title:'Zdedený byt',desc:'Od kontroly listu vlastníctva až po úspešný predaj. Právne záludnosti, dlhy, nezrovnalosti v rodine — všetko v jednej príručke.',url:'/dedicstvo'},
+    {ico:'⚠️',tag:'Dlhová kríza · Naliehavosť',title:'Exekúcia na dverách',desc:'Akčný plán ako predísť dražbe a predať za podmienok, ktoré vám dovolia začať znova s čistým štítom.',url:'/exekucia'},
+    {ico:'⚖️',tag:'Rozvod · Nový začiatok',title:'Rozvod a predaj majetku',desc:'Premeniť spoločný byt na kapitál pre nový začiatok — rýchlo, férovo a s chladnou hlavou. Bez zbytočných hádok.',url:'/rozvod'},
+    {ico:'🔗',tag:'Predaj + kúpa · Koordinácia',title:'Reťazový obchod',desc:'Predávate s hypotékou a kupujete nový byt naraz? 8 krokov, časová os, checklisty. Koordinácia dvoch bánk.',url:'/retazovy-obchod'},
+  ];
+  let bsCur = -1;
+  function bsPick(i) {
+    const books = document.querySelectorAll('.bs-book');
+    const panel = document.getElementById('bs-pi');
+    if (bsCur === i) { books[i].classList.remove('on'); panel.classList.remove('on'); bsCur = -1; return; }
+    books.forEach((b,j) => b.classList.toggle('on', j === i));
+    bsCur = i;
+    const d = BS_DATA[i];
+    document.getElementById('bs-ico').textContent = d.ico;
+    document.getElementById('bs-tag').textContent = d.tag;
+    document.getElementById('bs-title').textContent = d.title;
+    document.getElementById('bs-desc').textContent = d.desc;
+    document.getElementById('bs-btn').href = d.url;
+    panel.classList.remove('on');
+    requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
+  }
+  setTimeout(() => bsPick(0), 800);
 </script>
 
 </body>
