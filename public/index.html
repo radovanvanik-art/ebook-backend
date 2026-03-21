@@ -772,7 +772,79 @@
   </div>
 </section>
 
+<!-- HYPOTÉKA KALKULAČKA -->
+<section class="section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka">
+  <div class="section-inner" style="max-width:520px;margin:0 auto;">
+    <h2 class="section-title" style="text-align:center;">Hypotekárna kalkulačka</h2>
+    <div class="hypo-wrap" style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:2rem 1.5rem 1.2rem 1.5rem;box-shadow:0 4px 24px rgba(0,0,0,0.04);margin-bottom:1.2rem;">
+      <div class="row" style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+        <label style="font-size:13px;color:var(--muted);min-width:140px;">Výška úveru (€)</label>
+        <input type="range" id="suma" min="20000" max="500000" step="5000" value="150000">
+        <span class="val" id="sumaVal" style="font-size:14px;font-weight:500;min-width:90px;text-align:right;color:var(--ink);">150 000 €</span>
+      </div>
+      <div class="row" style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+        <label style="font-size:13px;color:var(--muted);min-width:140px;">Úroková sadzba (%)</label>
+        <input type="range" id="sadzba" min="1" max="8" step="0.1" value="4.5">
+        <span class="val" id="sadzbaVal" style="font-size:14px;font-weight:500;min-width:90px;text-align:right;color:var(--ink);">4.5 %</span>
+      </div>
+      <div class="row" style="display:flex;align-items:center;gap:12px;margin-bottom:1.25rem;">
+        <label style="font-size:13px;color:var(--muted);min-width:140px;">Doba splácania (roky)</label>
+        <input type="range" id="roky" min="5" max="30" step="1" value="20">
+        <span class="val" id="rokyVal" style="font-size:14px;font-weight:500;min-width:90px;text-align:right;color:var(--ink);">20 rokov</span>
+      </div>
+      <div class="cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.5rem 0;">
+        <div class="card" style="background:var(--cream);border-radius:var(--r-sm);padding:1rem;">
+          <div class="lbl" style="font-size:12px;color:var(--muted);margin-bottom:6px;">Mesačná splátka</div>
+          <div class="num" id="splatka" style="font-size:20px;font-weight:500;color:var(--ink);">–</div>
+        </div>
+        <div class="card" style="background:var(--cream);border-radius:var(--r-sm);padding:1rem;">
+          <div class="lbl" style="font-size:12px;color:var(--muted);margin-bottom:6px;">Celková suma</div>
+          <div class="num" id="celkovo" style="font-size:20px;font-weight:500;color:var(--ink);">–</div>
+        </div>
+        <div class="card" style="background:var(--cream);border-radius:var(--r-sm);padding:1rem;">
+          <div class="lbl" style="font-size:12px;color:var(--muted);margin-bottom:6px;">Preplatíte</div>
+          <div class="num" id="preplatite" style="font-size:20px;font-weight:500;color:var(--ink);">–</div>
+        </div>
+      </div>
+      <div class="bar-wrap" style="margin:1rem 0;">
+        <div class="bar-bg" style="background:var(--cream);border-radius:4px;height:10px;overflow:hidden;">
+          <div class="bar-fill" id="bar" style="height:10px;border-radius:4px;background:#1D9E75;transition:width 0.3s;"></div>
+        </div>
+        <div class="bar-labels" style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px;">
+          <span>Istina</span>
+          <span id="barLabel">–</span>
+          <span>Úroky</span>
+        </div>
+      </div>
+    </div>
+    <div class="disclaimer" style="font-size:12px;color:var(--subtle);border-top:0.5px solid var(--border);padding-top:1rem;margin-top:0.5rem;line-height:1.6;text-align:center;">
+      Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.
+    </div>
+  </div>
+</section>
 <!-- STATS STRIP -->
+<script>
+function fmt(n) { return Math.round(n).toLocaleString('sk-SK') + ' €'; }
+function calc() {
+  const P = parseFloat(document.getElementById('suma').value);
+  const r = parseFloat(document.getElementById('sadzba').value) / 100 / 12;
+  const n = parseInt(document.getElementById('roky').value) * 12;
+  document.getElementById('sumaVal').textContent = Math.round(P).toLocaleString('sk-SK') + ' €';
+  document.getElementById('sadzbaVal').textContent = parseFloat(document.getElementById('sadzba').value).toFixed(1) + ' %';
+  document.getElementById('rokyVal').textContent = document.getElementById('roky').value + ' rokov';
+  const M = r === 0 ? P / n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
+  const celkovo = M * n;
+  const uroky = celkovo - P;
+  const pct = Math.round((P / celkovo) * 100);
+  document.getElementById('splatka').textContent = fmt(M) + '/mes';
+  document.getElementById('celkovo').textContent = fmt(celkovo);
+  document.getElementById('preplatite').textContent = fmt(uroky);
+  document.getElementById('bar').style.width = pct + '%';
+  document.getElementById('barLabel').textContent = pct + '% istina';
+}
+['suma','sadzba','roky'].forEach(id => document.getElementById(id).addEventListener('input', calc));
+calc();
+</script>
 <div class="stats-strip" aria-hidden="true">
   <div class="stats-inner">
     <div class="stat reveal">
