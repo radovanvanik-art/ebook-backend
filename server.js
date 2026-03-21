@@ -58,7 +58,7 @@ app.get('/download/:bookName', (req, res) => {
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
-const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod'];
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         res.sendFile(path.join(__dirname, 'public', `${page}.html`));
