@@ -51,8 +51,8 @@
   <!-- Fonts – non-blocking (fixes render-blocking warning) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" /></noscript>
 
   <style>
@@ -440,59 +440,105 @@
       background: radial-gradient(ellipse, rgba(200,133,31,0.1) 0%, transparent 65%);
       pointer-events: none;
     }
-    .about-layout {
+    .about-mini {
+      max-width: 860px; margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: center;
-    }
-    @media (max-width: 760px) { .about-layout { grid-template-columns: 1fr; gap: 3rem; } }
-    .about-img-wrap {
-      position: relative;
-    }
-    .about-img-frame {
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4/5;
-      background: var(--dark3);
+      grid-template-columns: 220px 1fr auto;
+      gap: 0;
       border: 1px solid var(--border-d);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .about-img-frame img {
+    .about-mini:hover { border-color: rgba(200,133,31,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+    @media (max-width: 700px) {
+      .about-mini { grid-template-columns: 1fr; }
+    }
+    .about-mini-photo {
+      position: relative; overflow: hidden;
+    }
+    .about-mini-photo img {
       width: 100%; height: 100%; object-fit: cover; object-position: center top;
+      display: block; min-height: 260px;
     }
-    .about-img-badge {
-      position: absolute; bottom: -1rem; right: -1rem;
-      background: var(--gold); color: var(--white);
-      border-radius: 12px; padding: 1rem 1.25rem;
-      box-shadow: 0 8px 24px rgba(200,133,31,0.45);
-      text-align: center;
+    .about-mini-photo::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, rgba(11,14,24,0.6) 100%);
     }
-    .about-img-badge-num {
+    @media (max-width: 700px) {
+      .about-mini-photo img { min-height: 220px; }
+      .about-mini-photo::after { background: linear-gradient(to bottom, transparent 60%, rgba(11,14,24,0.8) 100%); }
+    }
+    .about-mini-body {
+      padding: 2rem 2rem;
+      display: flex; flex-direction: column; justify-content: center;
+      background: rgba(255,255,255,0.02);
+    }
+    .about-mini-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .about-mini-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .about-mini-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem; font-weight: 700; line-height: 1;
+      font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--white);
+      line-height: 1.05; margin-bottom: 0.75rem;
     }
-    .about-img-badge-label { font-size: 0.68rem; font-weight: 600; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.05em; }
-    .about-content {}
-    .about-content .eyebrow { color: var(--gold); }
-    .about-content .section-title { color: var(--white); }
-    .about-content p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.75; margin-bottom: 1rem; }
-    .about-content p strong { color: rgba(255,255,255,0.85); font-weight: 600; }
-    .about-verify {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(200,133,31,0.3);
-      padding: 0.5rem 1rem; border-radius: 100px;
-      font-size: 0.78rem; font-weight: 500;
-      color: rgba(255,255,255,0.6); margin: 0.5rem 0 1.5rem;
+    .about-mini-text {
+      font-size: 0.88rem; color: rgba(255,255,255,0.45);
+      line-height: 1.7;
     }
-    .about-verify-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
-    .about-contact-list { display: flex; flex-direction: column; gap: 0.65rem; }
-    .about-contact-item {
-      display: flex; align-items: center; gap: 0.75rem;
-      color: rgba(255,255,255,0.5); font-size: 0.88rem;
+    .about-mini-text strong { color: rgba(255,255,255,0.7); font-weight: 600; }
+    .about-mini-cta {
+      padding: 2rem 2rem;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 0.75rem;
+      border-left: 1px solid var(--border-d);
+      background: rgba(255,255,255,0.015);
+      min-width: 180px;
     }
-    .about-contact-item a { color: var(--gold-mid); font-weight: 500; transition: color 0.2s; }
-    .about-contact-item a:hover { color: var(--gold); }
-    .about-contact-icon { font-size: 1rem; }
+    @media (max-width: 700px) {
+      .about-mini-cta { border-left: none; border-top: 1px solid var(--border-d); flex-direction: row; align-items: center; padding: 1.25rem 1.5rem; }
+    }
+    .about-mini-btn {
+      background: var(--gold); color: var(--white);
+      padding: 0.75rem 1.4rem; border-radius: 8px;
+      font-size: 0.85rem; font-weight: 600;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(200,133,31,0.35);
+      white-space: nowrap; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.45rem;
+    }
+    .about-mini-btn:hover { background: var(--gold-mid); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,133,31,0.45); }
+    .about-mini-phone { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+    .about-mini-phone a { color: rgba(255,255,255,0.4); transition: color 0.2s; text-decoration: none; }
+    .about-mini-phone a:hover { color: var(--gold); }
+
+    /* ── PODPIS ── */
+    @keyframes sigInk { from { opacity:0; filter:blur(3px); transform:scaleX(0.94); } to { opacity:1; filter:blur(0); transform:none; } }
+    @keyframes sigLine { from { transform:scaleX(0); opacity:0; } to { transform:scaleX(1); opacity:0.45; } }
+    .sig-block { margin-top: 1.4rem; }
+    .sig-name {
+      font-family: 'IM Fell DW Pica SC', serif;
+      font-size: 2.8rem; line-height: 1;
+      background: linear-gradient(135deg, #F8D060 0%, #C8851F 35%, #F5C842 65%, #E8A83A 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+      filter: drop-shadow(0 2px 10px rgba(200,133,31,0.35));
+      display: block;
+    }
+    .sig-sub {
+      font-family: 'Cormorant Upright', serif;
+      font-weight: 300; font-size: 0.72rem;
+      letter-spacing: 0.32em; text-transform: uppercase;
+      color: rgba(200,133,31,0.45);
+      display: block; margin-top: 0.15rem;
+    }
+    .sig-deco {
+      width: 160px; height: 1px;
+      background: linear-gradient(to right, transparent, #C8851F 30%, #F5C842 50%, #C8851F 70%, transparent);
+      margin-top: 0.4rem; opacity: 0.45;
+    }
 
     /* ── BOTTOM CTA ────────────────────────────────────────────── */
     .cta-section {
@@ -667,6 +713,7 @@
       <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
     </div>
+    <a href="/o-mne" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
     <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
   </div>
   <div class="nav-right">
@@ -925,40 +972,29 @@ calc();
 <!-- ABOUT SECTION -->
 <section class="section about-section" aria-label="O mne">
   <div class="section-inner">
-    <div class="about-layout">
-      <div class="about-img-wrap reveal">
-        <div class="about-img-frame">
-          <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" loading="lazy" width="700" height="875" decoding="async" />
+    <div class="about-mini reveal">
+      <div class="about-mini-photo">
+        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="200" height="200" loading="lazy" decoding="async"/>
+      </div>
+      <div class="about-mini-body">
+        <div class="about-mini-tag">
+          <span class="about-mini-tag-dot"></span>
+          Certifikovaný maklér · Reality Najbývanie
         </div>
-        <div class="about-img-badge">
-          <div class="about-img-badge-num">🏠</div>
-          <div class="about-img-badge-label">Reality<br/>Najbývanie</div>
+        <div class="about-mini-name">Radovan Vaník</div>
+        <p class="about-mini-text">Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.</p>
+        <div class="sig-block">
+          <span class="sig-name">Vaník</span>
+          <span class="sig-sub">Radovan</span>
+          <div class="sig-deco"></div>
         </div>
       </div>
-      <div class="about-content reveal reveal-d2">
-        <p class="eyebrow" data-i18n="about_eyebrow">O mne</p>
-        <h2 class="section-title" style="color:var(--white);">Radovan Vaník</h2>
-        <div class="about-verify">
-          <span class="about-verify-dot"></span>
-          <span data-i18n="about_verify">Certifikovaný maklér · Reality Najbývanie</span>
-        </div>
-        <p data-i18n="about_p1">Pomáham ľuďom v regiónoch <strong>Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami — predajom, dedičstvom aj rozvodom — bez stresu a zbytočných finančných strát.</p>
-        <p data-i18n="about_p2">Od roku 2025 pôsobím pod značkou <strong>Reality Najbývanie</strong>. Verím, že každý klient si zaslúži niekoho, kto mu situáciu vysvetlí po ľudsky — nie v právnickom jazyku.</p>
-        <p data-i18n="about_p3">Tieto e-knihy som vytvoril preto, aby ste prišli pripravení. A keď budete potrebovať niekoho po svojom boku pri kúpe alebo predaji — som tu.</p>
-        <div class="about-contact-list">
-          <div class="about-contact-item">
-            <span class="about-contact-icon">📞</span>
-            <a href="tel:+421948310950">+421 948 310 950</a>
-          </div>
-          <div class="about-contact-item">
-            <span class="about-contact-icon">🌐</span>
-            <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">www.najbyvanie.sk</a>
-          </div>
-          <div class="about-contact-item">
-            <span class="about-contact-icon">📍</span>
-            <span data-i18n="about_location">Ružomberok · Liptovský Mikuláš · Dolný Kubín</span>
-          </div>
-        </div>
+      <div class="about-mini-cta">
+        <a href="/o-mne" class="about-mini-btn">
+          O mne viac
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="about-mini-phone"><a href="tel:+421948310950">+421 948 310 950</a></div>
       </div>
     </div>
   </div>
