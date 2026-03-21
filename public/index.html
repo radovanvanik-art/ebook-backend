@@ -676,7 +676,7 @@
   <div class="hero-inner">
     <div class="hero-pill">
       <span class="hero-pill-dot"></span>
-      <span data-i18n="hero_pill">4 e-knihy · Zadarmo · PDF · Okamžité stiahnutie</span>
+      <span data-i18n="hero_pill">5 e-kníh · Zadarmo · PDF · Okamžité stiahnutie</span>
     </div>
     <h1>
       <span data-i18n="hero_h1_1">Nehnuteľnosti bez</span><br/>
@@ -691,7 +691,7 @@
     </div>
     <div class="hero-trust">
       <div class="hero-trust-item">
-        <div class="hero-trust-num">4</div>
+        <div class="hero-trust-num">5</div>
         <div class="hero-trust-label" data-i18n="trust_ebooks">E-knihy zdarma</div>
       </div>
       <div class="hero-trust-sep"></div>
@@ -758,6 +758,16 @@
         <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
       </article>
 
+      <article class="book-card reveal reveal-d1" onclick="openModal('retazovy-obchod')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Reťazový obchod">
+        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
+        <div class="book-icon-wrap">🔗</div>
+        <div class="book-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
+        <h3 data-i18n="book5_title">Reťazový obchod</h3>
+        <p class="book-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</p>
+        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book5_meta">38 stiahnutí tento mesiac</span></div>
+        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Chcem tento plán zadarmo → <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+      </article>
+
     </div>
   </div>
 </section>
@@ -771,7 +781,7 @@
     </div>
     <div class="stat-sep"></div>
     <div class="stat reveal reveal-d1">
-      <div class="stat-num">4</div>
+      <div class="stat-num">5</div>
       <div class="stat-label" data-i18n="stat2">Príručky zadarmo</div>
     </div>
     <div class="stat-sep"></div>
@@ -885,6 +895,7 @@
       <button class="cta-book-btn" onclick="openModal('dedicstvo')">📜 <span data-i18n="book2_title">Zdedený byt</span><span data-i18n="cta_b2_sub">Od dedičstva po predaj</span></button>
       <button class="cta-book-btn" onclick="openModal('exekucia')">⚠️ <span data-i18n="book3_title">Exekúcia na dverách</span><span data-i18n="cta_b3_sub">Akčný plán pred dražbou</span></button>
       <button class="cta-book-btn" onclick="openModal('rozvod')">⚖️ <span data-i18n="book4_title">Rozvod a majetok</span><span data-i18n="cta_b4_sub">Predaj bez hádok a sporov</span></button>
+      <button class="cta-book-btn" onclick="openModal('retazovy-obchod')">🔗 <span data-i18n="book5_title">Reťazový obchod</span><span data-i18n="cta_b5_sub">Predaj + kúpa naraz</span></button>
     </div>
     <p class="cta-note" data-i18n="cta_note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
   </div>
@@ -991,6 +1002,13 @@
       hook: 'Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
       quote: '„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce." — Klientka, máj 2025',
       file: 'ebook-rozvod'
+    },
+    'retazovy-obchod': {
+      tag: 'Predaj + kúpa · Koordinácia',
+      title: 'Reťazový obchod',
+      hook: 'Predávate byt s hypotékou a zároveň kupujete nový? Musíte zladiť dve banky, dva katastre a dva predaje — a ešte sa medzitým niekde vysťahovať. Táto príručka vás prevedie celým procesom krok za krokom.',
+      quote: '„Bez tejto príručky by sme to nezvládli. Všetko bolo zrazu jasné." — Klient, jún 2025',
+      file: 'ebook-retazovy-obchod'
     }
   };
 
@@ -1149,6 +1167,11 @@
       cta_b2_sub: 'Od dedičstva po predaj',
       cta_b3_sub: 'Akčný plán pred dražbou',
       cta_b4_sub: 'Predaj bez hádok a sporov',
+      cta_b5_sub: 'Predaj + kúpa naraz',
+      book5_tag: 'Predaj + kúpa · Koordinácia',
+      book5_title: 'Reťazový obchod',
+      book5_desc: 'Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.',
+      book5_meta: '38 stiahnutí tento mesiac',
       cta_note: '🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.',
       modal_label: 'Zadaj email a stiahni zadarmo',
       modal_submit: 'Stiahnuť →',
