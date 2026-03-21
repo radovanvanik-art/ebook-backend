@@ -46,7 +46,7 @@ app.post('/api/subscribe', async (req, res) => {
 }); // Toto je správne uzavretie app.post
 
 app.get('/download/:bookName', (req, res) => {
-    const bookName = req.params.bookName; // Získa názov z URL
+    const bookName = req.params.bookName;
     const file = path.join(__dirname, 'public', `${bookName}.pdf`);
     
     res.download(file, `${bookName}.pdf`, (err) => {
@@ -54,6 +54,14 @@ app.get('/download/:bookName', (req, res) => {
             console.error('PDF download error:', err);
             res.status(404).send('Súbor nebol nájdený.');
         }
+    });
+});
+
+// ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod'];
+subpages.forEach(page => {
+    app.get(`/${page}`, (req, res) => {
+        res.sendFile(path.join(__dirname, 'public', `${page}.html`));
     });
 });
 

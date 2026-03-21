@@ -304,7 +304,15 @@
       grid-template-columns: repeat(2, 1fr);
       gap: 1.5rem;
     }
-    @media (max-width: 680px) { .books-grid { grid-template-columns: 1fr; } }
+    .books-grid .book-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 0.75rem);
+      margin: 0 auto;
+    }
+    @media (max-width: 680px) {
+      .books-grid { grid-template-columns: 1fr; }
+      .books-grid .book-card:last-child:nth-child(odd) { grid-column: 1; max-width: 100%; }
+    }
 
     .book-card {
       background: var(--white);
@@ -718,54 +726,54 @@
     </div>
     <div class="books-grid">
 
-      <article class="book-card reveal reveal-d1" onclick="openModal('prvy-byt')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Váš prvý byt">
+      <article class="book-card reveal reveal-d1" onclick="window.location.href='/prvy-byt'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Váš prvý byt">
         <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">✨</div>
         <div class="book-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
         <h3 data-i18n="book1_title">Váš prvý byt</h3>
         <p class="book-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
         <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book1_meta">54 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
       </article>
 
-      <article class="book-card reveal reveal-d2" onclick="openModal('dedicstvo')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Zdedený byt">
+      <article class="book-card reveal reveal-d2" onclick="window.location.href='/dedicstvo'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Zdedený byt">
         <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">📜</div>
         <div class="book-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
         <h3 data-i18n="book2_title">Zdedený byt</h3>
         <p class="book-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</p>
         <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book2_meta">61 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
       </article>
 
-      <article class="book-card reveal reveal-d1" onclick="openModal('exekucia')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Exekúcia na dverách">
+      <article class="book-card reveal reveal-d1" onclick="window.location.href='/exekucia'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Exekúcia na dverách">
         <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">⚠️</div>
         <div class="book-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
         <h3 data-i18n="book3_title">Exekúcia na dverách</h3>
         <p class="book-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</p>
         <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book3_meta">58 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
       </article>
 
-      <article class="book-card reveal reveal-d2" onclick="openModal('rozvod')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Rozvod a predaj majetku">
+      <article class="book-card reveal reveal-d2" onclick="window.location.href='/rozvod'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Rozvod a predaj majetku">
         <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">⚖️</div>
         <div class="book-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
         <h3 data-i18n="book4_title">Rozvod a predaj majetku</h3>
         <p class="book-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
         <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book4_meta">52 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Stiahnuť zadarmo <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
       </article>
 
-      <article class="book-card reveal reveal-d1" onclick="openModal('retazovy-obchod')" role="button" tabindex="0" aria-label="Stiahnuť e-knihu Reťazový obchod">
+      <article class="book-card reveal reveal-d1" onclick="window.location.href='/retazovy-obchod'" role="button" tabindex="0" aria-label="Zobraziť e-knihu Reťazový obchod">
         <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
         <div class="book-icon-wrap">🔗</div>
         <div class="book-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
         <h3 data-i18n="book5_title">Reťazový obchod</h3>
         <p class="book-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</p>
         <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book5_meta">38 stiahnutí tento mesiac</span></div>
-        <button class="book-btn" tabindex="-1" data-i18n="btn_download">Chcem tento plán zadarmo → <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V2h2v6.2l2.6-2.6L13 7 8 12zm-5 2h10v2H3v-2z"/></svg></button>
+        <button class="book-btn" tabindex="-1">Chcem túto príručku <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 2l5 5-5 5-1.4-1.4L9.2 9H2V7h7.2L6.6 4.4z"/></svg></button>
       </article>
 
     </div>
@@ -963,11 +971,11 @@ calc();
     <h2 class="section-title" data-i18n="cta_title">Ktorá situácia sa vás týka?</h2>
     <p data-i18n="cta_sub">Vyberte e-knihu a stiahnite ju zadarmo.</p>
     <div class="cta-books-grid">
-      <button class="cta-book-btn" onclick="openModal('prvy-byt')">✨ <span data-i18n="book1_title">Váš prvý byt</span><span data-i18n="cta_b1_sub">Prvá kúpa bez stresu</span></button>
-      <button class="cta-book-btn" onclick="openModal('dedicstvo')">📜 <span data-i18n="book2_title">Zdedený byt</span><span data-i18n="cta_b2_sub">Od dedičstva po predaj</span></button>
-      <button class="cta-book-btn" onclick="openModal('exekucia')">⚠️ <span data-i18n="book3_title">Exekúcia na dverách</span><span data-i18n="cta_b3_sub">Akčný plán pred dražbou</span></button>
-      <button class="cta-book-btn" onclick="openModal('rozvod')">⚖️ <span data-i18n="book4_title">Rozvod a majetok</span><span data-i18n="cta_b4_sub">Predaj bez hádok a sporov</span></button>
-      <button class="cta-book-btn" onclick="openModal('retazovy-obchod')">🔗 <span data-i18n="book5_title">Reťazový obchod</span><span data-i18n="cta_b5_sub">Predaj + kúpa naraz</span></button>
+      <button class="cta-book-btn" onclick="window.location.href='/prvy-byt'">✨ <span data-i18n="book1_title">Váš prvý byt</span><span data-i18n="cta_b1_sub">Prvá kúpa bez stresu</span></button>
+      <button class="cta-book-btn" onclick="window.location.href='/dedicstvo'">📜 <span data-i18n="book2_title">Zdedený byt</span><span data-i18n="cta_b2_sub">Od dedičstva po predaj</span></button>
+      <button class="cta-book-btn" onclick="window.location.href='/exekucia'">⚠️ <span data-i18n="book3_title">Exekúcia na dverách</span><span data-i18n="cta_b3_sub">Akčný plán pred dražbou</span></button>
+      <button class="cta-book-btn" onclick="window.location.href='/rozvod'">⚖️ <span data-i18n="book4_title">Rozvod a majetok</span><span data-i18n="cta_b4_sub">Predaj bez hádok a sporov</span></button>
+      <button class="cta-book-btn" onclick="window.location.href='/retazovy-obchod'">🔗 <span data-i18n="book5_title">Reťazový obchod</span><span data-i18n="cta_b5_sub">Predaj + kúpa naraz</span></button>
     </div>
     <p class="cta-note" data-i18n="cta_note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
   </div>

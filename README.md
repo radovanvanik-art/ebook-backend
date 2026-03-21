@@ -46,3 +46,24 @@ npm start
 - railway.app → New Project → Deploy from GitHub
 - Variables: BREVO_API_KEY + BREVO_LIST_ID
 - Automatický HTTPS + custom doména
+
+Chcem možnosť 2 , ale chcem viacej pod stránok mam 5 e kníh - 
+Tu je zoznam vašich e-bookov:
+
+**E-booky NajBývanie:**
+
+- **Zdedili ste nehnuteľnosť?** – 20 strán, téma: dedičstvo, emócia: zmätok a papierovačky
+- **Exekúcia na dverách** – 26 strán, téma: dlhová kríza, emócia: strach a naliehavosť
+- **Rozvod a predaj majetku** – 24 strán, téma: rozvod, emócia: bolesť a nový začiatok
+- **Váš prvý byt** – 26 strán, téma: prvá kúpa, emócia: vzrušenie a nádej
+- **Reťazový obchod** – 32 strán, téma: predaj + kúpa súčasne, emócia: koordinácia a stres
+
+**Súbory:**
+- ebook-zdedene-nehnutelnosti.pdf
+- ebook-exekucia.pdf
+- ebook-rozvod.pdf
+- ebook-prvy-byt.pdf
+- ebook-retazovy-obchod.pdf
+
+
+ na každu chcem podstránku a chem aby sa nejako trendy profesionálne ukazali na hlavnej stránke kde sa uživatelia môžu prekliknuť nejakym dynamickým spôsobom
