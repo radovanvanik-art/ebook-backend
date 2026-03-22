@@ -11,15 +11,6 @@
   <meta name="author" content="Radovan Vaník" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.radovanvanik.com/" />
-  <!-- Hreflang tags -->
-  <link rel="alternate" href="https://www.radovanvanik.com/" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/" hreflang="x-default" />
-  <link rel="alternate" href="https://www.radovanvanik.com/dedicstvo" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/exekucia" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/prvy-byt" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/retazovy-obchod" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/rozvod" hreflang="sk" />
-  <link rel="alternate" href="https://www.radovanvanik.com/o-mne" hreflang="sk" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -99,8 +90,8 @@
     * { scrollbar-width: thin; scrollbar-color: rgba(200,133,31,0.4) var(--dark); }
     body {
       font-family: 'Inter', system-ui, sans-serif;
-      background: var(--cream);
-      color: var(--ink);
+      background: #0a0a0a;
+      color: #fff;
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -1086,76 +1077,6 @@
       <p class="bs-hint">Kliknite znovu na knihu pre zatvorenie</p>
     </div>
 
-    <!-- BOOK CARDS GRID -->
-    <div class="books-grid" style="margin-top:3rem;">
-
-      <div class="book-card reveal reveal-d1" onclick="openModal('prvy-byt')" tabindex="0" role="button" aria-label="Váš prvý byt">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">✨</div>
-        <div class="book-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
-        <h3 data-i18n="book1_title">Váš prvý byt</h3>
-        <p class="book-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book1_meta">54 stiahnutí tento mesiac</span></div>
-        <button class="book-btn">
-          <span data-i18n="btn_download">Chcem tento plán zadarmo →</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-      <div class="book-card reveal reveal-d2" onclick="openModal('dedicstvo')" tabindex="0" role="button" aria-label="Zdedený byt">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">📜</div>
-        <div class="book-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
-        <h3 data-i18n="book2_title">Zdedený byt</h3>
-        <p class="book-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book2_meta">61 stiahnutí tento mesiac</span></div>
-        <button class="book-btn">
-          <span data-i18n="btn_download">Chcem tento plán zadarmo →</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-      <div class="book-card reveal reveal-d1" onclick="openModal('exekucia')" tabindex="0" role="button" aria-label="Exekúcia na dverách">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">⚠️</div>
-        <div class="book-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
-        <h3 data-i18n="book3_title">Exekúcia na dverách</h3>
-        <p class="book-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book3_meta">58 stiahnutí tento mesiac</span></div>
-        <button class="book-btn">
-          <span data-i18n="btn_download">Chcem tento plán zadarmo →</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-      <div class="book-card reveal reveal-d2" onclick="openModal('rozvod')" tabindex="0" role="button" aria-label="Rozvod a predaj majetku">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">⚖️</div>
-        <div class="book-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
-        <h3 data-i18n="book4_title">Rozvod a predaj majetku</h3>
-        <p class="book-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book4_meta">52 stiahnutí tento mesiac</span></div>
-        <button class="book-btn">
-          <span data-i18n="btn_download">Chcem tento plán zadarmo →</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-      <div class="book-card reveal reveal-d1" onclick="openModal('retazovy-obchod')" tabindex="0" role="button" aria-label="Reťazový obchod">
-        <span class="book-badge" data-i18n="badge_free">Zadarmo</span>
-        <div class="book-icon-wrap">🔗</div>
-        <div class="book-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
-        <h3 data-i18n="book5_title">Reťazový obchod</h3>
-        <p class="book-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</p>
-        <div class="book-meta"><span class="fire-icon">🔥</span><span data-i18n="book5_meta">38 stiahnutí tento mesiac</span></div>
-        <button class="book-btn">
-          <span data-i18n="btn_download">Chcem tento plán zadarmo →</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </button>
-      </div>
-
-    </div>
-
   </div>
 </section>
 
@@ -1492,14 +1413,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2026 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
   <div class="footer-links">
-    <a href="/dedicstvo">Dedičstvo</a>
-    <a href="/exekucia">Exekúcia</a>
-    <a href="/prvy-byt">Prvý byt</a>
-    <a href="/retazovy-obchod">Reťazový obchod</a>
-    <a href="/rozvod">Rozvod</a>
-    <a href="/o-mne">O mne</a>
     <a href="tel:+421948310950">+421 948 310 950</a>
     <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">najbyvanie.sk</a>
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
@@ -1538,7 +1453,7 @@
       <div class="modal-success-icon">✅</div>
       <h3 data-i18n="success_h3">Výborne! Sťahovanie začína.</h3>
       <p data-i18n="success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
-      <div style="margin-top:1.5rem; padding:1rem; background:var(--cream); border-radius:10px; text-align:left;">
+      <div style="margin-top:1.5rem; padding:1rem; background:rgba(200,133,31,0.06); border-radius:10px; text-align:left;">
         <p style="font-size:0.82rem; color:var(--muted); margin-bottom:0.75rem;">Chceš sa poradiť osobne? Zavolaj mi — bezplatne a bez záväzkov.</p>
         <a href="tel:+421948310950" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:var(--gold); color:var(--white); padding:0.75rem 1.25rem; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none; box-shadow:0 4px 16px rgba(200,133,31,0.35);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
