@@ -11,12 +11,15 @@
   <meta name="author" content="Radovan Vaník" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.radovanvanik.com/" />
-  <!-- Hreflang tagy pre jazykové verzie -->
-  <link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/" />
-  <link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/" />
-  <link rel="alternate" hreflang="ua" href="https://www.radovanvanik.com/ua/" />
-  <link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/" />
-  <link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/" />
+  <!-- Hreflang tags -->
+  <link rel="alternate" href="https://www.radovanvanik.com/" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/" hreflang="x-default" />
+  <link rel="alternate" href="https://www.radovanvanik.com/dedicstvo" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/exekucia" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/prvy-byt" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/retazovy-obchod" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/rozvod" hreflang="sk" />
+  <link rel="alternate" href="https://www.radovanvanik.com/o-mne" hreflang="sk" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -370,7 +373,7 @@
     }
     .book-desc {
       font-size: 0.87rem; color: var(--muted); line-height: 1.65;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-clamp: 3;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       margin-bottom: 1.2rem;
     }
     .book-meta {
@@ -947,12 +950,8 @@
       <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
       <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
     </div>
-    <a href="/dedicstvo" class="nav-link">Dedičstvo</a>
-    <a href="/exekucia" class="nav-link">Exekúcia</a>
-    <a href="/prvy-byt" class="nav-link">Prvý byt</a>
-    <a href="/retazovy-obchod" class="nav-link">Reťazový obchod</a>
-    <a href="/rozvod" class="nav-link">Rozvod</a>
     <a href="/o-mne" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
+    <a href="/mapa" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
     <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
   </div>
   <div class="nav-right">
@@ -1020,8 +1019,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#2a5fa0 0%,#1a3f72 50%,#0f2850 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">✨</span>
-              <span class="bs-ttl" data-i18n="book1_title">Váš prvý byt</span>
-              <span class="bs-yr" data-i18n="bs_year">2025</span>
+            <span class="bs-ttl">Váš prvý byt</span>
+            <span class="bs-yr">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1031,8 +1030,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#3a7028 0%,#254a18 50%,#163010 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">📜</span>
-              <span class="bs-ttl" data-i18n="book2_title">Zdedený byt</span>
-              <span class="bs-yr" data-i18n="bs_year">2025</span>
+            <span class="bs-ttl">Zdedený byt</span>
+            <span class="bs-yr">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1042,8 +1041,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#8a2a2a 0%,#5e1a1a 50%,#3e1010 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">⚠️</span>
-              <span class="bs-ttl" data-i18n="book3_title">Exekúcia na dverách</span>
-              <span class="bs-yr" data-i18n="bs_year">2025</span>
+            <span class="bs-ttl">Exekúcia na dverách</span>
+            <span class="bs-yr">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1053,8 +1052,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#7a5018 0%,#52340e 50%,#342208 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">⚖️</span>
-              <span class="bs-ttl" data-i18n="book4_title">Rozvod a majetok</span>
-              <span class="bs-yr" data-i18n="bs_year">2025</span>
+            <span class="bs-ttl">Rozvod a majetok</span>
+            <span class="bs-yr">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1064,8 +1063,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#4e2a80 0%,#321858 50%,#1e0e38 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">🔗</span>
-              <span class="bs-ttl" data-i18n="book5_title">Reťazový obchod</span>
-              <span class="bs-yr" data-i18n="bs_year">2025</span>
+            <span class="bs-ttl">Reťazový obchod</span>
+            <span class="bs-yr">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1080,11 +1079,11 @@
             <div class="bs-ptag" id="bs-tag"></div>
             <div class="bs-ptitle" id="bs-title"></div>
             <div class="bs-pdesc" id="bs-desc"></div>
-            <a class="bs-pbtn" id="bs-btn" href="#" data-i18n="bs_btn">Chcem túto príručku →</a>
+            <a class="bs-pbtn" id="bs-btn" href="#">Chcem túto príručku →</a>
           </div>
         </div>
       </div>
-      <p class="bs-hint" data-i18n="bs_hint">Kliknite znovu na knihu pre zatvorenie</p>
+      <p class="bs-hint">Kliknite znovu na knihu pre zatvorenie</p>
     </div>
 
   </div>
@@ -1100,10 +1099,10 @@
       <div class="about-mini-body">
         <div class="about-mini-tag">
           <span class="about-mini-tag-dot"></span>
-          Certifikovaný maklér · Reality Najbývanie
+          <span data-i18n="about_verify">Certifikovaný maklér · Reality Najbývanie</span>
         </div>
-        <div class="about-mini-name">Radovan Vaník</div>
-        <p class="about-mini-text">Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.</p>
+        <div class="about-mini-name" data-i18n="about_name">Radovan Vaník</div>
+        <p class="about-mini-text" data-i18n="about_mini_text">Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.</p>
         <div class="sig-block">
           <span class="sig-name">Vaník</span>
           <span class="sig-sub">Radovan</span>
@@ -1112,7 +1111,7 @@
       </div>
       <div class="about-mini-cta">
         <a href="/o-mne" class="about-mini-btn">
-          Viac o mne
+          <span data-i18n="about_btn">Viac o mne</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <div class="about-mini-phone"><a href="tel:+421948310950">+421 948 310 950</a></div>
@@ -1128,18 +1127,18 @@
     <div style="text-align:center;margin-bottom:48px;">
       <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(200,133,31,0.6);margin-bottom:16px;">
         <span style="width:5px;height:5px;border-radius:50%;background:#C8851F;box-shadow:0 0 10px rgba(200,133,31,0.5);display:inline-block;"></span>
-        Kalkulačka
+        <span data-i18n="kalk_badge">Kalkulačka</span>
       </div>
-      <h2 class="section-title" style="color:#C8851F;">Koľko zaplatíte za<br><em style="font-style:italic;color:#E8A83A;">vašu hypotéku?</em></h2>
-      <p class="section-sub" style="margin:0.75rem auto 0;color:#C8851F;">Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
-      <p style="margin:2.5rem auto 0;max-width:600px;font-size:12px;color:#C8851F;font-weight:600;line-height:1.65;">Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.</p>
+      <h2 class="section-title" style="color:#C8851F;" data-i18n="kalk_title">Koľko zaplatíte za vašu hypotéku?</h2>
+      <p class="section-sub" style="margin:0.75rem auto 0;color:#C8851F;" data-i18n="kalk_sub">Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
+      <p style="margin:2.5rem auto 0;max-width:600px;font-size:12px;color:#C8851F;font-weight:600;line-height:1.65;" data-i18n="kalk_note">Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.</p>
     </div>
 
     <div class="kalk-grid">
 
       <!-- SLIDERS -->
       <div class="kalk-panel">
-        <div class="kalk-panel-title">Parametre úveru</div>
+        <div class="kalk-panel-title" data-i18n="kalk_params">Parametre úveru</div>
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
@@ -1152,7 +1151,7 @@
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Úroková sadzba</span>
+            <span data-i18n="kalk_rate">Úroková sadzba</span>
             <strong id="rateVal">3.5 %</strong>
           </div>
           <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range">
@@ -1161,7 +1160,7 @@
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Doba splácania</span>
+            <span data-i18n="kalk_years">Doba splácania</span>
             <strong id="yearsVal">25 rokov</strong>
           </div>
           <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range">
@@ -1172,9 +1171,9 @@
       <!-- RESULTS -->
       <div class="kalk-panel kalk-result">
         <div class="kalk-result-top">
-          <div class="kalk-result-label">Mesačná splátka</div>
+          <div class="kalk-result-label" data-i18n="kalk_monthly">Mesačná splátka</div>
           <div class="kalk-result-amount" id="monthly">500 €</div>
-          <div class="kalk-result-per">mesačne</div>
+          <div class="kalk-result-per" data-i18n="kalk_per">mesačne</div>
         </div>
         <div class="kalk-rows">
           <div class="kalk-row"><span data-i18n="kalk_loan">Výška úveru</span><span id="resLoan">100 000 €</span></div>
@@ -1183,14 +1182,14 @@
           <div class="kalk-row"><span data-i18n="kalk_payments">Počet splátok</span><span id="resPayments">300</span></div>
         </div>
         <div class="kalk-progress">
-          <div class="kalk-progress-labels"><span data-i18n="kalk_principal">Istina</span><span data-i18n="kalk_interests">Úroky</span></div>
+  <div class="kalk-progress-labels"><span data-i18n="kalk_principal">Istina</span><span data-i18n="kalk_interests">Úroky</span></div>
           <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
         </div>
       </div>
 
       <!-- DONUT -->
       <div class="kalk-panel kalk-chart">
-        <div class="kalk-panel-title">Rozloženie platieb</div>
+        <div class="kalk-panel-title" data-i18n="kalk_chart_title">Rozloženie platieb</div>
         <div class="kalk-chart-flex">
           <div class="kalk-donut-wrap">
             <canvas id="donut" width="200" height="200"></canvas>
@@ -1203,7 +1202,7 @@
             <div class="kalk-legend-item">
               <div class="kalk-legend-dot kalk-legend-dot--p"></div>
               <div>
-                <span class="kalk-legend-lbl" data-i18n="kalk_principal_full">Istina (úver)</span>
+                <span class="kalk-legend-lbl" data-i18n="kalk_interest">Istina (úver)</span>
                 <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
               </div>
             </div>
@@ -1220,7 +1219,7 @@
 
       <!-- AMORTIZATION -->
       <div class="kalk-panel kalk-amort">
-        <div class="kalk-panel-title">Ročný prehľad splátok</div>
+        <div class="kalk-panel-title" data-i18n="kalk_amort_title">Ročný prehľad splátok</div>
         <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
           <span data-i18n="kalk_amort_show">Zobraziť tabuľku</span>
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
@@ -1322,10 +1321,10 @@
     table.classList.toggle('kalk-show');
     btn.classList.toggle('kalk-open');
     const lang = localStorage.getItem('lang') || 'sk';
-    const t = TRANSLATIONS[lang] || TRANSLATIONS['sk'];
-    btn.childNodes[0].textContent = table.classList.contains('kalk-show')
-      ? (t['kalk_amort_hide'] || 'Skryť tabuľku')
-      : (t['kalk_amort_show'] || 'Zobraziť tabuľku');
+    const t = TRANSLATIONS[lang] || TRANSLATIONS.sk;
+    btn.querySelector('span').textContent = table.classList.contains('kalk-show')
+      ? (t.kalk_amort_hide || 'Skryť tabuľku')
+      : (t.kalk_amort_show || 'Zobraziť tabuľku');
   };
 
   loanEl.addEventListener('input', kCalc);
@@ -1423,9 +1422,8 @@
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+  <p>© 2026 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
   <div class="footer-links">
-    <a href="/">Domov</a>
     <a href="/dedicstvo">Dedičstvo</a>
     <a href="/exekucia">Exekúcia</a>
     <a href="/prvy-byt">Prvý byt</a>
@@ -1442,7 +1440,7 @@
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       Instagram
     </a>
-    <a href="#">Ochrana súkromia</a>
+    <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener" data-i18n="footer_privacy">Ochrana súkromia</a>
   </div>
 </footer>
 
@@ -1683,6 +1681,9 @@
       ben6_h: 'Osobná konzultácia', ben6_p: 'Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo — bez záväzkov.',
       about_eyebrow: 'O mne',
       about_verify: 'Certifikovaný maklér · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.',
+      about_btn: 'Viac o mne',
       about_p1: 'Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> — modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.',
       about_p2: 'Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.',
       about_p3: 'Chcem, aby ste k nám prišli pripravení — nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.',
@@ -1700,28 +1701,38 @@
       book5_desc: 'Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.',
       book5_meta: '38 stiahnutí tento mesiac',
       cta_note: '🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.',
+      about_btn: 'Viac o mne',
+      about_mini_text: 'Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.',
+      kalk_badge: 'Kalkulačka',
+      kalk_title: 'Koľko zaplatíte za vašu hypotéku?',
+      kalk_sub: 'Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.',
+      kalk_note: 'Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.',
+      kalk_params: 'Parametre úveru',
+      kalk_loan: 'Výška úveru',
+      kalk_rate: 'Úroková sadzba',
+      kalk_years: 'Doba splácania',
+      kalk_monthly: 'Mesačná splátka',
+      kalk_per: 'mesačne',
+      kalk_total: 'Celková suma',
+      kalk_interest: 'Zaplatené úroky',
+      kalk_payments: 'Počet splátok',
+      kalk_amort_show: 'Zobraziť tabuľku',
+      kalk_amort_hide: 'Skryť tabuľku',
+      kalk_amort_year: 'Rok',
+      kalk_amort_payment: 'Splátka / rok',
+      kalk_amort_balance: 'Zostatok',
+      kalk_interest: 'Zaplatené úroky',
+      kalk_payments: 'Počet splátok',
+      kalk_principal: 'Istina',
+      kalk_interests: 'Úroky',
+      kalk_chart_title: 'Rozloženie platieb',
+      kalk_amort_title: 'Ročný prehľad splátok',
+      footer_privacy: 'Ochrana súkromia',
       modal_label: 'Zadaj email a stiahni zadarmo',
       modal_submit: 'Stiahnuť →',
       modal_privacy: '🔒 Žiadny spam. Odhlásenie kedykoľvek.',
       success_h3: 'Výborne! Sťahovanie začína.',
       success_p: 'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
-        // --- CALCULATOR & AMORTIZATION ---
-        kalk_loan: 'Výška úveru',
-        kalk_total: 'Celková suma',
-        kalk_interest: 'Zaplatené úroky',
-        kalk_payments: 'Počet splátok',
-        kalk_principal: 'Istina',
-        kalk_principal_full: 'Istina (úver)',
-        kalk_interests: 'Zaplatené úroky',
-        kalk_amort_show: 'Zobraziť tabuľku',
-        kalk_amort_hide: 'Skryť tabuľku',
-        kalk_amort_year: 'Rok',
-        kalk_amort_payment: 'Splátka / rok',
-        kalk_amort_balance: 'Zostatok',
-        // --- BOOKSHELF ---
-        bs_hint: 'Kliknite znovu na knihu pre zatvorenie',
-        bs_btn: 'Chcem túto príručku →',
-        bs_year: '2025',
     },
     en: {
       nav_cta: 'Get free e-book →',
@@ -1770,6 +1781,9 @@
       ben6_h: 'Personal consultation', ben6_p: 'If you need help, I\'m here. Contact me directly — no strings attached.',
       about_eyebrow: 'About me',
       about_verify: 'Certified broker · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'I help people in the regions of <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš and Dolný Kubín</strong> navigate real estate changes without stress or financial loss.',
+      about_btn: 'More about me',
       about_p1: 'I am a real estate broker operating under <strong>Reality Najbývanie</strong> — a modern agency built on transparency and personal approach.',
       about_p2: 'Every day I work with people facing one of the biggest decisions of their lives. I created these e-books because I believe an <strong>informed client is a satisfied client</strong>.',
       about_p3: 'I want you to come to us prepared — not lost. And if you need someone by your side when buying or selling, I\'m here.',
@@ -1781,29 +1795,44 @@
       cta_b2_sub: 'From inheritance to sale',
       cta_b3_sub: 'Action plan before auction',
       cta_b4_sub: 'Sale without disputes',
+      cta_b5_sub: 'Buy and sell at once',
+      book5_tag: 'Sale + purchase · Coordination',
+      book5_title: 'Chain deal',
+      book5_desc: 'Selling with a mortgage and buying new at the same time? Coordinate two banks, two registries and two deals — your step-by-step guide.',
+      book5_meta: '38 downloads this month',
       cta_note: '🔒 Your data is safe. No spam. Unsubscribe anytime.',
+      about_btn: 'More about me',
+      about_mini_text: 'I help people in the regions of <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš and Dolný Kubín</strong> navigate real estate changes without stress or financial losses.',
+      kalk_badge: 'Calculator',
+      kalk_title: 'How much will you pay for your mortgage?',
+      kalk_sub: 'Set the parameters and instantly see your monthly payment, total amount and principal/interest ratio.',
+      kalk_note: 'The calculation is indicative for a fixed rate. The actual payment depends on the specific bank, fees and your creditworthiness. Contact Radovan Vaník for a precise offer.',
+      kalk_params: 'Loan parameters',
+      kalk_loan: 'Loan amount',
+      kalk_rate: 'Interest rate',
+      kalk_years: 'Repayment period',
+      kalk_monthly: 'Monthly payment',
+      kalk_per: 'monthly',
+      kalk_total: 'Total amount',
+      kalk_interest: 'Interest paid',
+      kalk_payments: 'Number of payments',
+      kalk_amort_show: 'Show schedule',
+      kalk_amort_hide: 'Hide schedule',
+      kalk_amort_year: 'Year',
+      kalk_amort_payment: 'Payment / year',
+      kalk_amort_balance: 'Balance',
+      kalk_interest: 'Interest paid',
+      kalk_payments: 'Number of payments',
+      kalk_principal: 'Principal',
+      kalk_interests: 'Interest',
+      kalk_chart_title: 'Payment breakdown',
+      kalk_amort_title: 'Annual repayment schedule',
+      footer_privacy: 'Privacy policy',
       modal_label: 'Enter email to download free',
       modal_submit: 'Download →',
       modal_privacy: '🔒 No spam. Unsubscribe anytime.',
       success_h3: 'Great! Download starting.',
       success_p: 'Check your inbox — we\'ll also send you a confirmation.',
-        // --- CALCULATOR & AMORTIZATION ---
-        kalk_loan: 'Loan amount',
-        kalk_total: 'Total amount',
-        kalk_interest: 'Interest paid',
-        kalk_payments: 'Number of payments',
-        kalk_principal: 'Principal',
-        kalk_principal_full: 'Principal (loan)',
-        kalk_interests: 'Interest paid',
-        kalk_amort_show: 'Show table',
-        kalk_amort_hide: 'Hide table',
-        kalk_amort_year: 'Year',
-        kalk_amort_payment: 'Payment / year',
-        kalk_amort_balance: 'Balance',
-        // --- BOOKSHELF ---
-        bs_hint: 'Click again to close',
-        bs_btn: 'I want this guide →',
-        bs_year: '2025',
     },
     ua: {
       nav_cta: 'Отримати е-книгу →',
@@ -1852,6 +1881,9 @@
       ben6_h: 'Особиста консультація', ben6_p: 'Якщо вам потрібна допомога — я тут. Звертайтеся напряму — без зобов\'язань.',
       about_eyebrow: 'Про мене',
       about_verify: 'Сертифікований маклер · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'Я допомагаю людям у регіонах <strong style="color:rgba(255,255,255,0.75)">Ружомберок, Ліптовський Мікулаш і Дольний Кубін</strong> пройти через нерухомість без стресу та фінансових втрат.',
+      about_btn: 'Більше про мене',
       about_p1: 'Я — маклер з нерухомості під брендом <strong>Reality Najbývanie</strong> — сучасного агентства, що будується на прозорості та особистому підході.',
       about_p2: 'Щодня я працюю з людьми, які стоять перед одним з найважливіших рішень у житті. Я створив ці е-книги, бо вірю: <strong>поінформований клієнт — задоволений клієнт</strong>.',
       about_p3: 'Хочу, щоб ви прийшли до нас підготовленими. І якщо знадобиться хтось поруч при купівлі чи продажу — я тут.',
@@ -1863,29 +1895,44 @@
       cta_b2_sub: 'Від спадщини до продажу',
       cta_b3_sub: 'План дій до аукціону',
       cta_b4_sub: 'Продаж без суперечок',
+      cta_b5_sub: 'Купівля і продаж одночасно',
+      book5_tag: 'Продаж + купівля · Координація',
+      book5_title: 'Ланцюгова угода',
+      book5_desc: 'Продаєте з іпотекою і одночасно купуєте нове? Скоординуйте два банки, два реєстри і дві угоди — ваш покроковий посібник.',
+      book5_meta: '38 завантажень цього місяця',
       cta_note: '🔒 Ваші дані в безпеці. Без спаму. Відписатись будь-коли.',
+      about_btn: 'Більше про мене',
+      about_mini_text: 'Я допомагаю людям у регіонах <strong style="color:rgba(255,255,255,0.75)">Ружомберок, Ліптовський Мікулаш та Дольній Кубін</strong> пройти через зміни в нерухомості без стресу та фінансових втрат.',
+      kalk_badge: 'Калькулятор',
+      kalk_title: 'Скільки ви заплатите за іпотеку?',
+      kalk_sub: 'Встановіть параметри і відразу побачите щомісячний платіж, загальну суму та співвідношення основного боргу та відсотків.',
+      kalk_note: 'Розрахунок є орієнтовним при фіксованій ставці. Зв\'яжіться з Радованом Ванік для точної пропозиції.',
+      kalk_params: 'Параметри кредиту',
+      kalk_loan: 'Сума кредиту',
+      kalk_rate: 'Відсоткова ставка',
+      kalk_years: 'Термін погашення',
+      kalk_monthly: 'Щомісячний платіж',
+      kalk_per: 'щомісяця',
+      kalk_total: 'Загальна сума',
+      kalk_interest: 'Виплачені відсотки',
+      kalk_payments: 'Кількість платежів',
+      kalk_amort_show: 'Показати таблицю',
+      kalk_amort_hide: 'Сховати таблицю',
+      kalk_amort_year: 'Рік',
+      kalk_amort_payment: 'Платіж / рік',
+      kalk_amort_balance: 'Залишок',
+      kalk_interest: 'Виплачені відсотки',
+      kalk_payments: 'Кількість платежів',
+      kalk_principal: 'Основний борг',
+      kalk_interests: 'Відсотки',
+      kalk_chart_title: 'Розподіл платежів',
+      kalk_amort_title: 'Річний графік платежів',
+      footer_privacy: 'Політика конфіденційності',
       modal_label: 'Введіть email для завантаження',
       modal_submit: 'Завантажити →',
       modal_privacy: '🔒 Без спаму. Відписатись будь-коли.',
       success_h3: 'Чудово! Завантаження починається.',
       success_p: 'Перевірте свою поштову скриньку — надішлемо також підтвердження.',
-        // --- CALCULATOR & AMORTIZATION ---
-        kalk_loan: 'Сума кредиту',
-        kalk_total: 'Загальна сума',
-        kalk_interest: 'Сплачені відсотки',
-        kalk_payments: 'Кількість платежів',
-        kalk_principal: 'Основна сума',
-        kalk_principal_full: 'Основна сума (кредит)',
-        kalk_interests: 'Сплачені відсотки',
-        kalk_amort_show: 'Показати таблицю',
-        kalk_amort_hide: 'Сховати таблицю',
-        kalk_amort_year: 'Рік',
-        kalk_amort_payment: 'Платіж / рік',
-        kalk_amort_balance: 'Залишок',
-        // --- BOOKSHELF ---
-        bs_hint: 'Натисніть ще раз, щоб закрити',
-        bs_btn: 'Хочу цей посібник →',
-        bs_year: '2025',
     },
     de: {
       nav_cta: 'E-Book auswählen →',
@@ -1934,6 +1981,9 @@
       ben6_h: 'Persönliche Beratung', ben6_p: 'Wenn Sie Hilfe brauchen, bin ich da. Kontaktieren Sie mich direkt — unverbindlich.',
       about_eyebrow: 'Über mich',
       about_verify: 'Zertifizierter Makler · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'Ich helfe Menschen in den Regionen <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš und Dolný Kubín</strong>, Immobilienveränderungen ohne Stress und finanzielle Verluste zu meistern.',
+      about_btn: 'Mehr über mich',
       about_p1: 'Ich bin Immobilienmakler unter der Marke <strong>Reality Najbývanie</strong> — einer modernen Agentur, die auf Transparenz und persönlichen Kontakt setzt.',
       about_p2: 'Jeden Tag arbeite ich mit Menschen, die vor einer der größten Entscheidungen ihres Lebens stehen. Diese E-Books habe ich erstellt, weil ich glaube: <strong>Ein informierter Kunde ist ein zufriedener Kunde</strong>.',
       about_p3: 'Ich möchte, dass Sie vorbereitet zu uns kommen — nicht verloren. Und wenn Sie jemanden beim Kauf oder Verkauf an Ihrer Seite brauchen, bin ich da.',
@@ -1945,29 +1995,44 @@
       cta_b2_sub: 'Von der Erbschaft zum Verkauf',
       cta_b3_sub: 'Aktionsplan vor der Versteigerung',
       cta_b4_sub: 'Verkauf ohne Streit',
+      cta_b5_sub: 'Kaufen und verkaufen zugleich',
+      book5_tag: 'Verkauf + Kauf · Koordination',
+      book5_title: 'Kettengeschäft',
+      book5_desc: 'Verkaufen Sie mit Hypothek und kaufen gleichzeitig neu? Koordinieren Sie zwei Banken, zwei Register und zwei Deals — Ihr Schritt-für-Schritt-Leitfaden.',
+      book5_meta: '38 Downloads diesen Monat',
       cta_note: '🔒 Ihre Daten sind sicher. Kein Spam. Abmeldung jederzeit.',
+      about_btn: 'Mehr über mich',
+      about_mini_text: 'Ich helfe Menschen in den Regionen <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš und Dolný Kubín</strong> durch Immobilienveränderungen ohne Stress und finanzielle Verluste.',
+      kalk_badge: 'Rechner',
+      kalk_title: 'Wie viel zahlen Sie für Ihre Hypothek?',
+      kalk_sub: 'Stellen Sie die Parameter ein und sehen Sie sofort Ihre monatliche Rate, Gesamtbetrag und Tilgungsverhältnis.',
+      kalk_note: 'Die Berechnung ist für einen festen Zinssatz indikativ. Kontaktieren Sie Radovan Vaník für ein genaues Angebot.',
+      kalk_params: 'Kreditparameter',
+      kalk_loan: 'Kreditbetrag',
+      kalk_rate: 'Zinssatz',
+      kalk_years: 'Laufzeit',
+      kalk_monthly: 'Monatliche Rate',
+      kalk_per: 'monatlich',
+      kalk_total: 'Gesamtbetrag',
+      kalk_interest: 'Gezahlte Zinsen',
+      kalk_payments: 'Anzahl der Raten',
+      kalk_amort_show: 'Tabelle anzeigen',
+      kalk_amort_hide: 'Tabelle ausblenden',
+      kalk_amort_year: 'Jahr',
+      kalk_amort_payment: 'Rate / Jahr',
+      kalk_amort_balance: 'Restschuld',
+      kalk_interest: 'Gezahlte Zinsen',
+      kalk_payments: 'Anzahl der Raten',
+      kalk_principal: 'Tilgung',
+      kalk_interests: 'Zinsen',
+      kalk_chart_title: 'Zahlungsaufteilung',
+      kalk_amort_title: 'Jährlicher Tilgungsplan',
+      footer_privacy: 'Datenschutz',
       modal_label: 'E-Mail eingeben und kostenlos herunterladen',
       modal_submit: 'Herunterladen →',
       modal_privacy: '🔒 Kein Spam. Abmeldung jederzeit.',
       success_h3: 'Super! Der Download beginnt.',
       success_p: 'Prüfen Sie Ihren Posteingang — wir senden Ihnen auch eine Bestätigung.',
-        // --- CALCULATOR & AMORTIZATION ---
-        kalk_loan: 'Darlehensbetrag',
-        kalk_total: 'Gesamtbetrag',
-        kalk_interest: 'Gezahlte Zinsen',
-        kalk_payments: 'Anzahl der Zahlungen',
-        kalk_principal: 'Hauptbetrag',
-        kalk_principal_full: 'Hauptbetrag (Darlehen)',
-        kalk_interests: 'Gezahlte Zinsen',
-        kalk_amort_show: 'Tabelle anzeigen',
-        kalk_amort_hide: 'Tabelle verbergen',
-        kalk_amort_year: 'Jahr',
-        kalk_amort_payment: 'Zahlung / Jahr',
-        kalk_amort_balance: 'Restbetrag',
-        // --- BOOKSHELF ---
-        bs_hint: 'Nochmal klicken zum Schließen',
-        bs_btn: 'Ich will diesen Ratgeber →',
-        bs_year: '2025',
     }
   };
 
@@ -1978,39 +2043,19 @@
       const key = el.getAttribute('data-i18n');
       if (t[key] !== undefined) el.innerHTML = t[key];
     });
-    // Update active button
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     const activeBtn = document.getElementById('lang-' + lang);
     if (activeBtn) activeBtn.classList.add('active');
-    // Update BOOKS data for modal
-    BOOKS['prvy-byt'].tag   = t.book1_tag;   BOOKS['prvy-byt'].title   = t.book1_title;
-    BOOKS['dedicstvo'].tag  = t.book2_tag;   BOOKS['dedicstvo'].title  = t.book2_title;
-    BOOKS['exekucia'].tag   = t.book3_tag;   BOOKS['exekucia'].title   = t.book3_title;
-    BOOKS['rozvod'].tag     = t.book4_tag;   BOOKS['rozvod'].title     = t.book4_title;
-      BOOKS['retazovy-obchod'].tag = t.book5_tag; BOOKS['retazovy-obchod'].title = t.book5_title;
-      // Refresh bookshelf panel if open
-      if (typeof bsCur !== 'undefined' && bsCur >= 0) refreshBookshelfPanel();
-    // Persist
+    BOOKS['prvy-byt'].tag        = t.book1_tag;   BOOKS['prvy-byt'].title        = t.book1_title;
+    BOOKS['dedicstvo'].tag       = t.book2_tag;   BOOKS['dedicstvo'].title       = t.book2_title;
+    BOOKS['exekucia'].tag        = t.book3_tag;   BOOKS['exekucia'].title        = t.book3_title;
+    BOOKS['rozvod'].tag          = t.book4_tag;   BOOKS['rozvod'].title          = t.book4_title;
+    BOOKS['retazovy-obchod'].tag = t.book5_tag || BOOKS['retazovy-obchod'].tag;
+    BOOKS['retazovy-obchod'].title = t.book5_title || BOOKS['retazovy-obchod'].title;
     localStorage.setItem('lang', lang);
+    // Refresh bookshelf panel if open
+    if (typeof bsCur !== 'undefined' && bsCur >= 0) bsPick(bsCur);
   }
-
-    function refreshBookshelfPanel() {
-      const t = TRANSLATIONS[localStorage.getItem('lang')] || TRANSLATIONS['sk'];
-      const books = document.querySelectorAll('.bs-book');
-      books.forEach((b, i) => {
-        // Update spine title and year
-        const ttl = b.querySelector('.bs-ttl');
-        const yr = b.querySelector('.bs-yr');
-        if (ttl && t[`book${i+1}_title`]) ttl.innerHTML = t[`book${i+1}_title`];
-        if (yr && t['bs_year']) yr.innerHTML = t['bs_year'];
-      });
-      // Update panel button
-      const btn = document.getElementById('bs-btn');
-      if (btn && t['bs_btn']) btn.innerHTML = t['bs_btn'];
-      // Update hint
-      const hint = document.querySelector('.bs-hint');
-      if (hint && t['bs_hint']) hint.innerHTML = t['bs_hint'];
-    }
 
   // Init language on load
   (function() {
@@ -2034,35 +2079,65 @@
   });
 
   /* ─── BOOKSHELF ─────────────────────────────────────── */
-  const BS_DATA = [
-    {ico:'✨',tag:'Prvá kúpa · Nový začiatok',title:'Váš prvý byt',desc:'Kompas pre každého, kto kupuje prvú nehnuteľnosť. Hypotéka, obhliadky, zmluvy, skryté vady — krok za krokom bez zbytočného stresu.',url:'/prvy-byt'},
-    {ico:'📜',tag:'Dedičstvo · Papierovačky',title:'Zdedený byt',desc:'Od kontroly listu vlastníctva až po úspešný predaj. Právne záludnosti, dlhy, nezrovnalosti v rodine — všetko v jednej príručke.',url:'/dedicstvo'},
-    {ico:'⚠️',tag:'Dlhová kríza · Naliehavosť',title:'Exekúcia na dverách',desc:'Akčný plán ako predísť dražbe a predať za podmienok, ktoré vám dovolia začať znova s čistým štítom.',url:'/exekucia'},
-    {ico:'⚖️',tag:'Rozvod · Nový začiatok',title:'Rozvod a predaj majetku',desc:'Premeniť spoločný byt na kapitál pre nový začiatok — rýchlo, férovo a s chladnou hlavou. Bez zbytočných hádok.',url:'/rozvod'},
-    {ico:'🔗',tag:'Predaj + kúpa · Koordinácia',title:'Reťazový obchod',desc:'Predávate s hypotékou a kupujete nový byt naraz? 8 krokov, časová os, checklisty. Koordinácia dvoch bánk.',url:'/retazovy-obchod'},
+  const BS_BASE = [
+    {ico:'✨', url:'/prvy-byt',       sk_tag:'Prvá kúpa · Nový začiatok',       sk_title:'Váš prvý byt',            sk_desc:'Kompas pre každého, kto kupuje prvú nehnuteľnosť. Hypotéka, obhliadky, zmluvy, skryté vady — krok za krokom bez zbytočného stresu.'},
+    {ico:'📜', url:'/dedicstvo',      sk_tag:'Dedičstvo · Papierovačky',        sk_title:'Zdedený byt',             sk_desc:'Od kontroly listu vlastníctva až po úspešný predaj. Právne záludnosti, dlhy, nezrovnalosti v rodine — všetko v jednej príručke.'},
+    {ico:'⚠️', url:'/exekucia',       sk_tag:'Dlhová kríza · Naliehavosť',      sk_title:'Exekúcia na dverách',     sk_desc:'Akčný plán ako predísť dražbe a predať za podmienok, ktoré vám dovolia začať znova s čistým štítom.'},
+    {ico:'⚖️', url:'/rozvod',         sk_tag:'Rozvod · Nový začiatok',          sk_title:'Rozvod a predaj majetku', sk_desc:'Premeniť spoločný byt na kapitál pre nový začiatok — rýchlo, férovo a s chladnou hlavou. Bez zbytočných hádok.'},
+    {ico:'🔗', url:'/retazovy-obchod',sk_tag:'Predaj + kúpa · Koordinácia',    sk_title:'Reťazový obchod',         sk_desc:'Predávate s hypotékou a kupujete nový byt naraz? 8 krokov, časová os, checklisty. Koordinácia dvoch bánk.'},
   ];
+
+  const BS_TRANS = {
+    sk: [
+      {tag:'Prvá kúpa · Nový začiatok',title:'Váš prvý byt',desc:'Kompas pre každého, kto kupuje prvú nehnuteľnosť. Hypotéka, obhliadky, zmluvy, skryté vady — krok za krokom bez zbytočného stresu.'},
+      {tag:'Dedičstvo · Papierovačky',title:'Zdedený byt',desc:'Od kontroly listu vlastníctva až po úspešný predaj. Právne záludnosti, dlhy, nezrovnalosti v rodine — všetko v jednej príručke.'},
+      {tag:'Dlhová kríza · Naliehavosť',title:'Exekúcia na dverách',desc:'Akčný plán ako predísť dražbe a predať za podmienok, ktoré vám dovolia začať znova s čistým štítom.'},
+      {tag:'Rozvod · Nový začiatok',title:'Rozvod a predaj majetku',desc:'Premeniť spoločný byt na kapitál pre nový začiatok — rýchlo, férovo a s chladnou hlavou. Bez zbytočných hádok.'},
+      {tag:'Predaj + kúpa · Koordinácia',title:'Reťazový obchod',desc:'Predávate s hypotékou a kupujete nový byt naraz? 8 krokov, časová os, checklisty. Koordinácia dvoch bánk.'},
+    ],
+    en: [
+      {tag:'First purchase · New beginning',title:'Your first home',desc:'A compass for anyone buying their first property. Mortgage, viewings, contracts, hidden defects — step by step without unnecessary stress.'},
+      {tag:'Inheritance · Paperwork',title:'Inherited property',desc:'From checking the title deed to a successful sale. Legal pitfalls, debts, family disputes — all in one guide.'},
+      {tag:'Debt crisis · Urgency',title:'Bailiff at the door',desc:'Action plan to avoid auction and sell on terms that let you start fresh with a clean slate.'},
+      {tag:'Divorce · New beginning',title:'Divorce and property sale',desc:'Turn shared property into capital for a new beginning — quickly, fairly and with a cool head. No unnecessary arguments.'},
+      {tag:'Sale + purchase · Coordination',title:'Chain deal',desc:'Selling with a mortgage and buying new at once? 8 steps, timeline, checklists. Coordinating two banks.'},
+    ],
+    ua: [
+      {tag:'Перша купівля · Новий початок',title:'Ваша перша квартира',desc:'Компас для кожного, хто купує першу нерухомість. Іпотека, огляди, договори, приховані дефекти — крок за кроком без зайвого стресу.'},
+      {tag:'Спадщина · Документи',title:'Успадкована квартира',desc:'Від перевірки правовстановлюючих документів до успішного продажу. Юридичні пастки, борги, сімейні суперечки — все в одному посібнику.'},
+      {tag:'Боргова криза · Терміново',title:'Виконавець під дверима',desc:'План дій, щоб уникнути аукціону та продати нерухомість за умов, які дозволять вам почати знову.'},
+      {tag:'Розлучення · Новий початок',title:'Розлучення і продаж майна',desc:'Перетворіть спільну нерухомість на капітал для нового початку — швидко, справедливо і з холодною головою.'},
+      {tag:'Продаж + купівля · Координація',title:'Ланцюгова угода',desc:'Продаєте з іпотекою і купуєте нове одночасно? 8 кроків, часова шкала, чеклісти. Координація двох банків.'},
+    ],
+    de: [
+      {tag:'Erstkauf · Neuer Anfang',title:'Ihre erste Wohnung',desc:'Ein Kompass für jeden, der seine erste Immobilie kauft. Hypothek, Besichtigungen, Verträge, versteckte Mängel — Schritt für Schritt ohne unnötigen Stress.'},
+      {tag:'Erbschaft · Papierkram',title:'Geerbte Wohnung',desc:'Von der Prüfung des Grundbuchs bis zum erfolgreichen Verkauf. Rechtliche Fallen, Schulden, Familienstreitigkeiten — alles in einem Leitfaden.'},
+      {tag:'Schuldenkrise · Dringlichkeit',title:'Gerichtsvollzieher vor der Tür',desc:'Aktionsplan zur Vermeidung der Versteigerung und zum Verkauf zu Bedingungen, die Ihnen einen Neuanfang ermöglichen.'},
+      {tag:'Scheidung · Neuer Anfang',title:'Scheidung und Immobilienverkauf',desc:'Gemeinsames Eigentum in Kapital für einen Neuanfang verwandeln — schnell, fair und mit kühlem Kopf.'},
+      {tag:'Verkauf + Kauf · Koordination',title:'Kettengeschäft',desc:'Verkaufen Sie mit Hypothek und kaufen gleichzeitig neu? 8 Schritte, Zeitplan, Checklisten. Koordination zweier Banken.'},
+    ],
+  };
+
   let bsCur = -1;
+  function getBSData() {
+    const lang = localStorage.getItem('lang') || 'sk';
+    const trans = BS_TRANS[lang] || BS_TRANS.sk;
+    return BS_BASE.map((b,i) => ({...b, tag: trans[i].tag, title: trans[i].title, desc: trans[i].desc}));
+  }
   function bsPick(i) {
     const books = document.querySelectorAll('.bs-book');
     const panel = document.getElementById('bs-pi');
     if (bsCur === i) { books[i].classList.remove('on'); panel.classList.remove('on'); bsCur = -1; return; }
     books.forEach((b,j) => b.classList.toggle('on', j === i));
     bsCur = i;
-    const d = BS_DATA[i];
-     document.getElementById('bs-ico').textContent = d.ico;
-     // Use i18n for tag/title/button
-     const t = TRANSLATIONS[localStorage.getItem('lang')] || TRANSLATIONS['sk'];
-     document.getElementById('bs-tag').textContent = t[`book${i+1}_tag`] || d.tag;
-     document.getElementById('bs-title').textContent = t[`book${i+1}_title`] || d.title;
-     document.getElementById('bs-desc').textContent = d.desc;
-     const btn = document.getElementById('bs-btn');
-     btn.href = d.url;
-     if (t['bs_btn']) btn.innerHTML = t['bs_btn'];
-     panel.classList.remove('on');
-     requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
-     // Update hint
-     const hint = document.querySelector('.bs-hint');
-     if (hint && t['bs_hint']) hint.innerHTML = t['bs_hint'];
+    const d = getBSData()[i];
+    document.getElementById('bs-ico').textContent = d.ico;
+    document.getElementById('bs-tag').textContent = d.tag;
+    document.getElementById('bs-title').textContent = d.title;
+    document.getElementById('bs-desc').textContent = d.desc;
+    document.getElementById('bs-btn').href = d.url;
+    panel.classList.remove('on');
+    requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
   }
   setTimeout(() => bsPick(0), 800);
 </script>
