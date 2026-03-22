@@ -272,6 +272,12 @@
     .reveal { opacity: 1; transform: none; transition: opacity 0.65s ease, transform 0.65s ease; }
     .reveal.hidden { opacity: 0; transform: translateY(32px); }
     .reveal.hidden.visible { opacity: 1; transform: none; }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+    /* bs-pinner má vlastnú opacity — nesmie byť ovplyvnená reveal */
+    #bs-pi { opacity: 0; transform: translateY(10px); transition: opacity 0.32s ease, transform 0.32s ease; }
+    #bs-pi.on { opacity: 1 !important; transform: none !important; }
     .reveal.visible { opacity: 1; transform: none; }
     .reveal-d1 { transition-delay: 0.1s; }
     .reveal-d2 { transition-delay: 0.2s; }
@@ -851,10 +857,7 @@
       background: rgba(255,255,255,0.04);
       border: 1px solid rgba(200,133,31,0.2);
       border-radius: 20px; padding: 1.5rem 1.75rem;
-      opacity: 0; transform: translateY(10px);
-      transition: opacity 0.32s ease, transform 0.32s ease;
     }
-    .bs-pinner.on { opacity: 1; transform: none; }
     .bs-pico { font-size: 32px; flex-shrink: 0; margin-top: 1px; line-height: 1; }
     .bs-ptag { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
     .bs-ptitle { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 0.35rem; line-height: 1.2; }
@@ -2120,7 +2123,11 @@
   function bsPick(i) {
     const books = document.querySelectorAll('.bs-book');
     const panel = document.getElementById('bs-pi');
-    if (bsCur === i) { books[i].classList.remove('on'); panel.classList.remove('on'); bsCur = -1; return; }
+    if (bsCur === i) {
+      books[i].classList.remove('on');
+      panel.classList.remove('on');
+      bsCur = -1; return;
+    }
     books.forEach((b,j) => b.classList.toggle('on', j === i));
     bsCur = i;
     const d = getBSData()[i];
@@ -2130,9 +2137,9 @@
     document.getElementById('bs-desc').textContent = d.desc;
     document.getElementById('bs-btn').href = d.url;
     panel.classList.remove('on');
-    requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
+    setTimeout(() => panel.classList.add('on'), 20);
   }
-  setTimeout(() => bsPick(0), 800);
+  setTimeout(() => bsPick(0), 600);
 </script>
 
 </body>
