@@ -59,7 +59,7 @@
     /* ── RESET & BASE ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --dark:       #0B0E18;
+      --dark:       #0a0a0a;
       --dark2:      #141820;
       --dark3:      #1D2130;
       --cream:      #F7F4EE;
@@ -293,9 +293,9 @@
     .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.65; max-width: 500px; }
 
     /* ── BOOKS SECTION ─────────────────────────────────────────── */
-    .books-section { background: var(--dark); }
+    .books-section { background: #0d0d0d; }
     .books-header .eyebrow { color: var(--gold); }
-    .books-header .section-title { color: var(--white); }
+    .books-header .section-title { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); text-shadow: 0 0 40px rgba(200,133,31,0.3); }
     .books-header .section-sub { color: rgba(255,255,255,0.45); }
     .books-header {
       display: flex; flex-direction: column;
@@ -388,26 +388,58 @@
 
     /* ── STATS STRIP ───────────────────────────────────────────── */
     .stats-strip {
-      background: var(--dark);
-      padding: 3.5rem clamp(1.25rem, 5vw, 3rem);
+      background: #000;
+      border-top: 1px solid rgba(200,133,31,0.2);
+      border-bottom: 1px solid rgba(200,133,31,0.2);
+      padding: 3rem clamp(1.25rem, 5vw, 3rem);
     }
     .stats-inner {
-      max-width: 900px; margin: 0 auto;
-      display: flex; justify-content: space-around;
-      align-items: center; flex-wrap: wrap; gap: 2rem;
+      max-width: 1000px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
     }
-    .stat { text-align: center; }
+    @media(max-width:700px){ .stats-inner { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:400px){ .stats-inner { grid-template-columns: 1fr; } }
+    .stat {
+      text-align: center;
+      padding: 1.75rem 1rem;
+      background: rgba(200,133,31,0.05);
+      border: 1px solid rgba(200,133,31,0.3);
+      border-radius: 16px;
+      position: relative; overflow: hidden;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .stat::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,133,31,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .stat::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,133,31,0.6), transparent);
+    }
+    .stat:hover { transform: translateY(-4px); border-color: rgba(200,133,31,0.6); box-shadow: 0 16px 40px rgba(200,133,31,0.12); }
+    .stat-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; position: relative; z-index: 1; }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem; font-weight: 700;
-      color: var(--gold); line-height: 1;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--gold);
+      line-height: 1; position: relative; z-index: 1;
+      text-shadow: 0 0 30px rgba(200,133,31,0.4);
     }
-    .stat-label { font-size: 0.73rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.07em; margin-top: 0.35rem; }
-    .stat-sep { width: 1px; height: 50px; background: var(--border-d); }
-    @media (max-width: 580px) { .stat-sep { display: none; } }
+    .stat-label {
+      font-size: 0.65rem; color: rgba(200,133,31,0.6);
+      text-transform: uppercase; letter-spacing: 0.12em;
+      margin-top: 0.4rem; font-weight: 700;
+      position: relative; z-index: 1;
+    }
+    .stat-sep { display: none; }
 
     /* ── BENEFITS SECTION ──────────────────────────────────────── */
-    .benefits-section { background: var(--white); }
+    .benefits-section { background: #0d0d0d; }
     .benefits-layout {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -416,6 +448,9 @@
     @media (max-width: 860px) { .benefits-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
     .benefits-sticky { position: sticky; top: 90px; }
     @media (max-width: 860px) { .benefits-sticky { position: static; } }
+    .benefits-sticky .eyebrow { color: var(--gold); }
+    .benefits-sticky .section-title { color: #fff; font-size: clamp(1.8rem, 3.5vw, 2.8rem); text-shadow: 0 0 40px rgba(200,133,31,0.3); }
+    .benefits-sticky .section-sub { color: rgba(255,255,255,0.4); }
     .benefits-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -424,23 +459,43 @@
     @media (max-width: 540px) { .benefits-grid { grid-template-columns: 1fr; } }
     .benefit-item {
       padding: 1.5rem;
-      border: 1.5px solid var(--border);
+      border: 1px solid rgba(200,133,31,0.35);
       border-radius: var(--r);
-      background: var(--cream);
-      transition: transform 0.2s, box-shadow 0.2s;
+      background: rgba(200,133,31,0.04);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
-    .benefit-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-    .benefit-icon { font-size: 1.4rem; margin-bottom: 0.8rem; }
-    .benefit-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--ink); }
-    .benefit-item p { font-size: 0.83rem; color: var(--muted); line-height: 1.6; }
+    .benefit-item::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,133,31,0.08) 0%, transparent 60%);
+      border-radius: var(--r);
+      pointer-events: none;
+    }
+    .benefit-item::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,133,31,0.5), transparent);
+    }
+    .benefit-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(200,133,31,0.12);
+      border-color: rgba(200,133,31,0.6);
+    }
+    .benefit-icon { font-size: 1.4rem; margin-bottom: 0.8rem; position: relative; z-index: 1; }
+    .benefit-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; color: #E8A83A; position: relative; z-index: 1; letter-spacing: 0.01em; }
+    .benefit-item p { font-size: 0.84rem; color: rgba(255,255,255,0.65); line-height: 1.65; position: relative; z-index: 1; }
 
     /* ── ABOUT SECTION ─────────────────────────────────────────── */
-    .about-section { background: var(--dark); position: relative; overflow: hidden; }
+    .about-section { background: #0d0d0d; position: relative; overflow: hidden; }
     .about-section::before {
       content: '';
       position: absolute; bottom: 0; right: 0;
       width: 500px; height: 500px;
-      background: radial-gradient(ellipse, rgba(200,133,31,0.1) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(200,133,31,0.06) 0%, transparent 65%);
       pointer-events: none;
     }
     .about-mini {
@@ -448,12 +503,13 @@
       display: grid;
       grid-template-columns: 220px 1fr auto;
       gap: 0;
-      border: 1px solid var(--border-d);
+      background: rgba(200,133,31,0.03);
+      border: 1px solid rgba(200,133,31,0.35);
       border-radius: 20px;
       overflow: hidden;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .about-mini:hover { border-color: rgba(200,133,31,0.3); box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+    .about-mini:hover { border-color: rgba(200,133,31,0.6); box-shadow: 0 24px 60px rgba(200,133,31,0.08); }
     @media (max-width: 700px) {
       .about-mini { grid-template-columns: 1fr; }
     }
@@ -497,12 +553,12 @@
     .about-mini-cta {
       padding: 2rem 2rem;
       display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 0.75rem;
-      border-left: 1px solid var(--border-d);
-      background: rgba(255,255,255,0.015);
+      border-left: 1px solid rgba(200,133,31,0.25);
+      background: rgba(200,133,31,0.02);
       min-width: 180px;
     }
     @media (max-width: 700px) {
-      .about-mini-cta { border-left: none; border-top: 1px solid var(--border-d); flex-direction: row; align-items: center; padding: 1.25rem 1.5rem; }
+      .about-mini-cta { border-left: none; border-top: 1px solid rgba(200,133,31,0.2); flex-direction: row; align-items: center; padding: 1.25rem 1.5rem; }
     }
     .about-mini-btn {
       background: var(--gold); color: var(--white);
@@ -545,40 +601,54 @@
 
     /* ── BOTTOM CTA ────────────────────────────────────────────── */
     .cta-section {
-      background: linear-gradient(135deg, #0B0E18 0%, #141824 50%, #0E1220 100%);
+      background: #0d0d0d;
+      border-top: 1px solid rgba(200,133,31,0.15);
+      border-bottom: 1px solid rgba(200,133,31,0.15);
       padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem);
       text-align: center;
     }
-    .cta-section .section-title { color: var(--white); max-width: 540px; margin: 0.5rem auto 0.8rem; }
-    .cta-section > .section-inner > p { color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-bottom: 2.5rem; }
+    .cta-section .section-title { color: #fff; max-width: 540px; margin: 0.5rem auto 0.8rem; font-size: clamp(2rem, 4vw, 3.2rem); text-shadow: 0 0 40px rgba(200,133,31,0.3); }
+    .cta-section > .section-inner > p { color: rgba(200,133,31,0.6); font-size: 0.9rem; margin-bottom: 2.5rem; }
     .cta-books-grid {
       display: flex; justify-content: center; flex-wrap: wrap; gap: 0.9rem;
       max-width: 820px; margin: 0 auto 2.5rem;
     }
     .cta-book-btn {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--white); padding: 0.85rem 1.3rem;
-      border-radius: var(--r-sm); cursor: pointer;
-      font-family: inherit; font-size: 0.875rem; font-weight: 500;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      background: rgba(200,133,31,0.07);
+      border: 1px solid rgba(200,133,31,0.4);
+      color: #fff;
+      padding: 1rem 1.4rem;
+      border-radius: 14px; cursor: pointer;
+      font-family: inherit; font-size: 0.9rem; font-weight: 700;
+      transition: all 0.2s;
       text-align: left; min-width: 170px;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      position: relative; overflow: hidden;
     }
-    .cta-book-btn span { display: block; font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 0.2rem; font-weight: 400; }
-    .cta-book-btn:hover { background: rgba(255,255,255,0.11); border-color: rgba(200,133,31,0.4); transform: translateY(-2px); }
-    .cta-note { font-size: 0.73rem; color: rgba(255,255,255,0.25); }
+    .cta-book-btn::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(200,133,31,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .cta-book-btn::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200,133,31,0.6), transparent);
+    }
+    .cta-book-btn span { display: block; font-size: 0.72rem; color: rgba(200,133,31,0.7); margin-top: 0.25rem; font-weight: 500; }
+    .cta-book-btn:hover { background: rgba(200,133,31,0.16); border-color: rgba(200,133,31,0.7); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(200,133,31,0.15); }
+    .cta-note { font-size: 0.73rem; color: rgba(200,133,31,0.4); }
 
     /* ── FOOTER ────────────────────────────────────────────────── */
     footer {
-      background: var(--dark);
-      border-top: 1px solid var(--border-d);
+      background: #080808;
+      border-top: 1px solid rgba(200,133,31,0.2);
       padding: 1.8rem clamp(1.25rem, 5vw, 3rem);
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 0.75rem;
     }
-    footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-    footer a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    footer p { font-size: 0.78rem; color: rgba(200,133,31,0.4); }
+    footer a { color: rgba(200,133,31,0.35); transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
     .footer-links { display: flex; gap: 1.5rem; }
 
@@ -594,46 +664,50 @@
     }
     .modal-overlay.open { opacity: 1; pointer-events: all; }
     .modal {
-      background: var(--white); border-radius: 18px;
+      background: #0d0d0d;
+      border: 1px solid rgba(200,133,31,0.35);
+      border-radius: 18px;
       width: 100%; max-width: 480px;
       padding: 2.5rem;
       position: relative;
       transform: scale(0.96) translateY(12px);
       transition: transform 0.3s cubic-bezier(.25,.46,.45,.94);
-      box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 60px rgba(200,133,31,0.06);
     }
     .modal-overlay.open .modal { transform: scale(1) translateY(0); }
     .modal-close {
       position: absolute; top: 1.25rem; right: 1.25rem;
       width: 32px; height: 32px; border-radius: 50%;
-      background: var(--cream); border: none; cursor: pointer;
+      background: rgba(200,133,31,0.08);
+      border: 1px solid rgba(200,133,31,0.2);
+      cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; color: var(--muted); transition: background 0.2s, color 0.2s;
+      font-size: 1.1rem; color: rgba(200,133,31,0.6); transition: background 0.2s, color 0.2s;
     }
-    .modal-close:hover { background: var(--border); color: var(--ink); }
+    .modal-close:hover { background: rgba(200,133,31,0.18); color: var(--gold); }
     .modal-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
-    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; padding-right: 2rem; }
+    .modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 1.2rem; padding-right: 2rem; color: #fff; }
     .modal-hook {
-      font-size: 0.875rem; color: var(--muted); line-height: 1.7;
+      font-size: 0.875rem; color: rgba(255,255,255,0.4); line-height: 1.7;
       margin-bottom: 1.6rem;
-      padding: 0.9rem 1rem; background: var(--cream);
-      border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0;
+      padding: 0.9rem 1rem; background: rgba(200,133,31,0.05);
+      border-left: 3px solid rgba(200,133,31,0.5); border-radius: 0 6px 6px 0;
       font-style: italic;
     }
-    .modal-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); display: block; margin-bottom: 0.6rem; }
+    .modal-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(200,133,31,0.6); display: block; margin-bottom: 0.6rem; }
     .modal-row { display: flex; gap: 0.55rem; }
     @media (max-width: 440px) { .modal-row { flex-direction: column; } }
     .modal-email {
       flex: 1; padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border); border-radius: var(--r-sm);
+      border: 1px solid rgba(200,133,31,0.25); border-radius: var(--r-sm);
       font-family: inherit; font-size: 0.95rem;
-      background: var(--cream); color: var(--ink);
+      background: rgba(200,133,31,0.05); color: #fff;
       outline: none; transition: border-color 0.2s;
     }
     .modal-email:focus { border-color: var(--gold); }
-    .modal-email::placeholder { color: #C0BAB0; }
+    .modal-email::placeholder { color: rgba(200,133,31,0.3); }
     .modal-submit {
-      background: var(--gold); color: var(--white);
+      background: var(--gold); color: #000;
       padding: 0.75rem 1.4rem; border: none; border-radius: var(--r-sm);
       font-family: inherit; font-size: 0.9rem; font-weight: 700;
       cursor: pointer; transition: background 0.2s, transform 0.15s; white-space: nowrap;
@@ -641,19 +715,19 @@
     }
     .modal-submit:hover:not(:disabled) { background: var(--gold-mid); transform: translateY(-1px); }
     .modal-submit:disabled { opacity: 0.55; cursor: not-allowed; }
-    .modal-err { font-size: 0.78rem; color: var(--red); margin-top: 0.5rem; display: none; }
+    .modal-err { font-size: 0.78rem; color: #ff6b6b; margin-top: 0.5rem; display: none; }
     .modal-quote {
-      font-size: 0.82rem; color: var(--muted); line-height: 1.6;
-      padding: 0.75rem 1rem; background: var(--cream);
-      border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0;
+      font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.6;
+      padding: 0.75rem 1rem; background: rgba(200,133,31,0.05);
+      border-left: 3px solid rgba(200,133,31,0.4); border-radius: 0 6px 6px 0;
       margin-bottom: 1.2rem; font-style: italic;
     }
-    .modal-quote-author { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; font-style: normal; font-weight: 600; }
-    .modal-lock-row { display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: var(--muted); margin-bottom: 0.9rem; }
+    .modal-quote-author { font-size: 0.72rem; color: rgba(200,133,31,0.5); margin-top: 0.4rem; font-style: normal; font-weight: 600; }
+    .modal-lock-row { display: flex; align-items: center; gap: 0.35rem; font-size: 0.72rem; color: rgba(200,133,31,0.5); margin-bottom: 0.9rem; }
     .modal-success { display: none; text-align: center; padding: 0.5rem 0; }
     .modal-success-icon { font-size: 2.8rem; margin-bottom: 0.75rem; }
-    .modal-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .modal-success p { font-size: 0.875rem; color: var(--muted); }
+    .modal-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--gold); }
+    .modal-success p { font-size: 0.875rem; color: rgba(255,255,255,0.4); }
 
     /* ── LANGUAGE SWITCHER ─────────────────────────────────────── */
     .lang-switcher {
@@ -692,7 +766,9 @@
     .float-ph { background: var(--gold); }
     .float-tip {
       position: absolute; right: 62px;
-      background: var(--dark); color: rgba(255,255,255,0.85);
+      background: #0d0d0d;
+      border: 1px solid rgba(200,133,31,0.3);
+      color: rgba(200,133,31,0.9);
       font-size: 0.73rem; font-weight: 500;
       padding: 0.28rem 0.65rem; border-radius: 5px;
       white-space: nowrap; opacity: 0; pointer-events: none;
@@ -791,6 +867,62 @@
     }
     .bs-pbtn:hover { background: var(--gold-mid); transform: translateY(-1px); }
     .bs-hint { text-align: center; font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 1.1rem; letter-spacing: 0.05em; }
+
+    /* ── KALKULAČKA ── */
+    .kalk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+    @media(max-width:700px){.kalk-grid{grid-template-columns:1fr;}}
+    .kalk-panel{padding:2rem;border-radius:16px;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+    .kalk-panel-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(200,133,31,0.5);margin-bottom:1.5rem;}
+    .kalk-slider-group{margin-bottom:1.5rem;}
+    .kalk-slider-group:last-child{margin-bottom:0;}
+    .kalk-slider-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+    .kalk-slider-label span{font-size:13px;font-weight:500;color:rgba(255,255,255,0.45);}
+    .kalk-slider-label strong{font-size:18px;font-weight:600;color:var(--gold);}
+    .kalk-range{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(to right,var(--gold) 0%,var(--gold) var(--kpct,50%),rgba(255,255,255,0.08) var(--kpct,50%),rgba(255,255,255,0.08) 100%);transition:background .1s;}
+    .kalk-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);border:3px solid #0d0d0d;box-shadow:0 0 0 1px rgba(200,133,31,0.4),0 2px 8px rgba(0,0,0,0.6);cursor:grab;transition:box-shadow .2s;}
+    .kalk-range::-webkit-slider-thumb:hover{box-shadow:0 0 0 1px rgba(200,133,31,0.6),0 0 20px rgba(200,133,31,0.3),0 2px 8px rgba(0,0,0,0.6);}
+    .kalk-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;border:3px solid #0d0d0d;background:var(--gold);box-shadow:0 0 0 1px rgba(200,133,31,0.4);cursor:grab;}
+    .kalk-slider-range{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:.5px;}
+    .kalk-result-top{text-align:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(200,133,31,0.1);}
+    .kalk-result-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(200,133,31,0.5);margin-bottom:6px;}
+    .kalk-result-amount{font-size:3rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:3px;}
+    .kalk-result-per{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:.5px;}
+    .kalk-rows{display:flex;flex-direction:column;gap:0;}
+    .kalk-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(200,133,31,0.07);font-size:13px;}
+    .kalk-row:last-child{border-bottom:none;}
+    .kalk-row span:first-child{color:rgba(255,255,255,0.4);}
+    .kalk-row span:last-child{font-weight:600;font-size:15px;color:#fff;}
+    .kalk-progress{margin-top:1.25rem;}
+    .kalk-progress-labels{display:flex;justify-content:space-between;font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:6px;}
+    .kalk-progress-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.05);overflow:hidden;}
+    .kalk-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-mid));transition:width .4s cubic-bezier(.23,1,.32,1);}
+    .kalk-chart{grid-column:1/-1;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+    @media(max-width:700px){.kalk-chart{grid-column:auto;}}
+    .kalk-chart-flex{display:flex;align-items:center;gap:3rem;justify-content:center;flex-wrap:wrap;}
+    .kalk-donut-wrap{position:relative;width:200px;height:200px;flex-shrink:0;}
+    .kalk-donut-wrap canvas{width:200px;height:200px;}
+    .kalk-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .kalk-donut-center strong{font-size:24px;font-weight:700;color:var(--gold);}
+    .kalk-donut-center span{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;}
+    .kalk-legend{display:flex;flex-direction:column;gap:1rem;}
+    .kalk-legend-item{display:flex;align-items:center;gap:10px;}
+    .kalk-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+    .kalk-legend-dot--p{background:var(--gold);}
+    .kalk-legend-dot--i{background:rgba(255,255,255,0.15);}
+    .kalk-legend-lbl{display:block;font-size:12px;color:rgba(255,255,255,0.4);}
+    .kalk-legend-val{display:block;font-size:17px;font-weight:600;color:#fff;}
+    .kalk-amort{grid-column:1/-1;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+    @media(max-width:700px){.kalk-amort{grid-column:auto;}}
+    .kalk-amort-toggle{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,0.4);padding:10px 18px;border-radius:10px;background:rgba(200,133,31,0.06);border:1px solid rgba(200,133,31,0.2);cursor:pointer;transition:all .3s;font-family:inherit;}
+    .kalk-amort-toggle:hover{border-color:rgba(200,133,31,0.4);color:var(--gold);}
+    .kalk-amort-toggle svg{transition:transform .3s;}
+    .kalk-amort-toggle.kalk-open svg{transform:rotate(180deg);}
+    .kalk-amort-table{margin-top:1.25rem;width:100%;border-collapse:collapse;display:none;}
+    .kalk-amort-table.kalk-show{display:table;}
+    .kalk-amort-table th{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(200,133,31,0.5);text-align:left;padding:10px 12px;border-bottom:1px solid rgba(200,133,31,0.1);}
+    .kalk-amort-table td{font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);color:rgba(255,255,255,0.8);}
+    .kalk-amort-table tr:hover td{background:rgba(200,133,31,0.03);}
+    .kalk-amort-table td:first-child{color:rgba(200,133,31,0.6);font-weight:600;}
 
   </style>
 </head>
@@ -947,103 +1079,259 @@
   </div>
 </section>
 
+<!-- ABOUT SECTION -->
+<section class="section about-section" aria-label="O mne">
+  <div class="section-inner">
+    <div class="about-mini reveal">
+      <div class="about-mini-photo">
+        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="200" height="200" loading="lazy" decoding="async"/>
+      </div>
+      <div class="about-mini-body">
+        <div class="about-mini-tag">
+          <span class="about-mini-tag-dot"></span>
+          Certifikovaný maklér · Reality Najbývanie
+        </div>
+        <div class="about-mini-name">Radovan Vaník</div>
+        <p class="about-mini-text">Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.</p>
+        <div class="sig-block">
+          <span class="sig-name">Vaník</span>
+          <span class="sig-sub">Radovan</span>
+          <div class="sig-deco"></div>
+        </div>
+      </div>
+      <div class="about-mini-cta">
+        <a href="/o-mne" class="about-mini-btn">
+          Viac o mne
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <div class="about-mini-phone"><a href="tel:+421948310950">+421 948 310 950</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HYPOTÉKA KALKULAČKA -->
-<section class="section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka">
-  <div class="section-inner" style="max-width:520px;margin:0 auto;">
-    <h2 class="section-title" style="text-align:center;">Hypotekárna kalkulačka</h2>
-    <div class="hypo-wrap" style="background:var(--white);border:1.5px solid var(--border);border-radius:var(--r);padding:2rem 1.5rem 1.2rem 1.5rem;box-shadow:0 4px 24px rgba(0,0,0,0.04);margin-bottom:1.2rem;">
-      <div class="row" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;margin-bottom:1.25rem;">
-        <div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Výška úveru (€)</div>
-          <input type="range" id="suma" min="20000" max="500000" step="5000" value="150000" style="width:100%;">
-        </div>
-        <span class="val" id="sumaVal" style="font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;min-width:80px;text-align:right;">150 000 €</span>
+<section class="section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka" style="background:#0d0d0d;">
+  <div class="section-inner" style="max-width:920px;margin:0 auto;">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(200,133,31,0.6);margin-bottom:16px;">
+        <span style="width:5px;height:5px;border-radius:50%;background:#C8851F;box-shadow:0 0 10px rgba(200,133,31,0.5);display:inline-block;"></span>
+        Kalkulačka
       </div>
-      <div class="row" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;margin-bottom:1.25rem;">
-        <div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Úroková sadzba (%)</div>
-          <input type="range" id="sadzba" min="1" max="8" step="0.1" value="4.5" style="width:100%;">
-        </div>
-        <span class="val" id="sadzbaVal" style="font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;min-width:60px;text-align:right;">4.5 %</span>
-      </div>
-      <div class="row" style="display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;margin-bottom:1.25rem;">
-        <div>
-          <div style="font-size:13px;color:var(--muted);margin-bottom:6px;">Doba splácania (roky)</div>
-          <input type="range" id="roky" min="5" max="30" step="1" value="20" style="width:100%;">
-        </div>
-        <span class="val" id="rokyVal" style="font-size:14px;font-weight:600;color:var(--ink);white-space:nowrap;min-width:70px;text-align:right;">20 rokov</span>
-      </div>
-      <div class="cards" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:1.5rem 0;">
-        <div style="background:var(--cream);border-radius:var(--r-sm);padding:0.85rem 0.75rem;">
-          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.3;">Mesačná splátka</div>
-          <div id="splatka" style="font-size:16px;font-weight:700;color:var(--ink);line-height:1.3;">–</div>
-        </div>
-        <div style="background:var(--cream);border-radius:var(--r-sm);padding:0.85rem 0.75rem;">
-          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.3;">Celková suma</div>
-          <div id="celkovo" style="font-size:16px;font-weight:700;color:var(--ink);line-height:1.3;">–</div>
-        </div>
-        <div style="background:var(--cream);border-radius:var(--r-sm);padding:0.85rem 0.75rem;">
-          <div style="font-size:11px;color:var(--muted);margin-bottom:4px;line-height:1.3;">Preplatíte</div>
-          <div id="preplatite" style="font-size:16px;font-weight:700;color:var(--red);line-height:1.3;">–</div>
-        </div>
-      </div>
-      <div style="margin:1rem 0;">
-        <div style="background:var(--cream);border-radius:4px;height:10px;overflow:hidden;">
-          <div id="bar" style="height:10px;border-radius:4px;background:#1D9E75;transition:width 0.3s;"></div>
-        </div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px;">
-          <span>Istina</span>
-          <span id="barLabel">–</span>
-          <span>Úroky</span>
-        </div>
-      </div>
+      <h2 class="section-title" style="color:#C8851F;">Koľko zaplatíte za<br><em style="font-style:italic;color:#E8A83A;">vašu hypotéku?</em></h2>
+      <p class="section-sub" style="margin:0.75rem auto 0;color:#C8851F;">Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
+      <p style="margin:2.5rem auto 0;max-width:600px;font-size:12px;color:#C8851F;font-weight:600;line-height:1.65;">Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.</p>
     </div>
-    <div style="font-size:12px;color:var(--subtle);border-top:0.5px solid var(--border);padding-top:1rem;margin-top:0.5rem;line-height:1.6;text-align:center;">
-      Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.
+
+    <div class="kalk-grid">
+
+      <!-- SLIDERS -->
+      <div class="kalk-panel">
+        <div class="kalk-panel-title">Parametre úveru</div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Výška úveru</span>
+            <strong id="loanVal">100 000 €</strong>
+          </div>
+          <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range">
+          <div class="kalk-slider-range"><span>10 000 €</span><span>500 000 €</span></div>
+        </div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Úroková sadzba</span>
+            <strong id="rateVal">3.5 %</strong>
+          </div>
+          <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range">
+          <div class="kalk-slider-range"><span>0.5 %</span><span>10 %</span></div>
+        </div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Doba splácania</span>
+            <strong id="yearsVal">25 rokov</strong>
+          </div>
+          <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range">
+          <div class="kalk-slider-range"><span>5 rokov</span><span>30 rokov</span></div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="kalk-panel kalk-result">
+        <div class="kalk-result-top">
+          <div class="kalk-result-label">Mesačná splátka</div>
+          <div class="kalk-result-amount" id="monthly">500 €</div>
+          <div class="kalk-result-per">mesačne</div>
+        </div>
+        <div class="kalk-rows">
+          <div class="kalk-row"><span>Výška úveru</span><span id="resLoan">100 000 €</span></div>
+          <div class="kalk-row"><span>Celková suma</span><span id="resTotal">150 000 €</span></div>
+          <div class="kalk-row"><span>Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
+          <div class="kalk-row"><span>Počet splátok</span><span id="resPayments">300</span></div>
+        </div>
+        <div class="kalk-progress">
+          <div class="kalk-progress-labels"><span>Istina</span><span>Úroky</span></div>
+          <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
+        </div>
+      </div>
+
+      <!-- DONUT -->
+      <div class="kalk-panel kalk-chart">
+        <div class="kalk-panel-title">Rozloženie platieb</div>
+        <div class="kalk-chart-flex">
+          <div class="kalk-donut-wrap">
+            <canvas id="donut" width="200" height="200"></canvas>
+            <div class="kalk-donut-center">
+              <strong id="donutPct">67%</strong>
+              <span>istina</span>
+            </div>
+          </div>
+          <div class="kalk-legend">
+            <div class="kalk-legend-item">
+              <div class="kalk-legend-dot kalk-legend-dot--p"></div>
+              <div>
+                <span class="kalk-legend-lbl">Istina (úver)</span>
+                <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
+              </div>
+            </div>
+            <div class="kalk-legend-item">
+              <div class="kalk-legend-dot kalk-legend-dot--i"></div>
+              <div>
+                <span class="kalk-legend-lbl">Zaplatené úroky</span>
+                <span class="kalk-legend-val" id="legendInterest">50 000 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AMORTIZATION -->
+      <div class="kalk-panel kalk-amort">
+        <div class="kalk-panel-title">Ročný prehľad splátok</div>
+        <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
+          Zobraziť tabuľku
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <table class="kalk-amort-table" id="amortTable">
+          <thead><tr><th>Rok</th><th>Splátka / rok</th><th>Istina</th><th>Úroky</th><th>Zostatok</th></tr></thead>
+          <tbody id="amortBody"></tbody>
+        </table>
+      </div>
+
     </div>
+
+    <div style="height:0;"></div>
   </div>
 </section>
 <!-- STATS STRIP -->
 <script>
-function fmt(n) { return Math.round(n).toLocaleString('sk-SK') + ' €'; }
-function calc() {
-  const P = parseFloat(document.getElementById('suma').value);
-  const r = parseFloat(document.getElementById('sadzba').value) / 100 / 12;
-  const n = parseInt(document.getElementById('roky').value) * 12;
-  document.getElementById('sumaVal').textContent = Math.round(P).toLocaleString('sk-SK') + ' €';
-  document.getElementById('sadzbaVal').textContent = parseFloat(document.getElementById('sadzba').value).toFixed(1) + ' %';
-  document.getElementById('rokyVal').textContent = document.getElementById('roky').value + ' rokov';
-  const M = r === 0 ? P / n : P * r * Math.pow(1+r,n) / (Math.pow(1+r,n)-1);
-  const celkovo = M * n;
-  const uroky = celkovo - P;
-  const pct = Math.round((P / celkovo) * 100);
-  document.getElementById('splatka').textContent = fmt(M) + '/mes';
-  document.getElementById('celkovo').textContent = fmt(celkovo);
-  document.getElementById('preplatite').textContent = fmt(uroky);
-  document.getElementById('bar').style.width = pct + '%';
-  document.getElementById('barLabel').textContent = pct + '% istina';
-}
-['suma','sadzba','roky'].forEach(id => document.getElementById(id).addEventListener('input', calc));
-calc();
+(function(){
+  const fmtK = v => Math.round(v).toLocaleString('sk') + ' €';
+  const loanEl = document.getElementById('loan');
+  const rateEl = document.getElementById('rate');
+  const yearsEl = document.getElementById('years');
+
+  function updateTrack(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--kpct', pct + '%');
+  }
+
+  function kCalc() {
+    const L = +loanEl.value;
+    const r = +rateEl.value / 100 / 12;
+    const n = +yearsEl.value * 12;
+    document.getElementById('loanVal').textContent = fmtK(L);
+    document.getElementById('rateVal').textContent = (+rateEl.value).toFixed(1) + ' %';
+    document.getElementById('yearsVal').textContent = yearsEl.value + ' rokov';
+    updateTrack(loanEl); updateTrack(rateEl); updateTrack(yearsEl);
+    const M = r > 0 ? L * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1) : L / n;
+    const total = M * n;
+    const interest = total - L;
+    const pctP = Math.round(L / total * 100);
+    document.getElementById('monthly').textContent = fmtK(M);
+    document.getElementById('resLoan').textContent = fmtK(L);
+    document.getElementById('resTotal').textContent = fmtK(total);
+    document.getElementById('resInterest').textContent = fmtK(interest);
+    document.getElementById('resPayments').textContent = n;
+    document.getElementById('kalkBar').style.width = pctP + '%';
+    document.getElementById('donutPct').textContent = pctP + '%';
+    document.getElementById('legendPrincipal').textContent = fmtK(L);
+    document.getElementById('legendInterest').textContent = fmtK(interest);
+    drawDonut(pctP / 100);
+    buildAmort(L, +rateEl.value / 100, +yearsEl.value, M);
+  }
+
+  function drawDonut(pct) {
+    const canvas = document.getElementById('donut');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 200 * dpr; canvas.height = 200 * dpr;
+    ctx.scale(dpr, dpr);
+    const cx = 100, cy = 100, R = 82, w = 14;
+    const start = -Math.PI / 2;
+    ctx.clearRect(0, 0, 200, 200);
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,.06)'; ctx.lineWidth = w; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, R, start, start + Math.PI * 2 * pct);
+    ctx.strokeStyle = '#C8851F'; ctx.lineWidth = w; ctx.lineCap = 'round'; ctx.stroke();
+  }
+
+  function buildAmort(principal, annualRate, totalYears, monthlyPayment) {
+    const tbody = document.getElementById('amortBody');
+    tbody.innerHTML = '';
+    let balance = principal;
+    const mr = annualRate / 12;
+    for (let year = 1; year <= totalYears; year++) {
+      let yP = 0, yI = 0;
+      for (let m = 0; m < 12; m++) {
+        if (balance <= 0) break;
+        const ip = balance * mr;
+        const pp = Math.min(monthlyPayment - ip, balance);
+        yI += ip; yP += pp; balance -= pp;
+      }
+      if (balance < 0) balance = 0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${year}.</td><td>${fmtK(yP+yI)}</td><td>${fmtK(yP)}</td><td>${fmtK(yI)}</td><td>${fmtK(balance)}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  window.toggleAmort = function() {
+    const table = document.getElementById('amortTable');
+    const btn = document.getElementById('amortToggle');
+    table.classList.toggle('kalk-show');
+    btn.classList.toggle('kalk-open');
+    btn.childNodes[0].textContent = table.classList.contains('kalk-show') ? 'Skryť tabuľku ' : 'Zobraziť tabuľku ';
+  };
+
+  loanEl.addEventListener('input', kCalc);
+  rateEl.addEventListener('input', kCalc);
+  yearsEl.addEventListener('input', kCalc);
+  kCalc();
+})();
 </script>
 <div class="stats-strip" aria-hidden="true">
   <div class="stats-inner">
     <div class="stat reveal">
+      <span class="stat-icon">📥</span>
       <div class="stat-num">250+</div>
       <div class="stat-label" data-i18n="stat1">Stiahnutých e-kníh</div>
     </div>
-    <div class="stat-sep"></div>
     <div class="stat reveal reveal-d1">
+      <span class="stat-icon">📚</span>
       <div class="stat-num">5</div>
       <div class="stat-label" data-i18n="stat2">Príručky zadarmo</div>
     </div>
-    <div class="stat-sep"></div>
     <div class="stat reveal reveal-d2">
+      <span class="stat-icon">🎁</span>
       <div class="stat-num">0€</div>
       <div class="stat-label" data-i18n="stat3">Cena stiahnutia</div>
     </div>
-    <div class="stat-sep"></div>
     <div class="stat reveal reveal-d3">
+      <span class="stat-icon">⚡</span>
       <div class="stat-num">PDF</div>
       <div class="stat-label" data-i18n="stat4">Okamžitý download</div>
     </div>
@@ -1057,7 +1345,7 @@ calc();
       <div class="benefits-sticky reveal">
         <p class="eyebrow" data-i18n="ben_eyebrow">Prečo tieto príručky</p>
         <h2 class="section-title" data-i18n="ben_title">Každá situácia si zaslúži konkrétny návod</h2>
-        <p class="section-sub" style="margin-top:0.5rem;" data-i18n="ben_sub">Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.</p>
+        <p class="section-sub" style="margin-top:0.5rem;color:var(--gold);" data-i18n="ben_sub">Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.</p>
       </div>
       <div class="benefits-grid">
         <div class="benefit-item reveal reveal-d1">
@@ -1095,37 +1383,6 @@ calc();
   </div>
 </section>
 
-<!-- ABOUT SECTION -->
-<section class="section about-section" aria-label="O mne">
-  <div class="section-inner">
-    <div class="about-mini reveal">
-      <div class="about-mini-photo">
-        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="200" height="200" loading="lazy" decoding="async"/>
-      </div>
-      <div class="about-mini-body">
-        <div class="about-mini-tag">
-          <span class="about-mini-tag-dot"></span>
-          Certifikovaný maklér · Reality Najbývanie
-        </div>
-        <div class="about-mini-name">Radovan Vaník</div>
-        <p class="about-mini-text">Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.</p>
-        <div class="sig-block">
-          <span class="sig-name">Vaník</span>
-          <span class="sig-sub">Radovan</span>
-          <div class="sig-deco"></div>
-        </div>
-      </div>
-      <div class="about-mini-cta">
-        <a href="/o-mne" class="about-mini-btn">
-          Viac o mne
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-        <div class="about-mini-phone"><a href="tel:+421948310950">+421 948 310 950</a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BOTTOM CTA -->
 <section class="cta-section" aria-label="Vybrať e-knihu">
   <div class="section-inner">
@@ -1145,7 +1402,7 @@ calc();
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="tel:+421948310950" style="color:rgba(255,255,255,0.4)">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
   <div class="footer-links">
     <a href="tel:+421948310950">+421 948 310 950</a>
     <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">najbyvanie.sk</a>
