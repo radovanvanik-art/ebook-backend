@@ -364,7 +364,7 @@
     }
     .book-desc {
       font-size: 0.87rem; color: var(--muted); line-height: 1.65;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; line-clamp: 3;
       margin-bottom: 1.2rem;
     }
     .book-meta {
@@ -1009,8 +1009,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#2a5fa0 0%,#1a3f72 50%,#0f2850 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">✨</span>
-            <span class="bs-ttl">Váš prvý byt</span>
-            <span class="bs-yr">2025</span>
+              <span class="bs-ttl" data-i18n="book1_title">Váš prvý byt</span>
+              <span class="bs-yr" data-i18n="bs_year">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1020,8 +1020,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#3a7028 0%,#254a18 50%,#163010 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">📜</span>
-            <span class="bs-ttl">Zdedený byt</span>
-            <span class="bs-yr">2025</span>
+              <span class="bs-ttl" data-i18n="book2_title">Zdedený byt</span>
+              <span class="bs-yr" data-i18n="bs_year">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1031,8 +1031,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#8a2a2a 0%,#5e1a1a 50%,#3e1010 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">⚠️</span>
-            <span class="bs-ttl">Exekúcia na dverách</span>
-            <span class="bs-yr">2025</span>
+              <span class="bs-ttl" data-i18n="book3_title">Exekúcia na dverách</span>
+              <span class="bs-yr" data-i18n="bs_year">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1042,8 +1042,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#7a5018 0%,#52340e 50%,#342208 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">⚖️</span>
-            <span class="bs-ttl">Rozvod a majetok</span>
-            <span class="bs-yr">2025</span>
+              <span class="bs-ttl" data-i18n="book4_title">Rozvod a majetok</span>
+              <span class="bs-yr" data-i18n="bs_year">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1053,8 +1053,8 @@
           <div class="bs-spine" style="background:linear-gradient(165deg,#4e2a80 0%,#321858 50%,#1e0e38 100%);">
             <div class="bs-shine"></div>
             <span class="bs-ico">🔗</span>
-            <span class="bs-ttl">Reťazový obchod</span>
-            <span class="bs-yr">2025</span>
+              <span class="bs-ttl" data-i18n="book5_title">Reťazový obchod</span>
+              <span class="bs-yr" data-i18n="bs_year">2025</span>
           </div>
           <div class="bs-bshadow"></div>
         </div>
@@ -1069,11 +1069,11 @@
             <div class="bs-ptag" id="bs-tag"></div>
             <div class="bs-ptitle" id="bs-title"></div>
             <div class="bs-pdesc" id="bs-desc"></div>
-            <a class="bs-pbtn" id="bs-btn" href="#">Chcem túto príručku →</a>
+            <a class="bs-pbtn" id="bs-btn" href="#" data-i18n="bs_btn">Chcem túto príručku →</a>
           </div>
         </div>
       </div>
-      <p class="bs-hint">Kliknite znovu na knihu pre zatvorenie</p>
+      <p class="bs-hint" data-i18n="bs_hint">Kliknite znovu na knihu pre zatvorenie</p>
     </div>
 
   </div>
@@ -1132,7 +1132,7 @@
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Výška úveru</span>
+            <span data-i18n="kalk_loan">Výška úveru</span>
             <strong id="loanVal">100 000 €</strong>
           </div>
           <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range">
@@ -1166,13 +1166,13 @@
           <div class="kalk-result-per">mesačne</div>
         </div>
         <div class="kalk-rows">
-          <div class="kalk-row"><span>Výška úveru</span><span id="resLoan">100 000 €</span></div>
-          <div class="kalk-row"><span>Celková suma</span><span id="resTotal">150 000 €</span></div>
-          <div class="kalk-row"><span>Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
-          <div class="kalk-row"><span>Počet splátok</span><span id="resPayments">300</span></div>
+          <div class="kalk-row"><span data-i18n="kalk_loan">Výška úveru</span><span id="resLoan">100 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="kalk_total">Celková suma</span><span id="resTotal">150 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="kalk_interest">Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="kalk_payments">Počet splátok</span><span id="resPayments">300</span></div>
         </div>
         <div class="kalk-progress">
-          <div class="kalk-progress-labels"><span>Istina</span><span>Úroky</span></div>
+          <div class="kalk-progress-labels"><span data-i18n="kalk_principal">Istina</span><span data-i18n="kalk_interests">Úroky</span></div>
           <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
         </div>
       </div>
@@ -1185,21 +1185,21 @@
             <canvas id="donut" width="200" height="200"></canvas>
             <div class="kalk-donut-center">
               <strong id="donutPct">67%</strong>
-              <span>istina</span>
+              <span data-i18n="kalk_principal">istina</span>
             </div>
           </div>
           <div class="kalk-legend">
             <div class="kalk-legend-item">
               <div class="kalk-legend-dot kalk-legend-dot--p"></div>
               <div>
-                <span class="kalk-legend-lbl">Istina (úver)</span>
+                <span class="kalk-legend-lbl" data-i18n="kalk_principal_full">Istina (úver)</span>
                 <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
               </div>
             </div>
             <div class="kalk-legend-item">
               <div class="kalk-legend-dot kalk-legend-dot--i"></div>
               <div>
-                <span class="kalk-legend-lbl">Zaplatené úroky</span>
+                <span class="kalk-legend-lbl" data-i18n="kalk_interests">Zaplatené úroky</span>
                 <span class="kalk-legend-val" id="legendInterest">50 000 €</span>
               </div>
             </div>
@@ -1211,11 +1211,17 @@
       <div class="kalk-panel kalk-amort">
         <div class="kalk-panel-title">Ročný prehľad splátok</div>
         <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
-          Zobraziť tabuľku
+          <span data-i18n="kalk_amort_show">Zobraziť tabuľku</span>
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <table class="kalk-amort-table" id="amortTable">
-          <thead><tr><th>Rok</th><th>Splátka / rok</th><th>Istina</th><th>Úroky</th><th>Zostatok</th></tr></thead>
+          <thead><tr>
+            <th data-i18n="kalk_amort_year">Rok</th>
+            <th data-i18n="kalk_amort_payment">Splátka / rok</th>
+            <th data-i18n="kalk_principal">Istina</th>
+            <th data-i18n="kalk_interests">Úroky</th>
+            <th data-i18n="kalk_amort_balance">Zostatok</th>
+          </tr></thead>
           <tbody id="amortBody"></tbody>
         </table>
       </div>
@@ -1304,7 +1310,11 @@
     const btn = document.getElementById('amortToggle');
     table.classList.toggle('kalk-show');
     btn.classList.toggle('kalk-open');
-    btn.childNodes[0].textContent = table.classList.contains('kalk-show') ? 'Skryť tabuľku ' : 'Zobraziť tabuľku ';
+    const lang = localStorage.getItem('lang') || 'sk';
+    const t = TRANSLATIONS[lang] || TRANSLATIONS['sk'];
+    btn.childNodes[0].textContent = table.classList.contains('kalk-show')
+      ? (t['kalk_amort_hide'] || 'Skryť tabuľku')
+      : (t['kalk_amort_show'] || 'Zobraziť tabuľku');
   };
 
   loanEl.addEventListener('input', kCalc);
@@ -1677,6 +1687,23 @@
       modal_privacy: '🔒 Žiadny spam. Odhlásenie kedykoľvek.',
       success_h3: 'Výborne! Sťahovanie začína.',
       success_p: 'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
+        // --- CALCULATOR & AMORTIZATION ---
+        kalk_loan: 'Výška úveru',
+        kalk_total: 'Celková suma',
+        kalk_interest: 'Zaplatené úroky',
+        kalk_payments: 'Počet splátok',
+        kalk_principal: 'Istina',
+        kalk_principal_full: 'Istina (úver)',
+        kalk_interests: 'Zaplatené úroky',
+        kalk_amort_show: 'Zobraziť tabuľku',
+        kalk_amort_hide: 'Skryť tabuľku',
+        kalk_amort_year: 'Rok',
+        kalk_amort_payment: 'Splátka / rok',
+        kalk_amort_balance: 'Zostatok',
+        // --- BOOKSHELF ---
+        bs_hint: 'Kliknite znovu na knihu pre zatvorenie',
+        bs_btn: 'Chcem túto príručku →',
+        bs_year: '2025',
     },
     en: {
       nav_cta: 'Get free e-book →',
@@ -1742,6 +1769,23 @@
       modal_privacy: '🔒 No spam. Unsubscribe anytime.',
       success_h3: 'Great! Download starting.',
       success_p: 'Check your inbox — we\'ll also send you a confirmation.',
+        // --- CALCULATOR & AMORTIZATION ---
+        kalk_loan: 'Loan amount',
+        kalk_total: 'Total amount',
+        kalk_interest: 'Interest paid',
+        kalk_payments: 'Number of payments',
+        kalk_principal: 'Principal',
+        kalk_principal_full: 'Principal (loan)',
+        kalk_interests: 'Interest paid',
+        kalk_amort_show: 'Show table',
+        kalk_amort_hide: 'Hide table',
+        kalk_amort_year: 'Year',
+        kalk_amort_payment: 'Payment / year',
+        kalk_amort_balance: 'Balance',
+        // --- BOOKSHELF ---
+        bs_hint: 'Click again to close',
+        bs_btn: 'I want this guide →',
+        bs_year: '2025',
     },
     ua: {
       nav_cta: 'Отримати е-книгу →',
@@ -1807,6 +1851,23 @@
       modal_privacy: '🔒 Без спаму. Відписатись будь-коли.',
       success_h3: 'Чудово! Завантаження починається.',
       success_p: 'Перевірте свою поштову скриньку — надішлемо також підтвердження.',
+        // --- CALCULATOR & AMORTIZATION ---
+        kalk_loan: 'Сума кредиту',
+        kalk_total: 'Загальна сума',
+        kalk_interest: 'Сплачені відсотки',
+        kalk_payments: 'Кількість платежів',
+        kalk_principal: 'Основна сума',
+        kalk_principal_full: 'Основна сума (кредит)',
+        kalk_interests: 'Сплачені відсотки',
+        kalk_amort_show: 'Показати таблицю',
+        kalk_amort_hide: 'Сховати таблицю',
+        kalk_amort_year: 'Рік',
+        kalk_amort_payment: 'Платіж / рік',
+        kalk_amort_balance: 'Залишок',
+        // --- BOOKSHELF ---
+        bs_hint: 'Натисніть ще раз, щоб закрити',
+        bs_btn: 'Хочу цей посібник →',
+        bs_year: '2025',
     },
     de: {
       nav_cta: 'E-Book auswählen →',
@@ -1872,6 +1933,23 @@
       modal_privacy: '🔒 Kein Spam. Abmeldung jederzeit.',
       success_h3: 'Super! Der Download beginnt.',
       success_p: 'Prüfen Sie Ihren Posteingang — wir senden Ihnen auch eine Bestätigung.',
+        // --- CALCULATOR & AMORTIZATION ---
+        kalk_loan: 'Darlehensbetrag',
+        kalk_total: 'Gesamtbetrag',
+        kalk_interest: 'Gezahlte Zinsen',
+        kalk_payments: 'Anzahl der Zahlungen',
+        kalk_principal: 'Hauptbetrag',
+        kalk_principal_full: 'Hauptbetrag (Darlehen)',
+        kalk_interests: 'Gezahlte Zinsen',
+        kalk_amort_show: 'Tabelle anzeigen',
+        kalk_amort_hide: 'Tabelle verbergen',
+        kalk_amort_year: 'Jahr',
+        kalk_amort_payment: 'Zahlung / Jahr',
+        kalk_amort_balance: 'Restbetrag',
+        // --- BOOKSHELF ---
+        bs_hint: 'Nochmal klicken zum Schließen',
+        bs_btn: 'Ich will diesen Ratgeber →',
+        bs_year: '2025',
     }
   };
 
@@ -1891,9 +1969,30 @@
     BOOKS['dedicstvo'].tag  = t.book2_tag;   BOOKS['dedicstvo'].title  = t.book2_title;
     BOOKS['exekucia'].tag   = t.book3_tag;   BOOKS['exekucia'].title   = t.book3_title;
     BOOKS['rozvod'].tag     = t.book4_tag;   BOOKS['rozvod'].title     = t.book4_title;
+      BOOKS['retazovy-obchod'].tag = t.book5_tag; BOOKS['retazovy-obchod'].title = t.book5_title;
+      // Refresh bookshelf panel if open
+      if (typeof bsCur !== 'undefined' && bsCur >= 0) refreshBookshelfPanel();
     // Persist
     localStorage.setItem('lang', lang);
   }
+
+    function refreshBookshelfPanel() {
+      const t = TRANSLATIONS[localStorage.getItem('lang')] || TRANSLATIONS['sk'];
+      const books = document.querySelectorAll('.bs-book');
+      books.forEach((b, i) => {
+        // Update spine title and year
+        const ttl = b.querySelector('.bs-ttl');
+        const yr = b.querySelector('.bs-yr');
+        if (ttl && t[`book${i+1}_title`]) ttl.innerHTML = t[`book${i+1}_title`];
+        if (yr && t['bs_year']) yr.innerHTML = t['bs_year'];
+      });
+      // Update panel button
+      const btn = document.getElementById('bs-btn');
+      if (btn && t['bs_btn']) btn.innerHTML = t['bs_btn'];
+      // Update hint
+      const hint = document.querySelector('.bs-hint');
+      if (hint && t['bs_hint']) hint.innerHTML = t['bs_hint'];
+    }
 
   // Init language on load
   (function() {
@@ -1932,13 +2031,20 @@
     books.forEach((b,j) => b.classList.toggle('on', j === i));
     bsCur = i;
     const d = BS_DATA[i];
-    document.getElementById('bs-ico').textContent = d.ico;
-    document.getElementById('bs-tag').textContent = d.tag;
-    document.getElementById('bs-title').textContent = d.title;
-    document.getElementById('bs-desc').textContent = d.desc;
-    document.getElementById('bs-btn').href = d.url;
-    panel.classList.remove('on');
-    requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
+     document.getElementById('bs-ico').textContent = d.ico;
+     // Use i18n for tag/title/button
+     const t = TRANSLATIONS[localStorage.getItem('lang')] || TRANSLATIONS['sk'];
+     document.getElementById('bs-tag').textContent = t[`book${i+1}_tag`] || d.tag;
+     document.getElementById('bs-title').textContent = t[`book${i+1}_title`] || d.title;
+     document.getElementById('bs-desc').textContent = d.desc;
+     const btn = document.getElementById('bs-btn');
+     btn.href = d.url;
+     if (t['bs_btn']) btn.innerHTML = t['bs_btn'];
+     panel.classList.remove('on');
+     requestAnimationFrame(() => requestAnimationFrame(() => panel.classList.add('on')));
+     // Update hint
+     const hint = document.querySelector('.bs-hint');
+     if (hint && t['bs_hint']) hint.innerHTML = t['bs_hint'];
   }
   setTimeout(() => bsPick(0), 800);
 </script>
