@@ -275,9 +275,8 @@
     .reveal-d1 { transition-delay: 0.1s; }
     .reveal-d2 { transition-delay: 0.2s; }
     .reveal-d3 { transition-delay: 0.3s; }
-    /* bs-pinner má vlastnú opacity — nesmie byť ovplyvnená reveal */
-    #bs-pi { opacity: 0; transform: translateY(10px); transition: opacity 0.32s ease, transform 0.32s ease; }
-    #bs-pi.on { opacity: 1 !important; transform: none !important; }
+    /* bs-pinner — opacity riadená cez JS */
+    #bs-pi { opacity: 0; transform: translateY(10px); }
     .reveal.visible { opacity: 1; transform: none; }
     .reveal-d1 { transition-delay: 0.1s; }
     .reveal-d2 { transition-delay: 0.2s; }
@@ -1488,6 +1487,9 @@
 </div>
 
 <script>
+  /* ─── GLOBAL VARS ───────────────────────────────────── */
+  var bsCur = -1;
+
   /* ─── BOOK DATA ─────────────────────────────────────── */
   const BOOKS = {
     'prvy-byt': {
@@ -2114,7 +2116,6 @@
     ],
   };
 
-  let bsCur = -1;
   function getBSData() {
     const lang = localStorage.getItem('lang') || 'sk';
     const trans = BS_TRANS[lang] || BS_TRANS.sk;
@@ -2123,9 +2124,11 @@
   function bsPick(i) {
     const books = document.querySelectorAll('.bs-book');
     const panel = document.getElementById('bs-pi');
+    if (!panel) return;
     if (bsCur === i) {
       books[i].classList.remove('on');
-      panel.classList.remove('on');
+      panel.style.opacity = '0';
+      panel.style.transform = 'translateY(10px)';
       bsCur = -1; return;
     }
     books.forEach((b,j) => b.classList.toggle('on', j === i));
@@ -2136,10 +2139,18 @@
     document.getElementById('bs-title').textContent = d.title;
     document.getElementById('bs-desc').textContent = d.desc;
     document.getElementById('bs-btn').href = d.url;
-    panel.classList.remove('on');
-    setTimeout(() => panel.classList.add('on'), 20);
+    panel.style.transition = 'none';
+    panel.style.opacity = '0';
+    panel.style.transform = 'translateY(10px)';
+    setTimeout(() => {
+      panel.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+      panel.style.opacity = '1';
+      panel.style.transform = 'none';
+    }, 30);
   }
-  setTimeout(() => bsPick(0), 600);
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => bsPick(0), 600);
+  });
 </script>
 
 </body>
