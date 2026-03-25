@@ -125,12 +125,11 @@ footer a:hover{color:var(--gold)}
       </div>
     </div>
     <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d120000!2d19.2!3d49.1!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f10.5!5e0!3m2!1ssk!2ssk!4v1700000000000!5m2!1ssk!2ssk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Mapa ponúk Reality Najbývanie"></iframe>
+      <div id="gmap" style="width:100%;height:100%;"></div>
       <div class="map-scanline"></div>
       <div class="map-corner tl"></div><div class="map-corner tr"></div>
       <div class="map-corner bl"></div><div class="map-corner br"></div>
       <div class="map-badge"><div class="map-badge-num">19+</div><div class="map-badge-lbl">Aktívnych ponúk</div></div>
-
     </div>
     <div class="map-footer">
       <span class="map-footer-text">Ponuky Reality Najbývanie · aktualizácia priebežne</span>
@@ -166,6 +165,74 @@ footer a:hover{color:var(--gold)}
     <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener">Ochrana súkromia</a>
   </div>
 </footer>
+
+<script>
+const PONUKY = [
+  { lat: 49.0740, lng: 19.3100, title: 'Stavebný pozemok – Do Dielca', info: 'Ružomberok, mestská časť Do Dielca (nová štvrť nad Roveňou)' },
+  { lat: 49.0839, lng: 19.3086, title: 'Obchodné priestory – Podhora', info: 'Podhora 55, Ružomberok · prenájom' },
+  { lat: 49.0620, lng: 19.3350, title: 'Záhradná chatka – Štiavnička', info: 'Záhradkárska oblasť, Štiavnička pri Ružomberku' },
+  { lat: 49.0500, lng: 19.2100, title: 'Rodinný dom – Hubová', info: 'Centrum obce Hubová, okres Ružomberok' },
+  { lat: 49.1020, lng: 19.2750, title: 'Investičný pozemok – Likavka', info: 'Obec Likavka, panoramatický výhľad na hrad' },
+  { lat: 49.0630, lng: 19.3250, title: 'Stavebný pozemok – Štiavnička', info: 'Intravilán obce Štiavnička, pripravené na výstavbu RD' },
+  { lat: 49.1190, lng: 19.1630, title: 'Dom – Stankovany', info: 'Obec Stankovany, vhodný na bývanie aj podnikanie' },
+  { lat: 49.0580, lng: 19.5450, title: 'Bungalov – Liptovská Štiavnica', info: 'Novostavba, tichá časť obce Liptovská Štiavnica' },
+  { lat: 49.0920, lng: 19.2950, title: 'Rodinný dom – Klačno (ID 399)', info: 'Ružomberok, mestská časť Klačno, slepá ulica' },
+  { lat: 49.0500, lng: 19.6800, title: 'Rekreačná chata – Liptovská Sielnica', info: 'Rekreačná oblasť pri Liptovskej Mare' },
+  { lat: 49.0780, lng: 19.2700, title: 'Výrobná hala – Biely Potok', info: 'Ružomberok, mestská časť Biely Potok, priemyselná zóna' },
+  { lat: 49.0720, lng: 18.9380, title: '4-izbový byt – Martin, Priekopa', info: 'Ulica Priekopská, Martin – Priekopa' },
+  { lat: 49.0780, lng: 19.3200, title: '2-izbový byt – Bystrická cesta', info: 'Bystrická cesta, Ružomberok, sídlisko Roveň' },
+  { lat: 48.9620, lng: 19.5520, title: 'Rodinný dom – Liptovská Lúžna', info: 'Obec Liptovská Lúžna, pôvodný stav, pod Nízkymi Tatrami' },
+  { lat: 49.0700, lng: 19.5920, title: '2-izbový byt – Iľanovo', info: 'Liptovský Mikuláš, mestská časť Iľanovo' },
+  { lat: 49.1700, lng: 19.1200, title: 'RD/objekt na podnikanie – Valaská Dubová (ID 317)', info: 'Centrum obce Valaská Dubová, pri hlavnom ťahu na Dolný Kubín' },
+  { lat: 49.1100, lng: 19.2380, title: 'Rodinný dom – Ludrová (ID 316)', info: 'Centrálna časť obce Ludrová, okres Ružomberok' },
+  { lat: 49.1110, lng: 19.2420, title: 'Pozemok – Ludrová', info: 'Obec Ludrová, nová lokalita pre výstavbu' }
+];
+
+fetch('/api/maps-key')
+  .then(r => r.json())
+  .then(({ key }) => {
+    const script = document.createElement('script');
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${key}&callback=initMap&language=sk`;
+    script.async = true;
+    document.head.appendChild(script);
+  });
+
+function initMap() {
+  const map = new google.maps.Map(document.getElementById('gmap'), {
+    center: { lat: 49.09, lng: 19.3 },
+    zoom: 9,
+    styles: [
+      { elementType: 'geometry', stylers: [{ color: '#1a1a1a' }] },
+      { elementType: 'labels.text.fill', stylers: [{ color: '#C8851F' }] },
+      { elementType: 'labels.text.stroke', stylers: [{ color: '#0a0a0a' }] },
+      { featureType: 'road', elementType: 'geometry', stylers: [{ color: '#2c2c2c' }] },
+      { featureType: 'water', elementType: 'geometry', stylers: [{ color: '#0d1b2a' }] }
+    ]
+  });
+
+  const infoWindow = new google.maps.InfoWindow();
+
+  PONUKY.forEach(p => {
+    const marker = new google.maps.Marker({
+      position: { lat: p.lat, lng: p.lng },
+      map,
+      title: p.title,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        scale: 10,
+        fillColor: '#C8851F',
+        fillOpacity: 1,
+        strokeColor: '#FFE066',
+        strokeWeight: 2
+      }
+    });
+    marker.addListener('click', () => {
+      infoWindow.setContent(`<div style="color:#000;font-family:Inter,sans-serif;font-size:13px;"><strong>${p.title}</strong><br>${p.info}</div>`);
+      infoWindow.open(map, marker);
+    });
+  });
+}
+</script>
 
 </body>
 </html>

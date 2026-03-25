@@ -57,6 +57,11 @@ app.get('/download/:bookName', (req, res) => {
     });
 });
 
+// ─── GOOGLE MAPS API KEY ──────────────────────────────────────────────────
+app.get('/api/maps-key', (req, res) => {
+    res.json({ key: process.env.GOOGLE_MAPS_API_KEY });
+});
+
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
 const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq'];
 subpages.forEach(page => {
