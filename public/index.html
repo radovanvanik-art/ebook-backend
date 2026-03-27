@@ -1117,7 +1117,7 @@
   <div class="section-inner">
     <div class="about-mini reveal">
       <div class="about-mini-photo">
-        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="200" height="200" loading="lazy" decoding="async"/>
+        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="220" height="280" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:260px;"/>
       </div>
       <div class="about-mini-body">
         <div class="about-mini-tag">
@@ -1598,7 +1598,7 @@
       <label class="modal-label" for="modal-email-input" data-i18n="modal_label">Zadaj email a stiahni zadarmo</label>
       <div class="modal-lock-row">
         <svg width="11" height="11" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1.2"/></svg>
-        Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.
+        <span data-i18n="modal_lock">Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.</span>
       </div>
       <div class="modal-row">
         <input type="email" id="modal-email-input" class="modal-email" placeholder="tvoj@email.sk" autocomplete="email" />
@@ -1612,12 +1612,12 @@
       <h3 data-i18n="success_h3">Výborne! Sťahovanie začína.</h3>
       <p data-i18n="success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
       <div style="margin-top:1.5rem; padding:1rem; background:rgba(200,133,31,0.06); border-radius:10px; text-align:left;">
-        <p style="font-size:0.82rem; color:var(--muted); margin-bottom:0.75rem;">Chceš sa poradiť osobne? Zavolaj mi — bezplatne a bez záväzkov.</p>
+        <p data-i18n="success_call_text" style="font-size:0.82rem; color:var(--muted); margin-bottom:0.75rem;">Chceš sa poradiť osobne? Zavolaj mi — bezplatne a bez záväzkov.</p>
         <a href="tel:+421948310950" style="display:flex; align-items:center; justify-content:center; gap:0.5rem; background:var(--gold); color:var(--white); padding:0.75rem 1.25rem; border-radius:8px; font-weight:700; font-size:0.9rem; text-decoration:none; box-shadow:0 4px 16px rgba(200,133,31,0.35);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          Zavolajte mi: +421 948 310 950
+          <span data-i18n="success_call_btn">Zavolajte mi: +421 948 310 950</span>
         </a>
-        <p style="font-size:0.7rem; color:var(--muted); text-align:center; margin-top:0.5rem;">Konzultácia zadarmo · Online aj osobne · RK, LM, DK</p>
+        <p data-i18n="success_call_note" style="font-size:0.7rem; color:var(--muted); text-align:center; margin-top:0.5rem;">Konzultácia zadarmo · Online aj osobne · RK, LM, DK</p>
       </div>
     </div>
   </div>
@@ -1627,13 +1627,13 @@
 <div class="floats" aria-label="Kontakt">
   <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20stiahol%20som%20vašu%20e-knihu%20a%20rád%20by%20som%20sa%20poradiť."
      class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="float-tip">Napíšte na WhatsApp</span>
+    <span class="float-tip" data-i18n="float_wa">Napíšte na WhatsApp</span>
     <svg width="24" height="24" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať Radovanovi">
-    <span class="float-tip">Zavolať Radovanovi</span>
+    <span class="float-tip" data-i18n="float_ph">Zavolať Radovanovi</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true">
       <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
     </svg>
@@ -1707,7 +1707,7 @@
     document.getElementById('modal-email-input').value = '';
     document.getElementById('modal-err-el').style.display = 'none';
     const btn = document.getElementById('modal-submit-btn');
-    btn.textContent = 'Stiahnuť →'; btn.disabled = false;
+    btn.textContent = t('modal_submit'); btn.disabled = false;
     document.getElementById('modal-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => document.getElementById('modal-email-input').focus(), 300);
@@ -1736,13 +1736,13 @@
 
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       emailEl.style.borderColor = '#D94F3B';
-      errEl.textContent = 'Zadaj platný email.';
+      errEl.textContent = t('modal_email_err');
       errEl.style.display = 'block';
       emailEl.focus();
       return;
     }
 
-    btnEl.textContent = 'Posielam…'; btnEl.disabled = true;
+    btnEl.textContent = t('modal_sending'); btnEl.disabled = true;
 
     try {
       const res  = await fetch('/api/subscribe', {
@@ -1761,9 +1761,9 @@
       }
       throw new Error(data.error || 'Chyba servera');
     } catch (err) {
-      btnEl.textContent = 'Stiahnuť →'; btnEl.disabled = false;
+      btnEl.textContent = t('modal_submit'); btnEl.disabled = false;
       emailEl.style.borderColor = '#D94F3B';
-      errEl.textContent = 'Nastala chyba. Skús to znova.';
+      errEl.textContent = t('modal_server_err');
       errEl.style.display = 'block';
       console.error(err);
     }
@@ -1879,6 +1879,15 @@
       modal_privacy: '🔒 Žiadny spam. Odhlásenie kedykoľvek.',
       success_h3: 'Výborne! Sťahovanie začína.',
       success_p: 'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
+      modal_lock: 'Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.',
+      modal_sending: 'Posielam…',
+      modal_email_err: 'Zadaj platný email.',
+      modal_server_err: 'Nastala chyba. Skús to znova.',
+      success_call_text: 'Chceš sa poradiť osobne? Zavolaj mi — bezplatne a bez záväzkov.',
+      success_call_btn: 'Zavolajte mi: +421 948 310 950',
+      success_call_note: 'Konzultácia zadarmo · Online aj osobne · RK, LM, DK',
+      float_wa: 'Napíšte na WhatsApp',
+      float_ph: 'Zavolať Radovanovi',
     },
     en: {
       nav_cta: 'Get free e-book →',
@@ -1979,6 +1988,15 @@
       modal_privacy: '🔒 No spam. Unsubscribe anytime.',
       success_h3: 'Great! Download starting.',
       success_p: 'Check your inbox — we\'ll also send you a confirmation.',
+      modal_lock: 'Your information is safe. Discretion is our priority.',
+      modal_sending: 'Sending…',
+      modal_email_err: 'Please enter a valid email.',
+      modal_server_err: 'An error occurred. Please try again.',
+      success_call_text: 'Want personal advice? Call me — free and without obligation.',
+      success_call_btn: 'Call me: +421 948 310 950',
+      success_call_note: 'Free consultation · Online or in person · RK, LM, DK',
+      float_wa: 'Write on WhatsApp',
+      float_ph: 'Call Radovan',
     },
     ua: {
       nav_cta: 'Отримати е-книгу →',
@@ -2079,6 +2097,15 @@
       modal_privacy: '🔒 Без спаму. Відписатись будь-коли.',
       success_h3: 'Чудово! Завантаження починається.',
       success_p: 'Перевірте свою поштову скриньку — надішлемо також підтвердження.',
+      modal_lock: 'Ваша інформація в безпеці. Конфіденційність — наш пріоритет.',
+      modal_sending: 'Надсилаю…',
+      modal_email_err: 'Введіть дійсний email.',
+      modal_server_err: 'Сталася помилка. Спробуйте ще раз.',
+      success_call_text: 'Хочете особистої консультації? Зателефонуйте мені — безкоштовно і без зобов\'язань.',
+      success_call_btn: 'Зателефонуйте: +421 948 310 950',
+      success_call_note: 'Консультація безкоштовна · Онлайн або особисто · RK, LM, DK',
+      float_wa: 'Написати у WhatsApp',
+      float_ph: 'Зателефонувати Радовану',
     },
     de: {
       nav_cta: 'E-Book auswählen →',
@@ -2179,8 +2206,22 @@
       modal_privacy: '🔒 Kein Spam. Abmeldung jederzeit.',
       success_h3: 'Super! Der Download beginnt.',
       success_p: 'Prüfen Sie Ihren Posteingang — wir senden Ihnen auch eine Bestätigung.',
+      modal_lock: 'Ihre Daten sind sicher. Diskretion hat Priorität.',
+      modal_sending: 'Sende…',
+      modal_email_err: 'Bitte gültige E-Mail eingeben.',
+      modal_server_err: 'Ein Fehler ist aufgetreten. Bitte erneut versuchen.',
+      success_call_text: 'Möchten Sie persönliche Beratung? Rufen Sie mich an — kostenlos und unverbindlich.',
+      success_call_btn: 'Rufen Sie mich an: +421 948 310 950',
+      success_call_note: 'Kostenlose Beratung · Online oder persönlich · RK, LM, DK',
+      float_wa: 'WhatsApp schreiben',
+      float_ph: 'Radovan anrufen',
     }
   };
+
+  function t(key) {
+    const lang = localStorage.getItem('lang') || 'sk';
+    return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS.sk && TRANSLATIONS.sk[key]) || key;
+  }
 
   function setLang(lang) {
     if (!TRANSLATIONS[lang]) return;

@@ -248,6 +248,9 @@ footer p{font-size:0.78rem;color:rgba(200,133,31,0.4);}
 footer a{color:rgba(200,133,31,0.35);transition:color 0.2s;}
 footer a:hover{color:var(--gold);}
 .footer-links{display:flex;gap:1.5rem;}
+.lang-switcher{display:flex;gap:4px}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.5px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all 0.2s}
+.lang-btn.active,.lang-btn:hover{background:var(--gold);border-color:var(--gold);color:white}
 </style>
 </head>
 <body>
@@ -259,11 +262,17 @@ footer a:hover{color:var(--gold);}
     Radovan Vaník
   </a>
   <div class="nav-center">
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')">SK</button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
+    </div>
     <a href="/" class="nav-link">Domov</a>
     <a href="/#books" class="nav-link">E-knihy</a>
     <a href="/o-mne" class="nav-link">O mne</a>
     <a href="/faq" class="nav-link active">FAQ</a>
-    <a href="/#books" class="nav-cta">Vybrať e-knihu →</a>
+    <a href="/#books" class="nav-cta" data-i18n="nav_cta_ebook">Vybrať e-knihu →</a>
   </div>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
@@ -277,9 +286,9 @@ footer a:hover{color:var(--gold);}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="eyebrow">Časté otázky</div>
-  <h1>Všetko čo potrebujete vedieť o <em>nehnuteľnostiach</em></h1>
-  <p class="hero-sub">Odpovede na najčastejšie otázky o predaji, kúpe, dedičstve a rozvode nehnuteľností v regióne Ružomberok, Liptovský Mikuláš a Dolný Kubín.</p>
+  <div class="eyebrow" data-i18n="hero_eyebrow">Časté otázky</div>
+  <h1 data-i18n="hero_h1">Všetko čo potrebujete vedieť o <em>nehnuteľnostiach</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Odpovede na najčastejšie otázky o predaji, kúpe, dedičstve a rozvode nehnuteľností v regióne Ružomberok, Liptovský Mikuláš a Dolný Kubín.</p>
 </div>
 
 <!-- FAQ -->
@@ -287,16 +296,16 @@ footer a:hover{color:var(--gold);}
 
   <!-- SEKCIA 1 -->
   <div class="faq-section">
-    <h2 class="faq-section-title"><span>🏠</span> Predaj a kúpa v Ružomberku</h2>
-    <p class="faq-section-sub">Praktické informácie pre predávajúcich aj kupujúcich v regióne Liptov</p>
+    <h2 class="faq-section-title" data-i18n="faq_s1_title"><span>🏠</span> Predaj a kúpa v Ružomberku</h2>
+    <p class="faq-section-sub" data-i18n="faq_s1_sub">Praktické informácie pre predávajúcich aj kupujúcich v regióne Liptov</p>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Koľko trvá predaj bytu v Ružomberku v roku 2026?</span>
+        <span class="faq-q-text" data-i18n="faq_q1">Koľko trvá predaj bytu v Ružomberku v roku 2026?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a1">
           Pri správne nastavenej cene sa byt v Ružomberku (napríklad na sídliskách <strong>Klačno alebo Roveň</strong>) predá priemerne za <strong>2 až 4 mesiace</strong>. Ak sa byt nepredá do 3 mesiacov, je potrebné prehodnotiť marketingovú stratégiu alebo cenu.<br><br>
           Chcete vedieť, za koľko sa predávajú byty vo vašej lokalite? Zavolajte mi na bezplatnú konzultáciu.
           <br><a class="faq-link" href="tel:+421948310950">📞 Zavolať zadarmo →</a>
@@ -306,11 +315,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Aké sú aktuálne ceny realít v regióne Liptov?</span>
+        <span class="faq-q-text" data-i18n="faq_q2">Aké sú aktuálne ceny realít v regióne Liptov?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a2">
           Ceny sa líšia podľa stavu a lokality. Najžiadanejšie sú <strong>zrekonštruované 2-izbové a 3-izbové byty</strong>. Pre presný odhad ceny vašej nehnuteľnosti v RK, LM alebo DK mi môžete kedykoľvek zavolať na bezplatnú konzultáciu.
           <br><a class="faq-link" href="tel:+421948310950">📞 Bezplatný odhad ceny →</a>
         </div>
@@ -319,11 +328,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Oplatí sa mi predávať nehnuteľnosť cez realitného makléra?</span>
+        <span class="faq-q-text" data-i18n="faq_q3">Oplatí sa mi predávať nehnuteľnosť cez realitného makléra?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a3">
           Skúsený maklér vám ušetrí čas s obhliadkami, zabezpečí profesionálne fotky, právny servis a často vyrokuje <strong>o 5 – 10 % vyššiu cenu</strong>, než by ste dosiahli pri samopredaji. Moje služby navyše zahŕňajú komplexný marketing, ktorý vašu ponuku zviditeľní.
           <br><a class="faq-link" href="/o-mne">Viac o mojich službách →</a>
         </div>
@@ -332,11 +341,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Aké lokality v Ružomberku sú momentálne najlepšie na investíciu?</span>
+        <span class="faq-q-text" data-i18n="faq_q4">Aké lokality v Ružomberku sú momentálne najlepšie na investíciu?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a4">
           Z dlhodobého hľadiska sú zaujímavé <strong>byty v blízkosti univerzity</strong> kvôli prenájmu, alebo <strong>apartmány v oblasti Hrabova</strong> kvôli cestovnému ruchu. Pred každou investíciou odporúčam osobnú konzultáciu.
           <br><a class="faq-link" href="tel:+421948310950">📞 Poradiť sa →</a>
         </div>
@@ -346,16 +355,16 @@ footer a:hover{color:var(--gold);}
 
   <!-- SEKCIA 2 -->
   <div class="faq-section">
-    <h2 class="faq-section-title"><span>⚖️</span> Špeciálne situácie</h2>
-    <p class="faq-section-sub">Dedičstvo, rozvod, exekúcia — pomáham aj v náročných životných situáciách</p>
+    <h2 class="faq-section-title" data-i18n="faq_s2_title"><span>⚖️</span> Špeciálne situácie</h2>
+    <p class="faq-section-sub" data-i18n="faq_s2_sub">Dedičstvo, rozvod, exekúcia — pomáham aj v náročných životných situáciách</p>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Zdedil som byt v Ružomberku, ako mám postupovať pri predaji?</span>
+        <span class="faq-q-text" data-i18n="faq_q5">Zdedil som byt v Ružomberku, ako mám postupovať pri predaji?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a5">
           Prvým krokom je <strong>právoplatné dedičské rozhodnutie</strong>. Následne je dôležité preveriť ťarchy na liste vlastníctva. Podrobný postup krok za krokom nájdete v mojej bezplatnej príručke.
           <br><a class="faq-link" href="/dedicstvo">📖 E-kniha Zdedený byt zadarmo →</a>
         </div>
@@ -364,11 +373,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Čo robiť, ak mám na nehnuteľnosti exekúciu a potrebujem ju predať?</span>
+        <span class="faq-q-text" data-i18n="faq_q6">Čo robiť, ak mám na nehnuteľnosti exekúciu a potrebujem ju predať?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a6">
           <strong>Čas je váš nepriateľ.</strong> Je dôležité komunikovať s exekútorom a pokúsiť sa o predaj z voľnej ruky ešte pred dražbou, čím zachránite oveľa viac peňazí. Neodkladajte — každý deň sa situácia môže zhoršiť.
           <br><a class="faq-link" href="/exekucia">📖 Akčný plán — Exekúcia na dverách →</a>
         </div>
@@ -377,11 +386,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Ako prebieha vyporiadanie nehnuteľnosti pri rozvode?</span>
+        <span class="faq-q-text" data-i18n="faq_q7">Ako prebieha vyporiadanie nehnuteľnosti pri rozvode?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a7">
           Existujú tri cesty: <strong>jeden z manželov vyplatí druhého</strong>, nehnuteľnosť sa predá a peniaze si rozdelíte, alebo zostanete spoluvlastníkmi. Pomáham párom nájsť cestu predaja bez zbytočných hádok a prieťahov.
           <br><a class="faq-link" href="/rozvod">📖 Príručka Rozvod a predaj majetku →</a>
         </div>
@@ -391,16 +400,16 @@ footer a:hover{color:var(--gold);}
 
   <!-- SEKCIA 3 -->
   <div class="faq-section">
-    <h2 class="faq-section-title"><span>🔒</span> Proces a bezpečnosť</h2>
-    <p class="faq-section-sub">Všetko o právnej stránke, poplatkoch a bezpečnosti realitných transakcií</p>
+    <h2 class="faq-section-title" data-i18n="faq_s3_title"><span>🔒</span> Proces a bezpečnosť</h2>
+    <p class="faq-section-sub" data-i18n="faq_s3_sub">Všetko o právnej stránke, poplatkoch a bezpečnosti realitných transakcií</p>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Čo je to reťazový obchod a ako ho zvládnuť bez stresu?</span>
+        <span class="faq-q-text" data-i18n="faq_q8">Čo je to reťazový obchod a ako ho zvládnuť bez stresu?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a8">
           Ide o situáciu, kedy <strong>predávate svoj byt a zároveň kupujete nový</strong>. Vyžaduje si to presné načasovanie dvoch kúpnych zmlúv, dvoch katastrov a často aj dvoch hypoték. Pre tento účel som pripravil špeciálneho sprievodcu.
           <br><a class="faq-link" href="/retazovy-obchod">📖 Sprievodca Reťazový obchod →</a>
         </div>
@@ -409,11 +418,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Je bezpečnejšie kupovať byt cez realitku alebo priamo od majiteľa?</span>
+        <span class="faq-q-text" data-i18n="faq_q9">Je bezpečnejšie kupovať byt cez realitku alebo priamo od majiteľa?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a9">
           Kúpa cez certifikovaného makléra zaručuje, že nehnuteľnosť je <strong>právne preverená</strong>, zmluvy sú pripravené advokátom a vaše peniaze sú v bezpečí — napríklad cez <strong>vinkuláciu v banke alebo notársku úschovu</strong>.
           <br><a class="faq-link" href="/prvy-byt">📖 Príručka pre kupujúcich →</a>
         </div>
@@ -423,16 +432,16 @@ footer a:hover{color:var(--gold);}
 
   <!-- SEKCIA 4 -->
   <div class="faq-section">
-    <h2 class="faq-section-title"><span>🏗️</span> Prvý byt a hypotéka</h2>
-    <p class="faq-section-sub">Všetko čo potrebujete vedieť pred kúpou prvej nehnuteľnosti</p>
+    <h2 class="faq-section-title" data-i18n="faq_s4_title"><span>🏗️</span> Prvý byt a hypotéka</h2>
+    <p class="faq-section-sub" data-i18n="faq_s4_sub">Všetko čo potrebujete vedieť pred kúpou prvej nehnuteľnosti</p>
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Ako získam hypotéku na prvý byt v Ružomberku?</span>
+        <span class="faq-q-text" data-i18n="faq_q10">Ako získam hypotéku na prvý byt v Ružomberku?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a10">
           Banka posudzuje vašu <strong>bonitu, príjem a výšku vlastných zdrojov</strong>. Štandardne potrebujete aspoň 10–20 % z ceny nehnuteľnosti z vlastného vrecka. Odporúčam najprv navštíviť hypotekárneho poradcu a zistiť, na akú výšku úveru dosiahnete — a až potom hľadať konkrétny byt.
           <br><a class="faq-link" href="/prvy-byt">📖 Kompletný sprievodca prvým bytom →</a>
         </div>
@@ -441,11 +450,11 @@ footer a:hover{color:var(--gold);}
 
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
-        <span class="faq-q-text">Čo je to rezervačná zmluva a je záväzná?</span>
+        <span class="faq-q-text" data-i18n="faq_q11">Čo je to rezervačná zmluva a je záväzná?</span>
         <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
       </button>
       <div class="faq-a">
-        <div class="faq-a-inner">
+        <div class="faq-a-inner" data-i18n="faq_a11">
           Áno, rezervačná zmluva je <strong>právne záväzný dokument</strong>. Predávajúci sa zaväzuje, že nehnuteľnosť nebude ponúkať iným záujemcom po dohodnutú dobu, a kupujúci zloží rezervačný poplatok. Pred podpisom si vždy nechajte zmluvu skontrolovať — ja to robím za vás ako súčasť mojich služieb.
           <br><a class="faq-link" href="/prvy-byt">📖 Zistiť viac →</a>
         </div>
@@ -458,12 +467,12 @@ footer a:hover{color:var(--gold);}
 </div>
 <div class="cta-bar">
   <div>
-    <div class="cta-bar-title">Máte ďalšiu otázku?</div>
-    <div class="cta-bar-sub">Zavolajte mi — konzultácia je zadarmo a bez záväzkov.</div>
+    <div class="cta-bar-title" data-i18n="cta_bar_title">Máte ďalšiu otázku?</div>
+    <div class="cta-bar-sub" data-i18n="cta_bar_sub">Zavolajte mi — konzultácia je zadarmo a bez záväzkov.</div>
   </div>
   <div class="cta-btns">
-    <a href="tel:+421948310950" class="btn-gold">📞 +421 948 310 950</a>
-    <a href="/#books" class="btn-outline">Stiahnuť e-knihu zadarmo</a>
+    <a href="tel:+421948310950" class="btn-gold" data-i18n="cta_btn_call">📞 +421 948 310 950</a>
+    <a href="/#books" class="btn-outline" data-i18n="cta_btn_ebook">Stiahnuť e-knihu zadarmo</a>
   </div>
 </div>
 
@@ -478,6 +487,175 @@ footer a:hover{color:var(--gold);}
 </footer>
 
 <script>
+const TRANSLATIONS = {
+  sk: {
+    nav_cta_ebook:'Vybrať e-knihu →',
+    hero_eyebrow:'Časté otázky',
+    hero_h1:'Všetko čo potrebujete vedieť o <em>nehnuteľnostiach</em>',
+    hero_sub:'Odpovede na najčastejšie otázky o predaji, kúpe, dedičstve a rozvode nehnuteľností v regióne Ružomberok, Liptovský Mikuláš a Dolný Kubín.',
+    cta_bar_title:'Máte ďalšiu otázku?',
+    cta_bar_sub:'Zavolajte mi — konzultácia je zadarmo a bez záväzkov.',
+    cta_btn_call:'📞 +421 948 310 950',
+    cta_btn_ebook:'Stiahnuť e-knihu zadarmo',
+    faq_s1_title:'<span>🏠</span> Predaj a kúpa v Ružomberku',
+    faq_s1_sub:'Praktické informácie pre predávajúcich aj kupujúcich v regióne Liptov',
+    faq_q1:'Koľko trvá predaj bytu v Ružomberku v roku 2026?',
+    faq_a1:'Pri správne nastavenej cene sa byt v Ružomberku (napríklad na sídliskách <strong>Klačno alebo Roveň</strong>) predá priemerne za <strong>2 až 4 mesiace</strong>. Ak sa byt nepredá do 3 mesiacov, je potrebné prehodnotiť marketingovú stratégiu alebo cenu.<br><br>Chcete vedieť, za koľko sa predávajú byty vo vašej lokalite? Zavolajte mi na bezplatnú konzultáciu.<br><a class="faq-link" href="tel:+421948310950">📞 Zavolať zadarmo →</a>',
+    faq_q2:'Aké sú aktuálne ceny realít v regióne Liptov?',
+    faq_a2:'Ceny sa líšia podľa stavu a lokality. Najžiadanejšie sú <strong>zrekonštruované 2-izbové a 3-izbové byty</strong>. Pre presný odhad ceny vašej nehnuteľnosti v RK, LM alebo DK mi môžete kedykoľvek zavolať na bezplatnú konzultáciu.<br><a class="faq-link" href="tel:+421948310950">📞 Bezplatný odhad ceny →</a>',
+    faq_q3:'Oplatí sa mi predávať nehnuteľnosť cez realitného makléra?',
+    faq_a3:'Skúsený maklér vám ušetrí čas s obhliadkami, zabezpečí profesionálne fotky, právny servis a často vyrokuje <strong>o 5 – 10 % vyššiu cenu</strong>, než by ste dosiahli pri samopredaji. Moje služby navyše zahŕňajú komplexný marketing, ktorý vašu ponuku zviditeľní.<br><a class="faq-link" href="/o-mne">Viac o mojich službách →</a>',
+    faq_q4:'Aké lokality v Ružomberku sú momentálne najlepšie na investíciu?',
+    faq_a4:'Z dlhodobého hľadiska sú zaujímavé <strong>byty v blízkosti univerzity</strong> kvôli prenájmu, alebo <strong>apartmány v oblasti Hrabova</strong> kvôli cestovnému ruchu. Pred každou investíciou odporúčam osobnú konzultáciu.<br><a class="faq-link" href="tel:+421948310950">📞 Poradiť sa →</a>',
+    faq_s2_title:'<span>⚖️</span> Špeciálne situácie',
+    faq_s2_sub:'Dedičstvo, rozvod, exekúcia — pomáham aj v náročných životných situáciách',
+    faq_q5:'Zdedil som byt v Ružomberku, ako mám postupovať pri predaji?',
+    faq_a5:'Prvým krokom je <strong>právoplatné dedičské rozhodnutie</strong>. Následne je dôležité preveriť ťarchy na liste vlastníctva. Podrobný postup krok za krokom nájdete v mojej bezplatnej príručke.<br><a class="faq-link" href="/dedicstvo">📖 E-kniha Zdedený byt zadarmo →</a>',
+    faq_q6:'Čo robiť, ak mám na nehnuteľnosti exekúciu a potrebujem ju predať?',
+    faq_a6:'<strong>Čas je váš nepriateľ.</strong> Je dôležité komunikovať s exekútorom a pokúsiť sa o predaj z voľnej ruky ešte pred dražbou, čím zachránite oveľa viac peňazí. Neodkladajte — každý deň sa situácia môže zhoršiť.<br><a class="faq-link" href="/exekucia">📖 Akčný plán — Exekúcia na dverách →</a>',
+    faq_q7:'Ako prebieha vyporiadanie nehnuteľnosti pri rozvode?',
+    faq_a7:'Existujú tri cesty: <strong>jeden z manželov vyplatí druhého</strong>, nehnuteľnosť sa predá a peniaze si rozdelíte, alebo zostanete spoluvlastníkmi. Pomáham párom nájsť cestu predaja bez zbytočných hádok a prieťahov.<br><a class="faq-link" href="/rozvod">📖 Príručka Rozvod a predaj majetku →</a>',
+    faq_s3_title:'<span>🔒</span> Proces a bezpečnosť',
+    faq_s3_sub:'Všetko o právnej stránke, poplatkoch a bezpečnosti realitných transakcií',
+    faq_q8:'Čo je to reťazový obchod a ako ho zvládnuť bez stresu?',
+    faq_a8:'Ide o situáciu, kedy <strong>predávate svoj byt a zároveň kupujete nový</strong>. Vyžaduje si to presné načasovanie dvoch kúpnych zmlúv, dvoch katastrov a často aj dvoch hypoték. Pre tento účel som pripravil špeciálneho sprievodcu.<br><a class="faq-link" href="/retazovy-obchod">📖 Sprievodca Reťazový obchod →</a>',
+    faq_q9:'Je bezpečnejšie kupovať byt cez realitku alebo priamo od majiteľa?',
+    faq_a9:'Kúpa cez certifikovaného makléra zaručuje, že nehnuteľnosť je <strong>právne preverená</strong>, zmluvy sú pripravené advokátom a vaše peniaze sú v bezpečí — napríklad cez <strong>vinkuláciu v banke alebo notársku úschovu</strong>.<br><a class="faq-link" href="/prvy-byt">📖 Príručka pre kupujúcich →</a>',
+    faq_s4_title:'<span>🏗️</span> Prvý byt a hypotéka',
+    faq_s4_sub:'Všetko čo potrebujete vedieť pred kúpou prvej nehnuteľnosti',
+    faq_q10:'Ako získam hypotéku na prvý byt v Ružomberku?',
+    faq_a10:'Banka posudzuje vašu <strong>bonitu, príjem a výšku vlastných zdrojov</strong>. Štandardne potrebujete aspoň 10–20 % z ceny nehnuteľnosti z vlastného vrecka. Odporúčam najprv navštíviť hypotekárneho poradcu a zistiť, na akú výšku úveru dosiahnete — a až potom hľadať konkrétny byt.<br><a class="faq-link" href="/prvy-byt">📖 Kompletný sprievodca prvým bytom →</a>',
+    faq_q11:'Čo je to rezervačná zmluva a je záväzná?',
+    faq_a11:'Áno, rezervačná zmluva je <strong>právne záväzný dokument</strong>. Predávajúci sa zaväzuje, že nehnuteľnosť nebude ponúkať iným záujemcom po dohodnutú dobu, a kupujúci zloží rezervačný poplatok. Pred podpisom si vždy nechajte zmluvu skontrolovať — ja to robím za vás ako súčasť mojich služieb.<br><a class="faq-link" href="/prvy-byt">📖 Zistiť viac →</a>',
+  },
+  en: {
+    nav_cta_ebook:'Choose e-book →',
+    hero_eyebrow:'Frequently asked questions',
+    hero_h1:'Everything you need to know about <em>real estate</em>',
+    hero_sub:'Answers to the most common questions about buying, selling, inheritance and divorce involving property in the Ružomberok, Liptovský Mikuláš and Dolný Kubín region.',
+    cta_bar_title:'Have another question?',
+    cta_bar_sub:'Call me — consultation is free and without commitment.',
+    cta_btn_call:'📞 +421 948 310 950',
+    cta_btn_ebook:'Download e-book for free',
+    faq_s1_title:'<span>🏠</span> Buying &amp; selling in Ružomberok',
+    faq_s1_sub:'Practical information for buyers and sellers in the Liptov region',
+    faq_q1:'How long does it take to sell a flat in Ružomberok in 2026?',
+    faq_a1:'With the right price, a flat in Ružomberok (e.g. in the <strong>Klačno or Roveň</strong> districts) typically sells within <strong>2 to 4 months</strong>. If it hasn\'t sold within 3 months, it\'s time to review the marketing strategy or price.<br><br>Want to know what flats in your area are selling for? Call me for a free consultation.<br><a class="faq-link" href="tel:+421948310950">📞 Call for free →</a>',
+    faq_q2:'What are the current property prices in the Liptov region?',
+    faq_a2:'Prices vary by condition and location. The most sought-after are <strong>renovated 2- and 3-bedroom flats</strong>. For an accurate estimate of your property\'s value in RK, LM or DK, call me anytime for a free consultation.<br><a class="faq-link" href="tel:+421948310950">📞 Free price estimate →</a>',
+    faq_q3:'Is it worth selling property through a real estate agent?',
+    faq_a3:'An experienced agent saves you time with viewings, provides professional photos, legal services and often negotiates a price <strong>5–10% higher</strong> than you\'d achieve by selling privately. My services also include comprehensive marketing.<br><a class="faq-link" href="/o-mne">Learn more about my services →</a>',
+    faq_q4:'Which areas of Ružomberok are currently the best for investment?',
+    faq_a4:'In the long term, <strong>flats near the university</strong> are attractive for rental income, or <strong>apartments in the Hrabovo area</strong> for tourism. I recommend a personal consultation before any investment.<br><a class="faq-link" href="tel:+421948310950">📞 Get advice →</a>',
+    faq_s2_title:'<span>⚖️</span> Special situations',
+    faq_s2_sub:'Inheritance, divorce, bailiff proceedings — I help in difficult life situations too',
+    faq_q5:'I inherited a flat in Ružomberok — how do I go about selling it?',
+    faq_a5:'The first step is a <strong>legally binding inheritance decision</strong>. Then it\'s important to check for encumbrances on the title deed. You\'ll find a step-by-step guide in my free handbook.<br><a class="faq-link" href="/dedicstvo">📖 Free e-book: Inherited property →</a>',
+    faq_q6:'What should I do if my property has a bailiff order and I need to sell?',
+    faq_a6:'<strong>Time is your enemy.</strong> It\'s essential to communicate with the bailiff and try to sell privately before the auction — you\'ll save far more money. Don\'t delay.<br><a class="faq-link" href="/exekucia">📖 Action plan — Bailiff at the door →</a>',
+    faq_q7:'How does property settlement work during a divorce?',
+    faq_a7:'There are three options: <strong>one spouse buys out the other</strong>, the property is sold and the proceeds split, or you remain co-owners. I help couples find a path to sale without unnecessary disputes.<br><a class="faq-link" href="/rozvod">📖 Guide: Divorce and property sale →</a>',
+    faq_s3_title:'<span>🔒</span> Process &amp; security',
+    faq_s3_sub:'Everything about the legal side, fees and safety of property transactions',
+    faq_q8:'What is a chain deal and how do you manage it without stress?',
+    faq_a8:'This is when you <strong>sell your flat and buy a new one at the same time</strong>. It requires precise timing of two purchase contracts, two land registries and often two mortgages. I\'ve prepared a special guide for this.<br><a class="faq-link" href="/retazovy-obchod">📖 Chain deal guide →</a>',
+    faq_q9:'Is it safer to buy a flat through an agency or directly from the owner?',
+    faq_a9:'Buying through a certified agent ensures the property is <strong>legally verified</strong>, contracts are prepared by a lawyer, and your money is safe — e.g. through <strong>bank escrow or notarial custody</strong>.<br><a class="faq-link" href="/prvy-byt">📖 Buyer\'s guide →</a>',
+    faq_s4_title:'<span>🏗️</span> First flat &amp; mortgage',
+    faq_s4_sub:'Everything you need to know before buying your first property',
+    faq_q10:'How do I get a mortgage for my first flat in Ružomberok?',
+    faq_a10:'The bank assesses your <strong>creditworthiness, income and own funds</strong>. You typically need at least 10–20% of the property price from your own pocket. I recommend visiting a mortgage advisor first.<br><a class="faq-link" href="/prvy-byt">📖 Complete guide to your first flat →</a>',
+    faq_q11:'What is a reservation agreement and is it binding?',
+    faq_a11:'Yes, a reservation agreement is a <strong>legally binding document</strong>. The seller commits not to offer the property to other buyers for an agreed period. Always have the contract checked before signing — I do this for you as part of my services.<br><a class="faq-link" href="/prvy-byt">📖 Find out more →</a>',
+  },
+  ua: {
+    nav_cta_ebook:'Обрати е-книгу →',
+    hero_eyebrow:'Часті запитання',
+    hero_h1:'Все, що вам потрібно знати про <em>нерухомість</em>',
+    hero_sub:'Відповіді на найпоширеніші запитання про продаж, покупку, спадщину та розлучення.',
+    cta_bar_title:'є ще запитання?',
+    cta_bar_sub:'Подзвоніть мені — консультація безкоштовна і без зобов’язань.',
+    cta_btn_call:'📞 +421 948 310 950',
+    cta_btn_ebook:'Завантажити е-книгу безкоштовно',
+    faq_s1_title:'<span>🏠</span> Купівля та продаж у Ружомберку',
+    faq_s1_sub:'Практична інформація для продавців та покупців у регіоні Ліптов',
+    faq_q1:'Скільки часу займає продаж квартири в Ружомберку у 2026 році?',
+    faq_a1:'При правильно встановленій ціні квартира в Ружомберку продається в середньому за <strong>2–4 місяці</strong>. Якщо квартира не продана протягом 3 місяців, варто переглянути стратегію або ціну.<br><br>Хочете дізнатися, за скільки продаються квартири у вашому районі? Подзвоніть мені безкоштовно.<br><a class="faq-link" href="tel:+421948310950">📞 Подзвонити безкоштовно →</a>',
+    faq_q2:'Які зараз ціни на нерухомість у регіоні Ліптов?',
+    faq_a2:'Ціни залежать від стану та розташування. Найбільш затребувані <strong>відремонтовані 2- та 3-кімнатні квартири</strong>. Для точної оцінки вартості вашої нерухомості зателефонуйте мені.<br><a class="faq-link" href="tel:+421948310950">📞 Безкоштовна оцінка →</a>',
+    faq_q3:'Чи варто продавати нерухомість через агента?',
+    faq_a3:'Досвідчений агент заощадить ваш час, забезпечить юридичний супровід і часто домовиться про ціну <strong>на 5–10% вищу</strong>, ніж при самостійному продажу.<br><a class="faq-link" href="/o-mne">Більше про мої послуги →</a>',
+    faq_q4:'Які райони Ружомберка найкращі для інвестицій?',
+    faq_a4:'Перспективні <strong>квартири поблизу університету</strong> для оренди та <strong>апартаменти в районі Грабово</strong> для туризму. Рекомендую особисту консультацію перед будь-якою інвестицією.<br><a class="faq-link" href="tel:+421948310950">📞 Порадитися →</a>',
+    faq_s2_title:'<span>⚖️</span> Особливі ситуації',
+    faq_s2_sub:'Спадщина, розлучення, виконавець — допомагаю у складних життєвих ситуаціях',
+    faq_q5:'Я успадкував квартиру в Ружомберку — як її продати?',
+    faq_a5:'Перший крок — <strong>набрання чинності рішенням про спадщину</strong>. Потім перевірте обтяження у реєстрі. Детальний покроковий план у моєму безкоштовному посібнику.<br><a class="faq-link" href="/dedicstvo">📖 Е-книга: Успадкована нерухомість →</a>',
+    faq_q6:'Що робити, якщо на нерухомості є виконавче провадження і треба продати?',
+    faq_a6:'<strong>Час — ваш ворог.</strong> Важливо спілкуватися з виконавцем і спробувати продати до аукціону — так ви збережете набагато більше коштів. Не зволікайте.<br><a class="faq-link" href="/exekucia">📖 План дій — Виконавець біля дверей →</a>',
+    faq_q7:'Як відбувається поділ нерухомості при розлученні?',
+    faq_a7:'Є три шляхи: <strong>один із подружжя викуповує другого</strong>, нерухомість продається і гроші діляться, або ви залишаєтеся співвласниками. Допомагаю парам знайти шлях без зайвих суперечок.<br><a class="faq-link" href="/rozvod">📖 Посібник: Розлучення та продаж майна →</a>',
+    faq_s3_title:'<span>🔒</span> Процес та безпека',
+    faq_s3_sub:'Все про юридичну сторону, комісії та безпеку операцій з нерухомістю',
+    faq_q8:'Що таке ланцюгова угода і як її провести без стресу?',
+    faq_a8:'Це ситуація, коли ви <strong>продаєте свою квартиру і водночас купуєте нову</strong>. Потрібно точно синхронізувати два договори, два реєстри та часто дві іпотеки. Я підготував спеціальний посібник.<br><a class="faq-link" href="/retazovy-obchod">📖 Посібник: Ланцюгова угода →</a>',
+    faq_q9:'Безпечніше купувати через агентство чи напряму від власника?',
+    faq_a9:'Купівля через сертифікованого агента гарантує <strong>юридичну перевірку</strong> нерухомості, договори від адвоката і захист ваших грошей через <strong>банківський або нотаріальний ескроу</strong>.<br><a class="faq-link" href="/prvy-byt">📖 Посібник для покупців →</a>',
+    faq_s4_title:'<span>🏗️</span> Перша квартира та іпотека',
+    faq_s4_sub:'Все, що потрібно знати перед купівлею першої нерухомості',
+    faq_q10:'Як отримати іпотеку на першу квартиру в Ружомберку?',
+    faq_a10:'Банк оцінює вашу <strong>кредитоспроможність, дохід та власні кошти</strong>. Зазвичай потрібно мати щонайменше 10–20% від вартості нерухомості. Рекомендую спочатку відвідати іпотечного консультанта.<br><a class="faq-link" href="/prvy-byt">📖 Повний посібник з першої квартири →</a>',
+    faq_q11:'Що таке резервна угода і чи вона є обов\'язковою?',
+    faq_a11:'Так, резервна угода — це <strong>юридично обов\'язковий документ</strong>. Продавець зобов\'язується не пропонувати нерухомість іншим покупцям протягом узгодженого терміну. Завжди перевіряйте угоду перед підписанням — я роблю це за вас.<br><a class="faq-link" href="/prvy-byt">📖 Дізнатися більше →</a>',
+  },
+  de: {
+    nav_cta_ebook:'E-Book wählen →',
+    hero_eyebrow:'Häufig gestellte Fragen',
+    hero_h1:'Alles, was Sie über <em>Immobilien</em> wissen müssen',
+    hero_sub:'Antworten auf die häufigsten Fragen zu Kauf, Verkauf, Erbschaft und Scheidung in der Region Ružomberok, Liptovský Mikuláš und Dolný Kubín.',
+    cta_bar_title:'Haben Sie eine weitere Frage?',
+    cta_bar_sub:'Rufen Sie mich an — Beratung ist kostenlos und unverbindlich.',
+    cta_btn_call:'📞 +421 948 310 950',
+    cta_btn_ebook:'E-Book kostenlos herunterladen',
+    faq_s1_title:'<span>🏠</span> Kauf &amp; Verkauf in Ružomberok',
+    faq_s1_sub:'Praktische Informationen für Käufer und Verkäufer in der Region Liptov',
+    faq_q1:'Wie lange dauert der Verkauf einer Wohnung in Ružomberok im Jahr 2026?',
+    faq_a1:'Bei richtig gesetztem Preis verkauft sich eine Wohnung in Ružomberok durchschnittlich in <strong>2 bis 4 Monaten</strong>. Wenn sie sich innerhalb von 3 Monaten nicht verkauft, sollte Strategie oder Preis überprüft werden.<br><br>Möchten Sie wissen, für wie viel Wohnungen in Ihrer Lage verkauft werden? Rufen Sie mich kostenlos an.<br><a class="faq-link" href="tel:+421948310950">📞 Kostenlos anrufen →</a>',
+    faq_q2:'Wie sind die aktuellen Immobilienpreise in der Region Liptov?',
+    faq_a2:'Die Preise variieren je nach Zustand und Lage. Am begehrtesten sind <strong>renovierte 2- und 3-Zimmer-Wohnungen</strong>. Für eine genaue Schätzung Ihrer Immobilie in RK, LM oder DK können Sie mich jederzeit anrufen.<br><a class="faq-link" href="tel:+421948310950">📞 Kostenlose Preisschätzung →</a>',
+    faq_q3:'Lohnt es sich, eine Immobilie über einen Makler zu verkaufen?',
+    faq_a3:'Ein erfahrener Makler spart Ihre Zeit bei Besichtigungen, sorgt für professionelle Fotos, rechtlichen Service und erzielt oft einen <strong>5–10 % höheren Preis</strong> als ein Privatverkauf.<br><a class="faq-link" href="/o-mne">Mehr über meine Leistungen →</a>',
+    faq_q4:'Welche Lagen in Ružomberok sind derzeit die besten für Investments?',
+    faq_a4:'Langfristig interessant sind <strong>Wohnungen in Uninähe</strong> zur Vermietung oder <strong>Appartements im Gebiet Hrabovo</strong> für den Tourismus. Vor jeder Investition empfehle ich eine persönliche Beratung.<br><a class="faq-link" href="tel:+421948310950">📞 Beratung anfragen →</a>',
+    faq_s2_title:'<span>⚖️</span> Besondere Situationen',
+    faq_s2_sub:'Erbschaft, Scheidung, Pfändung — ich helfe auch in schwierigen Lebenssituationen',
+    faq_q5:'Ich habe eine Wohnung in Ružomberok geerbt — wie gehe ich beim Verkauf vor?',
+    faq_a5:'Der erste Schritt ist ein <strong>rechtskräftiger Erbschein</strong>. Danach sollten Sie Belastungen im Grundbuch prüfen. Eine detaillierte Schritt-für-Schritt-Anleitung finden Sie in meinem kostenlosen Leitfaden.<br><a class="faq-link" href="/dedicstvo">📖 E-Book: Geerbte Immobilie kostenlos →</a>',
+    faq_q6:'Was tun, wenn auf meiner Immobilie eine Pfändung liegt und ich sie verkaufen muss?',
+    faq_a6:'<strong>Zeit ist Ihr Feind.</strong> Kommunizieren Sie mit dem Gerichtsvollzieher und versuchen Sie, vor der Versteigerung freihändig zu verkaufen — so retten Sie viel mehr Geld. Zögern Sie nicht.<br><a class="faq-link" href="/exekucia">📖 Aktionsplan — Pfändung vor der Tür →</a>',
+    faq_q7:'Wie läuft die Immobilienteilung bei einer Scheidung ab?',
+    faq_a7:'Es gibt drei Wege: <strong>ein Ehepartner löst den anderen aus</strong>, die Immobilie wird verkauft und der Erlös geteilt, oder Sie bleiben Miteigentümer. Ich helfe Paaren, einen reibungslosen Weg zu finden.<br><a class="faq-link" href="/rozvod">📖 Leitfaden: Scheidung und Immobilienverkauf →</a>',
+    faq_s3_title:'<span>🔒</span> Prozess &amp; Sicherheit',
+    faq_s3_sub:'Alles über die rechtliche Seite, Gebühren und Sicherheit von Immobilientransaktionen',
+    faq_q8:'Was ist ein Kettengeschäft und wie wickelt man es stressfrei ab?',
+    faq_a8:'Das ist, wenn Sie <strong>Ihre Wohnung verkaufen und gleichzeitig eine neue kaufen</strong>. Es erfordert die präzise Abstimmung zweier Kaufverträge, zweier Grundbuchämter und oft zweier Hypotheken. Ich habe dafür einen speziellen Leitfaden.<br><a class="faq-link" href="/retazovy-obchod">📖 Leitfaden: Kettengeschäft →</a>',
+    faq_q9:'Ist es sicherer, eine Wohnung über eine Agentur oder direkt vom Eigentümer zu kaufen?',
+    faq_a9:'Der Kauf über einen zertifizierten Makler stellt sicher, dass die Immobilie <strong>rechtlich geprüft</strong> ist, Verträge von einem Anwalt vorbereitet wurden und Ihr Geld sicher ist — z.B. über <strong>Banktreuhand oder Notaranderkonto</strong>.<br><a class="faq-link" href="/prvy-byt">📖 Käuferleitfaden →</a>',
+    faq_s4_title:'<span>🏗️</span> Erste Wohnung &amp; Hypothek',
+    faq_s4_sub:'Alles, was Sie vor dem Kauf Ihrer ersten Immobilie wissen müssen',
+    faq_q10:'Wie bekomme ich eine Hypothek für meine erste Wohnung in Ružomberok?',
+    faq_a10:'Die Bank bewertet Ihre <strong>Kreditwürdigkeit, Ihr Einkommen und Ihre Eigenkapitalquote</strong>. In der Regel benötigen Sie mindestens 10–20 % des Kaufpreises aus eigenen Mitteln. Ich empfehle, zuerst einen Hypothekenberater aufzusuchen.<br><a class="faq-link" href="/prvy-byt">📖 Kompletter Leitfaden für die erste Wohnung →</a>',
+    faq_q11:'Was ist ein Reservierungsvertrag und ist er bindend?',
+    faq_a11:'Ja, ein Reservierungsvertrag ist ein <strong>rechtlich bindender Vertrag</strong>. Der Verkäufer verpflichtet sich, die Immobilie anderen Interessenten für eine vereinbarte Zeit nicht anzubieten. Lassen Sie den Vertrag immer vor der Unterzeichnung prüfen — ich tue das als Teil meiner Leistungen.<br><a class="faq-link" href="/prvy-byt">📖 Mehr erfahren →</a>',
+  }
+};
+function t(key){const lang=localStorage.getItem('lang')||'sk';return(TRANSLATIONS[lang]&&TRANSLATIONS[lang][key])||(TRANSLATIONS.sk&&TRANSLATIONS.sk[key])||key}
+function setLang(lang){
+  localStorage.setItem('lang',lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(TRANSLATIONS[lang]&&TRANSLATIONS[lang][k])el.innerHTML=TRANSLATIONS[lang][k]});
+  ['sk','en','ua','de'].forEach(l=>{const b=document.getElementById('lang-'+l);if(b)b.classList.toggle('active',l===lang)});
+}
+(function(){const s=localStorage.getItem('lang')||'sk';if(s!=='sk')setLang(s);else['sk','en','ua','de'].forEach(l=>{const b=document.getElementById('lang-'+l);if(b)b.classList.toggle('active',l==='sk')})})();
 function toggleFaq(btn) {
   const item = btn.closest('.faq-item');
   const isOpen = item.classList.contains('open');

@@ -348,6 +348,9 @@ footer a:hover{color:var(--gold)}
   .form-row{flex-direction:column}
   .book-3d{width:180px;height:240px}
 }
+.lang-switcher{display:flex;gap:4px}
+.lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.5px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all 0.2s}
+.lang-btn.active,.lang-btn:hover{background:var(--gold);border-color:var(--gold);color:white}
 </style>
 </head>
 <body>
@@ -358,13 +361,19 @@ footer a:hover{color:var(--gold)}
     Radovan Vaník
   </a>
   <div class="nav-center">
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')">SK</button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
+    </div>
     <a href="/dedicstvo" class="nav-link">Dedičstvo</a>
     <a href="/exekucia" class="nav-link">Exekúcia</a>
     <a href="/prvy-byt" class="nav-link">Prvý byt</a>
     <a href="/retazovy-obchod" class="nav-link">Reťazový obchod</a>
     <a href="/rozvod" class="nav-link">Rozvod</a>
     <a href="/o-mne" class="nav-link">O mne</a>
-    <a href="tel:+421948310950" class="nav-cta">📞 Poradiť sa</a>
+    <a href="tel:+421948310950" class="nav-cta" data-i18n="nav_cta_phone">📞 Poradiť sa</a>
   </div>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
@@ -387,9 +396,9 @@ footer a:hover{color:var(--gold)}
         <span>›</span>
         <span style="color:rgba(255,255,255,0.5)">Rozvod a predaj majetku</span>
       </div>
-      <div class="hero-sub-tag">⚖️ Rozvod · Bolesť, nový začiatok</div>
-      <h1>Rozvod a predaj majetku</h1>
-      <p class="hero-sub-desc">Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.</p>
+      <div class="hero-sub-tag" data-i18n="hero_tag">⚖️ Rozvod · Bolesť, nový začiatok</div>
+      <h1 data-i18n="hero_h1">Rozvod a predaj majetku</h1>
+      <p class="hero-sub-desc" data-i18n="hero_desc">Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.</p>
       <div class="hero-sub-meta">
         <div class="hero-sub-meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
@@ -427,70 +436,70 @@ footer a:hover{color:var(--gold)}
     <!-- LEFT: FORM -->
     <div>
       <div class="form-card reveal" id="download-form">
-        <div class="form-card-tag">Rozvod · Bolesť, nový začiatok</div>
-        <h3>Stiahnuť zadarmo</h3>
-        <div class="form-card-hook">Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.</div>
-        <div class="form-quote">„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce." — Klientka, máj 2025</div>
+        <div class="form-card-tag" data-i18n="form_card_tag">Rozvod · Bolesť, nový začiatok</div>
+        <h3 data-i18n="form_h3">Stiahnuť zadarmo</h3>
+        <div class="form-card-hook" data-i18n="form_hook">Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.</div>
+        <div class="form-quote" data-i18n="form_quote">„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ — Klientka, máj 2025</div>
         <div class="form-card-lock">
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1.2"/></svg>
-          Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.
+          <span data-i18n="form_lock">Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.</span>
         </div>
         <div id="form-wrap">
           <div class="form-row">
             <input type="email" id="email-input" class="form-email" placeholder="tvoj@email.sk" autocomplete="email"/>
-            <button class="form-submit" id="submit-btn" onclick="handleDownload()">Stiahnuť →</button>
+            <button class="form-submit" id="submit-btn" onclick="handleDownload()" data-i18n="form_submit">Stiahnuť →</button>
           </div>
           <p class="form-err" id="err-el"></p>
-          <p style="font-size:0.72rem;color:var(--muted);margin-top:0.6rem">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
+          <p style="font-size:0.72rem;color:var(--muted);margin-top:0.6rem" data-i18n="form_spam">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
         </div>
         <div class="form-success" id="success-wrap">
           <div class="form-success-icon">✅</div>
-          <h3>Výborne! Sťahovanie začína.</h3>
-          <p>Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+          <h3 data-i18n="form_success_title">Výborne! Sťahovanie začína.</h3>
+          <p data-i18n="form_success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
           <a href="tel:+421948310950" class="form-success-cta">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            Zavolajte mi: +421 948 310 950
+            <span data-i18n="form_success_cta">Zavolajte mi: +421 948 310 950</span>
           </a>
-          <p style="font-size:0.7rem;color:var(--muted);margin-top:0.5rem">Konzultácia zadarmo · Online aj osobne</p>
+          <p style="font-size:0.7rem;color:var(--muted);margin-top:0.5rem" data-i18n="form_success_note">Konzultácia zadarmo · Online aj osobne</p>
         </div>
       </div>
 
       <div class="for-who-box reveal reveal-d1">
-        <p class="section-eyebrow">Pre koho je táto e-kniha</p>
-        <p>Pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť bez zbytočných konfliktov.</p>
+        <p class="section-eyebrow" data-i18n="for_who_eyebrow">Pre koho je táto e-kniha</p>
+        <p data-i18n="for_who_p">Pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť bez zbytočných konfliktov.</p>
       </div>
     </div>
 
     <!-- RIGHT: CHAPTERS -->
     <div class="reveal reveal-d2">
-      <p class="section-eyebrow">Čo sa dozviete</p>
-      <h2 class="section-h2">Obsah e-knihy</h2>
-      <p class="section-p">Konkrétne témy, žiadna zbytočná teória.</p>
+      <p class="section-eyebrow" data-i18n="chapters_eyebrow">Čo sa dozviete</p>
+      <h2 class="section-h2" data-i18n="chapters_h2">Obsah e-knihy</h2>
+      <p class="section-p" data-i18n="chapters_p">Konkrétne témy, žiadna zbytočná teória.</p>
       <div class="chapters-list">
         
       <div class="chapter-item reveal" style="animation-delay:0.0s">
         <div class="chapter-num">01</div>
-        <div class="chapter-text">BSM — bezpodielové spoluvlastníctvo</div>
+        <div class="chapter-text" data-i18n="ch1">BSM — bezpodielové spoluvlastníctvo</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.08s">
         <div class="chapter-num">02</div>
-        <div class="chapter-text">Možnosti vysporiadania majetku</div>
+        <div class="chapter-text" data-i18n="ch2">Možnosti vysporiadania majetku</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.16s">
         <div class="chapter-num">03</div>
-        <div class="chapter-text">Predaj bytu počas rozvodu</div>
+        <div class="chapter-text" data-i18n="ch3">Predaj bytu počas rozvodu</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.24s">
         <div class="chapter-num">04</div>
-        <div class="chapter-text">Právna ochrana oboch strán</div>
+        <div class="chapter-text" data-i18n="ch4">Právna ochrana oboch strán</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.32s">
         <div class="chapter-num">05</div>
-        <div class="chapter-text">Emocionálna stránka procesu</div>
+        <div class="chapter-text" data-i18n="ch5">Emocionálna stránka procesu</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.4s">
         <div class="chapter-num">06</div>
-        <div class="chapter-text">Nový začiatok po predaji</div>
+        <div class="chapter-text" data-i18n="ch6">Nový začiatok po predaji</div>
       </div>
       </div>
     </div>
@@ -500,43 +509,43 @@ footer a:hover{color:var(--gold)}
 <!-- OTHER BOOKS -->
 <section class="other-books-section">
   <div class="other-books-inner">
-    <p class="section-eyebrow" style="color:rgba(255,255,255,0.35)">Ďalšie e-knihy zadarmo</p>
-    <h2 class="section-h2" style="color:white">Ďalšie situácie, ktoré riešim</h2>
+    <p class="section-eyebrow" style="color:rgba(255,255,255,0.35)" data-i18n="other_books_eyebrow">Ďalšie e-knihy zadarmo</p>
+    <h2 class="section-h2" style="color:white" data-i18n="other_books_h2">Ďalšie situácie, ktoré riešim</h2>
     <div class="other-books-grid">
       
       <a href="/prvy-byt" class="other-book">
         <span class="other-book-ico">✨</span>
         <div>
-          <div class="other-book-tag">Prvá kúpa · Nový začiatok</div>
-          <div class="other-book-title">Váš prvý byt</div>
-          <div class="other-book-pages">26 strán</div>
+          <div class="other-book-tag" data-i18n="ob_prv_tag">Prvá kúpa · Nový začiatok</div>
+          <div class="other-book-title" data-i18n="ob_prv_title">Váš prvý byt</div>
+          <div class="other-book-pages" data-i18n="ob_prv_pages">26 strán</div>
         </div>
         <svg class="other-book-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="/dedicstvo" class="other-book">
         <span class="other-book-ico">📜</span>
         <div>
-          <div class="other-book-tag">Dedičstvo · Zmätok, papierovačky</div>
-          <div class="other-book-title">Zdedili ste nehnuteľnosť?</div>
-          <div class="other-book-pages">20 strán</div>
+          <div class="other-book-tag" data-i18n="ob_ded_tag">Dedičstvo · Zmätok, papierovačky</div>
+          <div class="other-book-title" data-i18n="ob_ded_title">Zdedili ste nehnuteľnosť?</div>
+          <div class="other-book-pages" data-i18n="ob_ded_pages">20 strán</div>
         </div>
         <svg class="other-book-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="/exekucia" class="other-book">
         <span class="other-book-ico">⚠️</span>
         <div>
-          <div class="other-book-tag">Dlhová kríza · Strach, naliehavosť</div>
-          <div class="other-book-title">Exekúcia na dverách</div>
-          <div class="other-book-pages">26 strán</div>
+          <div class="other-book-tag" data-i18n="ob_exe_tag">Dlhová kríza · Strach, naliehavosť</div>
+          <div class="other-book-title" data-i18n="ob_exe_title">Exekúcia na dverách</div>
+          <div class="other-book-pages" data-i18n="ob_exe_pages">26 strán</div>
         </div>
         <svg class="other-book-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
       <a href="/retazovy-obchod" class="other-book">
         <span class="other-book-ico">🔗</span>
         <div>
-          <div class="other-book-tag">Predaj + kúpa · Koordinácia</div>
-          <div class="other-book-title">Reťazový obchod</div>
-          <div class="other-book-pages">32 strán</div>
+          <div class="other-book-tag" data-i18n="ob_ret_tag">Predaj + kúpa · Koordinácia</div>
+          <div class="other-book-title" data-i18n="ob_ret_title">Reťazový obchod</div>
+          <div class="other-book-pages" data-i18n="ob_ret_pages">32 strán</div>
         </div>
         <svg class="other-book-arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -561,16 +570,101 @@ footer a:hover{color:var(--gold)}
 <div class="floats" aria-label="Kontakt">
   <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradil%20ohľadom%20nehnuteľnosti."
      class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="float-tip">Napíšte na WhatsApp</span>
+    <span class="float-tip" data-i18n="float_wa">Napíšte na WhatsApp</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať">
-    <span class="float-tip">Zavolať Radovanovi</span>
+    <span class="float-tip" data-i18n="float_ph">Zavolať Radovanovi</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
   </a>
 </div>
 
 <script>
+const TRANSLATIONS = {
+  sk: {
+    nav_cta_phone:'📞 Poradiť sa', float_wa:'Napíšte na WhatsApp', float_ph:'Zavolať Radovanovi',
+    hero_tag:'⚖️ Rozvod · Bolesť, nový začiatok', hero_h1:'Rozvod a predaj majetku',
+    hero_desc:'Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.',
+    form_card_tag:'Rozvod · Bolesť, nový začiatok', form_h3:'Stiahnuť zadarmo',
+    form_hook:'Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
+    form_lock:'Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.',
+    form_quote:'„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ — Klientka, máj 2025',
+    form_submit:'Stiahnuť →', form_sending:'Posielam…', form_spam:'🔒 Žiadny spam. Odhlásenie kedykoľvek.',
+    form_err_email:'Zadaj platný email.', form_err_server:'Nastala chyba. Skús to znova.',
+    form_success_title:'Výborne! Sťahovanie začína.',
+    form_success_p:'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
+    form_success_cta:'Zavolajte mi: +421 948 310 950', form_success_note:'Konzultácia zadarmo · Online aj osobne',
+    for_who_eyebrow:'Pre koho je táto e-kniha', for_who_p:'Pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť bez zbytočných konfliktov.',
+    chapters_eyebrow:'Čo sa dozviete', chapters_h2:'Obsah e-knihy', chapters_p:'Konkrétne témy, žiadna zbytočná teória.',
+    other_books_eyebrow:'Ďalšie e-knihy zadarmo', other_books_h2:'Ďalšie situácie, ktoré riešim',
+    ch1:'BSM — bezpodielové spoluvlastníctvo', ch2:'Možnosti vysporiadania majetku', ch3:'Predaj bytu počas rozvodu', ch4:'Právna ochrana oboch strán', ch5:'Emocionálna stránka procesu', ch6:'Nový začiatok po predaji',
+    ob_prv_tag:'Prvá kúpa · Nový začiatok', ob_prv_title:'Váš prvý byt', ob_prv_pages:'26 strán', ob_ded_tag:'Dedičstvo · Zmätok, papierovačky', ob_ded_title:'Zdedili ste nehnuteľnosť?', ob_ded_pages:'20 strán', ob_exe_tag:'Dlhová kríza · Strach, naliehavosť', ob_exe_title:'Exekúcia na dverách', ob_exe_pages:'26 strán', ob_ret_tag:'Predaj + kúpa · Koordinácia', ob_ret_title:'Reťazový obchod', ob_ret_pages:'32 strán',
+  },
+  en: {
+    nav_cta_phone:'📞 Get Advice', float_wa:'Write on WhatsApp', float_ph:'Call Radovan',
+    hero_tag:'⚖️ Divorce · Pain, new beginning', hero_h1:'Divorce and property sale',
+    hero_desc:'A sensitive guide for couples separating who need to resolve jointly owned property. Community property, settlement options, selling an apartment during divorce.',
+    form_card_tag:'Divorce · Pain, new beginning', form_h3:'Download free',
+    form_hook:'Separation is hard enough on its own. I\'ll help you turn joint property into capital that allows both of you to move on — quickly, fairly and with a clear head.',
+    form_lock:'Your info is safe. Discretion is a priority.',
+    form_quote:'„People can\'t believe everything he advised me before I signed the contract. I saved thousands.“ — Client, May 2025',
+    form_submit:'Download →', form_sending:'Sending…', form_spam:'🔒 No spam. Unsubscribe anytime.',
+    form_err_email:'Enter a valid email.', form_err_server:'An error occurred. Please try again.',
+    form_success_title:'Great! Download starting.',
+    form_success_p:'Check your inbox — we\'ll also send a confirmation.',
+    form_success_cta:'Call me: +421 948 310 950', form_success_note:'Free consultation · Online or in person',
+    for_who_eyebrow:'Who is this e-book for', for_who_p:'For couples separating who need to resolve jointly owned property without unnecessary conflict.',
+    chapters_eyebrow:'What you\'ll learn', chapters_h2:'E-book contents', chapters_p:'Specific topics, no unnecessary theory.',
+    other_books_eyebrow:'More free e-books', other_books_h2:'Other situations I handle',
+    ch1:'Joint marital property', ch2:'Options for settling property', ch3:'Selling the flat during divorce', ch4:'Legal protection for both sides', ch5:'The emotional side of the process', ch6:'New beginning after the sale',
+    ob_prv_tag:'First purchase · New beginning', ob_prv_title:'Your first flat', ob_prv_pages:'26 pages', ob_ded_tag:'Inheritance · Confusion, paperwork', ob_ded_title:'Did you inherit a property?', ob_ded_pages:'20 pages', ob_exe_tag:'Debt crisis · Fear, urgency', ob_exe_title:'Bailiff at the door', ob_exe_pages:'26 pages', ob_ret_tag:'Sale + purchase · Coordination', ob_ret_title:'Chain deal', ob_ret_pages:'32 pages',
+  },
+  ua: {
+    nav_cta_phone:'📞 Порадитися', float_wa:'Написати у WhatsApp', float_ph:'Подзвонити Радовану',
+    hero_tag:'⚖️ Розлучення · Біль, новий початок', hero_h1:'Розділ та продаж майна',
+    hero_desc:'Чутливий посібник для пар, які розлучаються і потребують вирішити спільну нерухомість. Спільне майно, варіанти регулювання, продаж квартири під час розлучення.',
+    form_card_tag:'Розлучення · Біль, новий початок', form_h3:'Завантажити безкоштовно',
+    form_hook:'Розлучення і так досить важке. Допоможу перетворити спільну нерухомість на капітал, який дозволить обом піти вперед — швидко і чесно.',
+    form_lock:'Ваші дані в безпеці. Конфіденційність — пріоритет.',
+    form_quote:'„Люди не вірять, що він мені порадив ще до підписання договору. Я заощадила тисячі.“ — Клієнтка, травень 2025',
+    form_submit:'Завантажити →', form_sending:'Надсилаю…', form_spam:'🔒 Жодного спаму. Відписатися будь-коли.',
+    form_err_email:'Введіть дійсний email.', form_err_server:'Виникла помилка. Спробуйте ще раз.',
+    form_success_title:'Чудово! Завантаження розпочинається.',
+    form_success_p:'Перевірте поштову скриньку — ми також надішлемо підтвердження.',
+    form_success_cta:'Подзвоніть мені: +421 948 310 950', form_success_note:'Консультація безкоштовно · Онлайн або особисто',
+    for_who_eyebrow:'Для кого ця е-книга', for_who_p:'Для пар, які розлучаються і потребують вирішити спільну нерухомість без зайвих конфліктів.',
+    chapters_eyebrow:'Що ви дізнаєтесь', chapters_h2:'Зміст е-книги', chapters_p:'Конкретні теми, ніякої зайвої теорії.',
+    other_books_eyebrow:'Більше безкоштовних е-книг', other_books_h2:'Інші ситуації, які я вирішую',
+    ch1:'СПМ — спільна подружня власність', ch2:'Варіанти врегулювання майна', ch3:'Продаж квартири під час розлучення', ch4:'Правовий захист обох сторін', ch5:'Емоційна сторона процесу', ch6:'Новий початок після продажу',
+    ob_prv_tag:'Перша купівля · Новий початок', ob_prv_title:'Ваша перша квартира', ob_prv_pages:'26 сторінок', ob_ded_tag:'Спадщина · Нерозуміння, папери', ob_ded_title:'Ви успадкували нерухомість?', ob_ded_pages:'20 сторінок', ob_exe_tag:'Боргова криза · Страх, терміновість', ob_exe_title:'Виконавець біля дверей', ob_exe_pages:'26 сторінок', ob_ret_tag:'Продаж + купівля · Координація', ob_ret_title:'Ланцюгова угода', ob_ret_pages:'32 сторінки',
+  },
+  de: {
+    nav_cta_phone:'📞 Beratung anfordern', float_wa:'WhatsApp schreiben', float_ph:'Radovan anrufen',
+    hero_tag:'⚖️ Scheidung · Schmerz, Neuanfang', hero_h1:'Scheidung und Immobilienverkauf',
+    hero_desc:'Ein erühlsamer Leitfaden für Paare, die sich trennen und eine gemeinsame Immobilie regeln müssen. Gemeinschaftseigentum, Ausgleichsoptionen, Wohnungsverkauf während der Scheidung.',
+    form_card_tag:'Scheidung · Schmerz, Neuanfang', form_h3:'Kostenlos herunterladen',
+    form_hook:'Eine Trennung ist schon schwer genug. Ich helfe Ihnen, die gemeinsame Immobilie in Kapital umzuwandeln, das Ihnen beiden ermöglicht, weiterzugehen — schnell, fair und kühlköpfig.',
+    form_lock:'Ihre Daten sind sicher. Diskretion hat Priorität.',
+    form_quote:'„Leute glauben nicht, was er mir alles vor der Vertragsunterzeichnung geraten hat. Ich sparte tausende.“ — Kundin, Mai 2025',
+    form_submit:'Herunterladen →', form_sending:'Wird gesendet…', form_spam:'🔒 Kein Spam. Jederzeit abmeldbar.',
+    form_err_email:'Bitte gültige E-Mail eingeben.', form_err_server:'Ein Fehler ist aufgetreten. Bitte erneut versuchen.',
+    form_success_title:'Prima! Download startet.',
+    form_success_p:'Prüfen Sie Ihren Posteingang — wir senden auch eine Bestätigung.',
+    form_success_cta:'Rufen Sie mich an: +421 948 310 950', form_success_note:'Kostenlose Beratung · Online oder persönlich',
+    for_who_eyebrow:'Für wen ist dieses E-Book', for_who_p:'Für Paare, die sich trennen und eine gemeinsame Immobilie ohne unnötige Konflikte lösen müssen.',
+    chapters_eyebrow:'Was Sie lernen werden', chapters_h2:'E-Book Inhalt', chapters_p:'Konkrete Themen, keine unnötige Theorie.',
+    other_books_eyebrow:'Weitere kostenlose E-Books', other_books_h2:'Andere Situationen, die ich löse',
+    ch1:'Eheliches Gesamteigentum', ch2:'Optionen zur Vermögensaufteilung', ch3:'Wohnung während der Scheidung verkaufen', ch4:'Rechtsschutz für beide Seiten', ch5:'Die emotionale Seite des Prozesses', ch6:'Neuanfang nach dem Verkauf',
+    ob_prv_tag:'Erstkauf · Neuer Anfang', ob_prv_title:'Ihre erste Wohnung', ob_prv_pages:'26 Seiten', ob_ded_tag:'Erbschaft · Verwirrung, Papierkram', ob_ded_title:'Haben Sie eine Immobilie geerbt?', ob_ded_pages:'20 Seiten', ob_exe_tag:'Schuldenkrise · Angst, Dringlichkeit', ob_exe_title:'Pfändung vor der Tür', ob_exe_pages:'26 Seiten', ob_ret_tag:'Verkauf + Kauf · Koordination', ob_ret_title:'Kettengeschäft', ob_ret_pages:'32 Seiten',
+  }
+};
+function t(key){const lang=localStorage.getItem('lang')||'sk';return(TRANSLATIONS[lang]&&TRANSLATIONS[lang][key])||(TRANSLATIONS.sk&&TRANSLATIONS.sk[key])||key}
+function setLang(lang){
+  localStorage.setItem('lang',lang);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n');if(TRANSLATIONS[lang]&&TRANSLATIONS[lang][k])el.innerHTML=TRANSLATIONS[lang][k]});
+  ['sk','en','ua','de'].forEach(l=>{const b=document.getElementById('lang-'+l);if(b)b.classList.toggle('active',l===lang)});
+}
+(function(){const s=localStorage.getItem('lang')||'sk';if(s!=='sk')setLang(s);else['sk','en','ua','de'].forEach(l=>{const b=document.getElementById('lang-'+l);if(b)b.classList.toggle('active',l==='sk')})})();
 async function handleDownload() {
   const emailEl = document.getElementById('email-input');
   const btnEl   = document.getElementById('submit-btn');
@@ -580,11 +674,11 @@ async function handleDownload() {
   emailEl.style.borderColor = '';
   if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     emailEl.style.borderColor = '#D94F3B';
-    errEl.textContent = 'Zadaj platný email.';
+    errEl.textContent = t('form_err_email');
     errEl.style.display = 'block';
     emailEl.focus(); return;
   }
-  btnEl.textContent = 'Posielam…'; btnEl.disabled = true;
+  btnEl.textContent = t('form_sending'); btnEl.disabled = true;
   try {
     const res = await fetch('/api/subscribe', {
       method:'POST', headers:{'Content-Type':'application/json'},
@@ -600,9 +694,9 @@ async function handleDownload() {
     }
     throw new Error(data.error || 'Chyba servera');
   } catch(err) {
-    btnEl.textContent = 'Stiahnuť →'; btnEl.disabled = false;
+    btnEl.textContent = t('form_submit'); btnEl.disabled = false;
     emailEl.style.borderColor = '#D94F3B';
-    errEl.textContent = 'Nastala chyba. Skús to znova.';
+    errEl.textContent = t('form_err_server');
     errEl.style.display = 'block';
   }
 }
