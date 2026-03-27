@@ -56,7 +56,12 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" /></noscript>
 
   <style>
-    html, body { overscroll-behavior-x: none; }
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
+      overscroll-behavior-x: none;
+    }
     body { touch-action: pan-y pinch-zoom; }
     /* ── RESET & BASE ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -97,6 +102,20 @@
       line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    body > * {
+      max-width: 100%;
+    }
+    .nav,
+    .hero,
+    .section,
+    .section-inner,
+    .hero-inner,
+    .modal-backdrop,
+    .floating-contact {
+      max-width: 100%;
+      overflow-x: clip;
     }
     img { max-width: 100%; display: block; }
     a { text-decoration: none; color: inherit; }
@@ -453,9 +472,8 @@
       }
       .hero-visual {
         position: absolute;
-        right: -0.9rem;
         bottom: 0;
-        inset: auto -0.9rem 0 auto;
+        inset: auto 0 0 auto;
         width: min(44vw, 190px);
         height: min(38svh, 320px);
         min-height: 0;
@@ -491,7 +509,7 @@
         width: auto;
         height: min(35svh, 290px);
         max-height: none;
-        transform: translate(22%, 9%);
+        transform: translate(12%, 9%);
       }
     }
 
