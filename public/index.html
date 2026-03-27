@@ -56,6 +56,8 @@
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" /></noscript>
 
   <style>
+    html, body { overscroll-behavior-x: none; }
+    body { touch-action: pan-y pinch-zoom; }
     /* ── RESET & BASE ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -196,27 +198,12 @@
       position: relative; z-index: 1;
       max-width: 860px; text-align: center;
     }
-    .hero-pill {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(200,133,31,0.35);
-      border-radius: 100px;
-      padding: 0.35rem 1rem; margin-bottom: 2rem;
-      font-size: 0.78rem; font-weight: 500; color: rgba(255,255,255,0.65);
-      letter-spacing: 0.06em; text-transform: uppercase;
-      backdrop-filter: blur(8px);
-    }
-    .hero-pill-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--gold); animation: pulse 2s infinite;
-    }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.8rem, 7vw, 5.2rem);
+      font-size: clamp(3.2rem, 8vw, 6rem);
       font-weight: 700;
       color: var(--white);
-      line-height: 1.05;
+      line-height: 1.02;
       letter-spacing: -0.02em;
       margin-bottom: 1.4rem;
     }
@@ -1078,10 +1065,6 @@
 <!-- HERO -->
 <section class="hero" aria-label="Hlavná sekcia">
   <div class="hero-inner">
-    <div class="hero-pill">
-      <span class="hero-pill-dot"></span>
-      <span data-i18n="hero_pill">5 e-kníh · Zadarmo · PDF · Okamžité stiahnutie</span>
-    </div>
     <h1>
       <span data-i18n="hero_h1_1">Nehnuteľnosti bez</span><br/>
       <span class="hl" data-i18n="hero_h1_hl">zbytočných chýb</span>

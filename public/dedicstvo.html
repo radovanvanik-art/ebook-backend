@@ -91,6 +91,8 @@ footer a:hover{color:var(--gold)}
 .reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}
 @media(max-width:580px){.nav-center .nav-link{display:none}.nav-right{display:none}}
 </style>
+html, body { overscroll-behavior-x: none; }
+body { touch-action: pan-y pinch-zoom; }
 <style>
 /* ── SUBPAGE SPECIFIC ── */
 .hero-sub {
@@ -122,14 +124,6 @@ footer a:hover{color:var(--gold)}
 .hero-sub-breadcrumb a {color:rgba(255,255,255,0.4);transition:color 0.2s}
 .hero-sub-breadcrumb a:hover {color:var(--gold)}
 .hero-sub-breadcrumb span {color:rgba(255,255,255,0.2)}
-.hero-sub-tag {
-  display:inline-flex;align-items:center;gap:0.4rem;
-  background:rgba(255,255,255,0.06);
-  border:1px solid #C8851F55;
-  border-radius:100px;padding:0.3rem 0.85rem;
-  font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
-  color:#C8851F;margin-bottom:1.2rem;
-}
 .hero-sub h1 {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(2.4rem,5vw,4rem);font-weight:700;
@@ -396,7 +390,6 @@ footer a:hover{color:var(--gold)}
         <span>›</span>
         <span style="color:rgba(255,255,255,0.5)">Zdedili ste nehnuteľnosť?</span>
       </div>
-      <div class="hero-sub-tag" data-i18n="hero_tag">📜 Dedičstvo · Zmätok, papierovčky</div>
       <h1 data-i18n="hero_h1">Zdedili ste nehnuteľnosť?</h1>
       <p class="hero-sub-desc" data-i18n="hero_desc">Praktický sprievodca pre každého, kto zdedil byt, dom alebo pozemok. Dedičské konanie, spoluvlastníci, daňové povinnosti a rozhodnutie — predať, prenajať alebo si ponechať.</p>
       <div class="hero-sub-meta">
