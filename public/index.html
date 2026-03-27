@@ -381,12 +381,26 @@
     .bc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.2; }
     .bc-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 0.9rem; }
     .bc-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      color: var(--gold); font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.08em; text-decoration: none;
-      transition: color 0.2s, gap 0.2s;
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      min-height: 44px;
+      padding: 0.78rem 1rem;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-mid) 100%);
+      color: #fff; font-size: 0.76rem; font-weight: 800;
+      letter-spacing: 0.08em; text-decoration: none; text-transform: uppercase;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(200,133,31,0.28);
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
     }
-    .bc-btn:hover { color: var(--gold-mid); gap: 0.6rem; }
+    .bc-btn::before {
+      content: '↓';
+      font-size: 0.9rem;
+      line-height: 1;
+    }
+    .bc-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(200,133,31,0.35);
+      filter: brightness(1.04);
+    }
 
     .bc-face-ico { font-size: 2rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); position: relative; z-index: 1; }
     .bc-face-line { width: 55px; height: 1px; background: rgba(255,255,255,0.25); position: relative; z-index: 1; }
@@ -1164,7 +1178,7 @@
           <div class="bc-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
           <div class="bc-title" data-i18n="book1_title">Váš prvý byt</div>
           <div class="bc-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</div>
-          <a class="bc-btn" href="/prvy-byt" data-i18n="btn_download">PREČÍTAŤ →</a>
+          <a class="bc-btn" href="/prvy-byt" data-i18n="btn_download">STIAHNUŤ PDF →</a>
         </div>
       </div>
 
@@ -1174,7 +1188,7 @@
           <div class="bc-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
           <div class="bc-title" data-i18n="book2_title">Zdedený byt</div>
           <div class="bc-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</div>
-          <a class="bc-btn" href="/dedicstvo" data-i18n="btn_download">PREČÍTAŤ →</a>
+          <a class="bc-btn" href="/dedicstvo" data-i18n="btn_download">STIAHNUŤ PDF →</a>
         </div>
         <div class="bc-book-wrap">
           <div class="bc-book" style="--bc-front:#3a7028;--bc-side:#254a18;--bc-spine:#163010;">
@@ -1208,7 +1222,7 @@
           <div class="bc-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
           <div class="bc-title" data-i18n="book3_title">Exekúcia na dverách</div>
           <div class="bc-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</div>
-          <a class="bc-btn" href="/exekucia" data-i18n="btn_download">PREČÍTAŤ →</a>
+          <a class="bc-btn" href="/exekucia" data-i18n="btn_download">STIAHNUŤ PDF →</a>
         </div>
       </div>
 
@@ -1218,7 +1232,7 @@
           <div class="bc-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
           <div class="bc-title" data-i18n="book4_title">Rozvod a predaj majetku</div>
           <div class="bc-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</div>
-          <a class="bc-btn" href="/rozvod" data-i18n="btn_download">PREČÍTAŤ →</a>
+          <a class="bc-btn" href="/rozvod" data-i18n="btn_download">STIAHNUŤ PDF →</a>
         </div>
         <div class="bc-book-wrap">
           <div class="bc-book" style="--bc-front:#7a5018;--bc-side:#52340e;--bc-spine:#342208;">
@@ -1252,7 +1266,7 @@
           <div class="bc-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
           <div class="bc-title" data-i18n="book5_title">Reťazový obchod</div>
           <div class="bc-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</div>
-          <a class="bc-btn" href="/retazovy-obchod" data-i18n="btn_download">PREČÍTAŤ →</a>
+          <a class="bc-btn" href="/retazovy-obchod" data-i18n="btn_download">STIAHNUŤ PDF →</a>
         </div>
       </div>
 
@@ -1786,7 +1800,7 @@
       books_title: 'Vyber si svoju e-knihu',
       books_sub: 'Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.',
       badge_free: 'Zadarmo',
-      btn_download: 'Chcem tento plán zadarmo →',
+      btn_download: 'Stiahnuť PDF zadarmo →',
       book1_tag: 'Prvá kúpa · Nový začiatok',
       book1_title: 'Váš prvý byt',
       book1_desc: 'Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.',
@@ -1895,7 +1909,7 @@
       books_title: 'Choose your e-book',
       books_sub: 'All free. Just enter your email and receive the PDF instantly.',
       badge_free: 'Free',
-      btn_download: 'Download free',
+      btn_download: 'Download free PDF →',
       book1_tag: 'First purchase · New beginning',
       book1_title: 'Your first home',
       book1_desc: 'Buying your first property? A guide that saves you thousands and months of stress. Mortgage, lawyer, land registry, hidden defects — your compass from day one.',
@@ -2004,7 +2018,7 @@
       books_title: 'Оберіть свою е-книгу',
       books_sub: 'Всі безкоштовно. Просто введіть email і отримайте PDF миттєво.',
       badge_free: 'Безкоштовно',
-      btn_download: 'Завантажити безкоштовно',
+      btn_download: 'Завантажити PDF безкоштовно →',
       book1_tag: 'Перша покупка · Новий початок',
       book1_title: 'Ваша перша квартира',
       book1_desc: 'Купуєте першу нерухомість? Посібник, який заощадить тисячі євро і місяці стресу. Іпотека, юрист, реєстрація — ваш компас з першого кроку.',
@@ -2113,7 +2127,7 @@
       books_title: 'Wählen Sie Ihr E-Book',
       books_sub: 'Alle kostenlos. Geben Sie einfach Ihre E-Mail ein und erhalten Sie sofort das PDF.',
       badge_free: 'Kostenlos',
-      btn_download: 'Kostenlos herunterladen',
+      btn_download: 'PDF kostenlos herunterladen →',
       book1_tag: 'Erstkauf · Neuer Anfang',
       book1_title: 'Ihre erste Wohnung',
       book1_desc: 'Kaufen Sie Ihre erste Immobilie? Ein Ratgeber, der Ihnen Tausende und Monate an Stress erspart. Hypothek, Anwalt, Grundbuch, versteckte Mängel — Ihr Kompass von Anfang an.',
