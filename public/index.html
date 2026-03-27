@@ -596,7 +596,14 @@
       position: relative;
       background:
         linear-gradient(to bottom, rgba(5,7,4,0.55) 0%, rgba(5,7,4,0.42) 40%, rgba(5,7,4,0.60) 100%),
-        url('/liptov.jpg') center 30%/cover no-repeat;
+        url('/liptov-home.jpg') center 30%/cover no-repeat;
+    }
+    @media (max-width: 760px) {
+      .about-section {
+        background:
+          linear-gradient(to bottom, rgba(5,7,4,0.55) 0%, rgba(5,7,4,0.42) 40%, rgba(5,7,4,0.60) 100%),
+          url('/liptov-home-mobile.jpg') center 30%/cover no-repeat;
+      }
     }
     .about-section::before {
       content: '';
@@ -1122,7 +1129,7 @@
   <div class="section-inner">
     <div class="about-mini reveal">
       <div class="about-mini-photo">
-        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="220" height="280" loading="eager" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:260px;"/>
+        <img src="/radovan-thumb.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="220" height="280" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:260px;"/>
       </div>
       <div class="about-mini-body">
         <div class="about-mini-tag">
