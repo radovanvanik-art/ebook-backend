@@ -8,10 +8,26 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+function sendHtmlNoCache(res, filePath) {
+    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.sendFile(filePath);
+}
+
 app.use(compression());
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '7d' }));
+app.use(express.static(path.join(__dirname, 'public'), {
+    maxAge: '7d',
+    setHeaders: (res, filePath) => {
+        if (path.extname(filePath).toLowerCase() === '.html') {
+            res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+            res.setHeader('Pragma', 'no-cache');
+            res.setHeader('Expires', '0');
+        }
+    }
+}));
 
 // ─── POST /api/subscribe ───────────────────────────────────────────────────
 app.post('/api/subscribe', async (req, res) => {
@@ -66,7 +82,7 @@ app.get('/api/maps-key', (req, res) => {
 const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', `${page}.html`));
+        sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
     });
 });
 
@@ -82,7 +98,7 @@ app.get('/robots.txt', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    sendHtmlNoCache(res, path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(PORT, () => {
