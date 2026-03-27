@@ -163,6 +163,7 @@
 
     /* ── HERO ───────────────────────────────────────────────────── */
     .hero {
+      min-height: 100vh;
       min-height: 100svh;
       background: var(--dark);
       display: grid;
@@ -278,9 +279,6 @@
     /* bs-pinner — opacity riadená cez JS */
     #bs-pi { opacity: 0; transform: translateY(10px); }
     .reveal.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.1s; }
-    .reveal-d2 { transition-delay: 0.2s; }
-    .reveal-d3 { transition-delay: 0.3s; }
 
     /* ── SECTION BASE ──────────────────────────────────────────── */
     .section { padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 3rem); }
@@ -300,28 +298,116 @@
     .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.65; max-width: 500px; }
 
     /* ── BOOKS SECTION ─────────────────────────────────────────── */
-    .books-section { background: #0d0d0d; }
+    .books-section {
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(8,6,4,0.80) 0%,
+          rgba(8,6,4,0.72) 40%,
+          rgba(8,6,4,0.78) 100%
+        ),
+        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=1600&q=75&auto=format&fit=crop') center/cover no-repeat;
+      background-attachment: fixed;
+    }
+    @supports (-webkit-touch-callout: none) {
+      .books-section { background-attachment: scroll; }
+    }
+    @media (max-width: 768px) {
+      .books-section { background-attachment: scroll; }
+    }
     .books-header .eyebrow { color: var(--gold); }
-    .books-header .section-title { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); text-shadow: 0 0 40px rgba(200,133,31,0.3); }
-    .books-header .section-sub { color: rgba(255,255,255,0.45); }
-    .books-header {
-      display: flex; flex-direction: column;
-      align-items: center; text-align: center;
-      margin-bottom: 3.5rem;
+    .books-header .section-title { color: #fff; font-size: clamp(2rem, 4vw, 3.2rem); text-shadow: 0 2px 12px rgba(0,0,0,1), 0 0 40px rgba(200,133,31,0.4); }
+    .books-header .section-sub { color: rgba(255,255,255,0.9); text-shadow: 0 1px 8px rgba(0,0,0,0.9); }
+    .books-header { display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 3rem; }
+
+    /* ── BOOK CARDS ─────────────────────────────────────────────── */
+    .bc-list { display: flex; flex-direction: column; gap: 1.25rem; max-width: 780px; margin: 0 auto; }
+
+    .bc-card {
+      display: flex; align-items: center; gap: 1.5rem;
+      background: rgba(10,8,6,0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(200,133,31,0.30);
+      border-radius: 20px; padding: 1.5rem 1.75rem;
+      position: relative; overflow: hidden;
+      contain: paint;
+      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
     }
-    .books-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+    @media (max-width: 768px) {
+      .bc-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,8,6,0.96); }
     }
-    .books-grid .book-card:last-child:nth-child(odd) {
-      grid-column: 1 / -1;
-      max-width: calc(50% - 0.75rem);
-      margin: 0 auto;
+    .bc-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(200,133,31,0.06) 0%,transparent 60%); pointer-events:none; }
+    .bc-card::after { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,rgba(200,133,31,0.4),transparent); }
+    .bc-card:hover { border-color: rgba(200,133,31,0.55); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(200,133,31,0.1); }
+
+    /* 3D Kniha */
+    .bc-book-wrap { flex-shrink: 0; padding: 0; }
+    .bc-book {
+      width: 130px; height: 178px;
+      position: relative; transform-style: flat;
+      transform: perspective(2400px) rotateY(-14deg) rotateX(2deg) translateZ(0);
+      transition: transform 0.4s ease;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
-    @media (max-width: 680px) {
-      .books-grid { grid-template-columns: 1fr; }
-      .books-grid .book-card:last-child:nth-child(odd) { grid-column: 1; max-width: 100%; }
+    .bc-card:hover .bc-book {
+      transform: perspective(2400px) rotateY(-8deg) rotateX(1deg) translateZ(0);
+    }
+    .bc-spine-face { display: none; }
+    .bc-side-face { display: none; }
+    .bc-face { position: absolute; }
+    .bc-front {
+      width: 130px; height: 178px;
+      background: var(--bc-front);
+      border-radius: 3px 6px 6px 3px;
+      display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+      padding: 16px 10px 12px;
+      box-shadow: inset 10px 0 18px rgba(0,0,0,0.5), inset -2px 0 4px rgba(255,255,255,0.06), -6px 10px 28px rgba(0,0,0,0.7);
+      overflow: hidden; position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: geometricPrecision;
+    }
+    .bc-front::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(165deg, rgba(255,255,255,0.13) 0%, transparent 40%, rgba(0,0,0,0.15) 100%);
+      pointer-events: none;
+    }
+    .bc-front::after {
+      content: ''; position: absolute; top: 0; right: 0; width: 3px; height: 100%;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(0,0,0,0.3));
+    }
+
+    /* Obsah karty */
+    .bc-content { flex: 1; position: relative; z-index: 1; }
+    .bc-tag { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+    .bc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; line-height: 1.2; }
+    .bc-desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin-bottom: 0.9rem; }
+    .bc-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      color: var(--gold); font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.08em; text-decoration: none;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .bc-btn:hover { color: var(--gold-mid); gap: 0.6rem; }
+
+    .bc-face-ico { font-size: 2rem; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.6)); position: relative; z-index: 1; }
+    .bc-face-line { width: 55px; height: 1px; background: rgba(255,255,255,0.25); position: relative; z-index: 1; }
+    .bc-face-title { font-family: 'Cormorant Garamond', serif; font-size: 0.82rem; font-weight: 700; color: #fff; text-align: center; padding: 0 6px; line-height: 1.3; letter-spacing: 0.01em; text-shadow: 0 1px 6px rgba(0,0,0,0.9); position: relative; z-index: 1; }
+    .bc-face-yr { font-size: 0.58rem; color: rgba(255,255,255,0.55); letter-spacing: 0.12em; position: relative; z-index: 1; }
+    .bc-face-badge { font-size: 0.48rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.6); padding: 2px 5px; border-radius: 3px; letter-spacing: 0.08em; position: relative; z-index: 1; }
+    .bc-face-bottom { display: flex; align-items: center; justify-content: space-between; width: 100%; position: relative; z-index: 1; }
+    @media (max-width: 600px) {
+      .bc-card { flex-direction: column; align-items: flex-start; padding: 1.25rem; gap: 1rem; }
+      .bc-card--alt { flex-direction: column; }
+      .bc-card--alt .bc-book-wrap { order: -1; }
+      .bc-book { width: 105px; height: 144px; }
+      .bc-front { width: 105px; height: 144px; }
+      .bc-spine-face { height: 144px; }
+      .bc-face-ico { font-size: 1.6rem; }
+      .bc-face-title { font-size: 0.72rem; }
     }
 
     .book-card {
@@ -371,7 +457,7 @@
     }
     .book-desc {
       font-size: 0.87rem; color: var(--muted); line-height: 1.65;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
       margin-bottom: 1.2rem;
     }
     .book-meta {
@@ -497,12 +583,17 @@
     .benefit-item p { font-size: 0.84rem; color: rgba(255,255,255,0.65); line-height: 1.65; position: relative; z-index: 1; }
 
     /* ── ABOUT SECTION ─────────────────────────────────────────── */
-    .about-section { background: #0d0d0d; position: relative; overflow: hidden; }
+    .about-section {
+      position: relative;
+      background:
+        linear-gradient(to bottom, rgba(5,7,4,0.55) 0%, rgba(5,7,4,0.42) 40%, rgba(5,7,4,0.60) 100%),
+        url('/liptov.jpg') center 30%/cover no-repeat;
+    }
     .about-section::before {
       content: '';
       position: absolute; bottom: 0; right: 0;
       width: 500px; height: 500px;
-      background: radial-gradient(ellipse, rgba(200,133,31,0.06) 0%, transparent 65%);
+      background: radial-gradient(ellipse, rgba(200,133,31,0.08) 0%, transparent 65%);
       pointer-events: none;
     }
     .about-mini {
@@ -510,13 +601,18 @@
       display: grid;
       grid-template-columns: 220px 1fr auto;
       gap: 0;
-      background: rgba(200,133,31,0.03);
-      border: 1px solid rgba(200,133,31,0.35);
+      background: rgba(10,8,6,0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(200,133,31,0.40);
       border-radius: 20px;
       overflow: hidden;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
-    .about-mini:hover { border-color: rgba(200,133,31,0.6); box-shadow: 0 24px 60px rgba(200,133,31,0.08); }
+    .about-mini:hover { border-color: rgba(200,133,31,0.65); box-shadow: 0 24px 60px rgba(200,133,31,0.12); }
+    @media (max-width: 768px) {
+      .about-mini { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(10,8,6,0.94); }
+    }
     @media (max-width: 700px) {
       .about-mini { grid-template-columns: 1fr; }
     }
@@ -873,6 +969,25 @@
     .bs-hint { text-align: center; font-size: 11px; color: rgba(255,255,255,0.2); margin-top: 1.1rem; letter-spacing: 0.05em; }
 
     /* ── KALKULAČKA ── */
+    .kalk-section {
+      position: relative;
+      background-color: #0a0a0a;
+      background-image:
+        linear-gradient(rgba(200,133,31,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,133,31,0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .kalk-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200,133,31,0.055) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 50% at 10% 100%, rgba(200,133,31,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 90% 0%, rgba(200,133,31,0.03) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .kalk-section > * { position: relative; z-index: 1; }
     .kalk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
     @media(max-width:700px){.kalk-grid{grid-template-columns:1fr;}}
     .kalk-panel{padding:2rem;border-radius:16px;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
@@ -997,94 +1112,6 @@
   </div>
 </section>
 
-<!-- BOOKS SECTION -->
-<section class="section books-section" id="books" aria-label="E-knihy">
-  <div class="section-inner">
-    <div class="books-header reveal">
-      <p class="eyebrow" data-i18n="books_eyebrow">Bezplatné príručky</p>
-      <h2 class="section-title" data-i18n="books_title">Vyber si svoju e-knihu</h2>
-      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Kliknite na knihu a zistite, čo v nej nájdete.</p>
-    </div>
-
-    <!-- POLIČKA -->
-    <div class="bookshelf-wrap reveal reveal-d1">
-      <div class="bs-shelf">
-
-        <div class="bs-book" onclick="bsPick(0)">
-          <div class="bs-top"></div>
-          <div class="bs-spine" style="background:linear-gradient(165deg,#2a5fa0 0%,#1a3f72 50%,#0f2850 100%);">
-            <div class="bs-shine"></div>
-            <span class="bs-ico">✨</span>
-            <span class="bs-ttl">Váš prvý byt</span>
-            <span class="bs-yr">2025</span>
-          </div>
-          <div class="bs-bshadow"></div>
-        </div>
-
-        <div class="bs-book" onclick="bsPick(1)">
-          <div class="bs-top"></div>
-          <div class="bs-spine" style="background:linear-gradient(165deg,#3a7028 0%,#254a18 50%,#163010 100%);">
-            <div class="bs-shine"></div>
-            <span class="bs-ico">📜</span>
-            <span class="bs-ttl">Zdedený byt</span>
-            <span class="bs-yr">2025</span>
-          </div>
-          <div class="bs-bshadow"></div>
-        </div>
-
-        <div class="bs-book" onclick="bsPick(2)">
-          <div class="bs-top"></div>
-          <div class="bs-spine" style="background:linear-gradient(165deg,#8a2a2a 0%,#5e1a1a 50%,#3e1010 100%);">
-            <div class="bs-shine"></div>
-            <span class="bs-ico">⚠️</span>
-            <span class="bs-ttl">Exekúcia na dverách</span>
-            <span class="bs-yr">2025</span>
-          </div>
-          <div class="bs-bshadow"></div>
-        </div>
-
-        <div class="bs-book" onclick="bsPick(3)">
-          <div class="bs-top"></div>
-          <div class="bs-spine" style="background:linear-gradient(165deg,#7a5018 0%,#52340e 50%,#342208 100%);">
-            <div class="bs-shine"></div>
-            <span class="bs-ico">⚖️</span>
-            <span class="bs-ttl">Rozvod a majetok</span>
-            <span class="bs-yr">2025</span>
-          </div>
-          <div class="bs-bshadow"></div>
-        </div>
-
-        <div class="bs-book" onclick="bsPick(4)">
-          <div class="bs-top"></div>
-          <div class="bs-spine" style="background:linear-gradient(165deg,#4e2a80 0%,#321858 50%,#1e0e38 100%);">
-            <div class="bs-shine"></div>
-            <span class="bs-ico">🔗</span>
-            <span class="bs-ttl">Reťazový obchod</span>
-            <span class="bs-yr">2025</span>
-          </div>
-          <div class="bs-bshadow"></div>
-        </div>
-
-        <div class="bs-board"></div>
-      </div>
-
-      <div class="bs-panel">
-        <div class="bs-pinner" id="bs-pi">
-          <span class="bs-pico" id="bs-ico"></span>
-          <div>
-            <div class="bs-ptag" id="bs-tag"></div>
-            <div class="bs-ptitle" id="bs-title"></div>
-            <div class="bs-pdesc" id="bs-desc"></div>
-            <a class="bs-pbtn" id="bs-btn" href="#">Chcem túto príručku →</a>
-          </div>
-        </div>
-      </div>
-      <p class="bs-hint">Kliknite znovu na knihu pre zatvorenie</p>
-    </div>
-
-  </div>
-</section>
-
 <!-- ABOUT SECTION -->
 <section class="section about-section" aria-label="O mne">
   <div class="section-inner">
@@ -1116,8 +1143,134 @@
   </div>
 </section>
 
+<!-- BOOKS SECTION -->
+<section class="section books-section" id="books" aria-label="E-knihy">
+  <div class="section-inner">
+    <div class="books-header reveal">
+      <p class="eyebrow" data-i18n="books_eyebrow">Bezplatné príručky</p>
+      <h2 class="section-title" data-i18n="books_title">Vyber si svoju e-knihu</h2>
+      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
+    </div>
+
+    <!-- BOOK CARDS -->
+    <div class="bc-list reveal reveal-d1">
+
+      <!-- Karta 1 -->
+      <div class="bc-card">
+        <div class="bc-book-wrap">
+          <div class="bc-book" style="--bc-front:#2a5fa0;--bc-side:#1a3f72;--bc-spine:#0f2850;">
+            <div class="bc-face bc-front">
+              <span class="bc-face-ico">✨</span>
+              <div class="bc-face-line"></div>
+              <span class="bc-face-title">Váš prvý byt</span>
+              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
+            </div>
+            <div class="bc-face bc-spine-face"></div>
+            <div class="bc-face bc-side-face"></div>
+          </div>
+        </div>
+        <div class="bc-content">
+          <div class="bc-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
+          <div class="bc-title" data-i18n="book1_title">Váš prvý byt</div>
+          <div class="bc-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady — váš kompas od prvého kroku.</div>
+          <a class="bc-btn" href="/prvy-byt" data-i18n="btn_download">PREČÍTAŤ →</a>
+        </div>
+      </div>
+
+      <!-- Karta 2 -->
+      <div class="bc-card bc-card--alt">
+        <div class="bc-content">
+          <div class="bc-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
+          <div class="bc-title" data-i18n="book2_title">Zdedený byt</div>
+          <div class="bc-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</div>
+          <a class="bc-btn" href="/dedicstvo" data-i18n="btn_download">PREČÍTAŤ →</a>
+        </div>
+        <div class="bc-book-wrap">
+          <div class="bc-book" style="--bc-front:#3a7028;--bc-side:#254a18;--bc-spine:#163010;">
+            <div class="bc-face bc-front">
+              <span class="bc-face-ico">📜</span>
+              <div class="bc-face-line"></div>
+              <span class="bc-face-title">Zdedený byt</span>
+              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
+            </div>
+            <div class="bc-face bc-spine-face"></div>
+            <div class="bc-face bc-side-face"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Karta 3 -->
+      <div class="bc-card">
+        <div class="bc-book-wrap">
+          <div class="bc-book" style="--bc-front:#8a2a2a;--bc-side:#5e1a1a;--bc-spine:#3e1010;">
+            <div class="bc-face bc-front">
+              <span class="bc-face-ico">⚠️</span>
+              <div class="bc-face-line"></div>
+              <span class="bc-face-title">Exekúcia na dverách</span>
+              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
+            </div>
+            <div class="bc-face bc-spine-face"></div>
+            <div class="bc-face bc-side-face"></div>
+          </div>
+        </div>
+        <div class="bc-content">
+          <div class="bc-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
+          <div class="bc-title" data-i18n="book3_title">Exekúcia na dverách</div>
+          <div class="bc-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</div>
+          <a class="bc-btn" href="/exekucia" data-i18n="btn_download">PREČÍTAŤ →</a>
+        </div>
+      </div>
+
+      <!-- Karta 4 -->
+      <div class="bc-card bc-card--alt">
+        <div class="bc-content">
+          <div class="bc-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
+          <div class="bc-title" data-i18n="book4_title">Rozvod a predaj majetku</div>
+          <div class="bc-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</div>
+          <a class="bc-btn" href="/rozvod" data-i18n="btn_download">PREČÍTAŤ →</a>
+        </div>
+        <div class="bc-book-wrap">
+          <div class="bc-book" style="--bc-front:#7a5018;--bc-side:#52340e;--bc-spine:#342208;">
+            <div class="bc-face bc-front">
+              <span class="bc-face-ico">⚖️</span>
+              <div class="bc-face-line"></div>
+              <span class="bc-face-title">Rozvod a majetok</span>
+              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
+            </div>
+            <div class="bc-face bc-spine-face"></div>
+            <div class="bc-face bc-side-face"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Karta 5 -->
+      <div class="bc-card">
+        <div class="bc-book-wrap">
+          <div class="bc-book" style="--bc-front:#4e2a80;--bc-side:#321858;--bc-spine:#1e0e38;">
+            <div class="bc-face bc-front">
+              <span class="bc-face-ico">🔗</span>
+              <div class="bc-face-line"></div>
+              <span class="bc-face-title">Reťazový obchod</span>
+              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
+            </div>
+            <div class="bc-face bc-spine-face"></div>
+            <div class="bc-face bc-side-face"></div>
+          </div>
+        </div>
+        <div class="bc-content">
+          <div class="bc-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
+          <div class="bc-title" data-i18n="book5_title">Reťazový obchod</div>
+          <div class="bc-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu — váš kompas krok za krokom.</div>
+          <a class="bc-btn" href="/retazovy-obchod" data-i18n="btn_download">PREČÍTAŤ →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- HYPOTÉKA KALKULAČKA -->
-<section class="section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka" style="background:#0d0d0d;">
+<section class="section kalk-section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka">
   <div class="section-inner" style="max-width:920px;margin:0 auto;">
 
     <div style="text-align:center;margin-bottom:48px;">
@@ -2076,6 +2229,8 @@
       observer.observe(el);
     });
   });
+
+
 
   /* ─── BOOKSHELF ─────────────────────────────────────── */
   const BS_BASE = [
