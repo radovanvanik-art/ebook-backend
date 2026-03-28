@@ -251,8 +251,10 @@ footer a{color:rgba(200,133,31,0.35);transition:color 0.2s;}
 footer a:hover{color:var(--gold);}
 .footer-links{display:flex;gap:1.5rem;}
 .lang-switcher{display:flex;gap:4px}
-.lang-btn{background:transparent;border:1px solid rgba(255,255,255,0.18);color:rgba(255,255,255,0.5);font-size:0.7rem;font-weight:600;letter-spacing:0.5px;padding:3px 7px;border-radius:4px;cursor:pointer;transition:all 0.2s}
-.lang-btn.active,.lang-btn:hover{background:var(--gold);border-color:var(--gold);color:white}
+.lang-btn{background:transparent;border:none;cursor:pointer;padding:0.22rem 0.28rem;border-radius:4px;opacity:0.55;transition:background 0.18s,opacity 0.18s;display:flex;align-items:center;justify-content:center}
+.lang-btn:hover{opacity:1}
+.lang-btn.active{background:var(--gold);opacity:1}
+.lang-btn img{width:22px;height:15px;object-fit:cover;border-radius:2px;display:block}
 @media(max-width:580px){.nav-logo{width:34px;height:34px;justify-content:center;gap:0;border-radius:999px;background:rgba(200,133,31,0.14);border:1px solid rgba(200,133,31,0.3)}.nav-logo-dot,.nav-logo-label{display:none}.nav-logo-home{display:block;width:15px;height:15px}}
 html, body { overscroll-behavior-x: none; }
 body { touch-action: pan-y pinch-zoom; }
@@ -269,10 +271,10 @@ body { touch-action: pan-y pinch-zoom; }
   </a>
   <div class="nav-center">
     <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
-      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')">SK</button>
-      <button class="lang-btn" id="lang-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')">UA</button>
-      <button class="lang-btn" id="lang-de" onclick="setLang('de')">DE</button>
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="22" height="15" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="22" height="15" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="22" height="15" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="22" height="15" loading="lazy"></button>
     </div>
     <a href="/" class="nav-link">Domov</a>
     <a href="/#books" class="nav-link">E-knihy</a>
