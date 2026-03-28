@@ -158,9 +158,87 @@
       white-space: nowrap;
     }
     .nav-cta:hover { background: var(--gold-mid); transform: translateY(-1px); }
+    /* ── HAMBURGER BUTTON ────────────────────────────────────── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 34px; height: 34px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-hamburger:hover { background: rgba(255,255,255,0.08); }
+    .nav-hamburger span {
+      display: block;
+      width: 20px; height: 2px;
+      background: rgba(255,255,255,0.75);
+      border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU OVERLAY ────────────────────────────────────── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 199;
+      background: rgba(11,14,24,0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      padding: 1.25rem 1.25rem 1.5rem;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a, .mobile-menu button.mob-cta {
+      display: block;
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.18s, color 0.18s;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .mobile-menu a:hover, .mobile-menu button.mob-cta:hover {
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+    .mobile-menu button.mob-cta {
+      margin-top: 0.5rem;
+      background: var(--gold);
+      color: #fff;
+      font-weight: 600;
+      text-align: center;
+    }
+    .mobile-menu button.mob-cta:hover { background: var(--gold-mid); }
+    .mobile-menu-sep {
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0.5rem 0;
+    }
+
     @media (max-width: 580px) {
       .nav { height: 52px; padding: 0 0.75rem; gap: 0.5rem; }
       .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
       .nav-center {
         gap: 0.4rem;
         flex: 1;
@@ -1297,6 +1375,9 @@
     <a href="/faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
     <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
   </div>
+  <button class="nav-hamburger" id="navHamburger" aria-label="Otvoriť menu" onclick="toggleMobileMenu()">
+    <span></span><span></span><span></span>
+  </button>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -1306,6 +1387,15 @@
     </a>
   </div>
 </header>
+
+<!-- MOBILE MENU -->
+<nav class="mobile-menu" id="mobileMenu" aria-label="Mobilná navigácia">
+  <a href="/o-mne" onclick="closeMobileMenu()">O mne</a>
+  <a href="/mapa" onclick="closeMobileMenu()">Mapa ponúk</a>
+  <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
+  <div class="mobile-menu-sep"></div>
+  <button class="mob-cta" onclick="closeMobileMenu(); scrollToBooks()">Stiahnuť e-knihu zadarmo →</button>
+</nav>
 
 <!-- HERO -->
 <section class="hero" aria-label="Hlavná sekcia">
@@ -2491,6 +2581,27 @@
   function scrollToBooks() {
     document.getElementById('books').scrollIntoView({ behavior: 'smooth' });
   }
+
+  /* ─── MOBILE HAMBURGER MENU ──────────────────────────── */
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('navHamburger');
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open);
+  }
+  function closeMobileMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('navHamburger').classList.remove('open');
+  }
+  // Zatvor menu pri kliknutí mimo
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('navHamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
 
   /* ─── SCROLL REVEAL ──────────────────────────────────── */
   window.addEventListener('DOMContentLoaded', () => {
