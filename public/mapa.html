@@ -90,6 +90,12 @@ footer a:hover{color:var(--gold)}
 .footer-links{display:flex;gap:1.5rem}
 html, body { overscroll-behavior-x: none; }
 body { touch-action: pan-y pinch-zoom; }
+.map-filters{padding:0.7rem 1.5rem;display:flex;gap:0.45rem;flex-wrap:wrap;border-bottom:1px solid rgba(200,133,31,0.12)}
+.mf-btn{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:rgba(255,255,255,0.45);padding:0.32rem 0.85rem;border-radius:20px;font-size:11.5px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif}
+.mf-btn:hover{border-color:rgba(200,133,31,0.4);color:rgba(255,255,255,0.8);background:rgba(200,133,31,0.07)}
+.mf-btn.active{background:rgba(200,133,31,0.15);border-color:rgba(200,133,31,0.55);color:#E8A83A}
+.mf-count{background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.3);border-radius:10px;padding:0 6px;font-size:10px;font-weight:700}
+.mf-btn.active .mf-count{background:rgba(200,133,31,0.25);color:#C8851F}
 </style>
 </head>
 <body>
@@ -127,6 +133,14 @@ body { touch-action: pan-y pinch-zoom; }
         <div class="leg"><div class="leg-dot active"></div>Aktívna ponuka</div>
         <div class="leg"><div class="leg-dot sold"></div>Predané</div>
       </div>
+    </div>
+    <div class="map-filters">
+      <button class="mf-btn active" data-type="all">🗺️ Všetky <span class="mf-count" id="cnt-all">18</span></button>
+      <button class="mf-btn" data-type="byt">🏢 Byty <span class="mf-count" id="cnt-byt">3</span></button>
+      <button class="mf-btn" data-type="dom">🏠 Domy <span class="mf-count" id="cnt-dom">7</span></button>
+      <button class="mf-btn" data-type="pozemok">🌿 Pozemky <span class="mf-count" id="cnt-pozemok">4</span></button>
+      <button class="mf-btn" data-type="chata">🏡 Chaty <span class="mf-count" id="cnt-chata">2</span></button>
+      <button class="mf-btn" data-type="ostatne">🏭 Ostatné <span class="mf-count" id="cnt-ostatne">2</span></button>
     </div>
     <div class="map-wrap">
       <div id="gmap" style="width:100%;height:100%;"></div>
@@ -172,25 +186,56 @@ body { touch-action: pan-y pinch-zoom; }
 
 <script>
 const PONUKY = [
-  { lat: 49.0740, lng: 19.3100, title: 'Stavebný pozemok – Do Dielca', info: 'Ružomberok, mestská časť Do Dielca (nová štvrť nad Roveňou)' },
-  { lat: 49.0839, lng: 19.3086, title: 'Obchodné priestory – Podhora', info: 'Podhora 55, Ružomberok · prenájom' },
-  { lat: 49.0620, lng: 19.3350, title: 'Záhradná chatka – Štiavnička', info: 'Záhradkárska oblasť, Štiavnička pri Ružomberku' },
-  { lat: 49.0500, lng: 19.2100, title: 'Rodinný dom – Hubová', info: 'Centrum obce Hubová, okres Ružomberok' },
-  { lat: 49.1020, lng: 19.2750, title: 'Investičný pozemok – Likavka', info: 'Obec Likavka, panoramatický výhľad na hrad' },
-  { lat: 49.0630, lng: 19.3250, title: 'Stavebný pozemok – Štiavnička', info: 'Intravilán obce Štiavnička, pripravené na výstavbu RD' },
-  { lat: 49.1190, lng: 19.1630, title: 'Dom – Stankovany', info: 'Obec Stankovany, vhodný na bývanie aj podnikanie' },
-  { lat: 49.0580, lng: 19.5450, title: 'Bungalov – Liptovská Štiavnica', info: 'Novostavba, tichá časť obce Liptovská Štiavnica' },
-  { lat: 49.0920, lng: 19.2950, title: 'Rodinný dom – Klačno (ID 399)', info: 'Ružomberok, mestská časť Klačno, slepá ulica' },
-  { lat: 49.0500, lng: 19.6800, title: 'Rekreačná chata – Liptovská Sielnica', info: 'Rekreačná oblasť pri Liptovskej Mare' },
-  { lat: 49.0780, lng: 19.2700, title: 'Výrobná hala – Biely Potok', info: 'Ružomberok, mestská časť Biely Potok, priemyselná zóna' },
-  { lat: 49.0720, lng: 18.9380, title: '4-izbový byt – Martin, Priekopa', info: 'Ulica Priekopská, Martin – Priekopa' },
-  { lat: 49.0780, lng: 19.3200, title: '2-izbový byt – Bystrická cesta', info: 'Bystrická cesta, Ružomberok, sídlisko Roveň' },
-  { lat: 48.9620, lng: 19.5520, title: 'Rodinný dom – Liptovská Lúžna', info: 'Obec Liptovská Lúžna, pôvodný stav, pod Nízkymi Tatrami' },
-  { lat: 49.0700, lng: 19.5920, title: '2-izbový byt – Iľanovo', info: 'Liptovský Mikuláš, mestská časť Iľanovo' },
-  { lat: 49.1700, lng: 19.1200, title: 'RD/objekt na podnikanie – Valaská Dubová (ID 317)', info: 'Centrum obce Valaská Dubová, pri hlavnom ťahu na Dolný Kubín' },
-  { lat: 49.1100, lng: 19.2380, title: 'Rodinný dom – Ludrová (ID 316)', info: 'Centrálna časť obce Ludrová, okres Ružomberok' },
-  { lat: 49.1110, lng: 19.2420, title: 'Pozemok – Ludrová', info: 'Obec Ludrová, nová lokalita pre výstavbu' }
+  { lat: 49.0740, lng: 19.3100, type: 'pozemok', title: 'Stavebný pozemok – Do Dielca', info: 'Ružomberok, mestská časť Do Dielca (nová štvrť nad Roveňou)' },
+  { lat: 49.0839, lng: 19.3086, type: 'ostatne', title: 'Obchodné priestory – Podhora', info: 'Podhora 55, Ružomberok · prenájom' },
+  { lat: 49.0620, lng: 19.3350, type: 'chata',   title: 'Záhradná chatka – Štiavnička', info: 'Záhradkárska oblasť, Štiavnička pri Ružomberku' },
+  { lat: 49.0500, lng: 19.2100, type: 'dom',     title: 'Rodinný dom – Hubová', info: 'Centrum obce Hubová, okres Ružomberok' },
+  { lat: 49.1020, lng: 19.2750, type: 'pozemok', title: 'Investičný pozemok – Likavka', info: 'Obec Likavka, panoramatický výhľad na hrad' },
+  { lat: 49.0630, lng: 19.3250, type: 'pozemok', title: 'Stavebný pozemok – Štiavnička', info: 'Intravilán obce Štiavnička, pripravené na výstavbu RD' },
+  { lat: 49.1190, lng: 19.1630, type: 'dom',     title: 'Dom – Stankovany', info: 'Obec Stankovany, vhodný na bývanie aj podnikanie' },
+  { lat: 49.0580, lng: 19.5450, type: 'dom',     title: 'Bungalov – Liptovská Štiavnica', info: 'Novostavba, tichá časť obce Liptovská Štiavnica' },
+  { lat: 49.0920, lng: 19.2950, type: 'dom',     title: 'Rodinný dom – Klačno (ID 399)', info: 'Ružomberok, mestská časť Klačno, slepá ulica' },
+  { lat: 49.0500, lng: 19.6800, type: 'chata',   title: 'Rekreačná chata – Liptovská Sielnica', info: 'Rekreačná oblasť pri Liptovskej Mare' },
+  { lat: 49.0780, lng: 19.2700, type: 'ostatne', title: 'Výrobná hala – Biely Potok', info: 'Ružomberok, mestská časť Biely Potok, priemyselná zóna' },
+  { lat: 49.0720, lng: 18.9380, type: 'byt',     title: '4-izbový byt – Martin, Priekopa', info: 'Ulica Priekopská, Martin – Priekopa' },
+  { lat: 49.0780, lng: 19.3200, type: 'byt',     title: '2-izbový byt – Bystrická cesta', info: 'Bystrická cesta, Ružomberok, sídlisko Roveň' },
+  { lat: 48.9620, lng: 19.5520, type: 'dom',     title: 'Rodinný dom – Liptovská Lúžna', info: 'Obec Liptovská Lúžna, pôvodný stav, pod Nízkymi Tatrami' },
+  { lat: 49.0700, lng: 19.5920, type: 'byt',     title: '2-izbový byt – Iľanovo', info: 'Liptovský Mikuláš, mestská časť Iľanovo' },
+  { lat: 49.1700, lng: 19.1200, type: 'dom',     title: 'RD/objekt na podnikanie – Valaská Dubová (ID 317)', info: 'Centrum obce Valaská Dubová, pri hlavnom ťahu na Dolný Kubín' },
+  { lat: 49.1100, lng: 19.2380, type: 'dom',     title: 'Rodinný dom – Ludrová (ID 316)', info: 'Centrálna časť obce Ludrová, okres Ružomberok' },
+  { lat: 49.1110, lng: 19.2420, type: 'pozemok', title: 'Pozemok – Ludrová', info: 'Obec Ludrová, nová lokalita pre výstavbu' }
 ];
+
+const PIN_COLORS = {
+  byt:     { top: '#7ECBF5', mid: '#4A90D4', bot: '#1A4A7A', stroke: '#1A4A7A', dot: '#1A5C9E' },
+  dom:     { top: '#FFE899', mid: '#E8A030', bot: '#8B5000', stroke: '#6B3D00', dot: '#B06800' },
+  pozemok: { top: '#A8D8A8', mid: '#4CAF50', bot: '#1B5C1B', stroke: '#1B5C1B', dot: '#2E7D2E' },
+  chata:   { top: '#D4A8E8', mid: '#9C6FBE', bot: '#4A2272', stroke: '#4A2272', dot: '#7A3FA8' },
+  ostatne: { top: '#C0C0C0', mid: '#888888', bot: '#444444', stroke: '#333333', dot: '#666666' }
+};
+
+function makePinSvg(c) {
+  return encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">'+
+    '<defs>'+
+    '<radialGradient id="rg" cx="38%" cy="28%" r="68%">'+
+    '<stop offset="0%" stop-color="'+c.top+'"/>'+
+    '<stop offset="55%" stop-color="'+c.mid+'"/>'+
+    '<stop offset="100%" stop-color="'+c.bot+'"/>'+
+    '</radialGradient>'+
+    '<filter id="sh" x="-30%" y="-20%" width="160%" height="160%">'+
+    '<feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#00000055"/>'+
+    '</filter>'+
+    '</defs>'+
+    '<g filter="url(#sh)">'+
+    '<path d="M18 2C10.268 2 4 8.268 4 16c0 10.5 14 28 14 28S32 26.5 32 16C32 8.268 25.732 2 18 2z" fill="url(#rg)" stroke="'+c.stroke+'" stroke-width="1.5"/>'+
+    '</g>'+
+    '<circle cx="18" cy="15.5" r="6.5" fill="rgba(255,255,255,0.93)"/>'+
+    '<circle cx="18" cy="15.5" r="3.2" fill="'+c.dot+'"/>'+
+    '<circle cx="15.8" cy="13.2" r="1.2" fill="rgba(255,255,255,0.7)"/>'+
+    '</svg>'
+  );
+}
 
 fetch('/api/maps-key')
   .then(r => r.json())
@@ -215,28 +260,11 @@ function initMap() {
   });
 
   const infoWindow = new google.maps.InfoWindow();
+  const markersArr = [];
 
   PONUKY.forEach(p => {
-    const pinSvg = encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46">' +
-      '<defs>' +
-      '<radialGradient id="rg" cx="38%" cy="28%" r="68%">' +
-      '<stop offset="0%" stop-color="#FFE899"/>' +
-      '<stop offset="55%" stop-color="#E8A030"/>' +
-      '<stop offset="100%" stop-color="#8B5000"/>' +
-      '</radialGradient>' +
-      '<filter id="sh" x="-30%" y="-20%" width="160%" height="160%">' +
-      '<feDropShadow dx="0" dy="3" stdDeviation="2.5" flood-color="#00000055"/>' +
-      '</filter>' +
-      '</defs>' +
-      '<g filter="url(#sh)">' +
-      '<path d="M18 2C10.268 2 4 8.268 4 16c0 10.5 14 28 14 28S32 26.5 32 16C32 8.268 25.732 2 18 2z" fill="url(#rg)" stroke="#6B3D00" stroke-width="1.5"/>' +
-      '</g>' +
-      '<circle cx="18" cy="15.5" r="6.5" fill="rgba(255,255,255,0.93)"/>' +
-      '<circle cx="18" cy="15.5" r="3.2" fill="#B06800"/>' +
-      '<circle cx="15.8" cy="13.2" r="1.2" fill="rgba(255,255,255,0.7)"/>' +
-      '</svg>'
-    );
+    const c = PIN_COLORS[p.type] || PIN_COLORS.ostatne;
+    const pinSvg = makePinSvg(c);
     const marker = new google.maps.Marker({
       position: { lat: p.lat, lng: p.lng },
       map,
@@ -250,6 +278,22 @@ function initMap() {
     marker.addListener('click', () => {
       infoWindow.setContent(`<div style="color:#000;font-family:Inter,sans-serif;font-size:13px;"><strong>${p.title}</strong><br>${p.info}</div>`);
       infoWindow.open(map, marker);
+    });
+    markersArr.push({ marker, type: p.type });
+  });
+
+  document.querySelectorAll('.mf-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filterType = btn.dataset.type;
+      document.querySelectorAll('.mf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      let visible = 0;
+      markersArr.forEach(({ marker, type }) => {
+        const show = filterType === 'all' || type === filterType;
+        marker.setMap(show ? map : null);
+        if (show) visible++;
+      });
+      document.querySelector('.map-badge-num').textContent = visible + (filterType === 'all' ? '+' : '');
     });
   });
 }
