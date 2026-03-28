@@ -32,4 +32,5 @@ const PONUKY = [
   { lat: 49.1408, lng: 19.2945, type: 'dom',     title: 'RD/objekt na podnikanie – Valaská Dubová (ID 317)', info: 'Valaská Dubová, priamo pri hlavnom ťahu E77' },
   { lat: 49.0466, lng: 19.3318, type: 'dom',     title: 'Rodinný dom – Ludrová (ID 316)',           info: 'Centrálna zóna Ludrovej (v blízkosti kostola)' },
   { lat: 49.0660, lng: 19.3260, type: 'pozemok', title: 'Pozemok – Ludrová',                        info: 'Nová stavebná zóna na začiatku obce (smerom od Ružomberka)' },
+  { lat: 49.0494, lng: 19.6789, type: 'byt',     title: 'Investičný apartmán – Liptovský Ján',      info: 'Starojánska, Liptovský Ján, okres Liptovský Mikuláš' },
 ];
