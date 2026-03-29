@@ -72,7 +72,7 @@
       --cream:      #F7F4EE;
       --white:      #FFFFFF;
       --ink:        #0E1016;
-      --muted:      #7A8394;
+      --muted:      #5C6470;
       --subtle:     #A8B0BF;
       --border:     #E8E4DC;
       --border-d:   rgba(255,255,255,0.07);
@@ -1400,6 +1400,9 @@
   <button class="mob-cta" onclick="closeMobileMenu(); scrollToBooks()">Stiahnuť e-knihu zadarmo →</button>
 </nav>
 
+<!-- HLAVNÝ OBSAH -->
+<main id="main-content">
+
 <!-- HERO -->
 <section class="hero" aria-label="Hlavná sekcia">
   <div class="hero-inner">
@@ -1624,7 +1627,7 @@
             <span data-i18n="kalk_loan">Výška úveru</span>
             <strong id="loanVal">100 000 €</strong>
           </div>
-          <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range">
+          <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range" aria-label="Výška úveru">
           <div class="kalk-slider-range"><span>10 000 €</span><span>500 000 €</span></div>
         </div>
 
@@ -1633,7 +1636,7 @@
             <span data-i18n="kalk_rate">Úroková sadzba</span>
             <strong id="rateVal">3.5 %</strong>
           </div>
-          <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range">
+          <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range" aria-label="Úroková sadzba">
           <div class="kalk-slider-range"><span>0.5 %</span><span>10 %</span></div>
         </div>
 
@@ -1642,7 +1645,7 @@
             <span data-i18n="kalk_years">Doba splácania</span>
             <strong id="yearsVal">25 rokov</strong>
           </div>
-          <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range">
+          <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range" aria-label="Doba splácania">
           <div class="kalk-slider-range"><span>5 rokov</span><span>30 rokov</span></div>
         </div>
       </div>
@@ -1916,6 +1919,8 @@
     <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener" data-i18n="footer_privacy">Ochrana súkromia</a>
   </div>
 </footer>
+
+</main><!-- /#main-content -->
 
 <!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-el">
