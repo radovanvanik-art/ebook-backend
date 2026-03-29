@@ -15,6 +15,14 @@ function sendHtmlNoCache(res, filePath) {
     res.sendFile(filePath);
 }
 
+// ─── HTTP → HTTPS redirect (produkcia) ───────────────────────────────────
+app.use((req, res, next) => {
+    if (req.headers['x-forwarded-proto'] === 'http') {
+        return res.redirect(301, 'https://www.radovanvanik.com' + req.url);
+    }
+    next();
+});
+
 app.use(compression());
 app.use(cors());
 app.use(express.json());
@@ -78,11 +86,20 @@ app.get('/api/maps-key', (req, res) => {
     res.json({ key: process.env.GOOGLE_MAPS_API_KEY });
 });
 
+// ─── PRESMEROVANIE /index.html → / (SEO: zamedzí duplikátu) ──────────────
+app.get('/index.html', (req, res) => {
+    res.redirect(301, '/');
+});
+
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
 const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
+    });
+    // Presmerovanie /stránka.html → /stránka
+    app.get(`/${page}.html`, (req, res) => {
+        res.redirect(301, `/${page}`);
     });
 });
 
