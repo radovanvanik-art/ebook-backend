@@ -29,10 +29,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'), {
     maxAge: '7d',
     setHeaders: (res, filePath) => {
-        if (path.extname(filePath).toLowerCase() === '.html') {
+        const ext = path.extname(filePath).toLowerCase();
+        if (ext === '.html') {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
+        } else if (['.webp', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.ico', '.woff2', '.woff'].includes(ext)) {
+            res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         }
     }
 }));
