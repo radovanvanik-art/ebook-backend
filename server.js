@@ -15,9 +15,13 @@ function sendHtmlNoCache(res, filePath) {
     res.sendFile(filePath);
 }
 
-// ─── HTTP → HTTPS redirect (produkcia) ───────────────────────────────────
+// ─── HTTP → HTTPS + non-www → www redirect (produkcia) ──────────────────
 app.use((req, res, next) => {
-    if (req.headers['x-forwarded-proto'] === 'http') {
+    const proto = req.headers['x-forwarded-proto'];
+    const host = req.headers['x-forwarded-host'] || req.headers['host'] || '';
+    const isHttp = proto === 'http';
+    const isNonWww = host === 'radovanvanik.com';
+    if (isHttp || isNonWww) {
         return res.redirect(301, 'https://www.radovanvanik.com' + req.url);
     }
     next();
@@ -95,7 +99,7 @@ app.get('/index.html', (req, res) => {
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
-const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq'];
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
