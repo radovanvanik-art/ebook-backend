@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
 <meta charset="UTF-8"/>
@@ -57,7 +57,7 @@ a{text-decoration:none;color:inherit}
 .nav-logo-icon{flex-shrink:0}
 .nav-logo-label{display:inline}
 .nav-center{display:flex;align-items:center;gap:1rem}
-.nav-link{color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:500;transition:color 0.2s}
+.nav-link{color:rgba(255,255,255,0.82);font-size:0.82rem;font-weight:500;transition:color 0.2s}
 .nav-link:hover{color:white}
 .nav-cta{
   background:var(--gold);color:white;
@@ -70,7 +70,7 @@ a{text-decoration:none;color:inherit}
 .nav-social{
   width:30px;height:30px;border-radius:6px;
   display:flex;align-items:center;justify-content:center;
-  color:rgba(255,255,255,0.4);transition:color 0.2s,background 0.2s;
+  color:rgba(255,255,255,0.76);transition:color 0.2s,background 0.2s;
 }
 .nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
 footer{
@@ -78,15 +78,15 @@ footer{
   padding:1.8rem clamp(1.25rem,5vw,3rem);
   display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;
 }
-footer p{font-size:0.78rem;color:rgba(255,255,255,0.25)}
-footer a{color:rgba(255,255,255,0.35);transition:color 0.2s}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.61)}
+footer a{color:rgba(255,255,255,0.71);transition:color 0.2s}
 footer a:hover{color:var(--gold)}
 .footer-links{display:flex;gap:1.5rem}
 .floats{position:fixed;bottom:1.75rem;right:1.5rem;display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem;z-index:300}
 .float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:transform 0.2s,box-shadow 0.2s;position:relative}
 .float-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .float-wa{background:#25D366}.float-ph{background:var(--gold)}
-.float-tip{position:absolute;right:62px;background:var(--dark);color:rgba(255,255,255,0.85);font-size:0.73rem;font-weight:500;padding:0.28rem 0.65rem;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;font-family:inherit}
+.float-tip{position:absolute;right:62px;background:var(--dark);color:rgba(255,255,255,0.82);font-size:0.73rem;font-weight:500;padding:0.28rem 0.65rem;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s;font-family:inherit}
 .float-btn:hover .float-tip{opacity:1}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -120,12 +120,12 @@ body { touch-action: pan-y pinch-zoom; }
 }
 .hero-sub-breadcrumb {
   display:flex;align-items:center;gap:0.5rem;
-  font-size:0.75rem;color:rgba(255,255,255,0.3);
+  font-size:0.75rem;color:rgba(255,255,255,0.66);
   margin-bottom:1.5rem;
 }
-.hero-sub-breadcrumb a {color:rgba(255,255,255,0.4);transition:color 0.2s}
+.hero-sub-breadcrumb a {color:rgba(255,255,255,0.76);transition:color 0.2s}
 .hero-sub-breadcrumb a:hover {color:var(--gold)}
-.hero-sub-breadcrumb span {color:rgba(255,255,255,0.2)}
+.hero-sub-breadcrumb span {color:rgba(255,255,255,0.56)}
 .hero-sub h1 {
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(2.4rem,5vw,4rem);font-weight:700;
@@ -133,7 +133,7 @@ body { touch-action: pan-y pinch-zoom; }
   margin-bottom:1.2rem;
 }
 .hero-sub-desc {
-  font-size:1rem;color:rgba(255,255,255,0.5);
+  font-size:1rem;color:rgba(255,255,255,0.82);
   line-height:1.75;max-width:480px;margin-bottom:2rem;
 }
 .hero-sub-meta {
@@ -142,7 +142,7 @@ body { touch-action: pan-y pinch-zoom; }
 }
 .hero-sub-meta-item {
   display:flex;align-items:center;gap:0.4rem;
-  font-size:0.8rem;color:rgba(255,255,255,0.35);font-weight:500;
+  font-size:0.8rem;color:rgba(255,255,255,0.71);font-weight:500;
 }
 .hero-sub-meta-item svg {color:var(--gold)}
 
@@ -303,7 +303,7 @@ body { touch-action: pan-y pinch-zoom; }
   border:1px solid var(--border-d);margin-top:2rem;
 }
 .for-who-box .section-eyebrow {color:var(--gold)}
-.for-who-box p {color:rgba(255,255,255,0.6);font-size:0.95rem;line-height:1.7;margin-top:0.5rem}
+.for-who-box p {color:rgba(255,255,255,0.82);font-size:0.95rem;line-height:1.7;margin-top:0.5rem}
 
 /* OTHER BOOKS */
 .other-books-section {
@@ -330,10 +330,10 @@ body { touch-action: pan-y pinch-zoom; }
   transform:translateY(-2px);
 }
 .other-book-ico {font-size:1.5rem;flex-shrink:0}
-.other-book-tag {font-size:0.65rem;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.2rem}
+.other-book-tag {font-size:0.65rem;color:rgba(255,255,255,0.66);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.2rem}
 .other-book-title {font-size:0.92rem;font-weight:600;color:white}
-.other-book-pages {font-size:0.72rem;color:rgba(255,255,255,0.3);margin-top:0.15rem}
-.other-book-arr {margin-left:auto;flex-shrink:0;color:rgba(255,255,255,0.2);transition:color 0.2s,transform 0.2s}
+.other-book-pages {font-size:0.72rem;color:rgba(255,255,255,0.66);margin-top:0.15rem}
+.other-book-arr {margin-left:auto;flex-shrink:0;color:rgba(255,255,255,0.56);transition:color 0.2s,transform 0.2s}
 .other-book:hover .other-book-arr {color:var(--gold);transform:translateX(3px)}
 
 @media(max-width:820px) {
@@ -392,7 +392,7 @@ body { touch-action: pan-y pinch-zoom; }
         <span>›</span>
         <a href="/#books">E-knihy</a>
         <span>›</span>
-        <span style="color:rgba(255,255,255,0.5)">Rozvod a predaj majetku</span>
+        <span style="color:rgba(255,255,255,0.82)">Rozvod a predaj majetku</span>
       </div>
       <h1 data-i18n="hero_h1">Rozvod a predaj majetku</h1>
       <p class="hero-sub-desc" data-i18n="hero_desc">Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.</p>
@@ -436,7 +436,7 @@ body { touch-action: pan-y pinch-zoom; }
         <div class="form-card-tag" data-i18n="form_card_tag">Rozvod · Bolesť, nový začiatok</div>
         <h3 data-i18n="form_h3">Stiahnuť zadarmo</h3>
         <div class="form-card-hook" data-i18n="form_hook">Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.</div>
-        <div class="form-quote" data-i18n="form_quote">„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ — Klientka, máj 2025</div>
+        <div class="form-quote" data-i18n="form_quote">„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ - Klientka, máj 2025</div>
         <div class="form-card-lock">
           <svg width="11" height="11" viewBox="0 0 12 12" fill="none"><rect x="2" y="5" width="8" height="6" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M4 5V3.5a2 2 0 0 1 4 0V5" stroke="currentColor" stroke-width="1.2"/></svg>
           <span data-i18n="form_lock">Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.</span>
@@ -452,7 +452,7 @@ body { touch-action: pan-y pinch-zoom; }
         <div class="form-success" id="success-wrap">
           <div class="form-success-icon">✅</div>
           <h3 data-i18n="form_success_title">Výborne! Sťahovanie začína.</h3>
-          <p data-i18n="form_success_p">Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.</p>
+          <p data-i18n="form_success_p">Skontroluj svoju emailovú schránku - pošleme ti aj potvrdenie.</p>
           <a href="tel:+421948310950" class="form-success-cta">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             <span data-i18n="form_success_cta">Zavolajte mi: +421 948 310 950</span>
@@ -476,7 +476,7 @@ body { touch-action: pan-y pinch-zoom; }
         
       <div class="chapter-item reveal" style="animation-delay:0.0s">
         <div class="chapter-num">01</div>
-        <div class="chapter-text" data-i18n="ch1">BSM — bezpodielové spoluvlastníctvo</div>
+        <div class="chapter-text" data-i18n="ch1">BSM - bezpodielové spoluvlastníctvo</div>
       </div>
       <div class="chapter-item reveal" style="animation-delay:0.08s">
         <div class="chapter-num">02</div>
@@ -506,7 +506,7 @@ body { touch-action: pan-y pinch-zoom; }
 <!-- OTHER BOOKS -->
 <section class="other-books-section">
   <div class="other-books-inner">
-    <p class="section-eyebrow" style="color:rgba(255,255,255,0.35)" data-i18n="other_books_eyebrow">Ďalšie e-knihy zadarmo</p>
+    <p class="section-eyebrow" style="color:rgba(255,255,255,0.71)" data-i18n="other_books_eyebrow">Ďalšie e-knihy zadarmo</p>
     <h2 class="section-h2" style="color:white" data-i18n="other_books_h2">Ďalšie situácie, ktoré riešim</h2>
     <div class="other-books-grid">
       
@@ -585,16 +585,16 @@ const TRANSLATIONS = {
     form_card_tag:'Rozvod · Bolesť, nový začiatok', form_h3:'Stiahnuť zadarmo',
     form_hook:'Rozchod je sám o sebe dosť ťažký. Pomôžem vám premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou – rýchlo, férovo a s chladnou hlavou.',
     form_lock:'Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.',
-    form_quote:'„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ — Klientka, máj 2025',
+    form_quote:'„Neveria mi, čo všetko mi poradil ešte pred podpisom zmluvy. Ušetrila som tisíce.“ - Klientka, máj 2025',
     form_submit:'Stiahnuť →', form_sending:'Posielam…', form_spam:'🔒 Žiadny spam. Odhlásenie kedykoľvek.',
     form_err_email:'Zadaj platný email.', form_err_server:'Nastala chyba. Skús to znova.',
     form_success_title:'Výborne! Sťahovanie začína.',
-    form_success_p:'Skontroluj svoju emailovú schránku — pošleme ti aj potvrdenie.',
+    form_success_p:'Skontroluj svoju emailovú schránku - pošleme ti aj potvrdenie.',
     form_success_cta:'Zavolajte mi: +421 948 310 950', form_success_note:'Konzultácia zadarmo · Online aj osobne',
     for_who_eyebrow:'Pre koho je táto e-kniha', for_who_p:'Pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť bez zbytočných konfliktov.',
     chapters_eyebrow:'Čo sa dozviete', chapters_h2:'Obsah e-knihy', chapters_p:'Konkrétne témy, žiadna zbytočná teória.',
     other_books_eyebrow:'Ďalšie e-knihy zadarmo', other_books_h2:'Ďalšie situácie, ktoré riešim',
-    ch1:'BSM — bezpodielové spoluvlastníctvo', ch2:'Možnosti vysporiadania majetku', ch3:'Predaj bytu počas rozvodu', ch4:'Právna ochrana oboch strán', ch5:'Emocionálna stránka procesu', ch6:'Nový začiatok po predaji',
+    ch1:'BSM - bezpodielové spoluvlastníctvo', ch2:'Možnosti vysporiadania majetku', ch3:'Predaj bytu počas rozvodu', ch4:'Právna ochrana oboch strán', ch5:'Emocionálna stránka procesu', ch6:'Nový začiatok po predaji',
     ob_prv_tag:'Prvá kúpa · Nový začiatok', ob_prv_title:'Váš prvý byt', ob_prv_pages:'26 strán', ob_ded_tag:'Dedičstvo · Zmätok, papierovačky', ob_ded_title:'Zdedili ste nehnuteľnosť?', ob_ded_pages:'20 strán', ob_exe_tag:'Dlhová kríza · Strach, naliehavosť', ob_exe_title:'Exekúcia na dverách', ob_exe_pages:'26 strán', ob_ret_tag:'Predaj + kúpa · Koordinácia', ob_ret_title:'Reťazový obchod', ob_ret_pages:'32 strán',
   },
   en: {
@@ -602,13 +602,13 @@ const TRANSLATIONS = {
     hero_tag:'⚖️ Divorce · Pain, new beginning', hero_h1:'Divorce and property sale',
     hero_desc:'A sensitive guide for couples separating who need to resolve jointly owned property. Community property, settlement options, selling an apartment during divorce.',
     form_card_tag:'Divorce · Pain, new beginning', form_h3:'Download free',
-    form_hook:'Separation is hard enough on its own. I\'ll help you turn joint property into capital that allows both of you to move on — quickly, fairly and with a clear head.',
+    form_hook:'Separation is hard enough on its own. I\'ll help you turn joint property into capital that allows both of you to move on - quickly, fairly and with a clear head.',
     form_lock:'Your info is safe. Discretion is a priority.',
-    form_quote:'„People can\'t believe everything he advised me before I signed the contract. I saved thousands.“ — Client, May 2025',
+    form_quote:'„People can\'t believe everything he advised me before I signed the contract. I saved thousands.“ - Client, May 2025',
     form_submit:'Download →', form_sending:'Sending…', form_spam:'🔒 No spam. Unsubscribe anytime.',
     form_err_email:'Enter a valid email.', form_err_server:'An error occurred. Please try again.',
     form_success_title:'Great! Download starting.',
-    form_success_p:'Check your inbox — we\'ll also send a confirmation.',
+    form_success_p:'Check your inbox - we\'ll also send a confirmation.',
     form_success_cta:'Call me: +421 948 310 950', form_success_note:'Free consultation · Online or in person',
     for_who_eyebrow:'Who is this e-book for', for_who_p:'For couples separating who need to resolve jointly owned property without unnecessary conflict.',
     chapters_eyebrow:'What you\'ll learn', chapters_h2:'E-book contents', chapters_p:'Specific topics, no unnecessary theory.',
@@ -621,18 +621,18 @@ const TRANSLATIONS = {
     hero_tag:'⚖️ Розлучення · Біль, новий початок', hero_h1:'Розділ та продаж майна',
     hero_desc:'Чутливий посібник для пар, які розлучаються і потребують вирішити спільну нерухомість. Спільне майно, варіанти регулювання, продаж квартири під час розлучення.',
     form_card_tag:'Розлучення · Біль, новий початок', form_h3:'Завантажити безкоштовно',
-    form_hook:'Розлучення і так досить важке. Допоможу перетворити спільну нерухомість на капітал, який дозволить обом піти вперед — швидко і чесно.',
-    form_lock:'Ваші дані в безпеці. Конфіденційність — пріоритет.',
-    form_quote:'„Люди не вірять, що він мені порадив ще до підписання договору. Я заощадила тисячі.“ — Клієнтка, травень 2025',
+    form_hook:'Розлучення і так досить важке. Допоможу перетворити спільну нерухомість на капітал, який дозволить обом піти вперед - швидко і чесно.',
+    form_lock:'Ваші дані в безпеці. Конфіденційність - пріоритет.',
+    form_quote:'„Люди не вірять, що він мені порадив ще до підписання договору. Я заощадила тисячі.“ - Клієнтка, травень 2025',
     form_submit:'Завантажити →', form_sending:'Надсилаю…', form_spam:'🔒 Жодного спаму. Відписатися будь-коли.',
     form_err_email:'Введіть дійсний email.', form_err_server:'Виникла помилка. Спробуйте ще раз.',
     form_success_title:'Чудово! Завантаження розпочинається.',
-    form_success_p:'Перевірте поштову скриньку — ми також надішлемо підтвердження.',
+    form_success_p:'Перевірте поштову скриньку - ми також надішлемо підтвердження.',
     form_success_cta:'Подзвоніть мені: +421 948 310 950', form_success_note:'Консультація безкоштовно · Онлайн або особисто',
     for_who_eyebrow:'Для кого ця е-книга', for_who_p:'Для пар, які розлучаються і потребують вирішити спільну нерухомість без зайвих конфліктів.',
     chapters_eyebrow:'Що ви дізнаєтесь', chapters_h2:'Зміст е-книги', chapters_p:'Конкретні теми, ніякої зайвої теорії.',
     other_books_eyebrow:'Більше безкоштовних е-книг', other_books_h2:'Інші ситуації, які я вирішую',
-    ch1:'СПМ — спільна подружня власність', ch2:'Варіанти врегулювання майна', ch3:'Продаж квартири під час розлучення', ch4:'Правовий захист обох сторін', ch5:'Емоційна сторона процесу', ch6:'Новий початок після продажу',
+    ch1:'СПМ - спільна подружня власність', ch2:'Варіанти врегулювання майна', ch3:'Продаж квартири під час розлучення', ch4:'Правовий захист обох сторін', ch5:'Емоційна сторона процесу', ch6:'Новий початок після продажу',
     ob_prv_tag:'Перша купівля · Новий початок', ob_prv_title:'Ваша перша квартира', ob_prv_pages:'26 сторінок', ob_ded_tag:'Спадщина · Нерозуміння, папери', ob_ded_title:'Ви успадкували нерухомість?', ob_ded_pages:'20 сторінок', ob_exe_tag:'Боргова криза · Страх, терміновість', ob_exe_title:'Виконавець біля дверей', ob_exe_pages:'26 сторінок', ob_ret_tag:'Продаж + купівля · Координація', ob_ret_title:'Ланцюгова угода', ob_ret_pages:'32 сторінки',
   },
   de: {
@@ -640,13 +640,13 @@ const TRANSLATIONS = {
     hero_tag:'⚖️ Scheidung · Schmerz, Neuanfang', hero_h1:'Scheidung und Immobilienverkauf',
     hero_desc:'Ein erühlsamer Leitfaden für Paare, die sich trennen und eine gemeinsame Immobilie regeln müssen. Gemeinschaftseigentum, Ausgleichsoptionen, Wohnungsverkauf während der Scheidung.',
     form_card_tag:'Scheidung · Schmerz, Neuanfang', form_h3:'Kostenlos herunterladen',
-    form_hook:'Eine Trennung ist schon schwer genug. Ich helfe Ihnen, die gemeinsame Immobilie in Kapital umzuwandeln, das Ihnen beiden ermöglicht, weiterzugehen — schnell, fair und kühlköpfig.',
+    form_hook:'Eine Trennung ist schon schwer genug. Ich helfe Ihnen, die gemeinsame Immobilie in Kapital umzuwandeln, das Ihnen beiden ermöglicht, weiterzugehen - schnell, fair und kühlköpfig.',
     form_lock:'Ihre Daten sind sicher. Diskretion hat Priorität.',
-    form_quote:'„Leute glauben nicht, was er mir alles vor der Vertragsunterzeichnung geraten hat. Ich sparte tausende.“ — Kundin, Mai 2025',
+    form_quote:'„Leute glauben nicht, was er mir alles vor der Vertragsunterzeichnung geraten hat. Ich sparte tausende.“ - Kundin, Mai 2025',
     form_submit:'Herunterladen →', form_sending:'Wird gesendet…', form_spam:'🔒 Kein Spam. Jederzeit abmeldbar.',
     form_err_email:'Bitte gültige E-Mail eingeben.', form_err_server:'Ein Fehler ist aufgetreten. Bitte erneut versuchen.',
     form_success_title:'Prima! Download startet.',
-    form_success_p:'Prüfen Sie Ihren Posteingang — wir senden auch eine Bestätigung.',
+    form_success_p:'Prüfen Sie Ihren Posteingang - wir senden auch eine Bestätigung.',
     form_success_cta:'Rufen Sie mich an: +421 948 310 950', form_success_note:'Kostenlose Beratung · Online oder persönlich',
     for_who_eyebrow:'Für wen ist dieses E-Book', for_who_p:'Für Paare, die sich trennen und eine gemeinsame Immobilie ohne unnötige Konflikte lösen müssen.',
     chapters_eyebrow:'Was Sie lernen werden', chapters_h2:'E-Book Inhalt', chapters_p:'Konkrete Themen, keine unnötige Theorie.',

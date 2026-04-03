@@ -1,4 +1,4 @@
-/**
+﻿/**
  * PONUKY – zoznam nehnuteľností na mape
  * ─────────────────────────────────────
  * Každá ponuka má tieto polia:

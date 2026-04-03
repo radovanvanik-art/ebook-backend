@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="sk">
 <head>
   <meta charset="UTF-8" />
@@ -31,9 +31,9 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" /></noscript>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" /></noscript>
 
   <style>
     html, body { width: 100%; max-width: 100%; overflow-x: clip; }
@@ -207,57 +207,50 @@
     .blog-hero-inner {
       position: relative; z-index: 4;
       max-width: 1160px; margin: 0 auto;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
     }
     .bh-tag {
-      display: inline-flex; align-items: center; gap: 0.55rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
       font-size: 0.67rem; font-weight: 700; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 1.6rem;
+      text-transform: uppercase; color: rgba(200,133,31,0.90);
+      margin-bottom: 1.5rem;
+      padding-left: 0.85rem;
+      border-left: 2px solid rgba(200,133,31,0.52);
     }
-    .bh-tag::before {
-      content: '';
-      display: inline-block; width: 4px; height: 4px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
+    .bh-tag::before { display: none; }
     .blog-hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3.2rem, 7.5vw, 5.8rem);
-      font-weight: 700; line-height: 0.95;
+      font-size: clamp(4rem, 10vw, 7.5rem);
+      font-weight: 700; line-height: 1.05;
       letter-spacing: -0.028em;
-      background: linear-gradient(
-        160deg,
-        #ffffff        0%,
-        #f5e8cc       20%,
-        var(--gold-mid) 38%,
-        #fff8e8       52%,
-        var(--gold-mid) 66%,
-        #f5e8cc       80%,
-        #ffffff       100%
-      );
-      background-size: 300% auto;
+      background: linear-gradient(175deg, #ffffff 0%, #f5e8cc 45%, #c8851f 100%);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
+      filter:
+        drop-shadow(0 2px 22px rgba(0,0,0,0.92))
+        drop-shadow(0 0 55px rgba(200,133,31,0.22));
       margin-bottom: 1.5rem;
-      max-width: 680px;
-      animation: h1-shimmer 9s linear infinite;
+      max-width: 100%;
     }
     .bh-rule {
-      width: 48px; height: 2px;
-      background: linear-gradient(90deg, var(--gold) 0%, rgba(200,133,31,0.15) 100%);
+      width: 60px; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
       margin-bottom: 1.2rem;
     }
     .blog-hero-sub {
-      font-size: clamp(0.9rem, 1.4vw, 1rem);
-      color: rgba(255,255,255,0.52);
-      max-width: 460px;
-      line-height: 1.78; font-weight: 400;
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+      color: rgba(255,255,255,0.90);
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
+      max-width: 480px;
+      line-height: 1.75; font-weight: 400;
       margin-bottom: 2.8rem;
+      text-align: center;
     }
     .bh-stats {
       display: flex; align-items: center; gap: 1.75rem;
-      flex-wrap: wrap;
+      flex-wrap: wrap; justify-content: center;
     }
     .bh-stat { display: flex; flex-direction: column; gap: 0.22rem; }
     .bh-stat-num {
@@ -266,8 +259,8 @@
       color: var(--gold);
     }
     .bh-stat-label {
-      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(255,255,255,0.22);
+      font-size: 0.65rem; font-weight: 600; letter-spacing: 0.09em;
+      text-transform: uppercase; color: rgba(255,255,255,0.82);
     }
     .bh-stat-sep {
       width: 1px; height: 34px;
@@ -292,18 +285,18 @@
       flex-shrink: 0;
       padding: 1rem 1.1rem;
       border-radius: 0;
-      font-size: 0.71rem; font-weight: 600;
+      font-size: 0.78rem; font-weight: 600;
       border: none;
       border-bottom: 2px solid transparent;
       background: transparent;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.80);
       cursor: pointer; font-family: inherit;
       transition: color 0.2s, border-color 0.2s;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .filter-btn:hover { color: rgba(255,255,255,0.65); }
+    .filter-btn:hover { color: #fff; }
     .filter-btn.active {
       color: var(--gold);
       border-bottom-color: var(--gold);
@@ -326,7 +319,7 @@
         radial-gradient(ellipse 16% 11% at 78% 27%, rgba(25,11,2,0.55) 0%, transparent 70%),
         radial-gradient(ellipse 13% 9%  at 20% 70%, rgba(20,9,2,0.42)  0%, transparent 70%),
         radial-gradient(ellipse 11% 8%  at 62% 78%, rgba(28,12,2,0.35) 0%, transparent 70%),
-        /* Warm amber paper glow — survived centre */
+        /* Warm amber paper glow - survived centre */
         radial-gradient(ellipse 62% 52% at 50% 48%, rgba(85,48,12,0.30) 0%, rgba(55,28,8,0.14) 52%, transparent 76%),
         /* Paper base */
         #0e0b07;
@@ -468,11 +461,26 @@
       letter-spacing: -0.01em;
     }
     .featured-excerpt {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Lora', Georgia, serif;
       font-style: italic;
-      font-size: 1.12rem; color: rgba(22,10,0,0.88);
-      line-height: 1.82; margin-bottom: 1.75rem;
+      font-size: 1.02rem; color: rgba(22,10,0,0.88);
+      line-height: 1.75; margin-bottom: 1.75rem;
     }
+    .featured-excerpt .fx-intro { display: block; margin-bottom: 0.85rem; }
+    .featured-excerpt .fx-steps {
+      list-style: none; padding: 0; margin: 0 0 0.85rem;
+      display: flex; flex-direction: column; gap: 0.35rem;
+    }
+    .featured-excerpt .fx-steps li {
+      display: flex; align-items: baseline; gap: 0.55rem;
+      font-style: normal; font-size: 1rem;
+    }
+    .featured-excerpt .fx-steps li .fx-num {
+      font-weight: 700; font-style: italic;
+      color: #7a4800; flex-shrink: 0; font-size: 0.95rem;
+      letter-spacing: 0.03em; min-width: 3.2rem;
+    }
+    .featured-excerpt .fx-warn { display: block; font-style: italic; opacity: 0.82; }
     .post-meta {
       display: flex; align-items: center; gap: 1rem;
       font-size: 0.72rem; color: rgba(38,22,6,0.4);
@@ -536,9 +544,8 @@
 
     .blog-card {
       background:
-        linear-gradient(168deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.04) 40%, transparent 65%),
-        linear-gradient(338deg, rgba(185,140,45,0.10) 0%, transparent 48%),
-        #ede3c8;
+        linear-gradient(338deg, rgba(185,140,45,0.08) 0%, transparent 48%),
+        #e8d9b5;
       border: none;
       border-radius: 14px;
       overflow: hidden;
@@ -561,7 +568,7 @@
         0 0 0 1px rgba(185,140,50,0.32),
         inset 0 1px 0 rgba(255,255,255,0.35);
     }
-    .blog-card:hover .card-read-more { background: #b8711c; color: #fff; border-color: #b8711c; }
+    .blog-card:hover .card-read-more { background: var(--gold-mid); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(200,133,31,0.45); }
 
     .card-thumb { display: none; }
     .card-thumb-img { display: none; }
@@ -623,14 +630,14 @@
     .card-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.42rem; font-weight: 700; line-height: 1.2;
-      color: #110800; margin-bottom: 0.65rem;
+      color: #0d0500; margin-bottom: 0.65rem;
       letter-spacing: -0.01em;
     }
     .card-excerpt {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Lora', Georgia, serif;
       font-style: italic;
-      font-size: 1.06rem; color: rgba(28,12,2,0.88);
-      line-height: 1.78;
+      font-size: 0.93rem; color: #2a1200;
+      line-height: 1.72;
       display: -webkit-box; -webkit-line-clamp: 4; line-clamp: 4;
       -webkit-box-orient: vertical; overflow: hidden;
       margin-bottom: 1.25rem; flex: 1;
@@ -642,19 +649,21 @@
     }
     .card-meta {
       display: flex; align-items: center; gap: 0.6rem;
-      font-size: 0.72rem; color: rgba(28,12,2,0.62);
+      font-size: 0.72rem; color: rgba(28,12,2,0.75);
     }
     .card-meta-dot { width: 2.5px; height: 2.5px; border-radius: 50%; background: rgba(48,28,6,0.30); }
     .card-read-more {
+      display: inline-flex; align-items: center; gap: 0.4rem;
       font-size: 0.72rem; font-weight: 700;
-      color: #9a6010;
-      background: rgba(185,128,30,0.14);
-      border: 1px solid rgba(180,125,28,0.35);
-      padding: 0.34rem 0.82rem;
-      border-radius: 6px;
-      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      color: var(--white);
+      background: var(--gold);
+      border: none;
+      padding: 0.42rem 0.95rem;
+      border-radius: 8px;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
       letter-spacing: 0.02em;
       white-space: nowrap;
+      box-shadow: 0 3px 10px rgba(200,133,31,0.32);
     }
 
     /* ── CTA STRIP ── */
@@ -690,12 +699,38 @@
       font-weight: 700; color: var(--white); line-height: 1.15;
     }
     .cta-strip-sub {
-      font-size: 0.88rem; color: rgba(255,255,255,0.38);
+      font-size: 0.88rem; color: rgba(255,255,255,0.60);
       margin-top: 0.4rem; max-width: 480px;
     }
     .cta-strip-actions {
-      display: flex; gap: 0.75rem; flex-wrap: wrap;
-      position: relative; z-index: 1; flex-shrink: 0;
+      display: flex; gap: 0.75rem; flex-wrap: wrap; flex-direction: column; align-items: stretch;
+      position: relative; z-index: 1; flex-shrink: 0; min-width: 280px;
+    }
+    .cta-email-form {
+      display: flex; gap: 0;
+      border: 1px solid rgba(200,133,31,0.45);
+      border-radius: 10px; overflow: hidden;
+    }
+    .cta-email-input {
+      background: rgba(255,255,255,0.07);
+      border: none; outline: none;
+      padding: 0.78rem 1rem;
+      color: #fff; font-size: 0.86rem; font-family: inherit;
+      flex: 1; min-width: 0;
+    }
+    .cta-email-input::placeholder { color: rgba(255,255,255,0.35); }
+    .cta-email-input:focus { background: rgba(255,255,255,0.11); }
+    .cta-email-btn {
+      background: var(--gold); border: none;
+      padding: 0.78rem 1.1rem;
+      color: #fff; font-size: 0.80rem; font-weight: 700;
+      cursor: pointer; font-family: inherit; white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .cta-email-btn:hover { background: var(--gold-mid); }
+    .cta-email-success {
+      font-size: 0.88rem; color: rgba(255,255,255,0.85);
+      padding: 0.75rem 0.25rem; text-align: center;
     }
     .btn-gold {
       display: inline-flex; align-items: center; gap: 0.5rem;
@@ -729,6 +764,22 @@
     footer a { color: rgba(200,133,31,0.35); transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
     .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.6rem; }
+    .footer-links a { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .footer-links .ft-label { display: inline; }
+    @media (max-width: 580px) {
+      .footer-links { gap: 0.55rem; margin-top: 1rem; }
+      .footer-links a {
+        width: 42px; height: 42px;
+        border-radius: 50%;
+        background: rgba(200,133,31,0.10);
+        border: 1px solid rgba(200,133,31,0.22);
+        justify-content: center;
+        gap: 0;
+      }
+      .footer-links a:hover { background: rgba(200,133,31,0.22); }
+      .footer-links .ft-label { display: none; }
+      footer p { font-size: 0.68rem; line-height: 1.55; padding: 0 0.5rem; }
+    }
 
     /* ── SCROLL REVEAL ── */
     .reveal { opacity: 1; transform: none; transition: opacity 0.6s ease, transform 0.6s ease; }
@@ -892,8 +943,8 @@
     <div class="blog-hero-video-overlay" aria-hidden="true"></div>
 
 
-    <!-- SVG watermark — letters filled with building windows -->
-    <svg class="blog-svg-mark" viewBox="0 0 820 215" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMaxYMid meet">
+    <!-- SVG watermark - letters filled with building windows -->
+    <svg class="blog-svg-mark" viewBox="0 0 820 215" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMaxYMid meet" style="display:none">
       <defs>
         <!-- Window grid pattern that fills each letter silhouette -->
         <pattern id="blogWin" x="0" y="0" width="20" height="24" patternUnits="userSpaceOnUse">
@@ -944,7 +995,7 @@
       <div class="bh-tag">Realitný blog · Radovan Vaník</div>
       <h1>Reality bez<br/>zbytočných<br/>slov.</h1>
       <div class="bh-rule"></div>
-      <p class="blog-hero-sub">Praktické rady — od prvého bytu cez dedičstvo až po reťazový obchod. Bez zbytočností, priamo k veci.</p>
+      <p class="blog-hero-sub">Väčšina ľudí to zistí neskoro. Vy to zistíte teraz.</p>
       <div class="bh-stats">
         <div class="bh-stat">
           <span class="bh-stat-num">6</span>
@@ -957,7 +1008,7 @@
         </div>
         <div class="bh-stat-sep"></div>
         <div class="bh-stat">
-          <span class="bh-stat-num">250+</span>
+          <span class="bh-stat-num">260+</span>
           <span class="bh-stat-label">Stiahnutí</span>
         </div>
       </div>
@@ -1010,7 +1061,15 @@
         <div class="featured-body">
           <span class="post-category">Predaj & kúpa zároveň</span>
           <h2 class="featured-title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h2>
-          <p class="featured-excerpt">„Predstavte si tri domino kocky. Prvá — predaj vášho bytu. Druhá — kúpa nového. Tretia — odovzdanie kľúčov. Ak spadne prvá, ostatné nasledujú. Ale ak niektorá zostane stáť, celá sekvencia sa zadrháva — a vy môžete zostať bez strechy nad hlavou, s hypotékou na dvoch bytoch zároveň..."</p>
+          <div class="featured-excerpt">
+            <span class="fx-intro">Reťazový obchod sú tri domino kocky - a ak jedna padne, padnú všetky.</span>
+            <ul class="fx-steps">
+              <li><span class="fx-num">Prvá</span> Predaj vášho bytu</li>
+              <li><span class="fx-num">Druhá</span> Kúpa nového</li>
+              <li><span class="fx-num">Tretia</span> Odovzdanie kľúčov</li>
+            </ul>
+            <span class="fx-warn">Ak niektorá zostane stáť, riskujete hypotéku na dvoch bytoch zároveň.</span>
+          </div>
           <div class="post-meta">
             <span>Radovan Vaník</span>
             <span class="post-meta-dot"></span>
@@ -1034,7 +1093,7 @@
           <div class="card-body">
             <span class="card-category">Kúpa nehnuteľnosti</span>
             <h3 class="card-title">Prvý byt: 7 chýb, ktoré robia mladí kupujúci</h3>
-            <p class="card-excerpt">„Než podpíšete čokoľvek, skontrolujte list vlastníctva. Nie v telefóne — vytlačte si ho a prejdite každý riadok. Raz za mnou prišiel mladý pár, ktorý o záložnom práve na byte vedel až pri podpise kúpnej zmluvy..."</p>
+            <p class="card-excerpt">„Pred podpisom si vytlačte list vlastníctva a prejdite každý riadok. Záložné právo na byte sa bežne objaví až pri podpise kúpnej zmluvy. Vtedy už býva neskoro..."</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Úryvok z e-knihy</span>
@@ -1055,7 +1114,7 @@
           <div class="card-body">
             <span class="card-category">Rozvod & nehnuteľnosť</span>
             <h3 class="card-title">Predaj pri rozvode: Čo hovorí zákon a ako to urýchliť</h3>
-            <p class="card-excerpt">„Bezpodielové spoluvlastníctvo nevzniká podpisom sobášneho listu — vzniká každou splátkou hypotéky, každou rekonštrukciou. A zaniká len dvoma spôsobmi: dohodou, alebo oddaním rozhodnutia súdu..."</p>
+            <p class="card-excerpt">„Spoločný majetok nevzniká sobášom. Vzniká každou splátkou hypotéky a každou rekonštrukciou. Zaniká len dvoma spôsobmi: dohodou, alebo rozhodnutím súdu..."</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Úryvok z e-knihy</span>
@@ -1075,8 +1134,8 @@
           </div>
           <div class="card-body">
             <span class="card-category">Dedičstvo</span>
-            <h3 class="card-title">Zdedil som byt — čo teraz? Postup krok za krokom</h3>
-            <p class="card-excerpt">„Ľudia si myslia, že zdediť nehnuteľnosť znamená dostať ju zadarmo. Dedičstvo však prináša nielen byt, ale aj dlhy, záložné práva a občas príbuzných, o ktorých ste netušili. Notár vám povie, čo ste zdedili. Táto e-kniha vám povie, čo s tým..."</p>
+            <h3 class="card-title">Zdedil som byt - čo teraz? Postup krok za krokom</h3>
+            <p class="card-excerpt">„Zdediť byt neznamená dostať ho zadarmo. Spolu s ním prídu záložné práva, dlhy a niekedy aj príbuzní, o ktorých ste netušili. Notár vám povie čo ste zdedili, táto e-kniha vám povie čo s tým..."</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Úryvok z e-knihy</span>
@@ -1097,7 +1156,7 @@
           <div class="card-body">
             <span class="card-category">Exekúcia</span>
             <h3 class="card-title">Môžem predať dom zaťažený exekúciou?</h3>
-            <p class="card-excerpt">„Príde klient a povie: 'Mám exekúciu, nemôžem predať.' Môžete. Ak je hodnota nehnuteľnosti vyššia než dlh, exekútor väčšinou súhlasí — pretože aj on chce, aby sa dlh vyrovnal. Kľúč je v komunikácii a v správnom poradí krokov..."</p>
+            <p class="card-excerpt">„Mám exekúciu, nemôžem predať. Môžete. Ak je hodnota bytu vyššia ako dlh, exekútor väčšinou súhlasí, lebo aj on chce aby sa dlh vyrovnal. Záleží na komunikácii a správnom poradí krokov...”</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Úryvok z e-knihy</span>
@@ -1118,7 +1177,7 @@
           <div class="card-body">
             <span class="card-category">Predaj & kúpa zároveň</span>
             <h3 class="card-title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h3>
-            <p class="card-excerpt">„Najčastejšia chyba? Ľudia predajú rýchlo, kúpia neskoro — a mesiac spia u rodičov. Alebo kúpia rýchlo a predajú neskoro, a dva mesiace platia dve hypotéky. Načasovanie nie je šťastie, je to plán..."</p>
+            <p class="card-excerpt">„Predajú rýchlo a kúpia neskoro, mesiac spia u rodičov. Alebo kúpia rýchlo a predajú neskoro, dva mesiace platia dve hypotéky. Načasovanie nie je šťastie, je to plán..."</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Úryvok z e-knihy</span>
@@ -1139,14 +1198,14 @@
           <div class="card-body">
             <span class="card-category">Trh & ceny</span>
             <h3 class="card-title">Ceny nehnuteľností v Ružomberku 2025 – kde smerujeme?</h3>
-            <p class="card-excerpt">„Pred piatimi rokmi stál priemerný trojizbový byt v Ružomberku menej ako 90 000 eur. Dnes je to vyše 130 000 eur. Čo sa zmenilo? Nie šikovnosť kupujúcich — zmenili sa úroky, inflácia a migrácia ľudí z väčších miest do regiónov..."</p>
+            <p class="card-excerpt">„Pred piatimi rokmi stál trojizbový byt v Ružomberku pod 90 000 eur. Dnes je to vyše 130 000. Nepomohla šikovnosť kupujúcich, zmenili sa úroky, inflácia a migrácia ľudí z väčších miest..."</p>
             <div class="card-footer">
               <div class="card-meta">
                 <span>Pohľad makléra</span>
                 <span class="card-meta-dot"></span>
                 <span>2025</span>
               </div>
-              <span class="card-read-more">Prezrieť e-knihy →</span>
+              <span class="card-read-more">Domov →</span>
             </div>
           </div>
         </a>
@@ -1156,13 +1215,18 @@
       <!-- CTA STRIP -->
       <div class="cta-strip reveal">
         <div class="cta-strip-text">
-          <div class="cta-strip-eyebrow">Bezplatný sprievodca</div>
-          <div class="cta-strip-title">Stiahnite e-knihu zadarmo</div>
-          <div class="cta-strip-sub">Vyberte si situáciu — prvý byt, dedičstvo, rozvod, exekúcia alebo reťazový obchod. Každá e-kniha je praktický plán, nie reklamný leták.</div>
+          <div class="cta-strip-title">Zdedili ste nehnuteľnosť?<br>Nechajte si ju oceniť.</div>
         </div>
         <div class="cta-strip-actions">
-          <a href="/" class="btn-gold">Vybrať e-knihu →</a>
-          <a href="tel:+421948310950" class="btn-ghost-sm">📞 Zavolať</a>
+          <form class="cta-email-form" onsubmit="ctaEmailSubmit(event)">
+            <input type="email" class="cta-email-input" placeholder="váš@email.sk" required aria-label="Váš email">
+            <button type="submit" class="cta-email-btn">Rezervovať ocenenie</button>
+          </form>
+          <div class="cta-email-success" id="ctaSuccess" style="display:none">✅ Ďakujeme! Ozveme sa do 24 hodín.</div>
+          <a href="tel:+421948310950" class="btn-gold">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            Zavolať
+          </a>
         </div>
       </div>
 
@@ -1173,17 +1237,26 @@
   <footer>
     <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
     <div class="footer-links">
-      <a href="tel:+421948310950">+421 948 310 950</a>
-      <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">najbyvanie.sk</a>
+      <a href="tel:+421948310950" aria-label="Zavolat +421 948 310 950">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span class="ft-label">+421 948 310 950</span>
+      </a>
+      <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener" aria-label="najbyvanie.sk">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span class="ft-label">najbyvanie.sk</span>
+      </a>
       <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-        Facebook
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span class="ft-label">Facebook</span>
       </a>
       <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" aria-label="Instagram">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Instagram
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span class="ft-label">Instagram</span>
       </a>
-      <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener">Ochrana súkromia</a>
+      <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener" aria-label="Ochrana súkromia">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.08 8.76-7 9.93-3.92-1.17-7-5.41-7-9.93V6.3l7-3.12zM11 7v6h2V7h-2zm0 8v2h2v-2h-2z"/></svg>
+        <span class="ft-label">Ochrana súkromia</span>
+      </a>
     </div>
   </footer>
 
@@ -1239,6 +1312,21 @@
         card.style.display = 'none';
       }
     });
+  }
+
+  // ── CTA EMAIL FORM ───────────────────────────────────
+  function ctaEmailSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.querySelector('input[type="email"]').value;
+    form.style.display = 'none';
+    document.getElementById('ctaSuccess').style.display = 'block';
+    // Odoslanie na server (ak endpoint existuje)
+    fetch('/api/rezervacia', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, typ: 'ocenenie-dedicstvo' })
+    }).catch(() => {}); // silent fail ak endpoint neexistuje
   }
 
   // ── SCROLL REVEAL ────────────────────────────────────
@@ -1328,12 +1416,12 @@
       if (e.touches.length > 0) applyWind(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
 
-    // Initial burst — znížené na mobile
+    // Initial burst - znížené na mobile
     const burstEmbers = isMobile ? 10 : 28;
     const burstDust   = isMobile ? 16 : 45;
     for (let i=0; i<burstEmbers; i++) setTimeout(() => makeParticle(false), i*(isMobile?200:120));
     for (let i=0; i<burstDust;   i++) setTimeout(() => makeParticle(true),  i*(isMobile?140:80)+60);
-    // Steady stream — pomalší na mobile
+    // Steady stream - pomalší na mobile
     let iv1 = setInterval(() => makeParticle(false), isMobile ? 600  : 220);
     let iv2 = setInterval(() => makeParticle(true),  isMobile ? 380  : 130);
     let iv3 = setInterval(() => makeParticle(false), isMobile ? 900  : 350);
