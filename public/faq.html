@@ -245,11 +245,11 @@ a{text-decoration:none;color:inherit}
 .btn-outline:hover{border-color:rgba(200,133,31,0.6);color:var(--gold-mid);}
 
 /* FOOTER */
-footer{background:#080808;border-top:1px solid rgba(200,133,31,0.2);padding:1.8rem clamp(1.25rem,5vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.75rem;}
+footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
 footer p{font-size:0.78rem;color:rgba(200,133,31,0.4);}
 footer a{color:rgba(200,133,31,0.35);transition:color 0.2s;}
 footer a:hover{color:var(--gold);}
-.footer-links{display:flex;gap:1.5rem;}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.6rem}.footer-links a{display:inline-flex;align-items:center;gap:0.45rem}.footer-links .ft-label{display:inline}@media(max-width:580px){.footer-links{gap:0.55rem;margin-top:1rem}.footer-links a{width:42px;height:42px;border-radius:50%;background:rgba(200,133,31,0.10);border:1px solid rgba(200,133,31,0.22);justify-content:center;gap:0}.footer-links a:hover{background:rgba(200,133,31,0.22)}.footer-links .ft-label{display:none}footer p{font-size:0.68rem;line-height:1.55;padding:0 0.5rem}}
 .lang-switcher{display:flex;gap:4px}
 .lang-btn{background:transparent;border:none;cursor:pointer;padding:0.22rem 0.28rem;border-radius:4px;opacity:0.55;transition:background 0.18s,opacity 0.18s;display:flex;align-items:center;justify-content:center}
 .lang-btn:hover{opacity:1}
@@ -486,13 +486,30 @@ body { touch-action: pan-y pinch-zoom; }
 
 <!-- FOOTER -->
 <footer>
-  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
-  <div class="footer-links">
-    <a href="tel:+421948310950">+421 948 310 950</a>
-    <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener">najbyvanie.sk</a>
-    <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener">Ochrana súkromia</a>
-  </div>
-</footer>
+    <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+    <div class="footer-links">
+      <a href="tel:+421948310950" aria-label="Zavolat +421 948 310 950">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span class="ft-label">+421 948 310 950</span>
+      </a>
+      <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener" aria-label="najbyvanie.sk">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span class="ft-label">najbyvanie.sk</span>
+      </a>
+      <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span class="ft-label">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span class="ft-label">Instagram</span>
+      </a>
+      <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener" aria-label="Ochrana súkromia">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.08 8.76-7 9.93-3.92-1.17-7-5.41-7-9.93V6.3l7-3.12zM11 7v6h2V7h-2zm0 8v2h2v-2h-2z"/></svg>
+        <span class="ft-label">Ochrana súkromia</span>
+      </a>
+    </div>
+  </footer>
 
 <script>
 const TRANSLATIONS = {
