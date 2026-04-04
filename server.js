@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
             res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
             res.setHeader('Pragma', 'no-cache');
             res.setHeader('Expires', '0');
-        } else if (['.webp', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.ico', '.woff2', '.woff'].includes(ext)) {
+        } else if (['.webp', '.jpg', '.jpeg', '.png', '.gif', '.svg', '.ico', '.woff2', '.woff', '.mp4', '.webm'].includes(ext)) {
             res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
         }
     }
@@ -96,6 +96,11 @@ app.get('/api/maps-key', (req, res) => {
 // ─── PRESMEROVANIE /index.html → / (SEO: zamedzí duplikátu) ──────────────
 app.get('/index.html', (req, res) => {
     res.redirect(301, '/');
+});
+
+// ─── PRESMEROVANIE jazykových variant /en/ /de/ /ua/ → SK verzia ─────────
+app.get('/:lang(en|de|ua)/:page', (req, res) => {
+    res.redirect(301, `/${req.params.page}`);
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────

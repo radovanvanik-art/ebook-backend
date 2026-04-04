@@ -39,13 +39,18 @@
   }
   </script>
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4R17WCR42"></script>
+  <!-- Google Analytics – lazy load po page load (nezablokuje render) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-X4R17WCR42');
+    window.addEventListener('load', function() {
+      var s = document.createElement('script');
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-X4R17WCR42';
+      s.async = true;
+      document.head.appendChild(s);
+    });
   </script>
 
   <!-- Fonts – non-blocking (fixes render-blocking warning) -->
