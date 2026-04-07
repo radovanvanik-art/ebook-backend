@@ -4,6 +4,15 @@ const compression = require('compression');
 const cors = require('cors');
 const fetch = require('node-fetch');
 const path = require('path');
+const fs = require('fs');
+
+const BOOK_TITLES = {
+  'ebook-prvy-byt':         'Váš prvý byt',
+  'ebook-dedicstvo':        'Zdedený byt',
+  'ebook-exekucia':         'Exekúcia na dverách',
+  'ebook-rozvod':           'Rozvod a predaj majetku',
+  'ebook-retazovy-obchod':  'Reťazový obchod'
+};
 
 const app = express();
 const PORT = process.env.PORT || 3000;

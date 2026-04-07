@@ -2098,7 +2098,6 @@
       const data = await res.json();
 
       if (res.ok && data.success) {
-        window.location.href = `/download/${BOOKS[currentBook].file}`;
         document.getElementById('modal-form-wrap').style.display    = 'none';
         document.getElementById('modal-success-wrap').style.display = '';
         if (typeof gtag !== 'undefined') gtag('event', 'ebook_download', { ebook: currentBook });
