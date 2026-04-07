@@ -1060,10 +1060,19 @@
 
     /* ── FOOTER ────────────────────────────────────────────────── */
     footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
-    footer p { font-size: 0.78rem; color: rgba(200,133,31,0.4); }
-    footer a { color: rgba(200,133,31,0.35); transition: color 0.2s; }
+    footer p { font-size: 0.78rem; color: rgba(255,255,255,0.61); }
+    footer a { color: rgba(255,255,255,0.71); transition: color 0.2s; }
     footer a:hover { color: var(--gold); }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.6rem; }
+    .footer-links a { display: inline-flex; align-items: center; gap: 0.45rem; }
+    .footer-links .ft-label { display: inline; }
+    @media (max-width: 580px) {
+      .footer-links { gap: 0.55rem; margin-top: 1rem; }
+      .footer-links a { width: 42px; height: 42px; border-radius: 50%; background: rgba(200,133,31,0.10); border: 1px solid rgba(200,133,31,0.22); justify-content: center; gap: 0; }
+      .footer-links a:hover { background: rgba(200,133,31,0.22); }
+      .footer-links .ft-label { display: none; }
+      footer p { font-size: 0.68rem; line-height: 1.55; padding: 0 0.5rem; }
+    }
 
     /* ── MODAL ─────────────────────────────────────────────────── */
     .modal-overlay {
@@ -1376,6 +1385,7 @@
     <a href="/mapa" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
     <a href="/faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
     <a href="/blogy" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Blog</a>
+    <a href="/ocenenie-bytu" style="color:rgba(200,133,31,0.9);font-size:0.82rem;font-weight:600;text-decoration:none;transition:color 0.2s;border:1px solid rgba(200,133,31,0.5);padding:4px 10px;border-radius:6px;" onmouseover="this.style.color='#c8851f';this.style.borderColor='#c8851f'" onmouseout="this.style.color='rgba(200,133,31,0.9)';this.style.borderColor='rgba(200,133,31,0.5)'">Oceniť byt →</a>
     <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Otvoriť menu" onclick="toggleMobileMenu()">
@@ -1397,6 +1407,7 @@
   <a href="/mapa" onclick="closeMobileMenu()">Mapa ponúk</a>
   <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
   <a href="/blogy" onclick="closeMobileMenu()">Blog</a>
+  <a href="/ocenenie-bytu" onclick="closeMobileMenu()" style="color:rgba(200,133,31,0.9);font-weight:600;">🏠 Oceniť byt zadarmo</a>
   <div class="mobile-menu-sep"></div>
   <button class="mob-cta" onclick="closeMobileMenu(); scrollToBooks()">Stiahnuť e-knihu zadarmo →</button>
 </nav>

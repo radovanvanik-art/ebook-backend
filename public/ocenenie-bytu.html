@@ -598,15 +598,36 @@
   .field-error { border-color: #e07070 !important; }
 
   /* Footer */
-  .footer {
+  footer {
+    background: #000;
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 2rem clamp(1.25rem,5vw,3rem);
     text-align: center;
-    padding: 32px 0 48px;
-    color: var(--text-dim);
-    font-size: 12px;
+    margin-top: 24px;
   }
+  footer p { font-size: 0.78rem; color: rgba(255,255,255,0.61); }
+  footer a { color: rgba(255,255,255,0.71); transition: color 0.2s; text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.6rem; }
+  .footer-links a { display: inline-flex; align-items: center; gap: 0.45rem; color: rgba(255,255,255,0.71); }
+  .footer-links .ft-label { display: inline; }
 
-  .footer a { color: var(--text-muted); text-decoration: none; }
-  .footer a:hover { color: var(--gold); }
+  /* Float buttons */
+  .floats { position: fixed; bottom: 24px; right: 20px; display: flex; flex-direction: column; gap: 12px; z-index: 900; }
+  .float-btn { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.35); transition: transform 0.2s, box-shadow 0.2s; position: relative; text-decoration: none; }
+  .float-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .float-wa { background: #25D366; }
+  .float-ph { background: var(--gold); }
+  .float-tip { position: absolute; right: 62px; background: rgba(13,13,13,0.95); color: #fff; font-size: 12px; font-weight: 500; white-space: nowrap; padding: 6px 12px; border-radius: 6px; pointer-events: none; opacity: 0; transition: opacity 0.2s; }
+  .float-btn:hover .float-tip { opacity: 1; }
+
+  @media (max-width: 580px) {
+    .footer-links { gap: 0.55rem; margin-top: 1rem; }
+    .footer-links a { width: 42px; height: 42px; border-radius: 50%; background: rgba(201,168,76,0.10); border: 1px solid rgba(201,168,76,0.22); justify-content: center; gap: 0; }
+    .footer-links a:hover { background: rgba(201,168,76,0.22); }
+    .footer-links .ft-label { display: none; }
+    footer p { font-size: 0.68rem; line-height: 1.55; padding: 0 0.5rem; }
+  }
 
   /* Spinner */
   .spinner {
@@ -623,18 +644,57 @@
 
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* Top nav bar */
+  .top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 8px;
+  }
+
+  .top-nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .top-nav-back:hover { color: var(--gold); }
+
+  .top-nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.3px;
+  }
+
+  .top-nav-logo span { color: var(--gold); }
+
   /* Responsive */
   @media (max-width: 600px) {
-    .card { padding: 24px 20px; }
+    .hero { padding: 32px 0 28px; }
+    .card { padding: 20px 16px; }
     .form-grid { grid-template-columns: 1fr; }
     .form-group.span-2 { grid-column: span 1; }
     .type-grid { grid-template-columns: repeat(3, 1fr); }
     .condition-grid { grid-template-columns: repeat(2, 1fr); }
-    .rooms-grid { grid-template-columns: repeat(5, 1fr); }
+    .rooms-grid { grid-template-columns: repeat(3, 1fr); }
     .result-stats { grid-template-columns: 1fr 1fr; }
     .form-row { grid-template-columns: 1fr; }
-    .step-line { width: 32px; }
-    .buyers-count { flex-direction: column; text-align: center; }
+    .step-line { width: 28px; }
+    .buyers-count { flex-direction: column; text-align: center; gap: 6px; }
+    .buyers-highlight { flex-direction: column; text-align: center; }
+    .card-title { font-size: 19px; }
+    .hero h1 { font-size: clamp(28px, 8vw, 48px); }
+    .top-nav-logo { display: none; }
   }
 
   /* Location type toggle */
@@ -680,6 +740,19 @@
 <body>
 
 <div class="container">
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <a href="/" class="top-nav-back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Späť na hlavnú
+    </a>
+    <a href="/" class="top-nav-logo">Radovan <span>Vaník</span></a>
+    <a href="tel:+421948310950" style="color:var(--text-muted);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px;">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      +421 948 310 950
+    </a>
+  </nav>
 
   <!-- HERO -->
   <div class="hero">
@@ -1074,10 +1147,41 @@
     </div>
   </div>
 
-  <div class="footer">
-    © 2026 <a href="https://www.radovanvanik.com">Radovan Vaník</a> — Realitný maklér
-  </div>
+  <footer>
+    <p>© 2026 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+    <div class="footer-links">
+      <a href="tel:+421948310950" aria-label="Zavolať +421 948 310 950">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span class="ft-label">+421 948 310 950</span>
+      </a>
+      <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener" aria-label="najbyvanie.sk">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+        <span class="ft-label">najbyvanie.sk</span>
+      </a>
+      <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        <span class="ft-label">Facebook</span>
+      </a>
+      <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        <span class="ft-label">Instagram</span>
+      </a>
+    </div>
+  </footer>
 
+</div>
+
+<!-- FLOATING CONTACT BUTTONS -->
+<div class="floats" aria-label="Kontakt">
+  <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradiť%20ohľadom%20ocenenia%20nehnuteľnosti."
+     class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="float-tip">Napíšte na WhatsApp</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať Radovanovi">
+    <span class="float-tip">Zavolať Radovanovi</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
 </div>
 
 <script>
