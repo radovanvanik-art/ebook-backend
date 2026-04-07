@@ -129,7 +129,7 @@ app.post('/api/lead', async (req, res) => {
             },
             body: JSON.stringify({
                 email,
-                listIds: process.env.BREVO_LIST_ID_LEADS ? [parseInt(process.env.BREVO_LIST_ID_LEADS)] : [parseInt(process.env.BREVO_LIST_ID)],
+                listIds: [parseInt(process.env.BREVO_LIST_ID_LEADS || '3')],
                 updateEnabled: true,
                 attributes: {
                     FIRSTNAME: name.split(' ')[0] || name,
