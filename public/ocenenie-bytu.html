@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ocenenie nehnuteľnosti | Radovan Vaník</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --dark: #0D0D0D;
+    --dark-2: #141414;
+    --dark-3: #1E1E1E;
+    --dark-4: #2A2A2A;
+    --text: #F0EDE8;
+    --text-muted: #8A857C;
+    --text-dim: #5A5650;
+    --border: rgba(201,168,76,0.2);
+    --radius: 4px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 90%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  .hero {
+    padding: 64px 0 48px;
+    text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 16px;
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 32px;
+    line-height: 1.6;
+  }
+
+  .buyers-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+  }
+
+  .buyers-count .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .buyers-count .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.4;
+    text-align: left;
+  }
+
+  /* Steps indicator */
+  .steps-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+
+  .step-dot {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--dark-4);
+    background: var(--dark-3);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .step-dot.active {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  .step-dot.done {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--dark);
+  }
+
+  .step-dot.done::after {
+    content: '✓';
+  }
+
+  .step-line {
+    width: 60px;
+    height: 1px;
+    background: var(--dark-4);
+    transition: background 0.3s;
+  }
+
+  .step-line.done {
+    background: var(--gold);
+  }
+
+  /* Form card */
+  .card {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 40px;
+    margin-bottom: 24px;
+    animation: slideIn 0.4s ease;
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .card-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+
+  /* Form elements */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .form-grid.full { grid-template-columns: 1fr; }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group.span-2 { grid-column: span 2; }
+
+  label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  input, select {
+    background: var(--dark-3);
+    border: 1px solid var(--dark-4);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    -webkit-appearance: none;
+  }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A857C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 40px;
+    cursor: pointer;
+  }
+
+  select option { background: var(--dark-3); }
+
+  input:focus, select:focus {
+    border-color: var(--gold);
+    background: var(--dark-4);
+  }
+
+  input::placeholder { color: var(--text-dim); }
+
+  /* Type selector */
+  .type-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .type-btn {
+    background: var(--dark-3);
+    border: 2px solid var(--dark-4);
+    color: var(--text-muted);
+    padding: 14px 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .type-btn .icon { font-size: 20px; display: block; margin-bottom: 4px; }
+
+  .type-btn:hover {
+    border-color: var(--gold);
+    color: var(--text);
+  }
+
+  .type-btn.selected {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  /* Condition selector */
+  .condition-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .cond-btn {
+    background: var(--dark-3);
+    border: 1px solid var(--dark-4);
+    color: var(--text-muted);
+    padding: 10px 6px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.2s;
+    line-height: 1.3;
+  }
+
+  .cond-btn:hover { border-color: var(--gold); color: var(--text); }
+  .cond-btn.selected { border-color: var(--gold); background: var(--gold-dim); color: var(--gold); }
+
+  /* Rooms selector */
+  .rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .room-btn {
+    background: var(--dark-3);
+    border: 2px solid var(--dark-4);
+    color: var(--text-muted);
+    padding: 12px 6px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.2s;
+  }
+
+  .room-btn:hover { border-color: var(--gold); color: var(--text); }
+  .room-btn.selected { border-color: var(--gold); background: var(--gold-dim); color: var(--gold); }
+  .room-btn .sub { font-size: 10px; font-weight: 400; display: block; color: inherit; opacity: 0.7; }
+
+  /* CTA Button */
+  .btn-primary {
+    width: 100%;
+    background: var(--gold);
+    color: var(--dark);
+    border: none;
+    padding: 16px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 24px;
+  }
+
+  .btn-primary:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.3);
+  }
+
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--dark-4);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
+
+  /* Result card */
+  .result-hero {
+    text-align: center;
+    padding: 40px 0 32px;
+  }
+
+  .result-label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+
+  .result-price {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 56px);
+    font-weight: 900;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .result-range {
+    font-size: 14px;
+    color: var(--text-muted);
+  }
+
+  .result-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 28px 0;
+  }
+
+  .result-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .stat-box {
+    background: var(--dark-3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-box .stat-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gold);
+  }
+
+  .stat-box .stat-lbl {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  .buyers-highlight {
+    background: linear-gradient(135deg, rgba(201,168,76,0.12), rgba(201,168,76,0.04));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .buyers-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--gold-dim);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .buyers-text strong {
+    color: var(--gold);
+    font-size: 18px;
+    font-family: 'Playfair Display', serif;
+  }
+
+  .buyers-text p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+
+  /* Lead form */
+  .lead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .lead-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .input-icon-wrap {
+    position: relative;
+  }
+
+  .input-icon-wrap input {
+    padding-left: 42px;
+  }
+
+  .input-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-dim);
+    font-size: 16px;
+    pointer-events: none;
+  }
+
+  .consent {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-align: center;
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* Success */
+  .success-wrap {
+    text-align: center;
+    padding: 32px 0;
+  }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--gold-dim);
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 24px;
+    animation: scaleIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  }
+
+  @keyframes scaleIn {
+    from { transform: scale(0); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .success-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .success-wrap p {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  /* Error */
+  .error-msg {
+    color: #e07070;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+
+  .field-error { border-color: #e07070 !important; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px 0 48px;
+    color: var(--text-dim);
+    font-size: 12px;
+  }
+
+  .footer a { color: var(--text-muted); text-decoration: none; }
+  .footer a:hover { color: var(--gold); }
+
+  /* Spinner */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-top-color: var(--dark);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    .card { padding: 24px 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.span-2 { grid-column: span 1; }
+    .type-grid { grid-template-columns: repeat(3, 1fr); }
+    .condition-grid { grid-template-columns: repeat(2, 1fr); }
+    .rooms-grid { grid-template-columns: repeat(5, 1fr); }
+    .result-stats { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .step-line { width: 32px; }
+    .buyers-count { flex-direction: column; text-align: center; }
+  }
+
+  /* Location type toggle */
+  .loc-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .loc-btn {
+    background: var(--dark-3);
+    border: 2px solid var(--dark-4);
+    color: var(--text-muted);
+    padding: 14px 12px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .loc-btn .loc-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+  .loc-btn .loc-sub  { font-size: 11px; font-weight: 400; color: inherit; opacity: 0.65; display: block; margin-top: 2px; }
+
+  .loc-btn:hover { border-color: var(--gold); color: var(--text); }
+
+  .loc-btn.selected {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+    color: var(--gold);
+  }
+
+  /* Utility */
+  .hidden { display: none !important; }
+  .text-center { text-align: center; }
+  .mt-16 { margin-top: 16px; }
+  .flex-between { display: flex; justify-content: space-between; align-items: center; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">Bezplatné ocenenie</div>
+    <h1>Zistite hodnotu<br>vašej <em>nehnuteľnosti</em></h1>
+    <p>Okamžitý odhad trhovej ceny. Bez záväzkov, bez čakania.</p>
+    <div class="buyers-count">
+      <span class="number" id="buyerCount">247</span>
+      <span class="label">overených kupujúcich<br>čaká na ponuku vo vašej oblasti</span>
+    </div>
+  </div>
+
+  <!-- STEPS NAV -->
+  <div class="steps-nav">
+    <div class="step-dot active" id="dot1">1</div>
+    <div class="step-line" id="line1"></div>
+    <div class="step-dot" id="dot2">2</div>
+    <div class="step-line" id="line2"></div>
+    <div class="step-dot" id="dot3">3</div>
+  </div>
+
+  <!-- ===== STEP 1: Parametre ===== -->
+  <div id="step1">
+
+    <!-- SEKCIA 1: Základné údaje -->
+    <div class="card">
+      <div class="card-title">Základné údaje</div>
+      <div class="card-subtitle">Poloha a typ nehnuteľnosti</div>
+
+      <!-- Typ nehnuteľnosti -->
+      <div class="form-group" style="margin-bottom:20px">
+        <label>Typ nehnuteľnosti</label>
+        <div class="type-grid" id="typeGrid">
+          <button class="type-btn selected" data-val="byt" onclick="selectType(this)">
+            <span class="icon">🏢</span>Byt
+          </button>
+          <button class="type-btn" data-val="dom" onclick="selectType(this)">
+            <span class="icon">🏠</span>Dom
+          </button>
+          <button class="type-btn" data-val="pozemok" onclick="selectType(this)">
+            <span class="icon">🌿</span>Pozemok
+          </button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <!-- Lokalita -->
+        <div class="form-group span-2">
+          <label>Najbližšie väčšie mesto</label>
+          <select id="location">
+            <option value="">— Vyberte mesto —</option>
+            <option value="ruzomberok">Ružomberok</option>
+            <option value="liptovsky_mikulas">Liptovský Mikuláš</option>
+            <option value="martin">Martin</option>
+            <option value="dolny_kubin">Dolný Kubín</option>
+          </select>
+        </div>
+
+        <!-- Mesto / Dedina -->
+        <div class="form-group span-2" id="locTypeGroup">
+          <label>Poloha nehnuteľnosti</label>
+          <div class="loc-toggle">
+            <button class="loc-btn selected" data-val="mesto" onclick="selectLocType(this)">
+              <span class="loc-icon">🏙️</span>
+              Mesto
+              <span class="loc-sub">centrum, mestská časť</span>
+            </button>
+            <button class="loc-btn" data-val="dedina" onclick="selectLocType(this)">
+              <span class="loc-icon">🏡</span>
+              Dedina / obec
+              <span class="loc-sub">vidiecka lokalita, okolie</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Dostupnosť občianskej vybavenosti -->
+        <div class="form-group span-2">
+          <label>Dostupnosť MHD / centrom (pešo)</label>
+          <select id="transport">
+            <option value="very_good">Do 5 minút — výborná dostupnosť</option>
+            <option value="good" selected>5–15 minút — dobrá dostupnosť</option>
+            <option value="medium">15–30 minút — priemerná dostupnosť</option>
+            <option value="low">30+ minút — obmedzená dostupnosť</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEKCIA 2: Rozmery a plochy -->
+    <div class="card">
+      <div class="card-title">Rozmery a plochy</div>
+      <div class="card-subtitle">Čisté číselné dáta — základ výpočtu ceny/m²</div>
+
+      <div class="form-grid">
+        <!-- Počet izieb -->
+        <div class="form-group span-2" id="roomsGroup">
+          <label>Počet izieb</label>
+          <div class="rooms-grid">
+            <button class="room-btn" data-val="1" onclick="selectRoom(this)">1<span class="sub">izba</span></button>
+            <button class="room-btn" data-val="2" onclick="selectRoom(this)">2<span class="sub">izby</span></button>
+            <button class="room-btn selected" data-val="3" onclick="selectRoom(this)">3<span class="sub">izby</span></button>
+            <button class="room-btn" data-val="4" onclick="selectRoom(this)">4<span class="sub">izby</span></button>
+            <button class="room-btn" data-val="5" onclick="selectRoom(this)">5+<span class="sub">izieb</span></button>
+          </div>
+        </div>
+
+        <!-- Úžitková plocha -->
+        <div class="form-group" id="areaGroup">
+          <label>Úžitková plocha (m²)</label>
+          <input type="number" id="area" placeholder="napr. 68" min="10" max="1000">
+        </div>
+
+        <!-- Obytná plocha -->
+        <div class="form-group" id="livingAreaGroup">
+          <label>Obytná plocha (m²) <span style="font-weight:300;opacity:0.6">voliteľné</span></label>
+          <input type="number" id="livingArea" placeholder="napr. 52" min="5" max="1000">
+        </div>
+
+        <!-- Príslušenstvo: balkón/loggia/terasa -->
+        <div class="form-group" id="balconyGroup">
+          <label>Balkón / loggia / terasa (m²)</label>
+          <input type="number" id="balconyArea" placeholder="napr. 8" min="0" max="200">
+        </div>
+
+        <!-- Pivnica/kobka -->
+        <div class="form-group" id="cellarGroup">
+          <label>Pivnica / kobka (m²)</label>
+          <input type="number" id="cellarArea" placeholder="napr. 4" min="0" max="100">
+        </div>
+
+        <!-- Parcela -->
+        <div class="form-group hidden" id="landGroup">
+          <label>Plocha pozemku (m²)</label>
+          <input type="number" id="landArea" placeholder="napr. 450" min="50" max="50000">
+        </div>
+
+        <!-- Zastavaná plocha domu -->
+        <div class="form-group hidden" id="builtAreaGroup">
+          <label>Zastavaná plocha domu (m²)</label>
+          <input type="number" id="builtArea" placeholder="napr. 120" min="20" max="1000">
+        </div>
+
+        <!-- Svetlá výška -->
+        <div class="form-group" id="ceilingGroup">
+          <label>Svetlá výška miestností</label>
+          <select id="ceilingHeight">
+            <option value="standard" selected>Štandard (2,5–2,7 m)</option>
+            <option value="high">Vysoká (2,7–3,2 m)</option>
+            <option value="loft">Loft / podkrovie (3,2 m+)</option>
+          </select>
+        </div>
+
+        <!-- Poschodie -->
+        <div class="form-group" id="floorGroup">
+          <label>Poschodie</label>
+          <select id="floor">
+            <option value="0">Prízemie</option>
+            <option value="1">1. poschodie</option>
+            <option value="2">2. poschodie</option>
+            <option value="3">3. poschodie</option>
+            <option value="4">4. poschodie</option>
+            <option value="5">5. a vyššie</option>
+          </select>
+        </div>
+
+        <!-- Počet podlaží dom -->
+        <div class="form-group hidden" id="storeyGroup">
+          <label>Počet podlaží</label>
+          <select id="storeys">
+            <option value="1">1 podlažie</option>
+            <option value="2">2 podlažia</option>
+            <option value="3">3 podlažia</option>
+          </select>
+        </div>
+
+        <!-- Orientácia - byt -->
+        <div class="form-group" id="orientationGroup">
+          <label>Orientácia / výhľad</label>
+          <select id="orientation">
+            <option value="good" selected>Dobrý výhľad (juh, západ)</option>
+            <option value="average">Priemerný (sever, dvor)</option>
+            <option value="bad">Zlý (tienená strana, prízemie)</option>
+          </select>
+        </div>
+
+        <!-- Výťah -->
+        <div class="form-group" id="liftGroup">
+          <label>Výťah v budove</label>
+          <select id="lift">
+            <option value="yes">Áno</option>
+            <option value="no" selected>Nie</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEKCIA 3: Technický stav -->
+    <div class="card">
+      <div class="card-title">Technický stav a kvalita</div>
+      <div class="card-subtitle">Parametre určujúce opotrebenie a životnosť stavby</div>
+
+      <div class="form-grid">
+        <!-- Stav nehnuteľnosti -->
+        <div class="form-group span-2" id="condGroup">
+          <label>Stav nehnuteľnosti</label>
+          <div class="condition-grid" id="conditionGrid">
+            <button class="cond-btn" data-val="novostavba" onclick="selectCond(this)">🏗️<br>Novostavba</button>
+            <button class="cond-btn selected" data-val="po_rekonstrukcii" onclick="selectCond(this)">✨<br>Po rekonštr.</button>
+            <button class="cond-btn" data-val="dobry" onclick="selectCond(this)">👍<br>Dobrý stav</button>
+            <button class="cond-btn" data-val="na_rekonstrukciu" onclick="selectCond(this)">🔧<br>Na rekonštr.</button>
+          </div>
+        </div>
+
+        <!-- Rok výstavby -->
+        <div class="form-group">
+          <label>Rok výstavby (orientačne)</label>
+          <select id="yearBuilt">
+            <option value="new">Po roku 2010</option>
+            <option value="mid" selected>1990 – 2010</option>
+            <option value="old">Pred rokom 1990</option>
+          </select>
+        </div>
+
+        <!-- Energetický certifikát -->
+        <div class="form-group">
+          <label>Energetický certifikát</label>
+          <select id="energyCert">
+            <option value="A0">A0 — Ultra nízkoenergetická</option>
+            <option value="A1">A1 — Nízkoenergetická</option>
+            <option value="B" selected>B — Veľmi úsporná</option>
+            <option value="C">C — Úsporná</option>
+            <option value="D">D — Menej úsporná</option>
+            <option value="E">E — Nehospodárna</option>
+            <option value="F">F — Veľmi nehospodárna</option>
+            <option value="unknown">Neznámy / nemá certifikát</option>
+          </select>
+        </div>
+
+        <!-- Materiálová skladba -->
+        <div class="form-group" id="materialGroup">
+          <label>Nosné steny — materiál</label>
+          <select id="material">
+            <option value="tehla" selected>Tehla</option>
+            <option value="panel">Panel</option>
+            <option value="porobeton">Pórobetón / Ytong</option>
+            <option value="drevo">Drevo / zrub</option>
+            <option value="iné">Iné / neznáme</option>
+          </select>
+        </div>
+
+        <!-- Zateplenie -->
+        <div class="form-group">
+          <label>Zateplenie fasády</label>
+          <select id="insulation">
+            <option value="none">Bez zateplenia</option>
+            <option value="partial">Čiastočné (do 80 mm)</option>
+            <option value="good" selected>Dobré (80–120 mm)</option>
+            <option value="excellent">Výborné (120 mm+)</option>
+          </select>
+        </div>
+
+        <!-- Ťarchy / vecné bremená -->
+        <div class="form-group span-2">
+          <label>Ťarchy a vecné bremená na LV</label>
+          <select id="encumbrance">
+            <option value="none" selected>Žiadne — čistý LV</option>
+            <option value="mortgage">Hypotéka (splatiteľná pri prevode)</option>
+            <option value="easement">Vecné bremeno (napr. právo prechodu)</option>
+            <option value="lifetime">Právo doživotného dožitia</option>
+            <option value="multiple">Viacero bremien</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="goToStep2()" id="btnStep1">
+      Vypočítať odhad ceny →
+    </button>
+  </div>
+
+  <!-- ===== STEP 2: Výsledok ===== -->
+  <div id="step2" class="hidden">
+    <div class="card">
+
+      <div class="result-hero">
+        <div class="result-label">Odhadovaná trhová cena</div>
+        <div class="result-price" id="resultPrice">—</div>
+        <div class="result-range" id="resultRange"></div>
+      </div>
+
+      <hr class="result-divider">
+
+      <div class="result-stats">
+        <div class="stat-box">
+          <div class="stat-val" id="statPriceM2">—</div>
+          <div class="stat-lbl">€ / m²<br>v lokalite</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="statDays">28</div>
+          <div class="stat-lbl">priem. dní<br>predaja</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-val" id="statDemand">Vysoký</div>
+          <div class="stat-lbl">dopyt<br>v oblasti</div>
+        </div>
+      </div>
+
+      <div class="buyers-highlight">
+        <div class="buyers-icon">👥</div>
+        <div class="buyers-text">
+          <strong id="buyersLocal">47</strong> overených kupujúcich
+          <p>aktívne hľadá nehnuteľnosť vo vašej lokalite práve teraz</p>
+        </div>
+      </div>
+
+      <div class="flex-between mt-16">
+        <button class="btn-secondary" onclick="goBack(1)">← Späť</button>
+        <button class="btn-primary" style="width:auto;margin-top:0;padding:14px 32px" onclick="goToStep3()">
+          Zobraziť kupujúcich →
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== STEP 3: Lead form ===== -->
+  <div id="step3" class="hidden">
+    <div class="card">
+
+      <div class="lead-title">Kontaktujte kupujúcich</div>
+      <div class="lead-subtitle">
+        Zanechajte kontakt a ja vám do 24 hodín pošlem zoznam overených záujemcov spolu s podrobnou analýzou trhu vo vašej lokalite.
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Meno a priezvisko</label>
+          <div class="input-icon-wrap">
+            <span class="input-icon">👤</span>
+            <input type="text" id="leadName" placeholder="Ján Novák">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Telefónne číslo</label>
+          <div class="input-icon-wrap">
+            <span class="input-icon">📱</span>
+            <input type="tel" id="leadPhone" placeholder="+421 9XX XXX XXX">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mailová adresa</label>
+        <div class="input-icon-wrap">
+          <span class="input-icon">✉️</span>
+          <input type="email" id="leadEmail" placeholder="jan.novak@email.sk" style="padding-left:42px">
+        </div>
+      </div>
+
+      <div id="leadError" class="error-msg hidden" style="margin-top:12px"></div>
+
+      <button class="btn-primary" onclick="submitLead()" id="btnSubmit">
+        Odoslať a zobraziť kupujúcich →
+      </button>
+
+      <div class="consent">
+        Odoslaním súhlasíte so spracovaním osobných údajov v súlade s GDPR.<br>
+        Údaje budú použité výlučne na účely sprostredkovania predaja nehnuteľnosti.
+      </div>
+
+      <div class="flex-between mt-16">
+        <button class="btn-secondary" onclick="goBack(2)">← Späť</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== STEP 4: Success ===== -->
+  <div id="step4" class="hidden">
+    <div class="card">
+      <div class="success-wrap">
+        <div class="success-icon">✓</div>
+        <h2>Výborne, <span id="successName"></span>!</h2>
+        <p>
+          Vaša žiadosť bola odoslaná. Ozvem sa vám do 24 hodín so zoznamom overených kupujúcich a podrobnou analýzou ceny vo vašej lokalite.
+        </p>
+        <div style="margin-top:32px;padding:20px;background:var(--dark-3);border:1px solid var(--border);border-radius:4px;text-align:left">
+          <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Súhrn vašej nehnuteľnosti</div>
+          <div id="summaryText" style="font-size:14px;color:var(--text-muted);line-height:1.8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    © 2026 <a href="https://www.radovanvanik.com">Radovan Vaník</a> — Realitný maklér
+  </div>
+
+</div>
+
+<script>
+// ============================================================
+// KONFIGURÁCIA — API ide cez backend /api/lead
+// ============================================================
+
+// ============================================================
+// CENOVÉ DÁTA (€/m²) — trhové odhady 2026
+// ============================================================
+const PRICE_DATA = {
+  ruzomberok: {
+    base: 2150,
+    demand: "Stredný",
+    avgDays: 32,
+    buyers: 41
+  },
+  liptovsky_mikulas: {
+    base: 2400,
+    demand: "Vysoký",
+    avgDays: 24,
+    buyers: 63
+  },
+  martin: {
+    base: 2300,
+    demand: "Vysoký",
+    avgDays: 28,
+    buyers: 58
+  },
+  dolny_kubin: {
+    base: 1950,
+    demand: "Stredný",
+    avgDays: 38,
+    buyers: 34
+  }
+};
+
+// Koeficienty
+const COEF = {
+  type: {
+    byt: 1.0,
+    dom: 1.15,
+    pozemok: 0.12
+  },
+  rooms: { "1": 1.08, "2": 1.04, "3": 1.0, "4": 0.97, "5": 0.94 },
+  condition: {
+    novostavba: 1.20,
+    po_rekonstrukcii: 1.10,
+    dobry: 1.0,
+    na_rekonstrukciu: 0.80
+  },
+  floor: { "0": 0.96, "1": 1.0, "2": 1.02, "3": 1.03, "4": 1.02, "5": 0.99 },
+  yearBuilt: { new: 1.10, mid: 1.0, old: 0.92 },
+  lift: { yes: 1.03, no: 1.0 },
+  storeys: { "1": 1.0, "2": 1.05, "3": 1.08 },
+  locationType: { mesto: 1.0, dedina: 0.72 },
+  // Nové koeficienty
+  energyCert: { A0: 1.08, A1: 1.05, B: 1.02, C: 1.0, D: 0.97, E: 0.94, F: 0.91, unknown: 0.96 },
+  material: { tehla: 1.03, panel: 0.96, porobeton: 1.01, drevo: 0.99, iné: 1.0 },
+  insulation: { none: 0.96, partial: 0.98, good: 1.0, excellent: 1.03 },
+  orientation: { good: 1.02, average: 1.0, bad: 0.96 },
+  ceilingHeight: { standard: 1.0, high: 1.03, loft: 1.06 },
+  transport: { very_good: 1.04, good: 1.0, medium: 0.96, low: 0.91 },
+  encumbrance: { none: 1.0, mortgage: 0.99, easement: 0.97, lifetime: 0.88, multiple: 0.85 }
+};
+
+// ============================================================
+// STATE
+// ============================================================
+const state = {
+  type: "byt",
+  rooms: "3",
+  condition: "po_rekonstrukcii",
+  locationType: "mesto"  // "mesto" | "dedina"
+};
+
+// Live buyer counter animation
+let currentCount = 247;
+function animateBuyerCount() {
+  const el = document.getElementById("buyerCount");
+  const change = Math.random() > 0.5 ? 1 : -1;
+  currentCount = Math.max(220, Math.min(280, currentCount + change));
+  el.textContent = currentCount;
+}
+setInterval(animateBuyerCount, 4500);
+
+// ============================================================
+// TYPE / ROOM / CONDITION selectors
+// ============================================================
+function selectType(btn) {
+  document.querySelectorAll(".type-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  state.type = btn.dataset.val;
+
+  const isPozemok = state.type === "pozemok";
+  const isDom = state.type === "dom";
+  const isByt = state.type === "byt";
+
+  document.getElementById("roomsGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("areaGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("livingAreaGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("balconyGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("cellarGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("landGroup").classList.toggle("hidden", !isDom && !isPozemok);
+  document.getElementById("builtAreaGroup").classList.toggle("hidden", !isDom);
+  document.getElementById("floorGroup").classList.toggle("hidden", !isByt);
+  document.getElementById("liftGroup").classList.toggle("hidden", !isByt);
+  document.getElementById("orientationGroup").classList.toggle("hidden", !isByt);
+  document.getElementById("storeyGroup").classList.toggle("hidden", !isDom);
+  document.getElementById("ceilingGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("condGroup").classList.toggle("hidden", isPozemok);
+  document.getElementById("materialGroup").classList.toggle("hidden", isPozemok);
+}
+
+function selectRoom(btn) {
+  document.querySelectorAll(".room-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  state.rooms = btn.dataset.val;
+}
+
+function selectCond(btn) {
+  document.querySelectorAll(".cond-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  state.condition = btn.dataset.val;
+}
+
+function selectLocType(btn) {
+  document.querySelectorAll(".loc-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  state.locationType = btn.dataset.val;
+}
+
+// ============================================================
+// STEP NAVIGATION
+// ============================================================
+function goToStep2() {
+  const location = document.getElementById("location").value;
+  const area = parseFloat(document.getElementById("area").value);
+  const type = state.type;
+
+  if (!location) { alert("Vyberte prosím lokalitu."); return; }
+
+  if (type !== "pozemok" && (!area || area < 10)) {
+    alert("Zadajte platnú úžitkovú plochu."); return;
+  }
+
+  // --- výpočet ---
+  const locData = PRICE_DATA[location];
+  let pricePerM2 = locData.base;
+  const locTypeCoef = COEF.locationType[state.locationType] || 1.0;
+
+  if (type === "pozemok") {
+    const landArea = parseFloat(document.getElementById("landArea").value) || 400;
+    const base = pricePerM2 * locTypeCoef;
+    const totalLow  = Math.round(landArea * base * 0.12 * 0.90 / 1000) * 1000;
+    const totalMid  = Math.round(landArea * base * 0.12 / 1000) * 1000;
+    const totalHigh = Math.round(landArea * base * 0.12 * 1.10 / 1000) * 1000;
+
+    showResult(totalMid, totalLow, totalHigh, Math.round(base * 0.12), locData, type, area || landArea);
+  } else {
+    const rooms       = state.rooms;
+    const cond        = state.condition;
+    const floor       = document.getElementById("floor")?.value || "1";
+    const year        = document.getElementById("yearBuilt").value;
+    const lift        = document.getElementById("lift")?.value || "no";
+    const storeys     = document.getElementById("storeys")?.value || "1";
+    const energy      = document.getElementById("energyCert").value;
+    const material    = document.getElementById("material")?.value || "tehla";
+    const insulation  = document.getElementById("insulation").value;
+    const orientation = document.getElementById("orientation")?.value || "average";
+    const ceiling     = document.getElementById("ceilingHeight").value;
+    const transport   = document.getElementById("transport").value;
+    const encumbrance = document.getElementById("encumbrance").value;
+
+    let coef = COEF.type[type]
+             * (COEF.rooms[rooms] || 1.0)
+             * COEF.condition[cond]
+             * (type === "byt" ? COEF.floor[floor] : 1.0)
+             * COEF.yearBuilt[year]
+             * (type === "byt" ? COEF.lift[lift] : 1.0)
+             * (type === "dom" ? COEF.storeys[storeys] : 1.0)
+             * locTypeCoef
+             * COEF.energyCert[energy]
+             * (type !== "pozemok" ? COEF.material[material] : 1.0)
+             * COEF.insulation[insulation]
+             * (type === "byt" ? COEF.orientation[orientation] : 1.0)
+             * COEF.ceilingHeight[ceiling]
+             * COEF.transport[transport]
+             * COEF.encumbrance[encumbrance];
+
+    const adjustedPriceM2 = pricePerM2 * coef;
+
+    // Príslušenstvo (balkón/loggia/pivnica) sa počíta so zníženou hodnotou
+    const balcony = parseFloat(document.getElementById("balconyArea")?.value) || 0;
+    const cellar  = parseFloat(document.getElementById("cellarArea")?.value) || 0;
+    const bonusArea = balcony * 0.25 + cellar * 0.15; // nižšia hodnota ako obytná plocha
+
+    const totalMid  = Math.round((area * adjustedPriceM2 + bonusArea * adjustedPriceM2) / 1000) * 1000;
+    const totalLow  = Math.round(totalMid * 0.93 / 1000) * 1000;
+    const totalHigh = Math.round(totalMid * 1.07 / 1000) * 1000;
+
+    showResult(totalMid, totalLow, totalHigh, Math.round(adjustedPriceM2), locData, type, area);
+  }
+
+  setStep(2);
+}
+
+function showResult(mid, low, high, pm2, locData, type, area) {
+  document.getElementById("resultPrice").textContent = formatEur(mid);
+  document.getElementById("resultRange").textContent = `Rozpätie: ${formatEur(low)} – ${formatEur(high)}`;
+  document.getElementById("statPriceM2").textContent = `${pm2.toLocaleString("sk")}`;
+  document.getElementById("statDays").textContent = locData.avgDays;
+  document.getElementById("statDemand").textContent = locData.demand;
+  document.getElementById("buyersLocal").textContent = locData.buyers;
+
+  // store for summary
+  state.calcResult = { mid, low, high, pm2, locData };
+}
+
+function goToStep3() {
+  setStep(3);
+}
+
+function goBack(to) {
+  setStep(to);
+}
+
+function setStep(n) {
+  [1,2,3,4].forEach(i => {
+    document.getElementById(`step${i}`).classList.toggle("hidden", i !== n);
+  });
+
+  // dots
+  [1,2,3].forEach(i => {
+    const dot = document.getElementById(`dot${i}`);
+    const line = document.getElementById(`line${i}`);
+    dot.classList.remove("active","done");
+    if (line) line.classList.remove("done");
+    if (i < n) { dot.classList.add("done"); if (line) line.classList.add("done"); }
+    else if (i === n) dot.classList.add("active");
+  });
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// ============================================================
+// SUBMIT LEAD → Brevo
+// ============================================================
+async function submitLead() {
+  const name  = document.getElementById("leadName").value.trim();
+  const phone = document.getElementById("leadPhone").value.trim();
+  const email = document.getElementById("leadEmail").value.trim();
+  const errEl = document.getElementById("leadError");
+
+  errEl.classList.add("hidden");
+
+  if (!name)  { showError("Zadajte meno a priezvisko."); return; }
+  if (!phone) { showError("Zadajte telefónne číslo."); return; }
+  if (!email || !email.includes("@")) { showError("Zadajte platný e-mail."); return; }
+
+  const btn = document.getElementById("btnSubmit");
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span>Odosiela sa...';
+
+  // Zostavíme poznámku s parametrami
+  const location = document.getElementById("location").options[document.getElementById("location").selectedIndex]?.text || "";
+  const area     = document.getElementById("area").value;
+  const noteText = buildSummary(name, location, area);
+
+  try {
+    const res = await fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, phone, email, note: noteText })
+    });
+
+    const data = await res.json().catch(() => ({}));
+    if (data.success) {
+      showSuccess(name, noteText);
+    } else {
+      showError(data.error || "Nastala chyba pri odosielaní. Skúste to znova alebo volajte priamo.");
+      btn.disabled = false;
+      btn.innerHTML = "Odoslať a zobraziť kupujúcich →";
+    }
+  } catch (e) {
+    showError("Sieťová chyba. Skúste to prosím znova.");
+    btn.disabled = false;
+    btn.innerHTML = "Odoslať a zobraziť kupujúcich →";
+  }
+}
+
+function showError(msg) {
+  const el = document.getElementById("leadError");
+  el.textContent = msg;
+  el.classList.remove("hidden");
+}
+
+function showSuccess(name, summary) {
+  document.getElementById("successName").textContent = name.split(" ")[0];
+  document.getElementById("summaryText").innerHTML = summary.replace(/\n/g, "<br>");
+  setStep(4);
+}
+
+function buildSummary(name, location, area) {
+  const typeLabels  = { byt:"Byt", dom:"Rodinný dom", pozemok:"Pozemok" };
+  const condLabels  = { novostavba:"Novostavba", po_rekonstrukcii:"Po rekonštrukcii", dobry:"Dobrý stav", na_rekonstrukciu:"Na rekonštrukciu" };
+  const matLabels   = { tehla:"Tehla", panel:"Panel", porobeton:"Pórobetón/Ytong", drevo:"Drevo/zrub", iné:"Iné" };
+  const encLabels   = { none:"Žiadne", mortgage:"Hypotéka", easement:"Vecné bremeno", lifetime:"Právo dožitia", multiple:"Viacero bremien" };
+  const transLabels = { very_good:"Do 5 min", good:"5–15 min", medium:"15–30 min", low:"30+ min" };
+  const r = state.calcResult || {};
+
+  const getVal = (id) => { const el = document.getElementById(id); return el ? el.value : ""; };
+  const getSelText = (id) => { const el = document.getElementById(id); return el ? (el.options[el.selectedIndex]?.text || "") : ""; };
+
+  const lines = [
+    `Meno: ${name}`,
+    `Typ: ${typeLabels[state.type] || state.type}`,
+    `Lokalita: ${location} (${state.locationType === "dedina" ? "Dedina/obec" : "Mesto"})`,
+  ];
+  if (area) lines.push(`Úžitková plocha: ${area} m²`);
+  const living = getVal("livingArea");
+  if (living) lines.push(`Obytná plocha: ${living} m²`);
+  const balcony = getVal("balconyArea");
+  if (balcony) lines.push(`Balkón/loggia/terasa: ${balcony} m²`);
+  const cellar = getVal("cellarArea");
+  if (cellar) lines.push(`Pivnica/kobka: ${cellar} m²`);
+  const land = getVal("landArea");
+  if (land) lines.push(`Pozemok: ${land} m²`);
+  if (state.type !== "pozemok") {
+    lines.push(`Izby: ${state.rooms}`);
+    lines.push(`Stav: ${condLabels[state.condition] || state.condition}`);
+    lines.push(`Rok výstavby: ${getSelText("yearBuilt")}`);
+    lines.push(`Energetický certifikát: ${getVal("energyCert")}`);
+    lines.push(`Materiál nosných stien: ${matLabels[getVal("material")] || getVal("material")}`);
+    lines.push(`Zateplenie: ${getSelText("insulation")}`);
+    lines.push(`Dostupnosť MHD: ${transLabels[getVal("transport")] || ""}`);
+  }
+  lines.push(`Ťarchy: ${encLabels[getVal("encumbrance")] || "Žiadne"}`);
+  if (r.mid) lines.push(`--- Odhad ceny: ${formatEur(r.mid)} (${formatEur(r.low)} – ${formatEur(r.high)})`);
+  if (r.pm2) lines.push(`Cena/m²: ${r.pm2.toLocaleString("sk")} €`);
+
+  return lines.join("\n");
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function formatEur(val) {
+  return val.toLocaleString("sk-SK", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+}
+</script>
+</body>
+</html>

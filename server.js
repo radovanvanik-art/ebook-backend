@@ -104,7 +104,7 @@ app.get('/:lang(en|de|ua)/:page', (req, res) => {
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
-const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy'];
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
@@ -113,6 +113,43 @@ subpages.forEach(page => {
     app.get(`/${page}.html`, (req, res) => {
         res.redirect(301, `/${page}`);
     });
+});
+
+// ─── POST /api/lead (ocenenie-bytu) ──────────────────────────────────────
+app.post('/api/lead', async (req, res) => {
+    const { name, phone, email, note } = req.body;
+    if (!email || !email.includes('@')) return res.status(400).json({ error: 'Neplatný email.' });
+    if (!name) return res.status(400).json({ error: 'Chýba meno.' });
+    try {
+        const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'api-key': process.env.BREVO_API_KEY
+            },
+            body: JSON.stringify({
+                email,
+                listIds: process.env.BREVO_LIST_ID_LEADS ? [parseInt(process.env.BREVO_LIST_ID_LEADS)] : [parseInt(process.env.BREVO_LIST_ID)],
+                updateEnabled: true,
+                attributes: {
+                    FIRSTNAME: name.split(' ')[0] || name,
+                    LASTNAME:  name.split(' ').slice(1).join(' ') || '',
+                    SMS:       phone || '',
+                    NOTE:      note || ''
+                }
+            })
+        });
+        if (brevoRes.ok || brevoRes.status === 204 || brevoRes.status === 201) {
+            return res.json({ success: true });
+        }
+        const err = await brevoRes.json().catch(() => ({}));
+        if (err.code === 'duplicate_parameter') return res.json({ success: true });
+        console.error('Brevo lead error:', err);
+        return res.status(502).json({ error: 'Chyba pri ukladaní kontaktu.' });
+    } catch (err) {
+        console.error('Lead server error:', err);
+        return res.status(500).json({ error: 'Interná chyba servera.' });
+    }
 });
 
 // ─── SEO FILES ────────────────────────────────────────────────────────────
