@@ -1408,7 +1408,7 @@
     <a href="/faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
     <a href="/blogy" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Blog</a>
     <a href="/ocenenie-bytu" style="color:rgba(200,133,31,0.9);font-size:0.82rem;font-weight:600;text-decoration:none;transition:color 0.2s;border:1px solid rgba(200,133,31,0.5);padding:4px 10px;border-radius:6px;" onmouseover="this.style.color='#c8851f';this.style.borderColor='#c8851f'" onmouseout="this.style.color='rgba(200,133,31,0.9)';this.style.borderColor='rgba(200,133,31,0.5)'">Oceniť nehnuteľnosť →</a>
-    <button class="nav-cta" onclick="scrollToBooks()" data-i18n="nav_cta">Vybrať e-knihu →</button>
+    <a href="/eknihy" class="nav-cta" data-i18n="nav_cta">Vybrať e-knihu →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Otvoriť menu" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
@@ -1431,7 +1431,7 @@
   <a href="/blogy" onclick="closeMobileMenu()">Blog</a>
   <a href="/ocenenie-bytu" onclick="closeMobileMenu()" style="color:rgba(200,133,31,0.9);font-weight:600;">🏠 Oceniť nehnuteľanosť zadarmo</a>
   <div class="mobile-menu-sep"></div>
-  <button class="mob-cta" onclick="closeMobileMenu(); scrollToBooks()">Stiahnuť e-knihu zadarmo →</button>
+  <a href="/eknihy" class="mob-cta" onclick="closeMobileMenu()">Stiahnuť e-knihu zadarmo →</a>
 </nav>
 
 <!-- HLAVNÝ OBSAH -->
@@ -1449,7 +1449,7 @@
         Vyber si situáciu, ktorá sa ťa týka. Získaj zdarma e-knihu - od prvého bytu, cez rozvod, dedičstvo až po reťazový obchod, kde zvládneš predaj aj kúpu naraz bez stresu.
       </p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="scrollToBooks()" data-i18n="hero_btn_primary">Stiahnuť e-knihu zadarmo</button>
+        <a href="/eknihy" class="btn-primary" data-i18n="hero_btn_primary">Stiahnuť e-knihu zadarmo</a>
         <a href="tel:+421948310950" class="btn-ghost" data-i18n="hero_btn_ghost">📞 Bezplatné poradenstvo</a>
       </div>
       <div style="text-align:center;margin-top:-1rem">
@@ -1515,128 +1515,19 @@
   </div>
 </section>
 
-<!-- BOOKS SECTION -->
+<!-- BOOKS CTA -->
 <section class="section books-section" id="books" aria-label="E-knihy">
-  <div class="section-inner">
+  <div class="section-inner" style="text-align:center;max-width:640px;margin:0 auto">
     <div class="books-header reveal">
       <p class="eyebrow" data-i18n="books_eyebrow">Bezplatné príručky</p>
-      <h2 class="section-title" data-i18n="books_title">Vyber si svoju e-knihu</h2>
-      <p class="section-sub" data-i18n="books_sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
+      <h2 class="section-title" data-i18n="books_title">5 e-kníh o nehnuteľnostiach</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem" data-i18n="books_sub">Každá je zadarmo. Prvý byt, dedičstvo, exekúcia, rozvod, reťazový obchod.</p>
     </div>
-
-    <!-- BOOK CARDS -->
-    <div class="bc-list reveal reveal-d1">
-
-      <!-- Karta 1 -->
-      <div class="bc-card">
-        <div class="bc-book-wrap">
-          <div class="bc-book" style="--bc-front:#2a5fa0;--bc-side:#1a3f72;--bc-spine:#0f2850;">
-            <div class="bc-face bc-front">
-              <span class="bc-face-ico">✨</span>
-              <div class="bc-face-line"></div>
-              <span class="bc-face-title">Váš prvý byt</span>
-              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
-            </div>
-            <div class="bc-face bc-spine-face"></div>
-            <div class="bc-face bc-side-face"></div>
-          </div>
-        </div>
-        <div class="bc-content">
-          <div class="bc-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
-          <div class="bc-title" data-i18n="book1_title">Váš prvý byt</div>
-          <div class="bc-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady - váš kompas od prvého kroku.</div>
-          <a class="bc-btn" href="/prvy-byt" data-i18n="btn_download">Chcem tento plán zadarmo →</a>
-        </div>
-      </div>
-
-      <!-- Karta 2 -->
-      <div class="bc-card bc-card--alt">
-        <div class="bc-content">
-          <div class="bc-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
-          <div class="bc-title" data-i18n="book2_title">Zdedený byt</div>
-          <div class="bc-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</div>
-          <a class="bc-btn" href="/dedicstvo" data-i18n="btn_download">Chcem tento plán zadarmo →</a>
-        </div>
-        <div class="bc-book-wrap">
-          <div class="bc-book" style="--bc-front:#3a7028;--bc-side:#254a18;--bc-spine:#163010;">
-            <div class="bc-face bc-front">
-              <span class="bc-face-ico">📜</span>
-              <div class="bc-face-line"></div>
-              <span class="bc-face-title">Zdedený byt</span>
-              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
-            </div>
-            <div class="bc-face bc-spine-face"></div>
-            <div class="bc-face bc-side-face"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Karta 3 -->
-      <div class="bc-card">
-        <div class="bc-book-wrap">
-          <div class="bc-book" style="--bc-front:#8a2a2a;--bc-side:#5e1a1a;--bc-spine:#3e1010;">
-            <div class="bc-face bc-front">
-              <span class="bc-face-ico">⚠️</span>
-              <div class="bc-face-line"></div>
-              <span class="bc-face-title">Exekúcia na dverách</span>
-              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
-            </div>
-            <div class="bc-face bc-spine-face"></div>
-            <div class="bc-face bc-side-face"></div>
-          </div>
-        </div>
-        <div class="bc-content">
-          <div class="bc-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
-          <div class="bc-title" data-i18n="book3_title">Exekúcia na dverách</div>
-          <div class="bc-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</div>
-          <a class="bc-btn" href="/exekucia" data-i18n="btn_download">Chcem tento plán zadarmo →</a>
-        </div>
-      </div>
-
-      <!-- Karta 4 -->
-      <div class="bc-card bc-card--alt">
-        <div class="bc-content">
-          <div class="bc-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
-          <div class="bc-title" data-i18n="book4_title">Rozvod a predaj majetku</div>
-          <div class="bc-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</div>
-          <a class="bc-btn" href="/rozvod" data-i18n="btn_download">Chcem tento plán zadarmo →</a>
-        </div>
-        <div class="bc-book-wrap">
-          <div class="bc-book" style="--bc-front:#7a5018;--bc-side:#52340e;--bc-spine:#342208;">
-            <div class="bc-face bc-front">
-              <span class="bc-face-ico">⚖️</span>
-              <div class="bc-face-line"></div>
-              <span class="bc-face-title">Rozvod a majetok</span>
-              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
-            </div>
-            <div class="bc-face bc-spine-face"></div>
-            <div class="bc-face bc-side-face"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Karta 5 -->
-      <div class="bc-card">
-        <div class="bc-book-wrap">
-          <div class="bc-book" style="--bc-front:#4e2a80;--bc-side:#321858;--bc-spine:#1e0e38;">
-            <div class="bc-face bc-front">
-              <span class="bc-face-ico">🔗</span>
-              <div class="bc-face-line"></div>
-              <span class="bc-face-title">Reťazový obchod</span>
-              <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
-            </div>
-            <div class="bc-face bc-spine-face"></div>
-            <div class="bc-face bc-side-face"></div>
-          </div>
-        </div>
-        <div class="bc-content">
-          <div class="bc-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
-          <div class="bc-title" data-i18n="book5_title">Reťazový obchod</div>
-          <div class="bc-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu - váš kompas krok za krokom.</div>
-          <a class="bc-btn" href="/retazovy-obchod" data-i18n="btn_download">Chcem tento plán zadarmo →</a>
-        </div>
-      </div>
-
+    <div class="reveal reveal-d1" style="display:flex;flex-direction:column;align-items:center;gap:1rem">
+      <a href="/eknihy" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
+        📚 Otvoriť knižnicu e-kníh zadarmo →
+      </a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45)">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
     </div>
   </div>
 </section>
@@ -1926,18 +1817,14 @@
 
 <!-- BOTTOM CTA -->
 <section class="cta-section" aria-label="Vybrať e-knihu">
-  <div class="section-inner">
+  <div class="section-inner" style="text-align:center">
     <p class="eyebrow" style="color:var(--gold);" data-i18n="cta_eyebrow">Začni hneď</p>
     <h2 class="section-title" data-i18n="cta_title">Ktorá situácia sa vás týka?</h2>
-    <p data-i18n="cta_sub">Vyberte e-knihu a stiahnite ju zadarmo.</p>
-    <div class="cta-books-grid">
-      <button class="cta-book-btn" onclick="window.location.href='/prvy-byt'">✨ <span data-i18n="book1_title">Váš prvý byt</span><span data-i18n="cta_b1_sub">Prvá kúpa bez stresu</span></button>
-      <button class="cta-book-btn" onclick="window.location.href='/dedicstvo'">📜 <span data-i18n="book2_title">Zdedený byt</span><span data-i18n="cta_b2_sub">Od dedičstva po predaj</span></button>
-      <button class="cta-book-btn" onclick="window.location.href='/exekucia'">⚠️ <span data-i18n="book3_title">Exekúcia na dverách</span><span data-i18n="cta_b3_sub">Akčný plán pred dražbou</span></button>
-      <button class="cta-book-btn" onclick="window.location.href='/rozvod'">⚖️ <span data-i18n="book4_title">Rozvod a majetok</span><span data-i18n="cta_b4_sub">Predaj bez hádok a sporov</span></button>
-      <button class="cta-book-btn" onclick="window.location.href='/retazovy-obchod'">🔗 <span data-i18n="book5_title">Reťazový obchod</span><span data-i18n="cta_b5_sub">Predaj + kúpa naraz</span></button>
-    </div>
-    <p class="cta-note" data-i18n="cta_note">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
+    <p data-i18n="cta_sub" style="margin-bottom:2rem">Vyberte e-knihu a stiahnite ju zadarmo.</p>
+    <a href="/eknihy" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
+      📚 Otvoriť knižnicu e-kníh →
+    </a>
+    <p class="cta-note" data-i18n="cta_note" style="margin-top:1.5rem">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
   </div>
 </section>
 

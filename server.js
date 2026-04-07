@@ -113,7 +113,7 @@ app.get('/:lang(en|de|ua)/:page', (req, res) => {
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
-const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu'];
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu', 'eknihy'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
