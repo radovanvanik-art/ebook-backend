@@ -198,7 +198,7 @@ app.post('/api/lead', async (req, res) => {
                         <h2 style="color:#8a6a1e">Ďakujem za váš záujem, ${firstName}!</h2>
                         <p>Vaša žiadosť o bezplatné ocenenie nehnuteľnosti bola prijatá.</p>
                         <p>Ozvem sa vám do <strong>24 hodín</strong> so zoznamom overených záujemcov a podrobnou analýzou trhovej ceny vo vašej lokalite.</p>
-                        <p style="margin-top:24px">Ak potrebujete niečo urgentné, zavolajte ma priamo:</p>
+                        <p style="margin-top:24px">Ak potrebujete niečo urgentné, zavolajte mi priamo:</p>
                         <p><a href="tel:+421948310950" style="font-size:18px;font-weight:bold;color:#8a6a1e">+421 948 310 950</a></p>
                         <p style="margin-top:32px">S pozdravom,<br>
                         <strong>${senderName}</strong><br>
