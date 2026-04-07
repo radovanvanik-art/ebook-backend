@@ -1532,219 +1532,24 @@
   </div>
 </section>
 
-<!-- HYPOTÉKA KALKULAČKA -->
+<!-- KALKULAČKA CTA -->
 <section class="section kalk-section" id="hypoteka-kalkulacka" aria-label="Hypotekárna kalkulačka">
-  <div class="section-inner" style="max-width:920px;margin:0 auto;">
+  <div class="section-inner" style="text-align:center;max-width:640px;margin:0 auto;">
 
-    <div style="text-align:center;margin-bottom:48px;">
-      <div style="display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(200,133,31,0.6);margin-bottom:16px;">
-        <span style="width:5px;height:5px;border-radius:50%;background:#C8851F;box-shadow:0 0 10px rgba(200,133,31,0.5);display:inline-block;"></span>
-        <span data-i18n="kalk_badge">Kalkulačka</span>
-      </div>
-      <h2 class="section-title" style="color:#C8851F;" data-i18n="kalk_title">Koľko zaplatíte za vašu hypotéku?</h2>
-      <p class="section-sub" style="margin:0.75rem auto 0;color:#C8851F;" data-i18n="kalk_sub">Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
-      <p style="margin:2.5rem auto 0;max-width:600px;font-size:12px;color:#C8851F;font-weight:600;line-height:1.65;" data-i18n="kalk_note">Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.</p>
+    <div class="reveal">
+      <p class="eyebrow" style="color:var(--gold);">Bezplatný nástroj</p>
+      <h2 class="section-title" style="color:#fff;">Hypotekárna kalkulačka</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem">Vypočítajte si mesačnú splátku, celkovú sumu a pomer istiny a úrokov — okamžite a zadarmo.</p>
     </div>
-
-    <div class="kalk-grid">
-
-      <!-- SLIDERS -->
-      <div class="kalk-panel">
-        <div class="kalk-panel-title" data-i18n="kalk_params">Parametre úveru</div>
-
-        <div class="kalk-slider-group">
-          <div class="kalk-slider-label">
-            <span data-i18n="kalk_loan">Výška úveru</span>
-            <strong id="loanVal">100 000 €</strong>
-          </div>
-          <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range" aria-label="Výška úveru">
-          <div class="kalk-slider-range"><span>10 000 €</span><span>500 000 €</span></div>
-        </div>
-
-        <div class="kalk-slider-group">
-          <div class="kalk-slider-label">
-            <span data-i18n="kalk_rate">Úroková sadzba</span>
-            <strong id="rateVal">3.5 %</strong>
-          </div>
-          <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range" aria-label="Úroková sadzba">
-          <div class="kalk-slider-range"><span>0.5 %</span><span>10 %</span></div>
-        </div>
-
-        <div class="kalk-slider-group">
-          <div class="kalk-slider-label">
-            <span data-i18n="kalk_years">Doba splácania</span>
-            <strong id="yearsVal">25 rokov</strong>
-          </div>
-          <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range" aria-label="Doba splácania">
-          <div class="kalk-slider-range"><span>5 rokov</span><span>30 rokov</span></div>
-        </div>
-      </div>
-
-      <!-- RESULTS -->
-      <div class="kalk-panel kalk-result">
-        <div class="kalk-result-top">
-          <div class="kalk-result-label" data-i18n="kalk_monthly">Mesačná splátka</div>
-          <div class="kalk-result-amount" id="monthly">500 €</div>
-          <div class="kalk-result-per" data-i18n="kalk_per">mesačne</div>
-        </div>
-        <div class="kalk-rows">
-          <div class="kalk-row"><span data-i18n="kalk_loan">Výška úveru</span><span id="resLoan">100 000 €</span></div>
-          <div class="kalk-row"><span data-i18n="kalk_total">Celková suma</span><span id="resTotal">150 000 €</span></div>
-          <div class="kalk-row"><span data-i18n="kalk_interest">Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
-          <div class="kalk-row"><span data-i18n="kalk_payments">Počet splátok</span><span id="resPayments">300</span></div>
-        </div>
-        <div class="kalk-progress">
-  <div class="kalk-progress-labels"><span data-i18n="kalk_principal">Istina</span><span data-i18n="kalk_interests">Úroky</span></div>
-          <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
-        </div>
-      </div>
-
-      <!-- DONUT -->
-      <div class="kalk-panel kalk-chart">
-        <div class="kalk-panel-title" data-i18n="kalk_chart_title">Rozloženie platieb</div>
-        <div class="kalk-chart-flex">
-          <div class="kalk-donut-wrap">
-            <canvas id="donut" width="200" height="200"></canvas>
-            <div class="kalk-donut-center">
-              <strong id="donutPct">67%</strong>
-              <span data-i18n="kalk_principal">istina</span>
-            </div>
-          </div>
-          <div class="kalk-legend">
-            <div class="kalk-legend-item">
-              <div class="kalk-legend-dot kalk-legend-dot--p"></div>
-              <div>
-                <span class="kalk-legend-lbl" data-i18n="kalk_interest">Istina (úver)</span>
-                <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
-              </div>
-            </div>
-            <div class="kalk-legend-item">
-              <div class="kalk-legend-dot kalk-legend-dot--i"></div>
-              <div>
-                <span class="kalk-legend-lbl" data-i18n="kalk_interests">Zaplatené úroky</span>
-                <span class="kalk-legend-val" id="legendInterest">50 000 €</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- AMORTIZATION -->
-      <div class="kalk-panel kalk-amort">
-        <div class="kalk-panel-title" data-i18n="kalk_amort_title">Ročný prehľad splátok</div>
-        <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
-          <span data-i18n="kalk_amort_show">Zobraziť tabuľku</span>
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </button>
-        <table class="kalk-amort-table" id="amortTable">
-          <thead><tr>
-            <th data-i18n="kalk_amort_year">Rok</th>
-            <th data-i18n="kalk_amort_payment">Splátka / rok</th>
-            <th data-i18n="kalk_principal">Istina</th>
-            <th data-i18n="kalk_interests">Úroky</th>
-            <th data-i18n="kalk_amort_balance">Zostatok</th>
-          </tr></thead>
-          <tbody id="amortBody"></tbody>
-        </table>
-      </div>
-
+    <div class="reveal reveal-d1" style="display:flex;flex-direction:column;align-items:center;gap:1rem">
+      <a href="/kalkulacka" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
+        🧮 Otvoriť kalkulačku →
+      </a>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.35)">Žiadna registrácia. Výsledok okamžite.</p>
     </div>
-
     <div style="height:0;"></div>
   </div>
 </section>
-<!-- STATS STRIP -->
-<script>
-(function(){
-  const fmtK = v => Math.round(v).toLocaleString('sk') + ' €';
-  const loanEl = document.getElementById('loan');
-  const rateEl = document.getElementById('rate');
-  const yearsEl = document.getElementById('years');
-
-  function updateTrack(el) {
-    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
-    el.style.setProperty('--kpct', pct + '%');
-  }
-
-  function kCalc() {
-    const L = +loanEl.value;
-    const r = +rateEl.value / 100 / 12;
-    const n = +yearsEl.value * 12;
-    document.getElementById('loanVal').textContent = fmtK(L);
-    document.getElementById('rateVal').textContent = (+rateEl.value).toFixed(1) + ' %';
-    document.getElementById('yearsVal').textContent = yearsEl.value + ' rokov';
-    updateTrack(loanEl); updateTrack(rateEl); updateTrack(yearsEl);
-    const M = r > 0 ? L * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1) : L / n;
-    const total = M * n;
-    const interest = total - L;
-    const pctP = Math.round(L / total * 100);
-    document.getElementById('monthly').textContent = fmtK(M);
-    document.getElementById('resLoan').textContent = fmtK(L);
-    document.getElementById('resTotal').textContent = fmtK(total);
-    document.getElementById('resInterest').textContent = fmtK(interest);
-    document.getElementById('resPayments').textContent = n;
-    document.getElementById('kalkBar').style.width = pctP + '%';
-    document.getElementById('donutPct').textContent = pctP + '%';
-    document.getElementById('legendPrincipal').textContent = fmtK(L);
-    document.getElementById('legendInterest').textContent = fmtK(interest);
-    drawDonut(pctP / 100);
-    buildAmort(L, +rateEl.value / 100, +yearsEl.value, M);
-  }
-
-  function drawDonut(pct) {
-    const canvas = document.getElementById('donut');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = 200 * dpr; canvas.height = 200 * dpr;
-    ctx.scale(dpr, dpr);
-    const cx = 100, cy = 100, R = 82, w = 14;
-    const start = -Math.PI / 2;
-    ctx.clearRect(0, 0, 200, 200);
-    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(255,255,255,.06)'; ctx.lineWidth = w; ctx.stroke();
-    ctx.beginPath(); ctx.arc(cx, cy, R, start, start + Math.PI * 2 * pct);
-    ctx.strokeStyle = '#C8851F'; ctx.lineWidth = w; ctx.lineCap = 'round'; ctx.stroke();
-  }
-
-  function buildAmort(principal, annualRate, totalYears, monthlyPayment) {
-    const tbody = document.getElementById('amortBody');
-    tbody.innerHTML = '';
-    let balance = principal;
-    const mr = annualRate / 12;
-    for (let year = 1; year <= totalYears; year++) {
-      let yP = 0, yI = 0;
-      for (let m = 0; m < 12; m++) {
-        if (balance <= 0) break;
-        const ip = balance * mr;
-        const pp = Math.min(monthlyPayment - ip, balance);
-        yI += ip; yP += pp; balance -= pp;
-      }
-      if (balance < 0) balance = 0;
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${year}.</td><td>${fmtK(yP+yI)}</td><td>${fmtK(yP)}</td><td>${fmtK(yI)}</td><td>${fmtK(balance)}</td>`;
-      tbody.appendChild(tr);
-    }
-  }
-
-  window.toggleAmort = function() {
-    const table = document.getElementById('amortTable');
-    const btn = document.getElementById('amortToggle');
-    table.classList.toggle('kalk-show');
-    btn.classList.toggle('kalk-open');
-    const lang = localStorage.getItem('lang') || 'sk';
-    const t = TRANSLATIONS[lang] || TRANSLATIONS.sk;
-    btn.querySelector('span').textContent = table.classList.contains('kalk-show')
-      ? (t.kalk_amort_hide || 'Skryť tabuľku')
-      : (t.kalk_amort_show || 'Zobraziť tabuľku');
-  };
-
-  loanEl.addEventListener('input', kCalc);
-  rateEl.addEventListener('input', kCalc);
-  yearsEl.addEventListener('input', kCalc);
-  kCalc();
-})();
-</script>
 <div class="stats-strip" aria-hidden="true">
   <div class="stats-inner">
     <div class="stat reveal">

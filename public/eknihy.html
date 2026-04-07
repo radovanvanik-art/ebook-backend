@@ -166,6 +166,13 @@ footer a:hover{color:var(--gold)}
 .float-wa{background:#25D366}.float-ph{background:var(--gold)}
 .float-tip{position:absolute;right:62px;background:rgba(13,13,13,0.95);color:#fff;font-size:12px;font-weight:500;white-space:nowrap;padding:6px 12px;border-radius:6px;pointer-events:none;opacity:0;transition:opacity 0.2s}
 .float-btn:hover .float-tip{opacity:1}
+@media(max-width:480px){
+  .nav-right{display:none}
+  .nav-phone-txt{display:none}
+  .page-hero{padding:80px 1.25rem 36px}
+  .books-wrap{padding:32px 1rem 48px}
+  .bc-card{padding:1rem}
+}
 </style>
 </head>
 <body>
@@ -176,7 +183,7 @@ footer a:hover{color:var(--gold)}
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     Späť na hlavnú
   </a>
-  <a href="tel:+421948310950" class="nav-cta">📞 +421 948 310 950</a>
+  <a href="tel:+421948310950" class="nav-cta">📞<span class="nav-phone-txt"> +421 948 310 950</span></a>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
       <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>

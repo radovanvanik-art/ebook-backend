@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Hypotekárna kalkulačka | Radovan Vaník – realitný maklér</title>
+<meta name="description" content="Bezplatná hypotekárna kalkulačka. Vypočítajte si mesačnú splátku, celkovú sumu úveru a pomer istiny a úrokov. Radovan Vaník, realitný maklér Ružomberok."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.radovanvanik.com/kalkulacka"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.radovanvanik.com/kalkulacka"/>
+<meta property="og:title" content="Hypotekárna kalkulačka | Radovan Vaník"/>
+<meta property="og:description" content="Vypočítajte si mesačnú splátku, celkovú sumu a rozloženie platieb. Zadarmo, okamžite."/>
+<meta property="og:locale" content="sk_SK"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4R17WCR42"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X4R17WCR42');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0B0E18;--dark2:#141820;--dark3:#1D2130;
+  --cream:#F7F4EE;--white:#FFFFFF;--ink:#0E1016;
+  --muted:#7A8394;--subtle:#A8B0BF;
+  --border:#E8E4DC;--border-d:rgba(255,255,255,0.07);
+  --gold:#C8851F;--gold-light:#FDF0D8;--gold-mid:#E8A83A;
+  --green:#16a34a;--green-bg:#dcfce7;
+  --r:14px;
+  --shadow:0 4px 24px rgba(0,0,0,0.07);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.14);
+}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  background:#0a0a0a;
+}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;inset-inline:0;z-index:200;
+  padding:0 clamp(1rem,4vw,2.5rem);height:56px;
+  display:flex;align-items:center;justify-content:space-between;gap:0.75rem;
+  background:rgba(10,10,10,0.95);backdrop-filter:blur(18px) saturate(140%);
+  border-bottom:1px solid rgba(200,133,31,0.12);
+}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;color:white;font-size:0.92rem;font-weight:700;}
+.nav-back{color:rgba(255,255,255,0.65);font-size:0.82rem;font-weight:500;display:inline-flex;align-items:center;gap:6px;transition:color 0.2s;}
+.nav-back:hover{color:white}
+.nav-cta{background:var(--gold);color:white;padding:0.45rem 1rem;border-radius:6px;font-size:0.8rem;font-weight:600;transition:background 0.2s;}
+.nav-cta:hover{background:var(--gold-mid)}
+.nav-right{display:flex;align-items:center;gap:0.4rem}
+.nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.76);transition:color 0.2s,background 0.2s;}
+.nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
+
+/* HERO */
+.page-hero{
+  padding:120px 0 56px;
+  text-align:center;
+  background:
+    linear-gradient(to bottom, rgba(8,6,4,0.92) 0%, rgba(8,6,4,0.80) 100%),
+    url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1400&q=50&auto=format&fit=crop&fm=webp') center/cover no-repeat;
+}
+.page-hero .eyebrow{color:var(--gold);font-size:0.72rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;margin-bottom:16px;display:block}
+.page-hero h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,5vw,3.6rem);font-weight:700;line-height:1.1;text-shadow:0 2px 16px rgba(0,0,0,0.6);margin-bottom:16px}
+.page-hero h1 em{font-style:italic;color:var(--gold)}
+.page-hero p{font-size:1rem;color:rgba(255,255,255,0.65);max-width:520px;margin:0 auto}
+
+/* KALKULAČKA WRAPPER */
+.kalk-wrap{
+  max-width:960px;margin:0 auto;
+  padding:48px clamp(1rem,4vw,2rem) 72px;
+}
+
+/* KALKULAČKA CSS */
+.kalk-section{
+  position:relative;
+  background-color:#0a0a0a;
+  background-image:
+    linear-gradient(rgba(200,133,31,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,133,31,0.035) 1px, transparent 1px);
+  background-size:48px 48px;
+}
+.kalk-section::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(200,133,31,0.055) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 10% 100%, rgba(200,133,31,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 0%, rgba(200,133,31,0.03) 0%, transparent 60%);
+  pointer-events:none;z-index:0;
+}
+.kalk-section>*{position:relative;z-index:1;}
+.kalk-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+@media(max-width:700px){.kalk-grid{grid-template-columns:1fr;}}
+.kalk-panel{padding:2rem;border-radius:16px;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+.kalk-panel-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(200,133,31,0.5);margin-bottom:1.5rem;}
+.kalk-slider-group{margin-bottom:1.5rem;}
+.kalk-slider-group:last-child{margin-bottom:0;}
+.kalk-slider-label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.kalk-slider-label span{font-size:13px;font-weight:500;color:rgba(255,255,255,0.45);}
+.kalk-slider-label strong{font-size:18px;font-weight:600;color:var(--gold);}
+.kalk-range{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(to right,var(--gold) 0%,var(--gold) var(--kpct,50%),rgba(255,255,255,0.08) var(--kpct,50%),rgba(255,255,255,0.08) 100%);transition:background .1s;}
+.kalk-range::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold);border:3px solid #0d0d0d;box-shadow:0 0 0 1px rgba(200,133,31,0.4),0 2px 8px rgba(0,0,0,0.6);cursor:grab;transition:box-shadow .2s;}
+.kalk-range::-webkit-slider-thumb:hover{box-shadow:0 0 0 1px rgba(200,133,31,0.6),0 0 20px rgba(200,133,31,0.3),0 2px 8px rgba(0,0,0,0.6);}
+.kalk-range::-moz-range-thumb{width:20px;height:20px;border-radius:50%;border:3px solid #0d0d0d;background:var(--gold);box-shadow:0 0 0 1px rgba(200,133,31,0.4);cursor:grab;}
+.kalk-slider-range{display:flex;justify-content:space-between;margin-top:5px;font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:.5px;}
+.kalk-result-top{text-align:center;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(200,133,31,0.1);}
+.kalk-result-label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(200,133,31,0.5);margin-bottom:6px;}
+.kalk-result-amount{font-size:3rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:3px;}
+.kalk-result-per{font-size:12px;color:rgba(255,255,255,0.25);letter-spacing:.5px;}
+.kalk-rows{display:flex;flex-direction:column;gap:0;}
+.kalk-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid rgba(200,133,31,0.07);font-size:13px;}
+.kalk-row:last-child{border-bottom:none;}
+.kalk-row span:first-child{color:rgba(255,255,255,0.4);}
+.kalk-row span:last-child{font-weight:600;font-size:15px;color:#fff;}
+.kalk-progress{margin-top:1.25rem;}
+.kalk-progress-labels{display:flex;justify-content:space-between;font-size:10px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:6px;}
+.kalk-progress-bar{height:6px;border-radius:3px;background:rgba(255,255,255,0.05);overflow:hidden;}
+.kalk-progress-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold-mid));transition:width .4s cubic-bezier(.23,1,.32,1);}
+.kalk-chart{grid-column:1/-1;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+@media(max-width:700px){.kalk-chart{grid-column:auto;}}
+.kalk-chart-flex{display:flex;align-items:center;gap:3rem;justify-content:center;flex-wrap:wrap;}
+.kalk-donut-wrap{position:relative;width:200px;height:200px;flex-shrink:0;}
+.kalk-donut-wrap canvas{width:200px;height:200px;}
+.kalk-donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.kalk-donut-center strong{font-size:24px;font-weight:700;color:var(--gold);}
+.kalk-donut-center span{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;}
+.kalk-legend{display:flex;flex-direction:column;gap:1rem;}
+.kalk-legend-item{display:flex;align-items:center;gap:10px;}
+.kalk-legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0;}
+.kalk-legend-dot--p{background:var(--gold);}
+.kalk-legend-dot--i{background:rgba(255,255,255,0.15);}
+.kalk-legend-lbl{display:block;font-size:12px;color:rgba(255,255,255,0.4);}
+.kalk-legend-val{display:block;font-size:17px;font-weight:600;color:#fff;}
+.kalk-amort{grid-column:1/-1;background:#0d0d0d;border:1px solid rgba(200,133,31,0.45);}
+@media(max-width:700px){.kalk-amort{grid-column:auto;}}
+.kalk-amort-toggle{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,0.4);padding:10px 18px;border-radius:10px;background:rgba(200,133,31,0.06);border:1px solid rgba(200,133,31,0.2);cursor:pointer;transition:all .3s;font-family:inherit;}
+.kalk-amort-toggle:hover{border-color:rgba(200,133,31,0.4);color:var(--gold);}
+.kalk-amort-toggle svg{transition:transform .3s;}
+.kalk-amort-toggle.kalk-open svg{transform:rotate(180deg);}
+.kalk-amort-table{margin-top:1.25rem;width:100%;border-collapse:collapse;display:none;}
+.kalk-amort-table.kalk-show{display:table;}
+.kalk-amort-table th{font-size:10px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(200,133,31,0.5);text-align:left;padding:10px 12px;border-bottom:1px solid rgba(200,133,31,0.1);}
+.kalk-amort-table td{font-size:13px;padding:10px 12px;border-bottom:1px solid rgba(255,255,255,0.03);color:rgba(255,255,255,0.8);}
+.kalk-amort-table tr:hover td{background:rgba(200,133,31,0.03);}
+.kalk-amort-table td:first-child{color:rgba(200,133,31,0.6);font-weight:600;}
+
+/* CTA BOX */
+.kalk-cta-box{
+  margin-top:3rem;padding:2rem;border-radius:16px;text-align:center;
+  background:rgba(200,133,31,0.07);border:1px solid rgba(200,133,31,0.25);
+}
+.kalk-cta-box p{font-size:0.88rem;color:rgba(255,255,255,0.5);margin-bottom:1.25rem;line-height:1.7}
+.kalk-cta-box a.cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#fff;font-size:0.92rem;font-weight:700;
+  padding:0.9rem 1.8rem;border-radius:10px;text-decoration:none;
+  box-shadow:0 10px 24px rgba(200,133,31,0.3);transition:background 0.2s,transform 0.15s;
+}
+.kalk-cta-box a.cta-btn:hover{background:var(--gold-mid);transform:translateY(-2px)}
+
+/* FOOTER */
+footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.61)}
+footer a{color:rgba(255,255,255,0.71);transition:color 0.2s}
+footer a:hover{color:var(--gold)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.6rem}
+.footer-links a{display:inline-flex;align-items:center;gap:0.45rem}
+.footer-links .ft-label{display:inline}
+@media(max-width:580px){
+  .footer-links{gap:0.55rem;margin-top:1rem}
+  .footer-links a{width:42px;height:42px;border-radius:50%;background:rgba(200,133,31,0.10);border:1px solid rgba(200,133,31,0.22);justify-content:center;gap:0}
+  .footer-links a:hover{background:rgba(200,133,31,0.22)}
+  .footer-links .ft-label{display:none}
+  footer p{font-size:0.68rem;line-height:1.55;padding:0 0.5rem}
+}
+
+/* FLOATS */
+.floats{position:fixed;bottom:1.75rem;right:1.5rem;display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem;z-index:300}
+.float-btn{display:flex;align-items:center;gap:0.6rem;padding:0.65rem 1.1rem;border-radius:999px;font-size:0.82rem;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,0.35);transition:transform 0.2s,box-shadow 0.2s}
+.float-btn:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(0,0,0,0.4)}
+.float-wa{background:#25D366;color:#fff}
+.float-ph{background:var(--gold);color:#fff}
+.float-label{white-space:nowrap}
+@media(max-width:500px){.float-label{display:none}.float-btn{padding:0.75rem}}
+@media(max-width:480px){
+  .nav-right{display:none}
+  .nav-phone-txt{display:none}
+  .page-hero{padding:80px 1.25rem 36px}
+  .kalk-panel{padding:1.25rem 1rem}
+  .kalk-result-amount{font-size:2.4rem}
+  .kalk-chart-flex{gap:1.5rem}
+  .kalk-amort-toggle{width:100%;justify-content:center}
+  .kalk-cta-box{padding:1.5rem 1rem}
+  .kalk-cta-box a.cta-btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav" role="banner">
+  <a href="/" class="nav-back" aria-label="Späť na hlavnú stránku">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Späť na hlavnú
+  </a>
+  <a href="tel:+421948310950" class="nav-cta">📞<span class="nav-phone-txt"> +421 948 310 950</span></a>
+  <div class="nav-right">
+    <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" class="nav-social" aria-label="Instagram">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="page-hero" aria-label="Hypotekárna kalkulačka">
+  <span class="eyebrow">Bezplatný nástroj</span>
+  <h1>Hypotekárna <em>kalkulačka</em></h1>
+  <p>Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
+</section>
+
+<!-- KALKULAČKA -->
+<section class="kalk-section" aria-label="Kalkulačka hypotéky">
+  <div class="kalk-wrap">
+
+    <div style="margin-bottom:2rem;padding:1rem 1.25rem;border-radius:10px;background:rgba(200,133,31,0.07);border:1px solid rgba(200,133,31,0.2);font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;text-align:center;">
+      ⚠️ Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.
+    </div>
+
+    <div class="kalk-grid">
+
+      <!-- SLIDERS -->
+      <div class="kalk-panel">
+        <div class="kalk-panel-title">Parametre úveru</div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Výška úveru</span>
+            <strong id="loanVal">100 000 €</strong>
+          </div>
+          <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range" aria-label="Výška úveru">
+          <div class="kalk-slider-range"><span>10 000 €</span><span>500 000 €</span></div>
+        </div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Úroková sadzba</span>
+            <strong id="rateVal">3.5 %</strong>
+          </div>
+          <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range" aria-label="Úroková sadzba">
+          <div class="kalk-slider-range"><span>0.5 %</span><span>10 %</span></div>
+        </div>
+
+        <div class="kalk-slider-group">
+          <div class="kalk-slider-label">
+            <span>Doba splácania</span>
+            <strong id="yearsVal">25 rokov</strong>
+          </div>
+          <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range" aria-label="Doba splácania">
+          <div class="kalk-slider-range"><span>5 rokov</span><span>30 rokov</span></div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="kalk-panel kalk-result">
+        <div class="kalk-result-top">
+          <div class="kalk-result-label">Mesačná splátka</div>
+          <div class="kalk-result-amount" id="monthly">500 €</div>
+          <div class="kalk-result-per">mesačne</div>
+        </div>
+        <div class="kalk-rows">
+          <div class="kalk-row"><span>Výška úveru</span><span id="resLoan">100 000 €</span></div>
+          <div class="kalk-row"><span>Celková suma</span><span id="resTotal">150 000 €</span></div>
+          <div class="kalk-row"><span>Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
+          <div class="kalk-row"><span>Počet splátok</span><span id="resPayments">300</span></div>
+        </div>
+        <div class="kalk-progress">
+          <div class="kalk-progress-labels"><span>Istina</span><span>Úroky</span></div>
+          <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
+        </div>
+      </div>
+
+      <!-- DONUT -->
+      <div class="kalk-panel kalk-chart">
+        <div class="kalk-panel-title">Rozloženie platieb</div>
+        <div class="kalk-chart-flex">
+          <div class="kalk-donut-wrap">
+            <canvas id="donut" width="200" height="200"></canvas>
+            <div class="kalk-donut-center">
+              <strong id="donutPct">67%</strong>
+              <span>istina</span>
+            </div>
+          </div>
+          <div class="kalk-legend">
+            <div class="kalk-legend-item">
+              <div class="kalk-legend-dot kalk-legend-dot--p"></div>
+              <div>
+                <span class="kalk-legend-lbl">Istina (úver)</span>
+                <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
+              </div>
+            </div>
+            <div class="kalk-legend-item">
+              <div class="kalk-legend-dot kalk-legend-dot--i"></div>
+              <div>
+                <span class="kalk-legend-lbl">Zaplatené úroky</span>
+                <span class="kalk-legend-val" id="legendInterest">50 000 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AMORTIZATION -->
+      <div class="kalk-panel kalk-amort">
+        <div class="kalk-panel-title">Ročný prehľad splátok</div>
+        <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
+          <span>Zobraziť tabuľku</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.25rem">
+        <table class="kalk-amort-table" id="amortTable" style="margin-top:0">
+          <thead><tr>
+            <th>Rok</th>
+            <th>Splátka / rok</th>
+            <th>Istina</th>
+            <th>Úroky</th>
+            <th>Zostatok</th>
+          </tr></thead>
+          <tbody id="amortBody"></tbody>
+        </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA BOX -->
+    <div class="kalk-cta-box">
+      <p>Potrebujete presné čísla pre konkrétnu banku?<br>Radovan Vaník vám bezplatne pomôže porovnať hypotekárne ponuky a vybrať tú najvýhodnejšiu.</p>
+      <a href="tel:+421948310950" class="cta-btn">📞 Zavolať Radovanovi zadarmo</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <p>© 2025 Radovan Vaník · Realitný maklér · Reality Najbývanie</p>
+  <nav class="footer-links" aria-label="Kontakty a sociálne siete">
+    <a href="tel:+421948310950" aria-label="Telefón">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span class="ft-label">+421 948 310 950</span>
+    </a>
+    <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener" aria-label="Najbývanie">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span class="ft-label">najbyvanie.sk</span>
+    </a>
+    <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <span class="ft-label">Facebook</span>
+    </a>
+    <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      <span class="ft-label">Instagram</span>
+    </a>
+  </nav>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="floats" aria-label="Rýchly kontakt">
+  <a href="https://wa.me/421948310950" target="_blank" rel="noopener" class="float-btn float-wa" aria-label="WhatsApp">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="float-label">WhatsApp</span>
+  </a>
+  <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+    <span class="float-label">Zavolať</span>
+  </a>
+</div>
+
+<script>
+(function(){
+  const fmtK = v => Math.round(v).toLocaleString('sk') + ' €';
+  const loanEl = document.getElementById('loan');
+  const rateEl = document.getElementById('rate');
+  const yearsEl = document.getElementById('years');
+
+  function updateTrack(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty('--kpct', pct + '%');
+  }
+
+  function kCalc() {
+    const L = +loanEl.value;
+    const r = +rateEl.value / 100 / 12;
+    const n = +yearsEl.value * 12;
+    document.getElementById('loanVal').textContent = fmtK(L);
+    document.getElementById('rateVal').textContent = (+rateEl.value).toFixed(1) + ' %';
+    document.getElementById('yearsVal').textContent = yearsEl.value + ' rokov';
+    updateTrack(loanEl); updateTrack(rateEl); updateTrack(yearsEl);
+    const M = r > 0 ? L * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1) : L / n;
+    const total = M * n;
+    const interest = total - L;
+    const pctP = Math.round(L / total * 100);
+    document.getElementById('monthly').textContent = fmtK(M);
+    document.getElementById('resLoan').textContent = fmtK(L);
+    document.getElementById('resTotal').textContent = fmtK(total);
+    document.getElementById('resInterest').textContent = fmtK(interest);
+    document.getElementById('resPayments').textContent = n;
+    document.getElementById('kalkBar').style.width = pctP + '%';
+    document.getElementById('donutPct').textContent = pctP + '%';
+    document.getElementById('legendPrincipal').textContent = fmtK(L);
+    document.getElementById('legendInterest').textContent = fmtK(interest);
+    drawDonut(pctP / 100);
+    buildAmort(L, +rateEl.value / 100, +yearsEl.value, M);
+  }
+
+  function drawDonut(pct) {
+    const canvas = document.getElementById('donut');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = 200 * dpr; canvas.height = 200 * dpr;
+    ctx.scale(dpr, dpr);
+    const cx = 100, cy = 100, R = 82, w = 14;
+    const start = -Math.PI / 2;
+    ctx.clearRect(0, 0, 200, 200);
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(255,255,255,.06)'; ctx.lineWidth = w; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, cy, R, start, start + Math.PI * 2 * pct);
+    ctx.strokeStyle = '#C8851F'; ctx.lineWidth = w; ctx.lineCap = 'round'; ctx.stroke();
+  }
+
+  function buildAmort(principal, annualRate, totalYears, monthlyPayment) {
+    const tbody = document.getElementById('amortBody');
+    tbody.innerHTML = '';
+    let balance = principal;
+    const mr = annualRate / 12;
+    for (let year = 1; year <= totalYears; year++) {
+      let yP = 0, yI = 0;
+      for (let m = 0; m < 12; m++) {
+        if (balance <= 0) break;
+        const ip = balance * mr;
+        const pp = Math.min(monthlyPayment - ip, balance);
+        yI += ip; yP += pp; balance -= pp;
+      }
+      if (balance < 0) balance = 0;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${year}.</td><td>${fmtK(yP+yI)}</td><td>${fmtK(yP)}</td><td>${fmtK(yI)}</td><td>${fmtK(balance)}</td>`;
+      tbody.appendChild(tr);
+    }
+  }
+
+  window.toggleAmort = function() {
+    const table = document.getElementById('amortTable');
+    const btn = document.getElementById('amortToggle');
+    table.classList.toggle('kalk-show');
+    btn.classList.toggle('kalk-open');
+    btn.querySelector('span').textContent = table.classList.contains('kalk-show')
+      ? 'Skryť tabuľku'
+      : 'Zobraziť tabuľku';
+  };
+
+  loanEl.addEventListener('input', kCalc);
+  rateEl.addEventListener('input', kCalc);
+  yearsEl.addEventListener('input', kCalc);
+  kCalc();
+})();
+</script>
+</body>
+</html>
