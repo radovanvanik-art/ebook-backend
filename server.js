@@ -148,8 +148,7 @@ app.post('/api/lead', async (req, res) => {
                 attributes: {
                     FIRSTNAME: firstName,
                     LASTNAME:  name.split(' ').slice(1).join(' ') || '',
-                    SMS:       phone || '',
-                    NOTE:      note || ''
+                    NOTE:      (phone ? `Tel: ${phone}\n` : '') + (note || '')
                 }
             })
         });
