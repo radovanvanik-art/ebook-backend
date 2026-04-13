@@ -107,9 +107,9 @@ app.get('/index.html', (req, res) => {
     res.redirect(301, '/');
 });
 
-// ─── PRESMEROVANIE jazykových variant /en/ /de/ /ua/ → SK verzia ─────────
+// ─── Jazykové varianty /en/ /de/ /ua/ neexistujú → 410 Gone ─────────────
 app.get('/:lang(en|de|ua)/:page', (req, res) => {
-    res.redirect(301, `/${req.params.page}`);
+    res.status(410).end();
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
