@@ -2,9 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const compression = require('compression');
 const cors = require('cors');
-const fetch = require('node-fetch');
+const rateLimit = require('express-rate-limit');
 const path = require('path');
 const fs = require('fs');
+
+function escapeHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, (ch) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+}
 
 const BOOK_TITLES = {
   'ebook-prvy-byt':         'Váš prvý byt',
@@ -53,8 +59,17 @@ app.use(express.static(path.join(__dirname, 'public'), {
     }
 }));
 
+// ─── RATE LIMITING pre formuláre (ochrana pred spamom) ───────────────────
+const formLimiter = rateLimit({
+    windowMs: 10 * 60 * 1000, // 10 minút
+    max: 5,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: { error: 'Príliš veľa požiadaviek. Skúste to prosím o pár minút.' }
+});
+
 // ─── POST /api/subscribe ───────────────────────────────────────────────────
-app.post('/api/subscribe', async (req, res) => {
+app.post('/api/subscribe', formLimiter, async (req, res) => {
     const { email, bookType } = req.body;
     try {
         const brevoRes = await fetch('https://api.brevo.com/v3/contacts', {
@@ -87,8 +102,11 @@ app.post('/api/subscribe', async (req, res) => {
 
 app.get('/download/:bookName', (req, res) => {
     const bookName = req.params.bookName;
+    if (!Object.prototype.hasOwnProperty.call(BOOK_TITLES, bookName)) {
+        return res.status(404).send('Súbor nebol nájdený.');
+    }
     const file = path.join(__dirname, 'public', `${bookName}.pdf`);
-    
+
     res.download(file, `${bookName}.pdf`, (err) => {
         if (err) {
             console.error('PDF download error:', err);
@@ -113,7 +131,7 @@ app.get('/:lang(en|de|ua)/:page', (req, res) => {
 });
 
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
-const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu', 'eknihy', 'kalkulacka'];
+const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu', 'eknihy', 'kalkulacka', 'projekty', 'naklady-dashboard'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
         sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
@@ -125,12 +143,15 @@ subpages.forEach(page => {
 });
 
 // ─── POST /api/lead (ocenenie-bytu) ──────────────────────────────────────
-app.post('/api/lead', async (req, res) => {
+app.post('/api/lead', formLimiter, async (req, res) => {
     const { name, phone, email, note } = req.body;
     if (!email || !email.includes('@')) return res.status(400).json({ error: 'Neplatný email.' });
     if (!name) return res.status(400).json({ error: 'Chýba meno.' });
 
-    const noteHtml = (note || '').replace(/\n/g, '<br>');
+    const noteHtml = escapeHtml(note).replace(/\n/g, '<br>');
+    const nameHtml = escapeHtml(name);
+    const phoneHtml = escapeHtml(phone);
+    const emailHtml = escapeHtml(email);
     const firstName = name.split(' ')[0] || name;
     const senderEmail = process.env.BREVO_SENDER_EMAIL;
     const senderName  = process.env.BREVO_SENDER_NAME || 'Radovan Vaník';
@@ -170,16 +191,16 @@ app.post('/api/lead', async (req, res) => {
                     <div style="font-family:sans-serif;max-width:560px;margin:0 auto;color:#222">
                         <h2 style="color:#8a6a1e">Nový záujemca o ocenenie</h2>
                         <table style="width:100%;border-collapse:collapse;margin-bottom:16px">
-                            <tr><td style="padding:6px 0;color:#666;width:140px">Meno:</td><td><strong>${name}</strong></td></tr>
-                            <tr><td style="padding:6px 0;color:#666">Telefón:</td><td><strong>${phone || '—'}</strong></td></tr>
-                            <tr><td style="padding:6px 0;color:#666">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
+                            <tr><td style="padding:6px 0;color:#666;width:140px">Meno:</td><td><strong>${nameHtml}</strong></td></tr>
+                            <tr><td style="padding:6px 0;color:#666">Telefón:</td><td><strong>${phoneHtml || '—'}</strong></td></tr>
+                            <tr><td style="padding:6px 0;color:#666">Email:</td><td><a href="mailto:${emailHtml}">${emailHtml}</a></td></tr>
                         </table>
                         <h3 style="color:#8a6a1e;margin-bottom:8px">Parametre nehnuteľnosti:</h3>
                         <div style="background:#f9f6f0;border-left:3px solid #c9a84c;padding:16px;font-size:14px;line-height:1.8">
                             ${noteHtml}
                         </div>
                         <p style="margin-top:20px">
-                            <a href="tel:${phone || ''}" style="background:#c9a84c;color:#fff;padding:10px 20px;text-decoration:none;border-radius:4px;font-weight:bold">📞 Zavolať klientovi</a>
+                            <a href="tel:${phoneHtml || ''}" style="background:#c9a84c;color:#fff;padding:10px 20px;text-decoration:none;border-radius:4px;font-weight:bold">📞 Zavolať klientovi</a>
                         </p>
                     </div>`
             })
@@ -195,7 +216,7 @@ app.post('/api/lead', async (req, res) => {
                 subject: 'Vaša žiadosť o ocenenie nehnuteľnosti bola prijatá',
                 htmlContent: `
                     <div style="font-family:sans-serif;max-width:520px;margin:0 auto;color:#222">
-                        <h2 style="color:#8a6a1e">Ďakujem za váš záujem, ${firstName}!</h2>
+                        <h2 style="color:#8a6a1e">Ďakujem za váš záujem, ${escapeHtml(firstName)}!</h2>
                         <p>Vaša žiadosť o bezplatné ocenenie nehnuteľnosti bola prijatá.</p>
                         <p>Ozvem sa vám do <strong>24 hodín</strong> so zoznamom overených záujemcov a podrobnou analýzou trhovej ceny vo vašej lokalite.</p>
                         <p style="margin-top:24px">Ak potrebujete niečo urgentné, zavolajte mi priamo:</p>

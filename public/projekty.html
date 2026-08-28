@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Iné projekty – Radovan Vaník</title>
+<meta name="description" content="Popri realitách stavia appky a weby: GastroFest (jarmočný predaj horúcich nápojov), Náklady Dashboard a BP ploty. Pozrite si, čo ešte robí Radovan Vaník."/>
+<meta name="robots" content="index, follow"/>
+<link rel="canonical" href="https://www.radovanvanik.com/projekty"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.radovanvanik.com/projekty"/>
+<meta property="og:title" content="Iné projekty – Radovan Vaník"/>
+<meta property="og:description" content="Popri realitách stavia appky a weby: GastroFest, Náklady Dashboard a BP ploty."/>
+<meta property="og:locale" content="sk_SK"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X4R17WCR42"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X4R17WCR42');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet"/></noscript>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --dark:#0B0E18;--dark2:#141820;--dark3:#1D2130;
+  --cream:#F7F4EE;--white:#FFFFFF;--ink:#0E1016;
+  --muted:#7A8394;--subtle:#A8B0BF;
+  --border:#E8E4DC;--border-d:rgba(255,255,255,0.07);
+  --gold:#C8851F;--gold-light:#FDF0D8;--gold-mid:#E8A83A;
+  --green:#1E9E6A;
+  --r:14px;--r-sm:8px;
+  --shadow:0 4px 24px rgba(0,0,0,0.07);
+  --shadow-lg:0 16px 48px rgba(0,0,0,0.14);
+}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+html, body { overscroll-behavior-x: none; }
+body{font-family:'Inter',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;touch-action:pan-y pinch-zoom}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit}
+
+/* NAV */
+.nav{position:fixed;top:0;inset-inline:0;z-index:200;padding:0 clamp(1rem,4vw,2.5rem);height:56px;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;background:rgba(11,14,24,0.95);backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid var(--border-d)}
+.nav-logo{display:flex;align-items:center;gap:0.5rem;color:white;font-size:0.92rem;font-weight:700;letter-spacing:-0.01em}
+.nav-logo-icon{flex-shrink:0}
+.nav-center{display:flex;align-items:center;gap:1.1rem}
+.nav-link{color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:500;transition:color 0.2s}
+.nav-link:hover{color:white}
+.nav-right{display:flex;align-items:center;gap:0.4rem}
+.nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:color 0.2s,background 0.2s}
+.nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
+@media(max-width:640px){.nav-center .nav-link:not(.nav-link--active){display:none}.nav-right{display:none}}
+
+/* FOOTER */
+footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
+footer p{font-size:0.78rem;color:rgba(255,255,255,0.25)}
+footer a{color:rgba(255,255,255,0.35);transition:color 0.2s}
+footer a:hover{color:var(--gold)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-top:0.6rem}.footer-links a{display:inline-flex;align-items:center;gap:0.45rem}.footer-links .ft-label{display:inline}
+@media(max-width:580px){.footer-links{gap:0.55rem;margin-top:1rem}.footer-links a{width:42px;height:42px;border-radius:50%;background:rgba(200,133,31,0.10);border:1px solid rgba(200,133,31,0.22);justify-content:center;gap:0}.footer-links a:hover{background:rgba(200,133,31,0.22)}.footer-links .ft-label{display:none}footer p{font-size:0.68rem;line-height:1.55;padding:0 0.5rem}}
+
+/* FLOATS */
+.floats{position:fixed;bottom:1.75rem;right:1.5rem;display:flex;flex-direction:column;align-items:flex-end;gap:0.75rem;z-index:300}
+.float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,0.25);transition:transform 0.2s,box-shadow 0.2s;position:relative}
+.float-btn:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.float-wa{background:#25D366}.float-ph{background:var(--gold)}
+.float-tip{position:absolute;right:62px;background:var(--dark);color:rgba(255,255,255,0.85);font-size:0.73rem;font-weight:500;padding:0.28rem 0.65rem;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity 0.2s}
+.float-btn:hover .float-tip{opacity:1}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-d1{transition-delay:0.1s}.reveal-d2{transition-delay:0.2s}.reveal-d3{transition-delay:0.3s}
+@media (prefers-reduced-motion: reduce) { .reveal{transition:none;opacity:1;transform:none} }
+
+/* ── HERO ── */
+.hero-projects{
+  background:
+    radial-gradient(ellipse 70% 60% at 15% 20%, rgba(30,158,106,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 90% 80%, rgba(200,133,31,0.10) 0%, transparent 60%),
+    var(--dark);
+  padding:130px clamp(1.25rem,5vw,3rem) 5rem;
+  text-align:center;
+}
+.hero-projects-inner{max-width:720px;margin:0 auto}
+.hero-projects .eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:0.9rem}
+.hero-projects h1{
+  font-family:'Cormorant Garamond',serif;font-weight:700;
+  font-size:clamp(2.6rem,5.5vw,4.2rem);line-height:1.08;color:#fff;letter-spacing:-0.01em;
+  margin-bottom:1.2rem;
+}
+.hero-projects p{color:rgba(255,255,255,0.6);font-size:1rem;line-height:1.75;max-width:560px;margin:0 auto}
+
+/* ── PROJECT CARDS ── */
+.projects-section{
+  background:
+    radial-gradient(ellipse 55% 45% at 8% 8%, rgba(200,133,31,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 45% at 92% 96%, rgba(59,111,232,0.09) 0%, transparent 60%),
+    var(--dark);
+  padding:clamp(1.5rem,4vw,2.5rem) clamp(1.25rem,5vw,3rem) clamp(4.5rem,9vw,6.5rem);
+}
+.projects-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.75rem}
+.project-card{
+  --accent: var(--gold);
+  background:linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:20px;
+  padding:2.25rem 2rem 2rem;
+  display:flex;flex-direction:column;gap:1rem;
+  backdrop-filter:blur(18px) saturate(160%);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:0 24px 54px rgba(0,0,0,0.4);
+  position:relative;overflow:hidden;
+  transition:transform 0.3s cubic-bezier(.2,.8,.2,1), box-shadow 0.3s, border-color 0.3s;
+}
+.project-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity:0.75;
+}
+.project-card::after{
+  content:'';position:absolute;top:-40%;left:50%;width:140%;height:60%;transform:translateX(-50%);
+  background:radial-gradient(ellipse, color-mix(in srgb, var(--accent) 22%, transparent) 0%, transparent 70%);
+  pointer-events:none;opacity:0.7;
+}
+.project-card:hover{transform:translateY(-7px);box-shadow:0 32px 70px rgba(0,0,0,0.5);border-color:rgba(255,255,255,0.18)}
+.project-card--wine{--accent:#D9A441}
+.project-card--tech{--accent:#5B8CFF}
+.project-card--brick{--accent:#D97A5E}
+.project-card-icowrap{
+  position:relative;z-index:1;
+  width:58px;height:58px;border-radius:16px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.75rem;
+  background:linear-gradient(135deg, color-mix(in srgb, var(--accent) 28%, transparent), color-mix(in srgb, var(--accent) 6%, transparent));
+  border:1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 20px rgba(0,0,0,0.25);
+}
+.project-card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:0.75rem;position:relative;z-index:1}
+.project-card-title{font-family:'Cormorant Garamond',serif;font-size:1.75rem;font-weight:700;color:#fff;letter-spacing:-0.01em;position:relative;z-index:1}
+.project-card-badge{
+  flex-shrink:0;
+  font-size:0.64rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;
+  padding:0.3rem 0.7rem;border-radius:100px;border:1px solid transparent;white-space:nowrap;
+}
+.project-card-badge--live{background:rgba(30,158,106,0.14);color:#4CD68A;border-color:rgba(30,158,106,0.4)}
+.project-card-badge--preview{background:rgba(91,140,255,0.14);color:#8FB0FF;border-color:rgba(91,140,255,0.4)}
+.project-card-desc{color:rgba(255,255,255,0.6);font-size:0.92rem;line-height:1.72;flex:1;position:relative;z-index:1}
+.project-card-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.85rem;font-weight:700;color:var(--accent);margin-top:0.15rem;
+  padding-top:1.1rem;border-top:1px solid rgba(255,255,255,0.09);position:relative;z-index:1;
+}
+.project-card-cta svg{transition:transform 0.2s}
+.project-card:hover .project-card-cta svg{transform:translateX(4px)}
+
+/* ── BACK CTA ── */
+.back-cta-section{background:var(--dark);padding:clamp(3rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem);text-align:center}
+.back-cta-section p{color:rgba(255,255,255,0.45);font-size:0.92rem;margin-bottom:1rem}
+.back-cta-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#fff;font-weight:700;font-size:0.92rem;
+  padding:0.9rem 1.8rem;border-radius:10px;
+  box-shadow:0 12px 28px rgba(200,133,31,0.3);
+  transition:background 0.2s,transform 0.15s;
+}
+.back-cta-btn:hover{background:var(--gold-mid);transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <a href="/" class="nav-logo">
+    <svg class="nav-logo-icon" width="18" height="18" viewBox="0 0 24 24" fill="var(--gold)"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    <span>radovanvanik.com</span>
+  </a>
+  <div class="nav-center">
+    <a href="/" class="nav-link">Domov</a>
+    <a href="/#realitny-trh" class="nav-link">Realitný trh</a>
+    <a href="/o-mne" class="nav-link">O mne</a>
+    <a href="/projekty" class="nav-link nav-link--active" style="color:white">Iné projekty</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" class="nav-social" aria-label="Instagram">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-projects">
+  <div class="hero-projects-inner reveal">
+    <p class="eyebrow">Popri realitách</p>
+    <h1>Čo ešte staviam</h1>
+    <p>Cez deň som realitný maklér, vo voľnom čase programátor. Tu je pár vecí, ktoré som si sám naprogramoval — pre vlastný biznis aj pre iných.</p>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section">
+  <div class="projects-grid">
+
+    <div class="project-card project-card--wine reveal reveal-d1">
+      <div class="project-card-top">
+        <span class="project-card-icowrap">🍷</span>
+        <span class="project-card-badge project-card-badge--live">Naživo</span>
+      </div>
+      <h2 class="project-card-title">GastroFest</h2>
+      <p class="project-card-desc">Korenené víno, punč a horúce nápoje z kotlíka — tam, kde sa ľudia stretávajú na jarmokoch a festivaloch po celom Slovensku. Web pre vlastný gastro biznis, ktorý ide s Radovanom na každý jarmok.</p>
+      <a href="/gastrofest" target="_blank" rel="noopener" class="project-card-cta">
+        Pozrieť stránku
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="project-card project-card--tech reveal reveal-d2">
+      <div class="project-card-top">
+        <span class="project-card-icowrap">📊</span>
+        <span class="project-card-badge project-card-badge--preview">Ukážka appky</span>
+      </div>
+      <h2 class="project-card-title">Náklady Dashboard</h2>
+      <p class="project-card-desc">Appka, ktorá nahradila Excel: náklady, faktúry a prehľady ziskov/strát pre jarmočné stánky v reálnom čase — stačí odfotiť účtenku a je to zaevidované.</p>
+      <a href="/naklady-dashboard" class="project-card-cta">
+        Pozrieť ukážku
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <div class="project-card project-card--brick reveal reveal-d1">
+      <div class="project-card-top">
+        <span class="project-card-icowrap">🧱</span>
+        <span class="project-card-badge project-card-badge--live">Naživo</span>
+      </div>
+      <h2 class="project-card-title">BP ploty</h2>
+      <p class="project-card-desc">Betónové a 3D ploty na kľúč — predaj, dovoz aj montáž v Ružomberku a okolí. Vlastný web na kľúč pre plotársku firmu, od dopytu až po cenovú ponuku do 24 hodín.</p>
+      <a href="https://www.bpploty.sk" target="_blank" rel="noopener" class="project-card-cta">
+        Pozrieť bpploty.sk
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- BACK TO REAL ESTATE -->
+<section class="back-cta-section">
+  <p>Hľadáte skôr pomoc s kúpou, predajom alebo ocenením nehnuteľnosti?</p>
+  <a href="/#realitny-trh" class="back-cta-btn">🏠 Späť na realitný trh →</a>
+</section>
+
+<footer>
+  <p>© 2025 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
+  <div class="footer-links">
+    <a href="tel:+421948310950" aria-label="Zavolat +421 948 310 950">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+      <span class="ft-label">+421 948 310 950</span>
+    </a>
+    <a href="https://www.najbyvanie.sk" target="_blank" rel="noopener" aria-label="najbyvanie.sk">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+      <span class="ft-label">najbyvanie.sk</span>
+    </a>
+    <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      <span class="ft-label">Facebook</span>
+    </a>
+    <a href="https://www.instagram.com/radovanvanik" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      <span class="ft-label">Instagram</span>
+    </a>
+    <a href="https://eur-lex.europa.eu/legal-content/SK/TXT/PDF/?uri=CELEX:32016R0679&from=SK" target="_blank" rel="noopener" aria-label="Ochrana súkromia">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 2.18l7 3.12V11c0 4.52-3.08 8.76-7 9.93-3.92-1.17-7-5.41-7-9.93V6.3l7-3.12zM11 7v6h2V7h-2zm0 8v2h2v-2h-2z"/></svg>
+      <span class="ft-label">Ochrana súkromia</span>
+    </a>
+  </div>
+</footer>
+
+<div class="floats" aria-label="Kontakt">
+  <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradil." class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <span class="float-tip">Napíšte na WhatsApp</span>
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+  <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať">
+    <span class="float-tip">Zavolať Radovanovi</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+  </a>
+</div>
+
+<script>
+const obs = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('visible');
+}), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
