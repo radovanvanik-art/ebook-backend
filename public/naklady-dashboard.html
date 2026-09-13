@@ -81,10 +81,29 @@ footer a:hover{color:var(--gold)}
 }
 
 /* MOCKUP */
-.mockup-section{background:var(--cream);padding:0 clamp(1rem,4vw,3rem) clamp(3.5rem,7vw,5rem);margin-top:-1.5rem}
+.mockup-section{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse 60% 55% at 12% 8%, rgba(200,133,31,0.24) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 50% at 90% 15%, rgba(30,158,106,0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 55% at 50% 100%, rgba(59,111,232,0.20) 0%, transparent 60%),
+    linear-gradient(180deg, #0B0E18 0%, #12172A 55%, #171C33 100%);
+  padding:clamp(3rem,6vw,4rem) clamp(1rem,4vw,3rem) clamp(4.5rem,8vw,6rem);
+}
+.mockup-section::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);
+  background-size:44px 44px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 80%);
+}
+.mockup-eyebrow-row{position:relative;z-index:1;text-align:center;margin-bottom:2rem}
+.mockup-eyebrow-row p{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.4)}
 .mockup-window{
   max-width:960px;margin:0 auto;background:#fff;border-radius:16px;
-  box-shadow:0 30px 70px rgba(0,0,0,0.28);overflow:hidden;border:1px solid var(--border);
+  box-shadow:0 40px 90px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.06);overflow:hidden;border:1px solid var(--border);
 }
 .mockup-titlebar{background:#EDEAE2;padding:0.7rem 1rem;display:flex;align-items:center;gap:6px}
 .mockup-dot{width:10px;height:10px;border-radius:50%;background:#D8D4C8}
@@ -105,8 +124,21 @@ footer a:hover{color:var(--gold)}
 .mockup-bar-row{display:flex;align-items:center;gap:0.7rem;margin-bottom:0.65rem;font-size:0.82rem}
 .mockup-bar-label{width:110px;flex-shrink:0;color:var(--ink)}
 .mockup-bar-track{flex:1;height:9px;background:var(--cream);border-radius:100px;overflow:hidden}
-.mockup-bar-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--gold),var(--gold-mid))}
+.mockup-bar-fill{
+  height:100%;border-radius:100px;width:0;
+  background:linear-gradient(90deg,var(--gold),var(--gold-mid));
+  transition:width 0.9s cubic-bezier(.16,1,.3,1);
+}
 .mockup-bar-pct{width:38px;text-align:right;color:var(--muted);font-size:0.76rem}
+.mockup-anim{opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease}
+.mockup-slide.is-active .mockup-anim{opacity:1;transform:none}
+.mockup-slide.is-active .mockup-anim:nth-child(1){transition-delay:0.05s}
+.mockup-slide.is-active .mockup-anim:nth-child(2){transition-delay:0.12s}
+.mockup-slide.is-active .mockup-anim:nth-child(3){transition-delay:0.19s}
+.mockup-slide.is-active .mockup-anim:nth-child(4){transition-delay:0.26s}
+.mockup-slide.is-active .mockup-anim:nth-child(5){transition-delay:0.33s}
+.mockup-donut-wrap{transition:opacity 0.6s ease 0.15s,transform 0.6s cubic-bezier(.2,.8,.2,1) 0.15s;opacity:0;transform:scale(0.85) rotate(-8deg)}
+.mockup-slide.is-active .mockup-donut-wrap{opacity:1;transform:none}
 .mockup-table{width:100%;border-collapse:collapse;font-size:0.82rem}
 .mockup-table th{text-align:left;font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;color:var(--muted);padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
 .mockup-table td{padding:0.55rem 0;border-bottom:1px solid var(--border)}
@@ -116,36 +148,59 @@ footer a:hover{color:var(--gold)}
 .mockup-cat--wage{background:var(--green-bg);color:var(--green)}
 
 /* MOCKUP CAROUSEL */
-.mockup-carousel{max-width:960px;margin:0 auto;position:relative}
-.mockup-viewport{overflow:hidden;border-radius:16px}
-.mockup-track{display:flex;transition:transform 0.45s cubic-bezier(.65,0,.35,1)}
+.mockup-carousel{max-width:960px;margin:0 auto;position:relative;z-index:1}
+.mockup-viewport{overflow:hidden;border-radius:20px}
+.mockup-track{display:flex;transition:transform 0.55s cubic-bezier(.65,0,.35,1)}
 .mockup-carousel:focus{outline:none}
-.mockup-carousel:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:16px}
+.mockup-carousel:focus-visible{outline:2px solid var(--gold);outline-offset:6px;border-radius:20px}
 @media (prefers-reduced-motion: reduce) {
   .mockup-track{transition:none}
   .reveal{transition:none;opacity:1;transform:none}
+  .mockup-slide{transition:none!important}
+  .mockup-bar-fill,.mockup-anim{transition:none!important;animation:none!important}
 }
-.mockup-slide{flex:0 0 100%;min-width:0}
+.mockup-slide{
+  flex:0 0 100%;min-width:0;
+  opacity:0.35;transform:scale(0.96);
+  transition:opacity 0.55s ease,transform 0.55s cubic-bezier(.2,.8,.2,1);
+}
+.mockup-slide.is-active{opacity:1;transform:scale(1)}
 .mockup-slide .mockup-window{max-width:none;box-shadow:0 30px 70px rgba(0,0,0,0.28)}
 .mockup-nav{
-  position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;
-  background:#fff;border:1px solid var(--border);box-shadow:var(--shadow);
-  display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);
-  font-size:1.1rem;z-index:5;transition:background 0.2s,transform 0.2s;
+  position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.16);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;
+  font-size:1.2rem;z-index:5;transition:background 0.2s,transform 0.2s,border-color 0.2s;
 }
-.mockup-nav:hover{background:var(--cream)}
-.mockup-nav--prev{left:-21px}
-.mockup-nav--next{right:-21px}
+.mockup-nav:hover{background:rgba(255,255,255,0.16);border-color:rgba(255,255,255,0.32);transform:translateY(-50%) scale(1.06)}
+.mockup-nav--prev{left:-22px}
+.mockup-nav--next{right:-22px}
 @media(max-width:720px){.mockup-nav{display:none}}
-.mockup-tabs{display:flex;justify-content:center;gap:0.6rem;margin-top:1.5rem;flex-wrap:wrap}
-.mockup-tab{
-  display:flex;align-items:center;gap:0.5rem;font-size:0.8rem;font-weight:600;color:var(--muted);
-  background:#fff;border:1.5px solid var(--border);padding:0.5rem 1rem;border-radius:100px;
-  cursor:pointer;transition:border-color 0.2s,color 0.2s,background 0.2s;
+
+/* Segmented tab switcher with sliding pill */
+.mockup-tabs{
+  position:relative;display:inline-flex;gap:0.15rem;margin-top:2rem;
+  padding:0.3rem;border-radius:100px;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  left:50%;transform:translateX(-50%);
 }
-.mockup-tab.active{border-color:var(--gold);color:var(--ink);background:var(--gold-light)}
-.mockup-tab-dot{width:6px;height:6px;border-radius:50%;background:var(--border)}
-.mockup-tab.active .mockup-tab-dot{background:var(--gold)}
+.mockup-tabs-wrap{display:flex;justify-content:center}
+.mockup-tab-highlight{
+  position:absolute;top:0.3rem;bottom:0.3rem;left:0.3rem;width:0;border-radius:100px;
+  background:linear-gradient(135deg,var(--gold),var(--gold-mid));
+  box-shadow:0 6px 18px rgba(200,133,31,0.4);
+  transition:transform 0.4s cubic-bezier(.65,0,.35,1),width 0.4s cubic-bezier(.65,0,.35,1);
+  z-index:0;
+}
+.mockup-tab{
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:0.45rem;font-size:0.82rem;font-weight:600;color:rgba(255,255,255,0.55);
+  background:transparent;border:none;padding:0.55rem 1.1rem;border-radius:100px;
+  cursor:pointer;transition:color 0.3s;white-space:nowrap;
+}
+.mockup-tab.active{color:#fff}
+.mockup-tab-ico{font-size:0.95rem;line-height:1}
 
 /* Donut chart */
 .mockup-donut-row{display:flex;align-items:center;gap:1.75rem;flex-wrap:wrap}
@@ -204,24 +259,57 @@ footer a:hover{color:var(--gold)}
 
 /* FEATURES */
 .features-section{background:var(--white);padding:clamp(3.5rem,7vw,5.5rem) clamp(1.25rem,5vw,3rem)}
-.features-inner{max-width:1000px;margin:0 auto}
+.features-inner{max-width:1040px;margin:0 auto}
 .section-eyebrow{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem}
 .section-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:700;line-height:1.15;margin-bottom:0.75rem}
 .section-p{color:var(--muted);font-size:0.95rem;line-height:1.7;max-width:560px;margin-bottom:2.75rem}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
-.feature-card{background:var(--cream);border:1.5px solid var(--border);border-radius:var(--r);padding:1.5rem;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s}
-.feature-card:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:rgba(30,158,106,0.3)}
-.feature-icon{font-size:1.6rem;margin-bottom:0.75rem}
-.feature-card h3{font-size:0.98rem;font-weight:700;margin-bottom:0.4rem}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem}
+.feature-card{
+  --accent:var(--gold);
+  position:relative;overflow:hidden;
+  background:var(--cream);border:1.5px solid var(--border);border-radius:16px;padding:1.75rem 1.5rem;
+  transition:transform 0.3s cubic-bezier(.2,.8,.2,1),box-shadow 0.3s,border-color 0.3s;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(0,0,0,0.1);border-color:color-mix(in srgb,var(--accent) 35%,var(--border))}
+.feature-card:hover::before{opacity:0.9}
+.feature-card:nth-child(6n+1){--accent:var(--gold)}
+.feature-card:nth-child(6n+2){--accent:#5B8CFF}
+.feature-card:nth-child(6n+3){--accent:var(--green)}
+.feature-card:nth-child(6n+4){--accent:#D97A5E}
+.feature-card:nth-child(6n+5){--accent:var(--gold-mid)}
+.feature-card:nth-child(6n+6){--accent:#8A6FE8}
+.feature-icon{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:48px;height:48px;border-radius:14px;font-size:1.4rem;margin-bottom:1rem;
+  background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 22%,transparent),color-mix(in srgb,var(--accent) 6%,transparent));
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+}
+.feature-card h3{font-size:0.98rem;font-weight:700;margin-bottom:0.4rem;color:var(--ink)}
 .feature-card p{font-size:0.85rem;color:var(--muted);line-height:1.6}
 
 /* CTA */
-.dash-cta-section{background:var(--dark);padding:clamp(3rem,6vw,4.5rem) clamp(1.25rem,5vw,3rem);text-align:center}
-.dash-cta-section h2{font-family:'Cormorant Garamond',serif;color:#fff;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:0.75rem}
-.dash-cta-section p{color:rgba(255,255,255,0.5);font-size:0.92rem;margin-bottom:1.5rem;max-width:480px;margin-inline:auto}
-.dash-cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-weight:700;font-size:0.92rem;padding:0.9rem 1.8rem;border-radius:10px;box-shadow:0 12px 28px rgba(30,158,106,0.3);transition:background 0.2s,transform 0.15s}
-.dash-cta-btn:hover{background:#25B87C;transform:translateY(-2px)}
-.dash-cta-back{display:block;margin-top:1.25rem;font-size:0.82rem;color:rgba(255,255,255,0.4)}
+.dash-cta-section{
+  position:relative;overflow:hidden;text-align:center;
+  padding:clamp(3.5rem,7vw,5.5rem) clamp(1.25rem,5vw,3rem);
+  background:
+    radial-gradient(ellipse 60% 60% at 50% 0%, rgba(30,158,106,0.16) 0%, transparent 65%),
+    var(--dark);
+}
+.dash-cta-section h2{font-family:'Cormorant Garamond',serif;color:#fff;font-size:clamp(1.8rem,3.5vw,2.5rem);margin-bottom:0.85rem;position:relative;z-index:1}
+.dash-cta-section p{color:rgba(255,255,255,0.55);font-size:0.95rem;margin-bottom:1.75rem;max-width:480px;margin-inline:auto;position:relative;z-index:1}
+.dash-cta-btn{
+  position:relative;z-index:1;
+  display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;font-weight:700;font-size:0.95rem;
+  padding:1rem 2rem;border-radius:100px;box-shadow:0 16px 36px rgba(30,158,106,0.35);
+  transition:background 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.dash-cta-btn:hover{background:#25B87C;transform:translateY(-3px);box-shadow:0 20px 44px rgba(30,158,106,0.45)}
+.dash-cta-back{display:block;margin-top:1.5rem;font-size:0.82rem;color:rgba(255,255,255,0.4);position:relative;z-index:1}
 .dash-cta-back:hover{color:var(--gold)}
 </style>
 </head>
@@ -244,13 +332,16 @@ footer a:hover{color:var(--gold)}
   <div class="hero-dash-inner reveal">
     <p class="eyebrow">Iné projekty · Náklady Dashboard</p>
     <h1>Appka, ktorá nahradila Excel</h1>
-    <p>Postavil som ju pre vlastný jarmočný biznis (GastroFest) — správa nákladov, faktúr, skladu a miezd na dvoch stánkoch, prehľadne a v reálnom čase.</p>
+    <p>Postavil som ju pre Adamov jarmočný biznis (GastroFest) — správa nákladov, faktúr, skladu a miezd na dvoch stánkoch, prehľadne a v reálnom čase.</p>
     <span class="sample-badge">⚠️ Ukážka s vzorovými dátami — žiadne reálne čísla klienta</span>
   </div>
 </section>
 
 <!-- MOCKUP -->
 <section class="mockup-section">
+  <div class="mockup-eyebrow-row reveal">
+    <p>👆 Prezrite si appku naživo — prepínajte medzi náhľadmi</p>
+  </div>
   <div class="mockup-carousel reveal reveal-d1" role="region" aria-roledescription="karusel" aria-label="Ukážky appky Náklady Dashboard" tabindex="0">
     <div class="mockup-viewport">
       <div class="mockup-track" id="mockupTrack">
@@ -267,19 +358,19 @@ footer a:hover{color:var(--gold)}
                 <span class="mockup-filter">Tento mesiac · Oba stánky ▾</span>
               </div>
               <div class="mockup-stats">
-                <div class="mockup-stat">
+                <div class="mockup-stat mockup-anim">
                   <div class="mockup-stat-label">Príjmy</div>
                   <div class="mockup-stat-num">4 820 €</div>
                 </div>
-                <div class="mockup-stat mockup-stat--cost">
+                <div class="mockup-stat mockup-stat--cost mockup-anim">
                   <div class="mockup-stat-label">Náklady</div>
                   <div class="mockup-stat-num">1 940 €</div>
                 </div>
-                <div class="mockup-stat mockup-stat--profit">
+                <div class="mockup-stat mockup-stat--profit mockup-anim">
                   <div class="mockup-stat-label">Zisk</div>
                   <div class="mockup-stat-num">2 880 €</div>
                 </div>
-                <div class="mockup-stat">
+                <div class="mockup-stat mockup-anim">
                   <div class="mockup-stat-label">Marža</div>
                   <div class="mockup-stat-num">59,7 %</div>
                 </div>
@@ -288,15 +379,17 @@ footer a:hover{color:var(--gold)}
                 <div>
                   <div class="mockup-panel-title">Náklady podľa kategórie</div>
                   <div class="mockup-donut-row">
-                    <div class="mockup-donut">
-                      <div class="mockup-donut-center"><b>1 940 €</b><span>spolu</span></div>
+                    <div class="mockup-donut-wrap">
+                      <div class="mockup-donut">
+                        <div class="mockup-donut-center"><b>1 940 €</b><span>spolu</span></div>
+                      </div>
                     </div>
                     <div class="mockup-legend">
-                      <div class="mockup-legend-row"><span class="mockup-legend-dot" style="background:var(--gold)"></span><span class="mockup-legend-label">Suroviny</span><span class="mockup-legend-pct">38 %</span></div>
-                      <div class="mockup-legend-row"><span class="mockup-legend-dot" style="background:var(--gold-mid)"></span><span class="mockup-legend-label">Nájom stánku</span><span class="mockup-legend-pct">22 %</span></div>
-                      <div class="mockup-legend-row"><span class="mockup-legend-dot" style="background:var(--green)"></span><span class="mockup-legend-label">Mzdy</span><span class="mockup-legend-pct">18 %</span></div>
-                      <div class="mockup-legend-row"><span class="mockup-legend-dot" style="background:var(--blue)"></span><span class="mockup-legend-label">Palivo</span><span class="mockup-legend-pct">12 %</span></div>
-                      <div class="mockup-legend-row"><span class="mockup-legend-dot" style="background:#CFC9BA"></span><span class="mockup-legend-label">Ostatné</span><span class="mockup-legend-pct">10 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold)"></span><span class="mockup-legend-label">Suroviny</span><span class="mockup-legend-pct">38 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold-mid)"></span><span class="mockup-legend-label">Nájom stánku</span><span class="mockup-legend-pct">22 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--green)"></span><span class="mockup-legend-label">Mzdy</span><span class="mockup-legend-pct">18 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--blue)"></span><span class="mockup-legend-label">Palivo</span><span class="mockup-legend-pct">12 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:#CFC9BA"></span><span class="mockup-legend-label">Ostatné</span><span class="mockup-legend-pct">10 %</span></div>
                     </div>
                   </div>
                 </div>
@@ -341,11 +434,11 @@ footer a:hover{color:var(--gold)}
                 </div>
               </div>
               <div class="mockup-stats" style="margin-top:1.25rem;margin-bottom:0">
-                <div class="mockup-stat mockup-stat--profit">
+                <div class="mockup-stat mockup-stat--profit mockup-anim">
                   <div class="mockup-stat-label">Tržby spolu dnes</div>
                   <div class="mockup-stat-num">1 120 €</div>
                 </div>
-                <div class="mockup-stat">
+                <div class="mockup-stat mockup-anim">
                   <div class="mockup-stat-label">Najlepší stánok</div>
                   <div class="mockup-stat-num">Ružomberok</div>
                 </div>
@@ -366,22 +459,22 @@ footer a:hover{color:var(--gold)}
                 <span class="mockup-filter">Tento mesiac ▾</span>
               </div>
               <div class="mockup-stats" style="margin-bottom:1.5rem">
-                <div class="mockup-stat mockup-stat--cost">
+                <div class="mockup-stat mockup-stat--cost mockup-anim">
                   <div class="mockup-stat-label">Mzdy spolu</div>
                   <div class="mockup-stat-num">612 €</div>
                 </div>
-                <div class="mockup-stat">
+                <div class="mockup-stat mockup-anim">
                   <div class="mockup-stat-label">Odpracované hodiny</div>
                   <div class="mockup-stat-num">112 h</div>
                 </div>
-                <div class="mockup-stat">
+                <div class="mockup-stat mockup-anim">
                   <div class="mockup-stat-label">Priemerná sadzba</div>
                   <div class="mockup-stat-num">5,50 €/h</div>
                 </div>
               </div>
               <div class="mockup-panel-title">Brigádnici</div>
               <div>
-                <div class="mockup-wage-row">
+                <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--gold)">PK</div>
                   <div>
                     <div class="mockup-wage-name">Peter K.</div>
@@ -392,7 +485,7 @@ footer a:hover{color:var(--gold)}
                     <div class="mockup-wage-gross">hrubá 176 €</div>
                   </div>
                 </div>
-                <div class="mockup-wage-row">
+                <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--green)">JS</div>
                   <div>
                     <div class="mockup-wage-name">Jana S.</div>
@@ -403,7 +496,7 @@ footer a:hover{color:var(--gold)}
                     <div class="mockup-wage-gross">hrubá 132 €</div>
                   </div>
                 </div>
-                <div class="mockup-wage-row">
+                <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--blue)">MV</div>
                   <div>
                     <div class="mockup-wage-name">Marek V.</div>
@@ -423,10 +516,13 @@ footer a:hover{color:var(--gold)}
     </div>
     <button class="mockup-nav mockup-nav--prev" id="mockupPrev" aria-label="Predchádzajúci náhľad">‹</button>
     <button class="mockup-nav mockup-nav--next" id="mockupNext" aria-label="Ďalší náhľad">›</button>
-    <div class="mockup-tabs" id="mockupTabs" role="tablist" aria-label="Vybrať náhľad">
-      <button class="mockup-tab active" data-slide="0" role="tab" aria-selected="true"><span class="mockup-tab-dot"></span>Dashboard</button>
-      <button class="mockup-tab" data-slide="1" role="tab" aria-selected="false"><span class="mockup-tab-dot"></span>Tržby na mape</button>
-      <button class="mockup-tab" data-slide="2" role="tab" aria-selected="false"><span class="mockup-tab-dot"></span>Mzdy</button>
+    <div class="mockup-tabs-wrap">
+      <div class="mockup-tabs" id="mockupTabs" role="tablist" aria-label="Vybrať náhľad">
+        <span class="mockup-tab-highlight" id="mockupHighlight" aria-hidden="true"></span>
+        <button class="mockup-tab active" data-slide="0" role="tab" aria-selected="true"><span class="mockup-tab-ico">📊</span>Dashboard</button>
+        <button class="mockup-tab" data-slide="1" role="tab" aria-selected="false"><span class="mockup-tab-ico">🗺️</span>Tržby na mape</button>
+        <button class="mockup-tab" data-slide="2" role="tab" aria-selected="false"><span class="mockup-tab-ico">🧾</span>Mzdy</button>
+      </div>
     </div>
   </div>
 </section>
@@ -468,7 +564,7 @@ footer a:hover{color:var(--gold)}
       <div class="feature-card reveal reveal-d2">
         <div class="feature-icon">⚙️</div>
         <h3>Vlastné kategórie a stánky</h3>
-        <p>Nastavenia sa prispôsobia štruktúre vášho biznisu — nie appka vám, ale appka vám.</p>
+        <p>Nastavenia sa prispôsobia štruktúre vášho biznisu — nie vy appke, ale appka vám.</p>
       </div>
     </div>
   </div>
@@ -505,11 +601,19 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 (function () {
   const track = document.getElementById('mockupTrack');
   const tabs = document.querySelectorAll('#mockupTabs .mockup-tab');
+  const highlight = document.getElementById('mockupHighlight');
+  const slides = document.querySelectorAll('.mockup-slide');
   const prevBtn = document.getElementById('mockupPrev');
   const nextBtn = document.getElementById('mockupNext');
   if (!track) return;
   const slideCount = track.children.length;
   let current = 0;
+
+  function moveHighlight(tab) {
+    if (!highlight || !tab) return;
+    highlight.style.width = tab.offsetWidth + 'px';
+    highlight.style.transform = `translateX(${tab.offsetLeft - 4}px)`;
+  }
 
   function goTo(i) {
     current = (i + slideCount) % slideCount;
@@ -517,8 +621,11 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     tabs.forEach((t, idx) => {
       t.classList.toggle('active', idx === current);
       t.setAttribute('aria-selected', idx === current ? 'true' : 'false');
+      if (idx === current) moveHighlight(t);
     });
+    slides.forEach((s, idx) => s.classList.toggle('is-active', idx === current));
   }
+  window.addEventListener('resize', () => moveHighlight(tabs[current]));
   prevBtn.addEventListener('click', () => goTo(current - 1));
   nextBtn.addEventListener('click', () => goTo(current + 1));
   tabs.forEach((tab, idx) => tab.addEventListener('click', () => goTo(idx)));
@@ -537,6 +644,8 @@ document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
     touchStartX = null;
   }, { passive: true });
+
+  goTo(0);
 })();
 </script>
 </body>

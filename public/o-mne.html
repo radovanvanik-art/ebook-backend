@@ -28,7 +28,9 @@
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-X4R17WCR42');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap" rel="stylesheet"/>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=IM+Fell+DW+Pica+SC&family=Cormorant+Upright:wght@300&display=swap" rel="stylesheet"/></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -326,7 +328,10 @@ body { touch-action: pan-y pinch-zoom; }
     <!-- PHOTO -->
     <div class="photo-wrap reveal">
       <div class="photo-frame">
-        <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="700" height="875" loading="eager" decoding="async"/>
+        <picture>
+          <source srcset="/radovan.webp" type="image/webp"/>
+          <img src="/radovan.jpg" alt="Radovan Vaník – realitný maklér Ružomberok" width="700" height="875" loading="eager" decoding="async"/>
+        </picture>
         <div class="photo-badge">
           <div class="photo-badge-num">🏠</div>
           <div class="photo-badge-label">Reality<br/>Najbývanie</div>
