@@ -797,7 +797,7 @@
         <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14"></button>
         <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14"></button>
       </div>
-      <a href="tel:+421948310950" style="color:var(--text-muted);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px;">
+      <a href="tel:+421948310950" aria-label="Zavolať +421 948 310 950" style="color:var(--text-muted);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px;">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         <span class="top-nav-phone-text">+421 948 310 950</span>
       </a>
@@ -805,7 +805,7 @@
   </nav>
 
   <!-- HERO -->
-  <div class="hero">
+  <main class="hero">
     <div class="hero-badge" data-i18n="hero_badge">Bezplatné ocenenie</div>
     <h1><span data-i18n="hero_h1_1">Zistite hodnotu</span><br><span data-i18n="hero_h1_2">vašej</span> <em data-i18n="hero_h1_em">nehnuteľnosti</em></h1>
     <p data-i18n="hero_sub">Okamžitý odhad trhovej ceny. Bez záväzkov, bez čakania.</p>
@@ -851,7 +851,7 @@
       <div class="form-grid">
         <!-- Lokalita -->
         <div class="form-group span-2">
-          <label data-i18n="lbl_location">Najbližšie väčšie mesto</label>
+          <label for="location" data-i18n="lbl_location">Najbližšie väčšie mesto</label>
           <select id="location">
             <option value="" data-i18n="opt_location_placeholder">— Vyberte mesto —</option>
             <option value="ruzomberok">Ružomberok</option>
@@ -880,7 +880,7 @@
 
         <!-- Dostupnosť občianskej vybavenosti -->
         <div class="form-group span-2">
-          <label data-i18n="lbl_transport">Dostupnosť MHD / centrom (pešo)</label>
+          <label for="transport" data-i18n="lbl_transport">Dostupnosť MHD / centrom (pešo)</label>
           <select id="transport">
             <option value="very_good" data-i18n="opt_transport_very_good">Do 5 minút — výborná dostupnosť</option>
             <option value="good" selected data-i18n="opt_transport_good">5–15 minút — dobrá dostupnosť</option>
@@ -947,7 +947,7 @@
 
         <!-- Svetlá výška -->
         <div class="form-group" id="ceilingGroup">
-          <label data-i18n="lbl_ceiling">Svetlá výška miestností</label>
+          <label for="ceilingHeight" data-i18n="lbl_ceiling">Svetlá výška miestností</label>
           <select id="ceilingHeight">
             <option value="standard" selected data-i18n="opt_ceiling_standard">Štandard (2,5–2,7 m)</option>
             <option value="high" data-i18n="opt_ceiling_high">Vysoká (2,7–3,2 m)</option>
@@ -957,7 +957,7 @@
 
         <!-- Poschodie -->
         <div class="form-group" id="floorGroup">
-          <label data-i18n="lbl_floor">Poschodie</label>
+          <label for="floor" data-i18n="lbl_floor">Poschodie</label>
           <select id="floor">
             <option value="0" data-i18n="opt_floor_0">Prízemie</option>
             <option value="1" data-i18n="opt_floor_1">1. poschodie</option>
@@ -970,7 +970,7 @@
 
         <!-- Počet podlaží dom -->
         <div class="form-group hidden" id="storeyGroup">
-          <label data-i18n="lbl_storeys">Počet podlaží</label>
+          <label for="storeys" data-i18n="lbl_storeys">Počet podlaží</label>
           <select id="storeys">
             <option value="1" data-i18n="opt_storeys_1">1 podlažie</option>
             <option value="2" data-i18n="opt_storeys_2">2 podlažia</option>
@@ -980,7 +980,7 @@
 
         <!-- Orientácia - byt -->
         <div class="form-group" id="orientationGroup">
-          <label data-i18n="lbl_orientation">Orientácia / výhľad</label>
+          <label for="orientation" data-i18n="lbl_orientation">Orientácia / výhľad</label>
           <select id="orientation">
             <option value="good" selected data-i18n="opt_orient_good">Dobrý výhľad (juh, západ)</option>
             <option value="average" data-i18n="opt_orient_average">Priemerný (sever, dvor)</option>
@@ -990,7 +990,7 @@
 
         <!-- Výťah -->
         <div class="form-group" id="liftGroup">
-          <label data-i18n="lbl_lift">Výťah v budove</label>
+          <label for="lift" data-i18n="lbl_lift">Výťah v budove</label>
           <select id="lift">
             <option value="yes" data-i18n="opt_lift_yes">Áno</option>
             <option value="no" selected data-i18n="opt_lift_no">Nie</option>
@@ -1018,7 +1018,7 @@
 
         <!-- Rok výstavby -->
         <div class="form-group">
-          <label data-i18n="lbl_year">Rok výstavby (orientačne)</label>
+          <label for="yearBuilt" data-i18n="lbl_year">Rok výstavby (orientačne)</label>
           <select id="yearBuilt">
             <option value="new" data-i18n="opt_year_new">Po roku 2010</option>
             <option value="mid" selected data-i18n="opt_year_mid">1990 – 2010</option>
@@ -1028,7 +1028,7 @@
 
         <!-- Energetický certifikát -->
         <div class="form-group">
-          <label data-i18n="lbl_energy">Energetický certifikát</label>
+          <label for="energyCert" data-i18n="lbl_energy">Energetický certifikát</label>
           <select id="energyCert">
             <option value="A0" data-i18n="opt_energy_a0">A0 — Ultra nízkoenergetická</option>
             <option value="A1" data-i18n="opt_energy_a1">A1 — Nízkoenergetická</option>
@@ -1043,7 +1043,7 @@
 
         <!-- Materiálová skladba -->
         <div class="form-group" id="materialGroup">
-          <label data-i18n="lbl_material">Nosné steny — materiál</label>
+          <label for="material" data-i18n="lbl_material">Nosné steny — materiál</label>
           <select id="material">
             <option value="tehla" selected data-i18n="opt_material_tehla">Tehla</option>
             <option value="panel" data-i18n="opt_material_panel">Panel</option>
@@ -1055,7 +1055,7 @@
 
         <!-- Zateplenie -->
         <div class="form-group">
-          <label data-i18n="lbl_insulation">Zateplenie fasády</label>
+          <label for="insulation" data-i18n="lbl_insulation">Zateplenie fasády</label>
           <select id="insulation">
             <option value="none" data-i18n="opt_insulation_none">Bez zateplenia</option>
             <option value="partial" data-i18n="opt_insulation_partial">Čiastočné (do 80 mm)</option>
@@ -1066,7 +1066,7 @@
 
         <!-- Ťarchy / vecné bremená -->
         <div class="form-group span-2">
-          <label data-i18n="lbl_encumbrance">Ťarchy a vecné bremená na LV</label>
+          <label for="encumbrance" data-i18n="lbl_encumbrance">Ťarchy a vecné bremená na LV</label>
           <select id="encumbrance">
             <option value="none" selected data-i18n="opt_enc_none">Žiadne — čistý LV</option>
             <option value="mortgage" data-i18n="opt_enc_mortgage">Hypotéka (splatiteľná pri prevode)</option>
@@ -1195,7 +1195,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer>
     <p>© 2026 Radovan Vaník · Reality Najbývanie · Realitný maklér <a href="https://www.realitynb.sk" target="_blank" rel="noopener" style="color:#fff;font-weight:600;">Ružomberok</a> · Liptovský Mikuláš · Dolný Kubín</p>
