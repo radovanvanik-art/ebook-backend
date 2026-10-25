@@ -53,6 +53,12 @@ a{text-decoration:none;color:inherit}
 .nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);transition:color 0.2s,background 0.2s}
 .nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
 @media(max-width:640px){.nav-center .nav-link:not(.nav-link--active){display:none}.nav-right{display:none}}
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border:1px solid var(--border-d);border-radius:999px;padding:3px;}
+.lang-btn{background:transparent;border:none;cursor:pointer;width:28px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:999px;opacity:0.5;transition:opacity 0.18s,background 0.18s,transform 0.15s,box-shadow 0.18s;}
+.lang-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.lang-btn.active{background:var(--gold);opacity:1;box-shadow:0 2px 10px rgba(200,133,31,0.45)}
+.lang-btn img{width:20px;height:14px;object-fit:cover;border-radius:3px;display:block;pointer-events:none}
+@media(max-width:640px){.lang-btn{width:24px;height:22px}.lang-btn img{width:17px;height:12px}}
 
 /* FOOTER */
 footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
@@ -178,10 +184,16 @@ footer a:hover{color:var(--gold)}
     <span>radovanvanik.com</span>
   </a>
   <div class="nav-center">
-    <a href="/" class="nav-link">Domov</a>
-    <a href="/#realitny-trh" class="nav-link">Realitný trh</a>
-    <a href="/o-mne" class="nav-link">O mne</a>
-    <a href="/projekty" class="nav-link nav-link--active" style="color:white">Iné projekty</a>
+    <a href="/" class="nav-link" data-i18n="nav_home">Domov</a>
+    <a href="/#realitny-trh" class="nav-link" data-i18n="nav_market">Realitný trh</a>
+    <a href="/o-mne" class="nav-link" data-i18n="nav_about">O mne</a>
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+    </div>
+    <a href="/projekty" class="nav-link nav-link--active" style="color:white" data-i18n="nav_projects">Iné projekty</a>
   </div>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
@@ -196,9 +208,9 @@ footer a:hover{color:var(--gold)}
 <!-- HERO -->
 <section class="hero-projects">
   <div class="hero-projects-inner reveal">
-    <p class="eyebrow">Popri realitách</p>
-    <h1>Čo ešte staviam</h1>
-    <p>Cez deň som realitný maklér, vo voľnom čase programátor. Tu je pár vecí, ktoré som si sám naprogramoval — pre vlastný biznis aj pre iných.</p>
+    <p class="eyebrow" data-i18n="hero_eyebrow">Popri realitách</p>
+    <h1 data-i18n="hero_h1">Čo ešte staviam</h1>
+    <p data-i18n="hero_p">Cez deň som realitný maklér, vo voľnom čase programátor. Tu je pár vecí, ktoré som si sám naprogramoval — pre vlastný biznis aj pre iných.</p>
   </div>
 </section>
 
@@ -209,12 +221,12 @@ footer a:hover{color:var(--gold)}
     <div class="project-card project-card--wine reveal reveal-d1">
       <div class="project-card-top">
         <span class="project-card-icowrap">🍷</span>
-        <span class="project-card-badge project-card-badge--live">Naživo</span>
+        <span class="project-card-badge project-card-badge--live" data-i18n="badge_live">Naživo</span>
       </div>
       <h2 class="project-card-title">GastroFest</h2>
-      <p class="project-card-desc">Korenené víno, punč a horúce nápoje z kotlíka — tam, kde sa ľudia stretávajú na jarmokoch a festivaloch po celom Slovensku. Web pre Adamov gastro biznis, ktorému Radovan postavil aj appku na správu nákladov.</p>
+      <p class="project-card-desc" data-i18n="card1_desc">Korenené víno, punč a horúce nápoje z kotlíka — tam, kde sa ľudia stretávajú na jarmokoch a festivaloch po celom Slovensku. Web pre Adamov gastro biznis, ktorému Radovan postavil aj appku na správu nákladov.</p>
       <a href="/gastrofest" target="_blank" rel="noopener" class="project-card-cta">
-        Pozrieť stránku
+        <span data-i18n="card1_cta">Pozrieť stránku</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -222,12 +234,12 @@ footer a:hover{color:var(--gold)}
     <div class="project-card project-card--tech reveal reveal-d2">
       <div class="project-card-top">
         <span class="project-card-icowrap">📊</span>
-        <span class="project-card-badge project-card-badge--preview">Ukážka appky</span>
+        <span class="project-card-badge project-card-badge--preview" data-i18n="badge_preview">Ukážka appky</span>
       </div>
       <h2 class="project-card-title">Náklady Dashboard</h2>
-      <p class="project-card-desc">Appka, ktorá nahradila Excel: náklady, faktúry a prehľady ziskov/strát pre jarmočné stánky v reálnom čase — stačí odfotiť účtenku a je to zaevidované.</p>
+      <p class="project-card-desc" data-i18n="card2_desc">Appka, ktorá nahradila Excel: náklady, faktúry a prehľady ziskov/strát pre jarmočné stánky v reálnom čase — stačí odfotiť účtenku a je to zaevidované.</p>
       <a href="/naklady-dashboard" class="project-card-cta">
-        Pozrieť ukážku
+        <span data-i18n="card2_cta">Pozrieť ukážku</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -235,12 +247,12 @@ footer a:hover{color:var(--gold)}
     <div class="project-card project-card--brick reveal reveal-d1">
       <div class="project-card-top">
         <span class="project-card-icowrap">🧱</span>
-        <span class="project-card-badge project-card-badge--live">Naživo</span>
+        <span class="project-card-badge project-card-badge--live" data-i18n="badge_live">Naživo</span>
       </div>
       <h2 class="project-card-title">BP ploty</h2>
-      <p class="project-card-desc">Betónové a 3D ploty na kľúč — predaj, dovoz aj montáž v Ružomberku a okolí. Vlastný web na kľúč pre plotársku firmu, od dopytu až po cenovú ponuku do 24 hodín.</p>
+      <p class="project-card-desc" data-i18n="card3_desc">Betónové a 3D ploty na kľúč — predaj, dovoz aj montáž v Ružomberku a okolí. Vlastný web na kľúč pre plotársku firmu, od dopytu až po cenovú ponuku do 24 hodín.</p>
       <a href="https://www.bpploty.sk" target="_blank" rel="noopener" class="project-card-cta">
-        Pozrieť bpploty.sk
+        <span data-i18n="card3_cta">Pozrieť bpploty.sk</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </div>
@@ -250,8 +262,8 @@ footer a:hover{color:var(--gold)}
 
 <!-- BACK TO REAL ESTATE -->
 <section class="back-cta-section">
-  <p>Hľadáte skôr pomoc s kúpou, predajom alebo ocenením nehnuteľnosti?</p>
-  <a href="/#realitny-trh" class="back-cta-btn">🏠 Späť na realitný trh →</a>
+  <p data-i18n="back_p">Hľadáte skôr pomoc s kúpou, predajom alebo ocenením nehnuteľnosti?</p>
+  <a href="/#realitny-trh" class="back-cta-btn" data-i18n="back_btn">🏠 Späť na realitný trh →</a>
 </section>
 
 <footer>
@@ -282,16 +294,117 @@ footer a:hover{color:var(--gold)}
 
 <div class="floats" aria-label="Kontakt">
   <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradil." class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="float-tip">Napíšte na WhatsApp</span>
+    <span class="float-tip" data-i18n="float_wa">Napíšte na WhatsApp</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať">
-    <span class="float-tip">Zavolať Radovanovi</span>
+    <span class="float-tip" data-i18n="float_ph">Zavolať Radovanovi</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
   </a>
 </div>
 
 <script>
+const TRANSLATIONS = {
+  sk: {
+    nav_home: 'Domov', nav_market: 'Realitný trh', nav_about: 'O mne', nav_projects: 'Iné projekty',
+    hero_eyebrow: 'Popri realitách',
+    hero_h1: 'Čo ešte staviam',
+    hero_p: 'Cez deň som realitný maklér, vo voľnom čase programátor. Tu je pár vecí, ktoré som si sám naprogramoval — pre vlastný biznis aj pre iných.',
+    badge_live: 'Naživo',
+    badge_preview: 'Ukážka appky',
+    card1_desc: 'Korenené víno, punč a horúce nápoje z kotlíka — tam, kde sa ľudia stretávajú na jarmokoch a festivaloch po celom Slovensku. Web pre Adamov gastro biznis, ktorému Radovan postavil aj appku na správu nákladov.',
+    card1_cta: 'Pozrieť stránku',
+    card2_desc: 'Appka, ktorá nahradila Excel: náklady, faktúry a prehľady ziskov/strát pre jarmočné stánky v reálnom čase — stačí odfotiť účtenku a je to zaevidované.',
+    card2_cta: 'Pozrieť ukážku',
+    card3_desc: 'Betónové a 3D ploty na kľúč — predaj, dovoz aj montáž v Ružomberku a okolí. Vlastný web na kľúč pre plotársku firmu, od dopytu až po cenovú ponuku do 24 hodín.',
+    card3_cta: 'Pozrieť bpploty.sk',
+    back_p: 'Hľadáte skôr pomoc s kúpou, predajom alebo ocenením nehnuteľnosti?',
+    back_btn: '🏠 Späť na realitný trh →',
+    float_wa: 'Napíšte na WhatsApp',
+    float_ph: 'Zavolať Radovanovi'
+  },
+  en: {
+    nav_home: 'Home', nav_market: 'Real estate', nav_about: 'About', nav_projects: 'Other projects',
+    hero_eyebrow: 'Besides real estate',
+    hero_h1: 'What else I build',
+    hero_p: 'By day I\'m a real estate agent, in my free time a programmer. Here are a few things I\'ve coded myself — for my own business and for others.',
+    badge_live: 'Live',
+    badge_preview: 'App preview',
+    card1_desc: 'Mulled wine, punch and hot drinks from the kettle — wherever people gather at markets and festivals across Slovakia. A website for Adam\'s food business, for whom Radovan also built a cost-management app.',
+    card1_cta: 'View the website',
+    card2_desc: 'The app that replaced Excel: costs, invoices and profit/loss overviews for market stands in real time — just photograph the receipt and it\'s logged.',
+    card2_cta: 'View the preview',
+    card3_desc: 'Turnkey concrete and 3D fences — sales, delivery and installation in and around Ružomberok. A custom turnkey website for a fencing company, from inquiry to price quote within 24 hours.',
+    card3_cta: 'View bpploty.sk',
+    back_p: 'Looking for help buying, selling or valuing a property instead?',
+    back_btn: '🏠 Back to real estate →',
+    float_wa: 'Message on WhatsApp',
+    float_ph: 'Call Radovan'
+  },
+  ua: {
+    nav_home: 'Головна', nav_market: 'Нерухомість', nav_about: 'Про мене', nav_projects: 'Інші проєкти',
+    hero_eyebrow: 'Окрім нерухомості',
+    hero_h1: 'Що ще я будую',
+    hero_p: 'Вдень я агент з нерухомості, у вільний час програміст. Ось кілька речей, які я сам запрограмував — для власного бізнесу і для інших.',
+    badge_live: 'Наживо',
+    badge_preview: 'Демо застосунку',
+    card1_desc: 'Глінтвейн, пунш та гарячі напої з казана — там, де люди збираються на ярмарках і фестивалях по всій Словаччині. Сайт для гастробізнесу Адама, для якого Радован також створив застосунок для обліку витрат.',
+    card1_cta: 'Переглянути сайт',
+    card2_desc: 'Застосунок, що замінив Excel: витрати, рахунки та огляди прибутків/збитків для ярмаркових точок у реальному часі — досить сфотографувати чек, і все зафіксовано.',
+    card2_cta: 'Переглянути демо',
+    card3_desc: 'Бетонні та 3D паркани під ключ — продаж, доставка та монтаж у Ружомберку й околицях. Власний сайт під ключ для парканної фірми, від запиту до цінової пропозиції протягом 24 годин.',
+    card3_cta: 'Переглянути bpploty.sk',
+    back_p: 'Шукаєте скоріше допомогу з купівлею, продажем чи оцінкою нерухомості?',
+    back_btn: '🏠 Назад до нерухомості →',
+    float_wa: 'Написати у WhatsApp',
+    float_ph: 'Зателефонувати Радовану'
+  },
+  de: {
+    nav_home: 'Startseite', nav_market: 'Immobilienmarkt', nav_about: 'Über mich', nav_projects: 'Weitere Projekte',
+    hero_eyebrow: 'Neben Immobilien',
+    hero_h1: 'Was ich sonst noch baue',
+    hero_p: 'Tagsüber bin ich Immobilienmakler, in der Freizeit Programmierer. Hier sind ein paar Dinge, die ich selbst programmiert habe — für mein eigenes Geschäft und für andere.',
+    badge_live: 'Live',
+    badge_preview: 'App-Vorschau',
+    card1_desc: 'Glühwein, Punsch und heiße Getränke aus dem Kessel — überall dort, wo sich Menschen auf Märkten und Festivals in der ganzen Slowakei treffen. Eine Website für Adams Gastro-Geschäft, für das Radovan auch eine Kostenverwaltungs-App gebaut hat.',
+    card1_cta: 'Website ansehen',
+    card2_desc: 'Die App, die Excel ersetzt hat: Kosten, Rechnungen und Gewinn-/Verlustübersichten für Marktstände in Echtzeit — einfach den Beleg fotografieren, und er ist erfasst.',
+    card2_cta: 'Vorschau ansehen',
+    card3_desc: 'Beton- und 3D-Zäune schlüsselfertig — Verkauf, Lieferung und Montage in und um Ružomberok. Eine individuelle, schlüsselfertige Website für eine Zaunfirma, von der Anfrage bis zum Preisangebot innerhalb von 24 Stunden.',
+    card3_cta: 'bpploty.sk ansehen',
+    back_p: 'Suchen Sie eher Hilfe beim Kauf, Verkauf oder der Bewertung einer Immobilie?',
+    back_btn: '🏠 Zurück zum Immobilienmarkt →',
+    float_wa: 'Auf WhatsApp schreiben',
+    float_ph: 'Radovan anrufen'
+  }
+};
+
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+}
+
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
+})();
+
 const obs = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
 }), {threshold:0.1});
