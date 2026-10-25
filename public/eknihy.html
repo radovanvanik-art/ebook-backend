@@ -61,6 +61,13 @@ a{text-decoration:none;color:inherit}
 .nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.76);transition:color 0.2s,background 0.2s;}
 .nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
 
+/* LANGUAGE SWITCHER */
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border:1px solid var(--border-d);border-radius:999px;padding:3px;}
+.lang-btn{background:transparent;border:none;cursor:pointer;width:28px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:999px;opacity:0.5;transition:opacity 0.18s,background 0.18s,transform 0.15s,box-shadow 0.18s;}
+.lang-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.lang-btn.active{background:var(--gold);opacity:1;box-shadow:0 2px 10px rgba(200,133,31,0.45)}
+.lang-btn img{width:20px;height:14px;object-fit:cover;border-radius:3px;display:block;pointer-events:none}
+
 /* HERO */
 .page-hero{
   padding: 120px 0 64px;
@@ -187,8 +194,14 @@ footer a:hover{color:var(--gold)}
 <nav class="nav">
   <a href="/" class="nav-back">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-    Späť na hlavnú
+    <span data-i18n="nav_back">Späť na hlavnú</span>
   </a>
+  <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+    <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+  </div>
   <a href="tel:+421948310950" class="nav-cta">📞<span class="nav-phone-txt"> +421 948 310 950</span></a>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
@@ -202,9 +215,9 @@ footer a:hover{color:var(--gold)}
 
 <!-- HERO -->
 <div class="page-hero">
-  <span class="eyebrow">Bezplatné príručky</span>
-  <h1>Vyber si svoju <em>e-knihu</em></h1>
-  <p>Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
+  <span class="eyebrow" data-i18n="hero_eyebrow">Bezplatné príručky</span>
+  <h1><span data-i18n="hero_h1_1">Vyber si svoju</span> <em data-i18n="hero_h1_em">e-knihu</em></h1>
+  <p data-i18n="hero_sub">Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.</p>
 </div>
 
 <!-- BOOKS -->
@@ -218,33 +231,33 @@ footer a:hover{color:var(--gold)}
           <div class="bc-face bc-front">
             <span class="bc-face-ico">✨</span>
             <div class="bc-face-line"></div>
-            <span class="bc-face-title">Váš prvý byt</span>
+            <span class="bc-face-title" data-i18n="book1_title">Váš prvý byt</span>
             <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
           </div>
         </div>
       </div>
       <div class="bc-content">
-        <div class="bc-tag">Prvá kúpa · Nový začiatok</div>
-        <div class="bc-title">Váš prvý byt</div>
-        <div class="bc-desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady - váš kompas od prvého kroku.</div>
-        <a class="bc-btn" href="/prvy-byt">Chcem tento plán zadarmo →</a>
+        <div class="bc-tag" data-i18n="book1_tag">Prvá kúpa · Nový začiatok</div>
+        <div class="bc-title" data-i18n="book1_title">Váš prvý byt</div>
+        <div class="bc-desc" data-i18n="book1_desc">Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady - váš kompas od prvého kroku.</div>
+        <a class="bc-btn" href="/prvy-byt" data-i18n="book_btn">Chcem tento plán zadarmo →</a>
       </div>
     </div>
 
     <!-- Karta 2 -->
     <div class="bc-card bc-card--alt">
       <div class="bc-content">
-        <div class="bc-tag">Dedičstvo · Papierovačky</div>
-        <div class="bc-title">Zdedený byt</div>
-        <div class="bc-desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</div>
-        <a class="bc-btn" href="/dedicstvo">Chcem tento plán zadarmo →</a>
+        <div class="bc-tag" data-i18n="book2_tag">Dedičstvo · Papierovačky</div>
+        <div class="bc-title" data-i18n="book2_title">Zdedený byt</div>
+        <div class="bc-desc" data-i18n="book2_desc">Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.</div>
+        <a class="bc-btn" href="/dedicstvo" data-i18n="book_btn">Chcem tento plán zadarmo →</a>
       </div>
       <div class="bc-book-wrap">
         <div class="bc-book" style="--bc-front:#3a7028;--bc-side:#254a18;--bc-spine:#163010;">
           <div class="bc-face bc-front">
             <span class="bc-face-ico">📜</span>
             <div class="bc-face-line"></div>
-            <span class="bc-face-title">Zdedený byt</span>
+            <span class="bc-face-title" data-i18n="book2_title">Zdedený byt</span>
             <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
           </div>
         </div>
@@ -258,33 +271,33 @@ footer a:hover{color:var(--gold)}
           <div class="bc-face bc-front">
             <span class="bc-face-ico">⚠️</span>
             <div class="bc-face-line"></div>
-            <span class="bc-face-title">Exekúcia na dverách</span>
+            <span class="bc-face-title" data-i18n="book3_title">Exekúcia na dverách</span>
             <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
           </div>
         </div>
       </div>
       <div class="bc-content">
-        <div class="bc-tag">Dlhová kríza · Naliehavosť</div>
-        <div class="bc-title">Exekúcia na dverách</div>
-        <div class="bc-desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</div>
-        <a class="bc-btn" href="/exekucia">Chcem tento plán zadarmo →</a>
+        <div class="bc-tag" data-i18n="book3_tag">Dlhová kríza · Naliehavosť</div>
+        <div class="bc-title" data-i18n="book3_title">Exekúcia na dverách</div>
+        <div class="bc-desc" data-i18n="book3_desc">Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.</div>
+        <a class="bc-btn" href="/exekucia" data-i18n="book_btn">Chcem tento plán zadarmo →</a>
       </div>
     </div>
 
     <!-- Karta 4 -->
     <div class="bc-card bc-card--alt">
       <div class="bc-content">
-        <div class="bc-tag">Rozvod · Nový začiatok</div>
-        <div class="bc-title">Rozvod a predaj majetku</div>
-        <div class="bc-desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</div>
-        <a class="bc-btn" href="/rozvod">Chcem tento plán zadarmo →</a>
+        <div class="bc-tag" data-i18n="book4_tag">Rozvod · Nový začiatok</div>
+        <div class="bc-title" data-i18n="book4_title">Rozvod a predaj majetku</div>
+        <div class="bc-desc" data-i18n="book4_desc">Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.</div>
+        <a class="bc-btn" href="/rozvod" data-i18n="book_btn">Chcem tento plán zadarmo →</a>
       </div>
       <div class="bc-book-wrap">
         <div class="bc-book" style="--bc-front:#7a5018;--bc-side:#52340e;--bc-spine:#342208;">
           <div class="bc-face bc-front">
             <span class="bc-face-ico">⚖️</span>
             <div class="bc-face-line"></div>
-            <span class="bc-face-title">Rozvod a majetok</span>
+            <span class="bc-face-title" data-i18n="book4_face_title">Rozvod a majetok</span>
             <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
           </div>
         </div>
@@ -298,16 +311,16 @@ footer a:hover{color:var(--gold)}
           <div class="bc-face bc-front">
             <span class="bc-face-ico">🔗</span>
             <div class="bc-face-line"></div>
-            <span class="bc-face-title">Reťazový obchod</span>
+            <span class="bc-face-title" data-i18n="book5_title">Reťazový obchod</span>
             <div class="bc-face-bottom"><span class="bc-face-yr">2025</span><span class="bc-face-badge">PDF</span></div>
           </div>
         </div>
       </div>
       <div class="bc-content">
-        <div class="bc-tag">Predaj + kúpa · Koordinácia</div>
-        <div class="bc-title">Reťazový obchod</div>
-        <div class="bc-desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu - váš kompas krok za krokom.</div>
-        <a class="bc-btn" href="/retazovy-obchod">Chcem tento plán zadarmo →</a>
+        <div class="bc-tag" data-i18n="book5_tag">Predaj + kúpa · Koordinácia</div>
+        <div class="bc-title" data-i18n="book5_title">Reťazový obchod</div>
+        <div class="bc-desc" data-i18n="book5_desc">Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu - váš kompas krok za krokom.</div>
+        <a class="bc-btn" href="/retazovy-obchod" data-i18n="book_btn">Chcem tento plán zadarmo →</a>
       </div>
     </div>
 
@@ -341,14 +354,146 @@ footer a:hover{color:var(--gold)}
 <div class="floats" aria-label="Kontakt">
   <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradil%20ohľadom%20nehnuteľnosti."
      class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="float-tip">Napíšte na WhatsApp</span>
+    <span class="float-tip" data-i18n="float_wa">Napíšte na WhatsApp</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať Radovanovi">
-    <span class="float-tip">Zavolať Radovanovi</span>
+    <span class="float-tip" data-i18n="float_ph">Zavolať Radovanovi</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
   </a>
 </div>
+
+<script>
+const TRANSLATIONS = {
+  sk: {
+    nav_back: 'Späť na hlavnú',
+    hero_eyebrow: 'Bezplatné príručky',
+    hero_h1_1: 'Vyber si svoju',
+    hero_h1_em: 'e-knihu',
+    hero_sub: 'Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.',
+    book_btn: 'Chcem tento plán zadarmo →',
+    book1_tag: 'Prvá kúpa · Nový začiatok',
+    book1_title: 'Váš prvý byt',
+    book1_desc: 'Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady - váš kompas od prvého kroku.',
+    book2_tag: 'Dedičstvo · Papierovačky',
+    book2_title: 'Zdedený byt',
+    book2_desc: 'Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.',
+    book3_tag: 'Dlhová kríza · Naliehavosť',
+    book3_title: 'Exekúcia na dverách',
+    book3_desc: 'Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.',
+    book4_tag: 'Rozvod · Nový začiatok',
+    book4_title: 'Rozvod a predaj majetku',
+    book4_face_title: 'Rozvod a majetok',
+    book4_desc: 'Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.',
+    book5_tag: 'Predaj + kúpa · Koordinácia',
+    book5_title: 'Reťazový obchod',
+    book5_desc: 'Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu - váš kompas krok za krokom.',
+    float_wa: 'Napíšte na WhatsApp',
+    float_ph: 'Zavolať Radovanovi',
+  },
+  en: {
+    nav_back: 'Back to home',
+    hero_eyebrow: 'Free guides',
+    hero_h1_1: 'Choose your',
+    hero_h1_em: 'e-book',
+    hero_sub: 'Every one is free. Just enter your email and the PDF arrives instantly.',
+    book_btn: 'I want this free plan →',
+    book1_tag: 'First purchase · A fresh start',
+    book1_title: 'Your first home',
+    book1_desc: "Buying your first property? A guide that saves you thousands of euros and months of stress. Mortgage, lawyer, land registry, hidden defects - your compass from the first step.",
+    book2_tag: 'Inheritance · Paperwork',
+    book2_title: 'An inherited property',
+    book2_desc: "Inherited a property full of paperwork and uncertainty? Don't waste time in dead ends. From checking the title deed to a successful sale.",
+    book3_tag: 'Debt crisis · Urgency',
+    book3_title: 'Foreclosure at the door',
+    book3_desc: "Time is working against you. Save what can be saved before the bailiff decides. Your action plan to avoid the auction and sell the property on terms that let you start fresh.",
+    book4_tag: 'Divorce · A fresh start',
+    book4_title: 'Divorce and selling assets',
+    book4_face_title: 'Divorce & assets',
+    book4_desc: "Ending a relationship, not your life. Sell the property without pointless arguments and legal disputes. How to turn shared property into capital that lets you both go your own way.",
+    book5_tag: 'Sell + buy · Coordination',
+    book5_title: 'Chain transaction',
+    book5_desc: "Selling a mortgaged property while buying a new one? Coordinate two banks, two land registries and two sales without stress - your compass, step by step.",
+    float_wa: 'Message on WhatsApp',
+    float_ph: 'Call Radovan',
+  },
+  ua: {
+    nav_back: 'Назад на головну',
+    hero_eyebrow: 'Безкоштовні посібники',
+    hero_h1_1: 'Оберіть свою',
+    hero_h1_em: 'е-книгу',
+    hero_sub: 'Кожна безкоштовна. Просто введіть email, і PDF прийде одразу.',
+    book_btn: 'Хочу цей план безкоштовно →',
+    book1_tag: 'Перша купівля · Новий початок',
+    book1_title: 'Ваше перше житло',
+    book1_desc: 'Купуєте першу нерухомість? Посібник, який заощадить вам тисячі євро та місяці стресу. Іпотека, юрист, кадастр, приховані дефекти - ваш компас з першого кроку.',
+    book2_tag: 'Спадщина · Папери',
+    book2_title: 'Успадкована квартира',
+    book2_desc: 'Успадкували нерухомість, повну паперів та невизначеності? Не витрачайте час у глухих кутах. Від перевірки правовстановлюючого документа до успішного продажу.',
+    book3_tag: 'Боргова криза · Терміновість',
+    book3_title: 'Виконавче провадження на порозі',
+    book3_desc: 'Час працює проти вас. Врятуйте, що можна, перш ніж вирішить виконавець. Ваш план дій, як уникнути аукціону та продати нерухомість на умовах, які дозволять почати знову.',
+    book4_tag: 'Розлучення · Новий початок',
+    book4_title: 'Розлучення та продаж майна',
+    book4_face_title: 'Розлучення й майно',
+    book4_desc: 'Завершуєте стосунки, а не своє життя. Продайте квартиру без зайвих суперечок і судових спорів. Як перетворити спільну нерухомість на капітал, що дозволить обом піти своїм шляхом.',
+    book5_tag: 'Продаж + купівля · Координація',
+    book5_title: 'Ланцюгова угода',
+    book5_desc: 'Продаєте квартиру з іпотекою і водночас купуєте нову? Узгодьте два банки, два кадастри та два продажі без стресу - ваш компас крок за кроком.',
+    float_wa: 'Написати у WhatsApp',
+    float_ph: 'Зателефонувати Радовану',
+  },
+  de: {
+    nav_back: 'Zurück zur Startseite',
+    hero_eyebrow: 'Kostenlose Ratgeber',
+    hero_h1_1: 'Wählen Sie Ihr',
+    hero_h1_em: 'E-Book',
+    hero_sub: 'Jedes ist kostenlos. Einfach E-Mail eingeben, und das PDF kommt sofort.',
+    book_btn: 'Ich möchte diesen Plan kostenlos →',
+    book1_tag: 'Erstkauf · Neuanfang',
+    book1_title: 'Ihre erste Wohnung',
+    book1_desc: 'Kaufen Sie Ihre erste Immobilie? Ein Ratgeber, der Ihnen Tausende Euro und Monate an Stress erspart. Hypothek, Anwalt, Grundbuch, versteckte Mängel - Ihr Kompass ab dem ersten Schritt.',
+    book2_tag: 'Erbschaft · Papierkram',
+    book2_title: 'Eine geerbte Immobilie',
+    book2_desc: 'Eine Immobilie voller Papierkram und Unsicherheit geerbt? Verschwenden Sie keine Zeit in Sackgassen. Von der Grundbuchprüfung bis zum erfolgreichen Verkauf.',
+    book3_tag: 'Schuldenkrise · Dringlichkeit',
+    book3_title: 'Zwangsvollstreckung vor der Tür',
+    book3_desc: 'Die Zeit arbeitet gegen Sie. Retten Sie, was zu retten ist, bevor der Gerichtsvollzieher entscheidet. Ihr Aktionsplan, um die Versteigerung zu vermeiden und die Immobilie zu Bedingungen zu verkaufen, die einen Neuanfang ermöglichen.',
+    book4_tag: 'Scheidung · Neuanfang',
+    book4_title: 'Scheidung und Vermögensverkauf',
+    book4_face_title: 'Scheidung & Vermögen',
+    book4_desc: 'Sie beenden eine Beziehung, nicht Ihr Leben. Verkaufen Sie die Immobilie ohne unnötigen Streit und Rechtsstreitigkeiten. Wie Sie gemeinsames Eigentum in Kapital verwandeln, das Ihnen beiden einen eigenen Weg ermöglicht.',
+    book5_tag: 'Verkauf + Kauf · Koordination',
+    book5_title: 'Kettengeschäft',
+    book5_desc: 'Verkaufen Sie eine Immobilie mit Hypothek und kaufen gleichzeitig eine neue? Koordinieren Sie zwei Banken, zwei Grundbücher und zwei Verkäufe ohne Stress - Ihr Kompass, Schritt für Schritt.',
+    float_wa: 'Auf WhatsApp schreiben',
+    float_ph: 'Radovan anrufen',
+  },
+};
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS.sk && TRANSLATIONS.sk[key]) || key;
+}
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+}
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
+})();
+</script>
 
 </body>
 </html>
