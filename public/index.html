@@ -167,6 +167,30 @@
       white-space: nowrap;
     }
     .nav-cta:hover { background: var(--gold-mid); transform: translateY(-1px); }
+    /* ── LANGUAGE SWITCHER ────────────────────────────────────── */
+    .lang-switcher {
+      display: flex; align-items: center; gap: 2px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      padding: 3px;
+      margin: 0 0.1rem;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      background: transparent; border: none; cursor: pointer;
+      width: 28px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 999px;
+      opacity: 0.5;
+      transition: opacity 0.18s, background 0.18s, transform 0.15s, box-shadow 0.18s;
+    }
+    .lang-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .lang-btn.active { background: var(--gold); opacity: 1; box-shadow: 0 2px 10px rgba(200,133,31,0.45); }
+    .lang-btn img { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; display: block; pointer-events: none; }
+    .lang-switcher--mobile { justify-content: center; margin: 0 auto 0.6rem; padding: 5px; width: fit-content; }
+    .lang-switcher--mobile .lang-btn { width: 38px; height: 32px; }
+    .lang-switcher--mobile .lang-btn img { width: 24px; height: 17px; }
     /* ── HAMBURGER BUTTON ────────────────────────────────────── */
     .nav-hamburger {
       display: none;
@@ -255,6 +279,7 @@
         overflow: hidden;
       }
       .nav-center > a { display: none; }
+      .nav-center > .lang-switcher { display: none; }
       .nav-phone {
         width: 34px; height: 34px;
         padding: 0;
@@ -1325,12 +1350,18 @@
     <span class="nav-phone-label">+421 948 310 950</span>
   </a>
   <div class="nav-center">
-    <a href="/projekty" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Iné projekty</a>
-    <a href="/o-mne" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
-    <a href="/mapa" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
-    <a href="/faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
-    <a href="/blogy" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Blog</a>
-    <a href="/ocenenie-bytu" style="color:rgba(200,133,31,0.9);font-size:0.82rem;font-weight:600;text-decoration:none;transition:color 0.2s;border:1px solid rgba(200,133,31,0.5);padding:4px 10px;border-radius:6px;" onmouseover="this.style.color='#c8851f';this.style.borderColor='#c8851f'" onmouseout="this.style.color='rgba(200,133,31,0.9)';this.style.borderColor='rgba(200,133,31,0.5)'">Oceniť nehnuteľnosť →</a>
+    <a href="/projekty" data-i18n="nav_projekty" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Iné projekty</a>
+    <a href="/o-mne" data-i18n="nav_omne" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
+    <a href="/mapa" data-i18n="nav_mapa" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
+    <a href="/faq" data-i18n="nav_faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
+    <a href="/blogy" data-i18n="nav_blog" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Blog</a>
+    <a href="/ocenenie-bytu" data-i18n="nav_ocenenie" style="color:rgba(200,133,31,0.9);font-size:0.82rem;font-weight:600;text-decoration:none;transition:color 0.2s;border:1px solid rgba(200,133,31,0.5);padding:4px 10px;border-radius:6px;" onmouseover="this.style.color='#c8851f';this.style.borderColor='#c8851f'" onmouseout="this.style.color='rgba(200,133,31,0.9)';this.style.borderColor='rgba(200,133,31,0.5)'">Oceniť nehnuteľnosť →</a>
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+    </div>
     <a href="/eknihy" class="nav-cta" data-i18n="nav_cta">Vybrať e-knihu →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Otvoriť menu" onclick="toggleMobileMenu()">
@@ -1348,14 +1379,20 @@
 
 <!-- MOBILE MENU -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilná navigácia">
-  <a href="/projekty" onclick="closeMobileMenu()">💻 Iné projekty</a>
-  <a href="/o-mne" onclick="closeMobileMenu()">O mne</a>
-  <a href="/mapa" onclick="closeMobileMenu()">Mapa ponúk</a>
-  <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
-  <a href="/blogy" onclick="closeMobileMenu()">Blog</a>
-  <a href="/ocenenie-bytu" onclick="closeMobileMenu()" style="color:rgba(200,133,31,0.9);font-weight:600;">🏠 Oceniť nehnuteľanosť zadarmo</a>
+  <div class="lang-switcher lang-switcher--mobile" role="group" aria-label="Jazyk / Language">
+    <button class="lang-btn active" id="lang-sk-m" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="24" height="17" loading="lazy"></button>
+    <button class="lang-btn" id="lang-en-m" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="24" height="17" loading="lazy"></button>
+    <button class="lang-btn" id="lang-ua-m" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="24" height="17" loading="lazy"></button>
+    <button class="lang-btn" id="lang-de-m" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="24" height="17" loading="lazy"></button>
+  </div>
+  <a href="/projekty" data-i18n="nav_projekty" onclick="closeMobileMenu()">💻 Iné projekty</a>
+  <a href="/o-mne" data-i18n="nav_omne" onclick="closeMobileMenu()">O mne</a>
+  <a href="/mapa" data-i18n="nav_mapa" onclick="closeMobileMenu()">Mapa ponúk</a>
+  <a href="/faq" data-i18n="nav_faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="/blogy" data-i18n="nav_blog" onclick="closeMobileMenu()">Blog</a>
+  <a href="/ocenenie-bytu" data-i18n="nav_ocenenie_mobile" onclick="closeMobileMenu()" style="color:rgba(200,133,31,0.9);font-weight:600;">🏠 Oceniť nehnuteľnosť zadarmo</a>
   <div class="mobile-menu-sep"></div>
-  <a href="/eknihy" class="mob-cta" onclick="closeMobileMenu()">Stiahnuť e-knihu zadarmo →</a>
+  <a href="/eknihy" class="mob-cta" data-i18n="mob_cta" onclick="closeMobileMenu()">Stiahnuť e-knihu zadarmo →</a>
 </nav>
 
 <!-- HLAVNÝ OBSAH -->
@@ -1365,26 +1402,26 @@
 <section class="hero" aria-label="Hlavná sekcia">
   <div class="hero-inner">
     <div class="hero-copy reveal">
-      <p class="eyebrow" style="text-align:center">Som Radovan Vaník</p>
+      <p class="eyebrow" style="text-align:center" data-i18n="hero_eyebrow">Som Radovan Vaník</p>
       <h1>
-        Mám dve tváre.<br/>
-        <span class="hl">Ktorá vás zaujíma?</span>
+        <span data-i18n="hero_h1">Mám dve tváre.</span><br/>
+        <span class="hl" data-i18n="hero_h1_hl">Ktorá vás zaujíma?</span>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub" data-i18n="hero_sub">
         Realitný maklér aj programátor. Vyberte si, ktorá strana vás dnes zaujíma.
       </p>
       <div class="path-cards">
         <a href="#realitny-trh" id="path-reality" class="path-card path-card--reality">
           <span class="path-card-ico">🏠</span>
-          <span class="path-card-title">Realitný trh</span>
-          <span class="path-card-hook">Kupujete prvý byt? Dedíte? Riešite exekúciu či rozvod? Pomôžem vám s 5 e-knihami zdarma, hypotekárnou kalkulačkou a bezplatným ocenením nehnuteľnosti — než urobíte krok, ktorý sa dá len ťažko vrátiť.</span>
-          <span class="path-card-cta">Preskúmať realitný trh →</span>
+          <span class="path-card-title" data-i18n="path1_title">Realitný trh</span>
+          <span class="path-card-hook" data-i18n="path1_hook">Kupujete prvý byt? Dedíte? Riešite exekúciu či rozvod? Pomôžem vám s 5 e-knihami zdarma, hypotekárnou kalkulačkou a bezplatným ocenením nehnuteľnosti — než urobíte krok, ktorý sa dá len ťažko vrátiť.</span>
+          <span class="path-card-cta" data-i18n="path1_cta">Preskúmať realitný trh →</span>
         </a>
         <a href="/projekty" class="path-card path-card--tech">
           <span class="path-card-ico">💻</span>
-          <span class="path-card-title">IT projekty</span>
-          <span class="path-card-hook">Popri realitách si programujem appky, dashboardy a weby — od festivalového jarmoku s horúcim vínom až po firmu na betónové ploty.</span>
-          <span class="path-card-cta">Pozrieť IT projekty →</span>
+          <span class="path-card-title" data-i18n="path2_title">IT projekty</span>
+          <span class="path-card-hook" data-i18n="path2_hook">Popri realitách si programujem appky, dashboardy a weby — od festivalového jarmoku s horúcim vínom až po firmu na betónové ploty.</span>
+          <span class="path-card-cta" data-i18n="path2_cta">Pozrieť IT projekty →</span>
         </a>
       </div>
     </div>
@@ -1442,9 +1479,9 @@
     </div>
     <div class="reveal reveal-d1" style="display:flex;flex-direction:column;align-items:center;gap:1rem">
       <a href="/eknihy" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
-        📚 Otvoriť knižnicu e-kníh zadarmo →
+        <span data-i18n="books_cta_btn">📚 Otvoriť knižnicu e-kníh zadarmo →</span>
       </a>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45)">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.45)" data-i18n="modal_privacy">🔒 Žiadny spam. Odhlásenie kedykoľvek.</p>
     </div>
   </div>
 </section>
@@ -1454,15 +1491,15 @@
   <div class="section-inner" style="text-align:center;max-width:640px;margin:0 auto;">
 
     <div class="reveal">
-      <p class="eyebrow" style="color:var(--gold);">Bezplatný nástroj</p>
-      <h2 class="section-title" style="color:#fff;">Hypotekárna kalkulačka</h2>
-      <p class="section-sub" style="margin-bottom:2.5rem">Vypočítajte si mesačnú splátku, celkovú sumu a pomer istiny a úrokov — okamžite a zadarmo.</p>
+      <p class="eyebrow" style="color:var(--gold);" data-i18n="kalkcta_eyebrow">Bezplatný nástroj</p>
+      <h2 class="section-title" style="color:#fff;" data-i18n="kalkcta_title">Hypotekárna kalkulačka</h2>
+      <p class="section-sub" style="margin-bottom:2.5rem" data-i18n="kalkcta_sub">Vypočítajte si mesačnú splátku, celkovú sumu a pomer istiny a úrokov — okamžite a zadarmo.</p>
     </div>
     <div class="reveal reveal-d1" style="display:flex;flex-direction:column;align-items:center;gap:1rem">
       <a href="/kalkulacka" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
-        🧮 Otvoriť kalkulačku →
+        <span data-i18n="kalkcta_btn">🧮 Otvoriť kalkulačku →</span>
       </a>
-      <p style="font-size:0.78rem;color:rgba(255,255,255,0.35)">Žiadna registrácia. Výsledok okamžite.</p>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.35)" data-i18n="kalkcta_note">Žiadna registrácia. Výsledok okamžite.</p>
     </div>
     <div style="height:0;"></div>
   </div>
@@ -1544,7 +1581,7 @@
     <h2 class="section-title" data-i18n="cta_title">Ktorá situácia sa vás týka?</h2>
     <p data-i18n="cta_sub" style="margin-bottom:2rem">Vyberte e-knihu a stiahnite ju zadarmo.</p>
     <a href="/eknihy" style="display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:#fff;font-size:1rem;font-weight:700;padding:1.1rem 2.2rem;border-radius:12px;text-decoration:none;box-shadow:0 12px 28px rgba(200,133,31,0.35);transition:background 0.2s,transform 0.15s;" onmouseover="this.style.background='#E8A83A';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='#C8851F';this.style.transform='translateY(0)'">
-      📚 Otvoriť knižnicu e-kníh →
+      <span data-i18n="cta_btn">📚 Otvoriť knižnicu e-kníh →</span>
     </a>
     <p class="cta-note" data-i18n="cta_note" style="margin-top:1.5rem">🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.</p>
   </div>
@@ -1775,36 +1812,37 @@
   const TRANSLATIONS = {
     sk: {
       nav_cta: 'Vybrať e-knihu →',
-      hero_pill: '4 e-knihy · Zadarmo · PDF · Okamžité stiahnutie',
-      hero_h1_1: 'Nehnuteľnosti bez',
-      hero_h1_hl: 'zbytočných chýb',
-      hero_sub: 'Vyber si situáciu, ktorá sa ťa týka. Získaj zdarma e-knihu - od prvého bytu, cez rozvod, dedičstvo až po reťazový obchod, kde zvládneš predaj aj kúpu naraz bez stresu.',
-      hero_btn_primary: 'Stiahnuť e-knihu zadarmo',
-      hero_btn_ghost: '📞 Poradiť sa bezplatne',
-      trust_ebooks: 'E-knihy zdarma',
-      trust_downloads: 'Stiahnutí',
-      trust_instant: 'Ihneď po zadaní emailu',
+      nav_projekty: 'Iné projekty',
+      nav_omne: 'O mne',
+      nav_mapa: 'Mapa ponúk',
+      nav_faq: 'FAQ',
+      nav_blog: 'Blog',
+      nav_ocenenie: 'Oceniť nehnuteľnosť →',
+      nav_ocenenie_mobile: '🏠 Oceniť nehnuteľnosť zadarmo',
+      mob_cta: 'Stiahnuť e-knihu zadarmo →',
+      hero_eyebrow: 'Som Radovan Vaník',
+      hero_h1: 'Mám dve tváre.',
+      hero_h1_hl: 'Ktorá vás zaujíma?',
+      hero_sub: 'Realitný maklér aj programátor. Vyberte si, ktorá strana vás dnes zaujíma.',
+      path1_title: 'Realitný trh',
+      path1_hook: 'Kupujete prvý byt? Dedíte? Riešite exekúciu či rozvod? Pomôžem vám s 5 e-knihami zdarma, hypotekárnou kalkulačkou a bezplatným ocenením nehnuteľnosti — než urobíte krok, ktorý sa dá len ťažko vrátiť.',
+      path1_cta: 'Preskúmať realitný trh →',
+      path2_title: 'IT projekty',
+      path2_hook: 'Popri realitách si programujem appky, dashboardy a weby — od festivalového jarmoku s horúcim vínom až po firmu na betónové ploty.',
+      path2_cta: 'Pozrieť IT projekty →',
+      about_verify: 'Certifikovaný maklér · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.',
+      about_btn: 'Viac o mne',
       books_eyebrow: 'Bezplatné príručky',
-      books_title: 'Vyber si svoju e-knihu',
-      books_sub: 'Každá je zadarmo. Stačí zadať email a PDF ti príde okamžite.',
-      badge_free: 'Zadarmo',
-      btn_download: 'Chcem tento plán zadarmo →',
-      book1_tag: 'Prvá kúpa · Nový začiatok',
-      book1_title: 'Váš prvý byt',
-      book1_desc: 'Kupujete prvú nehnuteľnosť? Sprievodca, ktorý vám ušetrí tisíce eur a mesiace stresu. Hypotéka, právnik, kataster, skryté vady - váš kompas od prvého kroku.',
-      book1_meta: '63 stiahnutí tento mesiac',
-      book2_tag: 'Dedičstvo · Papierovačky',
-      book2_title: 'Zdedený byt',
-      book2_desc: 'Zdedili ste nehnuteľnosť plnú papierovačiek a neistôt? Nestrácajte čas v slepých uličkách. Od kontroly listu vlastníctva až po úspešný predaj.',
-      book2_meta: '69 stiahnutí tento mesiac',
-      book3_tag: 'Dlhová kríza · Naliehavosť',
-      book3_title: 'Exekúcia na dverách',
-      book3_desc: 'Čas hrá proti vám. Zachráňte, čo sa dá, skôr než rozhodne exekútor. Váš akčný plán, ako predísť dražbe a predať nehnuteľnosť za podmienok, ktoré vám dovolia začať znova.',
-      book3_meta: '66 stiahnutí tento mesiac',
-      book4_tag: 'Rozvod · Nový začiatok',
-      book4_title: 'Rozvod a predaj majetku',
-      book4_desc: 'Končíte vzťah, nie svoj život. Predajte byt bez zbytočných hádok a právnych sporov. Ako premeniť spoločnú nehnuteľnosť na kapitál, ktorý vám obom umožní ísť vlastnou cestou.',
-      book4_meta: '59 stiahnutí tento mesiac',
+      books_title: '5 e-kníh o nehnuteľnostiach',
+      books_sub: 'Každá je zadarmo. Prvý byt, dedičstvo, exekúcia, rozvod, reťazový obchod.',
+      books_cta_btn: '📚 Otvoriť knižnicu e-kníh zadarmo →',
+      kalkcta_eyebrow: 'Bezplatný nástroj',
+      kalkcta_title: 'Hypotekárna kalkulačka',
+      kalkcta_sub: 'Vypočítajte si mesačnú splátku, celkovú sumu a pomer istiny a úrokov — okamžite a zadarmo.',
+      kalkcta_btn: '🧮 Otvoriť kalkulačku →',
+      kalkcta_note: 'Žiadna registrácia. Výsledok okamžite.',
       stat1: 'Stiahnutých e-kníh',
       stat2: 'Príručky zadarmo',
       stat3: 'Cena stiahnutia',
@@ -1812,75 +1850,253 @@
       ben_eyebrow: 'Prečo tieto príručky',
       ben_title: 'Každá situácia si zaslúži konkrétny návod',
       ben_sub: 'Žiadna teória. Každá príručka vychádza z reálnych prípadov a dáva vám konkrétne kroky.',
-      ben1_h: 'Priamo k veci', ben1_p: 'Žiadna teória navyše. Každá e-kniha je zameraná presne na vašu situáciu a dáva konkrétne kroky.',
-      ben2_h: 'Okamžité stiahnutie', ben2_p: 'Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam.',
-      ben3_h: 'Z praxe makléra', ben3_p: 'Obsah vychádza z reálnych prípadov - nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.',
-      ben4_h: 'Ušetrite tisíce eur', ben4_p: 'Jedna prehliadnutá chyba pri predaji môže stáť tisíce eur. Tieto príručky sú investícia s okamžitou návratnosťou.',
-      ben5_h: 'Checklisty a vzory', ben5_p: 'Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.',
-      ben6_h: 'Osobná konzultácia', ben6_p: 'Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo - bez záväzkov.',
-      about_eyebrow: 'O mne',
-      about_verify: 'Certifikovaný maklér · Reality Najbývanie',
-      about_name: 'Radovan Vaník',
-      about_mini_text: 'Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.',
-      about_btn: 'Viac o mne',
-      about_p1: 'Som realitný maklér pôsobiaci pod značkou <strong>Reality Najbývanie</strong> - modernej realitnej kancelárie, ktorá stavia na transparentnosti a osobnom prístupe.',
-      about_p2: 'Každý deň pracujem s ľuďmi, ktorí stoja pred jedným z najväčších rozhodnutí svojho života. Tieto e-knihy som vytvoril preto, lebo verím, že <strong>informovaný klient je spokojný klient</strong>.',
-      about_p3: 'Chcem, aby ste k nám prišli pripravení - nie stratení. A ak budete potrebovať niekoho po svojom boku pri kúpe alebo predaji, som tu.',
-      about_location: 'Ružomberok a okolie',
+      ben1_h: 'Priamo k veci',
+      ben1_p: 'Žiadna teória navyše. Každá e-kniha je zameraná presne na vašu situáciu a dáva konkrétne kroky.',
+      ben2_h: 'Okamžité stiahnutie',
+      ben2_p: 'Zadáte email, stiahne sa PDF. Žiadne čakanie, žiadne registrácie, žiadny spam.',
+      ben3_h: 'Z praxe makléra',
+      ben3_p: 'Obsah vychádza z reálnych prípadov - nie z učebníc. Chyby, ktoré tu popisujem, som videl na vlastné oči.',
+      ben4_h: 'Ušetrite tisíce eur',
+      ben4_p: 'Jedna prehliadnutá chyba pri predaji môže stáť tisíce eur. Tieto príručky sú investícia s okamžitou návratnosťou.',
+      ben5_h: 'Checklisty a vzory',
+      ben5_p: 'Každá kniha obsahuje praktické checklisty a vzory dokumentov, ktoré môžete použiť hneď.',
+      ben6_h: 'Osobná konzultácia',
+      ben6_p: 'Ak budete potrebovať pomoc, som tu. Kontaktujte ma priamo - bez záväzkov.',
       cta_eyebrow: 'Začni hneď',
       cta_title: 'Ktorá situácia sa vás týka?',
       cta_sub: 'Vyberte e-knihu a stiahnite ju zadarmo.',
-      cta_b1_sub: 'Prvá kúpa bez stresu',
-      cta_b2_sub: 'Od dedičstva po predaj',
-      cta_b3_sub: 'Akčný plán pred dražbou',
-      cta_b4_sub: 'Predaj bez hádok a sporov',
-      cta_b5_sub: 'Predaj + kúpa naraz',
-      book5_tag: 'Predaj + kúpa · Koordinácia',
-      book5_title: 'Reťazový obchod',
-      book5_desc: 'Predávate byt s hypotékou a zároveň kupujete nový? Zladiť dve banky, dva katastre a dva predaje bez stresu - váš kompas krok za krokom.',
-      book5_meta: '46 stiahnutí tento mesiac',
       cta_note: '🔒 Tvoje dáta sú v bezpečí. Žiadny spam. Odhlásenie kedykoľvek.',
-      about_btn: 'Viac o mne',
-      about_mini_text: 'Pomáham ľuďom v regiónoch <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami bez stresu a finančných strát.',
-      kalk_badge: 'Kalkulačka',
-      kalk_title: 'Koľko zaplatíte za vašu hypotéku?',
-      kalk_sub: 'Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.',
-      kalk_note: 'Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.',
-      kalk_params: 'Parametre úveru',
-      kalk_loan: 'Výška úveru',
-      kalk_rate: 'Úroková sadzba',
-      kalk_years: 'Doba splácania',
-      kalk_monthly: 'Mesačná splátka',
-      kalk_per: 'mesačne',
-      kalk_total: 'Celková suma',
-      kalk_interest: 'Zaplatené úroky',
-      kalk_payments: 'Počet splátok',
-      kalk_amort_show: 'Zobraziť tabuľku',
-      kalk_amort_hide: 'Skryť tabuľku',
-      kalk_amort_year: 'Rok',
-      kalk_amort_payment: 'Splátka / rok',
-      kalk_amort_balance: 'Zostatok',
-      kalk_interest: 'Zaplatené úroky',
-      kalk_payments: 'Počet splátok',
-      kalk_principal: 'Istina',
-      kalk_interests: 'Úroky',
-      kalk_chart_title: 'Rozloženie platieb',
-      kalk_amort_title: 'Ročný prehľad splátok',
-      footer_privacy: 'Ochrana súkromia',
+      cta_btn: '📚 Otvoriť knižnicu e-kníh →',
       modal_label: 'Zadaj email a stiahni zadarmo',
-      modal_submit: 'Stiahnuť →',
       modal_privacy: '🔒 Žiadny spam. Odhlásenie kedykoľvek.',
-      success_h3: 'Výborne! Sťahovanie začína.',
-      success_p: 'Skontroluj svoju emailovú schránku - pošleme ti aj potvrdenie.',
       modal_lock: 'Vaše informácie sú v bezpečí. Diskrétnosť je prioritou.',
+      modal_submit: 'Stiahnuť →',
       modal_sending: 'Posielam…',
       modal_email_err: 'Zadaj platný email.',
       modal_server_err: 'Nastala chyba. Skús to znova.',
+      success_h3: 'Výborne! Sťahovanie začína.',
+      success_p: 'Skontroluj svoju emailovú schránku - pošleme ti aj potvrdenie.',
       success_call_text: 'Chceš sa poradiť osobne? Zavolaj mi - bezplatne a bez záväzkov.',
       success_call_btn: 'Zavolajte mi: +421 948 310 950',
       success_call_note: 'Konzultácia zadarmo · Online aj osobne · RK, LM, DK',
       float_wa: 'Napíšte na WhatsApp',
       float_ph: 'Zavolať Radovanovi',
+    },
+    en: {
+      nav_cta: 'Choose an e-book →',
+      nav_projekty: 'Other projects',
+      nav_omne: 'About me',
+      nav_mapa: 'Listings map',
+      nav_faq: 'FAQ',
+      nav_blog: 'Blog',
+      nav_ocenenie: 'Value your property →',
+      nav_ocenenie_mobile: '🏠 Free property valuation',
+      mob_cta: 'Download a free e-book →',
+      hero_eyebrow: "I'm Radovan Vaník",
+      hero_h1: 'I have two sides.',
+      hero_h1_hl: 'Which one are you here for?',
+      hero_sub: 'Real estate agent and programmer. Pick the side you want to explore today.',
+      path1_title: 'Real estate',
+      path1_hook: "Buying your first home? Inheriting a property? Dealing with foreclosure or divorce? I'll help with 5 free e-books, a mortgage calculator and a free property valuation — before you take a step that's hard to undo.",
+      path1_cta: 'Explore real estate →',
+      path2_title: 'IT projects',
+      path2_hook: 'Alongside real estate, I build apps, dashboards and websites — from a festival mulled-wine stand to a concrete-fence company.',
+      path2_cta: 'View IT projects →',
+      about_verify: 'Certified agent · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'I help people in <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš and Dolný Kubín</strong> get through real-estate changes without stress or financial loss.',
+      about_btn: 'More about me',
+      books_eyebrow: 'Free guides',
+      books_title: '5 e-books on real estate',
+      books_sub: 'Every one is free. First home, inheritance, foreclosure, divorce, chain transaction.',
+      books_cta_btn: '📚 Open the free e-book library →',
+      kalkcta_eyebrow: 'Free tool',
+      kalkcta_title: 'Mortgage calculator',
+      kalkcta_sub: 'Work out your monthly payment, total cost and principal-to-interest ratio — instantly and for free.',
+      kalkcta_btn: '🧮 Open the calculator →',
+      kalkcta_note: 'No registration. Instant result.',
+      stat1: 'E-books downloaded',
+      stat2: 'Free guides',
+      stat3: 'Download price',
+      stat4: 'Instant download',
+      ben_eyebrow: 'Why these guides',
+      ben_title: 'Every situation deserves a concrete plan',
+      ben_sub: 'No theory. Every guide is based on real cases and gives you concrete steps.',
+      ben1_h: 'Straight to the point',
+      ben1_p: 'No extra theory. Each e-book is focused exactly on your situation and gives concrete steps.',
+      ben2_h: 'Instant download',
+      ben2_p: 'Enter your email, the PDF downloads. No waiting, no registration, no spam.',
+      ben3_h: "From an agent's practice",
+      ben3_p: "The content comes from real cases, not textbooks. I've seen with my own eyes the mistakes described here.",
+      ben4_h: 'Save thousands of euros',
+      ben4_p: 'One overlooked mistake in a sale can cost thousands of euros. These guides pay for themselves instantly.',
+      ben5_h: 'Checklists and templates',
+      ben5_p: 'Each book includes practical checklists and document templates you can use right away.',
+      ben6_h: 'Personal consultation',
+      ben6_p: "If you need help, I'm here. Contact me directly - no obligation.",
+      cta_eyebrow: 'Start now',
+      cta_title: 'Which situation applies to you?',
+      cta_sub: 'Choose an e-book and download it for free.',
+      cta_note: '🔒 Your data is safe. No spam. Unsubscribe anytime.',
+      cta_btn: '📚 Open the e-book library →',
+      modal_label: 'Enter your email to download for free',
+      modal_privacy: '🔒 No spam. Unsubscribe anytime.',
+      modal_lock: 'Your information is safe. Discretion is a priority.',
+      modal_submit: 'Download →',
+      modal_sending: 'Sending…',
+      modal_email_err: 'Enter a valid email.',
+      modal_server_err: 'Something went wrong. Please try again.',
+      success_h3: 'Great! Your download is starting.',
+      success_p: "Check your inbox - we'll send you a confirmation too.",
+      success_call_text: 'Want to talk it through in person? Call me - free and no obligation.',
+      success_call_btn: 'Call me: +421 948 310 950',
+      success_call_note: 'Free consultation · Online or in person · RK, LM, DK',
+      float_wa: 'Message on WhatsApp',
+      float_ph: 'Call Radovan',
+    },
+    ua: {
+      nav_cta: 'Обрати електронну книгу →',
+      nav_projekty: 'Інші проєкти',
+      nav_omne: 'Про мене',
+      nav_mapa: 'Карта пропозицій',
+      nav_faq: 'Питання',
+      nav_blog: 'Блог',
+      nav_ocenenie: 'Оцінити нерухомість →',
+      nav_ocenenie_mobile: '🏠 Безкоштовна оцінка нерухомості',
+      mob_cta: 'Завантажити е-книгу безкоштовно →',
+      hero_eyebrow: 'Я Радован Ваник',
+      hero_h1: 'У мене два обличчя.',
+      hero_h1_hl: 'Яке вас цікавить?',
+      hero_sub: 'Агент з нерухомості та програміст. Оберіть, яка сторона вас цікавить сьогодні.',
+      path1_title: 'Ринок нерухомості',
+      path1_hook: 'Купуєте першу квартиру? Отримуєте спадщину? Маєте справу з виконавчим провадженням чи розлученням? Допоможу 5 безкоштовними е-книгами, іпотечним калькулятором та безкоштовною оцінкою нерухомості — перш ніж ви зробите крок, який важко скасувати.',
+      path1_cta: 'Переглянути ринок нерухомості →',
+      path2_title: 'IT-проєкти',
+      path2_hook: 'Окрім нерухомості, я розробляю застосунки, дашборди та вебсайти — від ятки з гарячим вином на фестивалі до компанії з виробництва бетонних заборів.',
+      path2_cta: 'Переглянути IT-проєкти →',
+      about_verify: 'Сертифікований агент · Reality Najbývanie',
+      about_name: 'Радован Ваник',
+      about_mini_text: 'Допомагаю людям у регіонах <strong style="color:rgba(255,255,255,0.75)">Ружомберок, Липтовскі Мікулаш та Долний Кубін</strong> пройти через зміни у нерухомості без стресу та фінансових втрат.',
+      about_btn: 'Більше про мене',
+      books_eyebrow: 'Безкоштовні посібники',
+      books_title: '5 е-книг про нерухомість',
+      books_sub: 'Кожна безкоштовна. Перше житло, спадщина, виконавче провадження, розлучення, ланцюгова угода.',
+      books_cta_btn: '📚 Відкрити безкоштовну бібліотеку е-книг →',
+      kalkcta_eyebrow: 'Безкоштовний інструмент',
+      kalkcta_title: 'Іпотечний калькулятор',
+      kalkcta_sub: 'Розрахуйте щомісячний платіж, загальну суму та співвідношення основної суми і відсотків — миттєво і безкоштовно.',
+      kalkcta_btn: '🧮 Відкрити калькулятор →',
+      kalkcta_note: 'Без реєстрації. Миттєвий результат.',
+      stat1: 'Завантажень е-книг',
+      stat2: 'Безкоштовних посібників',
+      stat3: 'Ціна завантаження',
+      stat4: 'Миттєве завантаження',
+      ben_eyebrow: 'Чому саме ці посібники',
+      ben_title: 'Кожна ситуація заслуговує на конкретний план дій',
+      ben_sub: 'Без теорії. Кожен посібник базується на реальних випадках і дає конкретні кроки.',
+      ben1_h: 'Прямо до суті',
+      ben1_p: 'Без зайвої теорії. Кожна е-книга стосується саме вашої ситуації і дає конкретні кроки.',
+      ben2_h: 'Миттєве завантаження',
+      ben2_p: 'Введіть email — PDF завантажиться. Без очікування, без реєстрації, без спаму.',
+      ben3_h: 'З практики агента',
+      ben3_p: 'Зміст базується на реальних випадках, а не на підручниках. Помилки, які я описую, я бачив на власні очі.',
+      ben4_h: 'Заощадьте тисячі євро',
+      ben4_p: 'Одна непомічена помилка під час продажу може коштувати тисячі євро. Ці посібники окупаються миттєво.',
+      ben5_h: 'Чеклисти та шаблони',
+      ben5_p: 'Кожна книга містить практичні чеклисти та шаблони документів, які можна використати одразу.',
+      ben6_h: 'Особиста консультація',
+      ben6_p: 'Якщо потрібна допомога, я тут. Зв’яжіться зі мною напряму - без жодних зобов’язань.',
+      cta_eyebrow: 'Почніть зараз',
+      cta_title: 'Яка ситуація стосується вас?',
+      cta_sub: 'Оберіть е-книгу і завантажте її безкоштовно.',
+      cta_note: '🔒 Ваші дані в безпеці. Без спаму. Відписка у будь-який час.',
+      cta_btn: '📚 Відкрити бібліотеку е-книг →',
+      modal_label: 'Введіть email, щоб завантажити безкоштовно',
+      modal_privacy: '🔒 Без спаму. Відписка у будь-який час.',
+      modal_lock: 'Ваша інформація в безпеці. Конфіденційність — пріоритет.',
+      modal_submit: 'Завантажити →',
+      modal_sending: 'Надсилаю…',
+      modal_email_err: 'Введіть дійсний email.',
+      modal_server_err: 'Сталася помилка. Спробуйте ще раз.',
+      success_h3: 'Чудово! Завантаження починається.',
+      success_p: 'Перевірте свою поштову скриньку - надішлемо вам і підтвердження.',
+      success_call_text: 'Хочете порадитися особисто? Зателефонуйте мені - безкоштовно і без зобов’язань.',
+      success_call_btn: 'Зателефонуйте мені: +421 948 310 950',
+      success_call_note: 'Безкоштовна консультація · Онлайн або особисто · RK, LM, DK',
+      float_wa: 'Написати у WhatsApp',
+      float_ph: 'Зателефонувати Радовану',
+    },
+    de: {
+      nav_cta: 'E-Book wählen →',
+      nav_projekty: 'Andere Projekte',
+      nav_omne: 'Über mich',
+      nav_mapa: 'Angebotskarte',
+      nav_faq: 'FAQ',
+      nav_blog: 'Blog',
+      nav_ocenenie: 'Immobilie bewerten →',
+      nav_ocenenie_mobile: '🏠 Kostenlose Immobilienbewertung',
+      mob_cta: 'E-Book kostenlos herunterladen →',
+      hero_eyebrow: 'Ich bin Radovan Vaník',
+      hero_h1: 'Ich habe zwei Seiten.',
+      hero_h1_hl: 'Welche interessiert Sie?',
+      hero_sub: 'Immobilienmakler und Programmierer. Wählen Sie, welche Seite Sie heute interessiert.',
+      path1_title: 'Immobilienmarkt',
+      path1_hook: 'Kaufen Sie Ihre erste Wohnung? Erben Sie eine Immobilie? Geht es um Zwangsvollstreckung oder Scheidung? Ich helfe mit 5 kostenlosen E-Books, einem Hypothekenrechner und einer kostenlosen Immobilienbewertung — bevor Sie einen Schritt tun, der sich kaum zurücknehmen lässt.',
+      path1_cta: 'Immobilienmarkt entdecken →',
+      path2_title: 'IT-Projekte',
+      path2_hook: 'Neben Immobilien entwickle ich Apps, Dashboards und Websites — vom Glühweinstand auf dem Festival bis zur Firma für Betonzäune.',
+      path2_cta: 'IT-Projekte ansehen →',
+      about_verify: 'Zertifizierter Makler · Reality Najbývanie',
+      about_name: 'Radovan Vaník',
+      about_mini_text: 'Ich helfe Menschen in den Regionen <strong style="color:rgba(255,255,255,0.75)">Ružomberok, Liptovský Mikuláš und Dolný Kubín</strong>, Immobilienveränderungen ohne Stress und finanzielle Verluste zu bewältigen.',
+      about_btn: 'Mehr über mich',
+      books_eyebrow: 'Kostenlose Ratgeber',
+      books_title: '5 E-Books über Immobilien',
+      books_sub: 'Jeder ist kostenlos. Erste Wohnung, Erbschaft, Zwangsvollstreckung, Scheidung, Kettengeschäft.',
+      books_cta_btn: '📚 Kostenlose E-Book-Bibliothek öffnen →',
+      kalkcta_eyebrow: 'Kostenloses Tool',
+      kalkcta_title: 'Hypothekenrechner',
+      kalkcta_sub: 'Berechnen Sie Ihre monatliche Rate, die Gesamtsumme und das Verhältnis von Tilgung zu Zinsen — sofort und kostenlos.',
+      kalkcta_btn: '🧮 Rechner öffnen →',
+      kalkcta_note: 'Keine Registrierung. Sofortiges Ergebnis.',
+      stat1: 'Heruntergeladene E-Books',
+      stat2: 'Kostenlose Ratgeber',
+      stat3: 'Preis des Downloads',
+      stat4: 'Sofortiger Download',
+      ben_eyebrow: 'Warum diese Ratgeber',
+      ben_title: 'Jede Situation verdient eine konkrete Anleitung',
+      ben_sub: 'Keine Theorie. Jeder Ratgeber basiert auf echten Fällen und gibt Ihnen konkrete Schritte.',
+      ben1_h: 'Direkt auf den Punkt',
+      ben1_p: 'Keine zusätzliche Theorie. Jedes E-Book ist genau auf Ihre Situation ausgerichtet und gibt konkrete Schritte vor.',
+      ben2_h: 'Sofortiger Download',
+      ben2_p: 'E-Mail eingeben, PDF wird heruntergeladen. Kein Warten, keine Registrierung, kein Spam.',
+      ben3_h: 'Aus der Praxis des Maklers',
+      ben3_p: 'Der Inhalt basiert auf echten Fällen - nicht auf Lehrbüchern. Die hier beschriebenen Fehler habe ich mit eigenen Augen gesehen.',
+      ben4_h: 'Sparen Sie tausende Euro',
+      ben4_p: 'Ein übersehener Fehler beim Verkauf kann tausende Euro kosten. Diese Ratgeber zahlen sich sofort aus.',
+      ben5_h: 'Checklisten und Vorlagen',
+      ben5_p: 'Jedes Buch enthält praktische Checklisten und Dokumentvorlagen, die Sie sofort nutzen können.',
+      ben6_h: 'Persönliche Beratung',
+      ben6_p: 'Falls Sie Hilfe brauchen, bin ich da. Kontaktieren Sie mich direkt - unverbindlich.',
+      cta_eyebrow: 'Jetzt starten',
+      cta_title: 'Welche Situation betrifft Sie?',
+      cta_sub: 'Wählen Sie ein E-Book und laden Sie es kostenlos herunter.',
+      cta_note: '🔒 Ihre Daten sind sicher. Kein Spam. Jederzeit abmeldbar.',
+      cta_btn: '📚 E-Book-Bibliothek öffnen →',
+      modal_label: 'E-Mail eingeben und kostenlos herunterladen',
+      modal_privacy: '🔒 Kein Spam. Jederzeit abmeldbar.',
+      modal_lock: 'Ihre Angaben sind sicher. Diskretion hat Priorität.',
+      modal_submit: 'Herunterladen →',
+      modal_sending: 'Wird gesendet…',
+      modal_email_err: 'Geben Sie eine gültige E-Mail-Adresse ein.',
+      modal_server_err: 'Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
+      success_h3: 'Ausgezeichnet! Der Download startet.',
+      success_p: 'Prüfen Sie Ihr E-Mail-Postfach - wir senden Ihnen auch eine Bestätigung.',
+      success_call_text: 'Möchten Sie sich persönlich beraten lassen? Rufen Sie mich an - kostenlos und unverbindlich.',
+      success_call_btn: 'Rufen Sie mich an: +421 948 310 950',
+      success_call_note: 'Kostenlose Beratung · Online oder persönlich · RK, LM, DK',
+      float_wa: 'Auf WhatsApp schreiben',
+      float_ph: 'Radovan anrufen',
     },
   };
 
@@ -1889,6 +2105,30 @@
     return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS.sk && TRANSLATIONS.sk[key]) || key;
   }
 
+  /* ─── LANGUAGE SWITCHER: APPLY + SET ────────────────── */
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+    });
+    ['sk', 'en', 'ua', 'de'].forEach(l => {
+      const b = document.getElementById('lang-' + l);
+      if (b) b.classList.toggle('active', l === lang);
+      const bm = document.getElementById('lang-' + l + '-m');
+      if (bm) bm.classList.toggle('active', l === lang);
+    });
+  }
+  (function () {
+    const saved = localStorage.getItem('lang') || 'sk';
+    if (saved !== 'sk') setLang(saved);
+    else ['sk', 'en', 'ua', 'de'].forEach(l => {
+      const b = document.getElementById('lang-' + l);
+      if (b) b.classList.toggle('active', l === 'sk');
+      const bm = document.getElementById('lang-' + l + '-m');
+      if (bm) bm.classList.toggle('active', l === 'sk');
+    });
+  })();
 
   /* ─── SCROLL TO BOOKS ────────────────────────────────── */
   function scrollToBooks() {
