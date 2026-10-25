@@ -45,6 +45,12 @@ a{text-decoration:none;color:inherit}
 .nav-right{display:flex;align-items:center;gap:0.4rem}
 .nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.76);transition:all 0.2s}
 .nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:999px;padding:3px;}
+.lang-btn{background:transparent;border:none;cursor:pointer;width:28px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:999px;opacity:0.5;transition:opacity 0.18s,background 0.18s,transform 0.15s,box-shadow 0.18s;}
+.lang-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.lang-btn.active{background:var(--gold);opacity:1;box-shadow:0 2px 10px rgba(200,133,31,0.45)}
+.lang-btn img{width:20px;height:14px;object-fit:cover;border-radius:3px;display:block;pointer-events:none}
+@media(max-width:700px){.lang-btn{width:24px;height:22px}.lang-btn img{width:17px;height:12px}}
 @media(max-width:700px){.nav-link{display:none}.nav-cta{font-size:0.72rem;padding:0.38rem 0.7rem}.nav-logo{width:34px;height:34px;justify-content:center;gap:0;border-radius:999px;background:rgba(200,133,31,0.14);border:1px solid rgba(200,133,31,0.3)}.nav-logo-dot,.nav-logo-label{display:none}.nav-logo-home{display:block;width:15px;height:15px}}
 .hero{padding:90px clamp(1.25rem,5vw,3rem) 2rem;max-width:900px;margin:0 auto;text-align:center}
 .eyebrow{font-size:10px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:rgba(200,133,31,0.6);display:inline-flex;align-items:center;gap:8px;margin-bottom:0.8rem}
@@ -117,12 +123,18 @@ body { touch-action: pan-y pinch-zoom; }
 <header class="nav">
   <a href="/" class="nav-logo"><div class="nav-logo-dot"></div><svg class="nav-logo-home" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg><span class="nav-logo-label">Radovan Vaník</span></a>
   <div class="nav-center">
-    <a href="/" class="nav-link">Domov</a>
-    <a href="/#books" class="nav-link">E-knihy</a>
-    <a href="/o-mne" class="nav-link">O mne</a>
-    <a href="/mapa" class="nav-link active">Mapa ponúk</a>
-    <a href="/faq" class="nav-link">FAQ</a>
-    <a href="/#books" class="nav-cta">Vybrať e-knihu →</a>
+    <a href="/" class="nav-link" data-i18n="nav_home">Domov</a>
+    <a href="/#books" class="nav-link" data-i18n="nav_books">E-knihy</a>
+    <a href="/o-mne" class="nav-link" data-i18n="nav_about">O mne</a>
+    <a href="/mapa" class="nav-link active" data-i18n="nav_map">Mapa ponúk</a>
+    <a href="/faq" class="nav-link" data-i18n="nav_faq">FAQ</a>
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+    </div>
+    <a href="/#books" class="nav-cta" data-i18n="nav_cta">Vybrať e-knihu →</a>
   </div>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
@@ -132,59 +144,59 @@ body { touch-action: pan-y pinch-zoom; }
 
 <div class="hero">
   <div class="eyebrow">Reality Najbývanie</div>
-  <h1>Mapa <em>ponúk</em></h1>
-  <p class="hero-sub">Nehnuteľnosti v regióne Liptovský Mikuláš · Ružomberok · Vrútky a okolie</p>
+  <h1 data-i18n="hero_h1">Mapa <em>ponúk</em></h1>
+  <p class="hero-sub" data-i18n="hero_sub">Nehnuteľnosti v regióne Liptovský Mikuláš · Ružomberok · Vrútky a okolie</p>
 </div>
 
 <div class="map-section">
   <div class="map-card">
     <div class="map-header">
       <div>
-        <div class="map-header-title">Mapa ponúk - región Liptov &amp; Turiec</div>
-        <div class="map-header-sub">Od Liptovského Mikuláša po Vrútky</div>
+        <div class="map-header-title" data-i18n="map_title">Mapa ponúk - región Liptov &amp; Turiec</div>
+        <div class="map-header-sub" data-i18n="map_sub">Od Liptovského Mikuláša po Vrútky</div>
       </div>
       <div class="map-legend">
-        <div class="leg"><div class="leg-dot active"></div>Aktívna ponuka</div>
-        <div class="leg"><div class="leg-dot sold"></div>Predané</div>
+        <div class="leg"><div class="leg-dot active"></div><span data-i18n="leg_active">Aktívna ponuka</span></div>
+        <div class="leg"><div class="leg-dot sold"></div><span data-i18n="leg_sold">Predané</span></div>
       </div>
     </div>
     <div class="map-filters">
-      <button class="mf-btn active" data-type="all">🗺️ Všetky <span class="mf-count" id="cnt-all">18</span></button>
-      <button class="mf-btn" data-type="byt">🏢 Byty <span class="mf-count" id="cnt-byt">3</span></button>
-      <button class="mf-btn" data-type="dom">🏠 Domy <span class="mf-count" id="cnt-dom">7</span></button>
-      <button class="mf-btn" data-type="pozemok">🌿 Pozemky <span class="mf-count" id="cnt-pozemok">4</span></button>
-      <button class="mf-btn" data-type="chata">🏡 Chaty <span class="mf-count" id="cnt-chata">2</span></button>
-      <button class="mf-btn" data-type="ostatne">🏭 Ostatné <span class="mf-count" id="cnt-ostatne">2</span></button>
+      <button class="mf-btn active" data-type="all"><span data-i18n="f_all">🗺️ Všetky</span> <span class="mf-count" id="cnt-all">18</span></button>
+      <button class="mf-btn" data-type="byt"><span data-i18n="f_byt">🏢 Byty</span> <span class="mf-count" id="cnt-byt">3</span></button>
+      <button class="mf-btn" data-type="dom"><span data-i18n="f_dom">🏠 Domy</span> <span class="mf-count" id="cnt-dom">7</span></button>
+      <button class="mf-btn" data-type="pozemok"><span data-i18n="f_pozemok">🌿 Pozemky</span> <span class="mf-count" id="cnt-pozemok">4</span></button>
+      <button class="mf-btn" data-type="chata"><span data-i18n="f_chata">🏡 Chaty</span> <span class="mf-count" id="cnt-chata">2</span></button>
+      <button class="mf-btn" data-type="ostatne"><span data-i18n="f_ostatne">🏭 Ostatné</span> <span class="mf-count" id="cnt-ostatne">2</span></button>
     </div>
     <div class="map-wrap">
       <div id="gmap" style="width:100%;height:100%;"></div>
       <div class="map-scanline"></div>
       <div class="map-corner tl"></div><div class="map-corner tr"></div>
       <div class="map-corner bl"></div><div class="map-corner br"></div>
-      <div class="map-badge"><div class="map-badge-num">19+</div><div class="map-badge-lbl">Aktívnych ponúk</div></div>
+      <div class="map-badge"><div class="map-badge-num">19+</div><div class="map-badge-lbl" data-i18n="badge_lbl">Aktívnych ponúk</div></div>
     </div>
     <div class="map-footer">
-      <span class="map-footer-text">Ponuky Reality Najbývanie · aktualizácia priebežne</span>
-      <a href="https://www.realitynb.sk" target="_blank" rel="noopener" class="map-cta">Zobraziť všetky ponuky →</a>
+      <span class="map-footer-text" data-i18n="map_footer_text">Ponuky Reality Najbývanie · aktualizácia priebežne</span>
+      <a href="https://www.realitynb.sk" target="_blank" rel="noopener" class="map-cta" data-i18n="map_cta">Zobraziť všetky ponuky →</a>
     </div>
   </div>
 </div>
 
 <div class="info-section">
   <div class="info-grid">
-    <div class="info-card"><div class="info-card-ico">📍</div><div class="info-card-title">Región pôsobnosti</div><div class="info-card-text">Od Liptovského Mikuláša cez Ružomberok až po Vrútky - vrátane okolitých obcí.</div></div>
-    <div class="info-card"><div class="info-card-ico">🏠</div><div class="info-card-title">Typy nehnuteľností</div><div class="info-card-text">Byty, domy, pozemky, chaty, apartmány. Predaj aj kúpa - sprevádzam vás celým procesom.</div></div>
-    <div class="info-card"><div class="info-card-ico">📞</div><div class="info-card-title">Osobná konzultácia</div><div class="info-card-text">Záujem o konkrétnu nehnuteľnosť? Kontaktujte ma priamo - bez záväzkov a poplatkov vopred.</div></div>
+    <div class="info-card"><div class="info-card-ico">📍</div><div class="info-card-title" data-i18n="info1_title">Región pôsobnosti</div><div class="info-card-text" data-i18n="info1_text">Od Liptovského Mikuláša cez Ružomberok až po Vrútky - vrátane okolitých obcí.</div></div>
+    <div class="info-card"><div class="info-card-ico">🏠</div><div class="info-card-title" data-i18n="info2_title">Typy nehnuteľností</div><div class="info-card-text" data-i18n="info2_text">Byty, domy, pozemky, chaty, apartmány. Predaj aj kúpa - sprevádzam vás celým procesom.</div></div>
+    <div class="info-card"><div class="info-card-ico">📞</div><div class="info-card-title" data-i18n="info3_title">Osobná konzultácia</div><div class="info-card-text" data-i18n="info3_text">Záujem o konkrétnu nehnuteľnosť? Kontaktujte ma priamo - bez záväzkov a poplatkov vopred.</div></div>
   </div>
 </div>
 
 <div class="cta-bar">
   <div>
-    <div class="cta-bar-title">Hľadáte nehnuteľnosť v regióne?</div>
-    <div class="cta-bar-sub">Stiahni bezplatnú príručku alebo ma kontaktuj priamo.</div>
+    <div class="cta-bar-title" data-i18n="cta_title">Hľadáte nehnuteľnosť v regióne?</div>
+    <div class="cta-bar-sub" data-i18n="cta_sub">Stiahni bezplatnú príručku alebo ma kontaktuj priamo.</div>
   </div>
   <div class="cta-btns">
-    <a href="/#books" class="btn-gold">Stiahnuť e-knihu zadarmo</a>
+    <a href="/#books" class="btn-gold" data-i18n="cta_book">Stiahnuť e-knihu zadarmo</a>
     <a href="tel:+421948310950" class="btn-outline">📞 +421 948 310 950</a>
   </div>
 </div>
@@ -217,6 +229,163 @@ body { touch-action: pan-y pinch-zoom; }
 
 <script src="/ponuky.js"></script>
 <script>
+
+const TRANSLATIONS = {
+  sk: {
+    nav_home: 'Domov',
+    nav_books: 'E-knihy',
+    nav_about: 'O mne',
+    nav_map: 'Mapa ponúk',
+    nav_faq: 'FAQ',
+    nav_cta: 'Vybrať e-knihu →',
+    hero_h1: 'Mapa <em>ponúk</em>',
+    hero_sub: 'Nehnuteľnosti v regióne Liptovský Mikuláš · Ružomberok · Vrútky a okolie',
+    map_title: 'Mapa ponúk - región Liptov &amp; Turiec',
+    map_sub: 'Od Liptovského Mikuláša po Vrútky',
+    leg_active: 'Aktívna ponuka',
+    leg_sold: 'Predané',
+    f_all: '🗺️ Všetky',
+    f_byt: '🏢 Byty',
+    f_dom: '🏠 Domy',
+    f_pozemok: '🌿 Pozemky',
+    f_chata: '🏡 Chaty',
+    f_ostatne: '🏭 Ostatné',
+    badge_lbl: 'Aktívnych ponúk',
+    map_footer_text: 'Ponuky Reality Najbývanie · aktualizácia priebežne',
+    map_cta: 'Zobraziť všetky ponuky →',
+    info1_title: 'Región pôsobnosti',
+    info1_text: 'Od Liptovského Mikuláša cez Ružomberok až po Vrútky - vrátane okolitých obcí.',
+    info2_title: 'Typy nehnuteľností',
+    info2_text: 'Byty, domy, pozemky, chaty, apartmány. Predaj aj kúpa - sprevádzam vás celým procesom.',
+    info3_title: 'Osobná konzultácia',
+    info3_text: 'Záujem o konkrétnu nehnuteľnosť? Kontaktujte ma priamo - bez záväzkov a poplatkov vopred.',
+    cta_title: 'Hľadáte nehnuteľnosť v regióne?',
+    cta_sub: 'Stiahni bezplatnú príručku alebo ma kontaktuj priamo.',
+    cta_book: 'Stiahnuť e-knihu zadarmo'
+  },
+  en: {
+    nav_home: 'Home',
+    nav_books: 'E-books',
+    nav_about: 'About',
+    nav_map: 'Listings map',
+    nav_faq: 'FAQ',
+    nav_cta: 'Choose an e-book →',
+    hero_h1: 'Listings <em>map</em>',
+    hero_sub: 'Properties in the Liptovský Mikuláš · Ružomberok · Vrútky region and surroundings',
+    map_title: 'Listings map - Liptov &amp; Turiec region',
+    map_sub: 'From Liptovský Mikuláš to Vrútky',
+    leg_active: 'Active listing',
+    leg_sold: 'Sold',
+    f_all: '🗺️ All',
+    f_byt: '🏢 Apartments',
+    f_dom: '🏠 Houses',
+    f_pozemok: '🌿 Land',
+    f_chata: '🏡 Cottages',
+    f_ostatne: '🏭 Other',
+    badge_lbl: 'Active listings',
+    map_footer_text: 'Reality Najbývanie listings · updated continuously',
+    map_cta: 'View all listings →',
+    info1_title: 'Area covered',
+    info1_text: 'From Liptovský Mikuláš through Ružomberok to Vrútky - including the surrounding villages.',
+    info2_title: 'Property types',
+    info2_text: 'Apartments, houses, land, cottages, flats. Selling and buying - I guide you through the whole process.',
+    info3_title: 'Personal consultation',
+    info3_text: 'Interested in a specific property? Contact me directly - no obligations or upfront fees.',
+    cta_title: 'Looking for a property in the region?',
+    cta_sub: 'Download the free guide or contact me directly.',
+    cta_book: 'Download the e-book for free'
+  },
+  ua: {
+    nav_home: 'Головна',
+    nav_books: 'Е-книги',
+    nav_about: 'Про мене',
+    nav_map: 'Карта пропозицій',
+    nav_faq: 'FAQ',
+    nav_cta: 'Вибрати е-книгу →',
+    hero_h1: 'Карта <em>пропозицій</em>',
+    hero_sub: 'Нерухомість у регіоні Липтовський Мікулаш · Ружомберок · Вруткы та околиці',
+    map_title: 'Карта пропозицій - регіон Липтов &amp; Турець',
+    map_sub: 'Від Липтовського Мікулаша до Вруток',
+    leg_active: 'Активна пропозиція',
+    leg_sold: 'Продано',
+    f_all: '🗺️ Всі',
+    f_byt: '🏢 Квартири',
+    f_dom: '🏠 Будинки',
+    f_pozemok: '🌿 Ділянки',
+    f_chata: '🏡 Котеджі',
+    f_ostatne: '🏭 Інше',
+    badge_lbl: 'Активних пропозицій',
+    map_footer_text: 'Пропозиції Reality Najbývanie · оновлюється постійно',
+    map_cta: 'Переглянути всі пропозиції →',
+    info1_title: 'Регіон діяльності',
+    info1_text: 'Від Липтовського Мікулаша через Ружомберок до Вруток - включно з навколишніми селами.',
+    info2_title: 'Типи нерухомості',
+    info2_text: 'Квартири, будинки, ділянки, котеджі, апартаменти. Продаж і купівля - супроводжую вас протягом усього процесу.',
+    info3_title: 'Особиста консультація',
+    info3_text: 'Цікавить конкретна нерухомість? Зв’яжіться зі мною напряму - без зобов’язань і попередньої оплати.',
+    cta_title: 'Шукаєте нерухомість у регіоні?',
+    cta_sub: 'Завантажте безкоштовний посібник або зв’яжіться зі мною напряму.',
+    cta_book: 'Завантажити е-книгу безкоштовно'
+  },
+  de: {
+    nav_home: 'Startseite',
+    nav_books: 'E-Books',
+    nav_about: 'Über mich',
+    nav_map: 'Angebotskarte',
+    nav_faq: 'FAQ',
+    nav_cta: 'E-Book wählen →',
+    hero_h1: 'Angebots<em>karte</em>',
+    hero_sub: 'Immobilien in der Region Liptovský Mikuláš · Ružomberok · Vrútky und Umgebung',
+    map_title: 'Angebotskarte - Region Liptov &amp; Turiec',
+    map_sub: 'Von Liptovský Mikuláš bis Vrútky',
+    leg_active: 'Aktives Angebot',
+    leg_sold: 'Verkauft',
+    f_all: '🗺️ Alle',
+    f_byt: '🏢 Wohnungen',
+    f_dom: '🏠 Häuser',
+    f_pozemok: '🌿 Grundstücke',
+    f_chata: '🏡 Hütten',
+    f_ostatne: '🏭 Sonstiges',
+    badge_lbl: 'Aktive Angebote',
+    map_footer_text: 'Angebote von Reality Najbývanie · laufend aktualisiert',
+    map_cta: 'Alle Angebote anzeigen →',
+    info1_title: 'Tätigkeitsgebiet',
+    info1_text: 'Von Liptovský Mikuláš über Ružomberok bis Vrútky - einschließlich der umliegenden Gemeinden.',
+    info2_title: 'Immobilientypen',
+    info2_text: 'Wohnungen, Häuser, Grundstücke, Hütten, Apartments. Verkauf und Kauf - ich begleite Sie durch den gesamten Prozess.',
+    info3_title: 'Persönliche Beratung',
+    info3_text: 'Interesse an einer bestimmten Immobilie? Kontaktieren Sie mich direkt - unverbindlich und ohne Vorabgebühren.',
+    cta_title: 'Suchen Sie eine Immobilie in der Region?',
+    cta_sub: 'Laden Sie den kostenlosen Ratgeber herunter oder kontaktieren Sie mich direkt.',
+    cta_book: 'E-Book kostenlos herunterladen'
+  }
+};
+
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+}
+
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
+})();
 
 const PIN_COLORS = {
   byt:     { top: '#7ECBF5', mid: '#4A90D4', bot: '#1A4A7A', stroke: '#1A4A7A', dot: '#1A5C9E' },
