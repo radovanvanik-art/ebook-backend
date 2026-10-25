@@ -748,6 +748,29 @@
     color: var(--gold);
   }
 
+  /* Language switcher */
+  .lang-switcher {
+    display: flex; align-items: center; gap: 2px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 3px;
+  }
+  .lang-btn {
+    background: transparent; border: none; cursor: pointer;
+    width: 28px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    opacity: 0.5;
+    transition: opacity 0.18s, background 0.18s, transform 0.15s, box-shadow 0.18s;
+  }
+  .lang-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+  .lang-btn.active { background: var(--gold); opacity: 1; box-shadow: 0 2px 10px rgba(201,168,76,0.45); }
+  .lang-btn img { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; display: block; pointer-events: none; }
+  @media (max-width: 600px) {
+    .top-nav-phone-text { display: none; }
+  }
+
   /* Utility */
   .hidden { display: none !important; }
   .text-center { text-align: center; }
@@ -763,23 +786,31 @@
   <nav class="top-nav">
     <a href="/" class="top-nav-back">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-      Späť na hlavnú
+      <span data-i18n="nav_back">Späť na hlavnú</span>
     </a>
     <a href="/" class="top-nav-logo">Radovan <span>Vaník</span></a>
-    <a href="tel:+421948310950" style="color:var(--text-muted);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px;">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-      +421 948 310 950
-    </a>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+        <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+        <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+        <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+        <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+      </div>
+      <a href="tel:+421948310950" style="color:var(--text-muted);font-size:12px;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:5px;">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <span class="top-nav-phone-text">+421 948 310 950</span>
+      </a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-badge">Bezplatné ocenenie</div>
-    <h1>Zistite hodnotu<br>vašej <em>nehnuteľnosti</em></h1>
-    <p>Okamžitý odhad trhovej ceny. Bez záväzkov, bez čakania.</p>
+    <div class="hero-badge" data-i18n="hero_badge">Bezplatné ocenenie</div>
+    <h1><span data-i18n="hero_h1_1">Zistite hodnotu</span><br><span data-i18n="hero_h1_2">vašej</span> <em data-i18n="hero_h1_em">nehnuteľnosti</em></h1>
+    <p data-i18n="hero_sub">Okamžitý odhad trhovej ceny. Bez záväzkov, bez čakania.</p>
     <div class="buyers-count">
       <span class="number" id="buyerCount">247</span>
-      <span class="label">overených kupujúcich<br>čaká na ponuku vo vašej oblasti</span>
+      <span class="label" data-i18n="buyers_label">overených kupujúcich<br>čaká na ponuku vo vašej oblasti</span>
     </div>
   </div>
 
@@ -797,21 +828,21 @@
 
     <!-- SEKCIA 1: Základné údaje -->
     <div class="card">
-      <div class="card-title">Základné údaje</div>
-      <div class="card-subtitle">Poloha a typ nehnuteľnosti</div>
+      <div class="card-title" data-i18n="card1_title">Základné údaje</div>
+      <div class="card-subtitle" data-i18n="card1_sub">Poloha a typ nehnuteľnosti</div>
 
       <!-- Typ nehnuteľnosti -->
       <div class="form-group" style="margin-bottom:20px">
-        <label>Typ nehnuteľnosti</label>
+        <label data-i18n="lbl_type">Typ nehnuteľnosti</label>
         <div class="type-grid" id="typeGrid">
           <button class="type-btn selected" data-val="byt" onclick="selectType(this)">
-            <span class="icon">🏢</span>Byt
+            <span class="icon">🏢</span><span data-i18n="type_byt">Byt</span>
           </button>
           <button class="type-btn" data-val="dom" onclick="selectType(this)">
-            <span class="icon">🏠</span>Dom
+            <span class="icon">🏠</span><span data-i18n="type_dom">Dom</span>
           </button>
           <button class="type-btn" data-val="pozemok" onclick="selectType(this)">
-            <span class="icon">🌿</span>Pozemok
+            <span class="icon">🌿</span><span data-i18n="type_pozemok">Pozemok</span>
           </button>
         </div>
       </div>
@@ -819,9 +850,9 @@
       <div class="form-grid">
         <!-- Lokalita -->
         <div class="form-group span-2">
-          <label>Najbližšie väčšie mesto</label>
+          <label data-i18n="lbl_location">Najbližšie väčšie mesto</label>
           <select id="location">
-            <option value="">— Vyberte mesto —</option>
+            <option value="" data-i18n="opt_location_placeholder">— Vyberte mesto —</option>
             <option value="ruzomberok">Ružomberok</option>
             <option value="liptovsky_mikulas">Liptovský Mikuláš</option>
             <option value="martin">Martin</option>
@@ -831,29 +862,29 @@
 
         <!-- Mesto / Dedina -->
         <div class="form-group span-2" id="locTypeGroup">
-          <label>Poloha nehnuteľnosti</label>
+          <label data-i18n="lbl_loctype">Poloha nehnuteľnosti</label>
           <div class="loc-toggle">
             <button class="loc-btn selected" data-val="mesto" onclick="selectLocType(this)">
               <span class="loc-icon">🏙️</span>
-              Mesto
-              <span class="loc-sub">centrum, mestská časť</span>
+              <span data-i18n="loc_mesto">Mesto</span>
+              <span class="loc-sub" data-i18n="loc_mesto_sub">centrum, mestská časť</span>
             </button>
             <button class="loc-btn" data-val="dedina" onclick="selectLocType(this)">
               <span class="loc-icon">🏡</span>
-              Dedina / obec
-              <span class="loc-sub">vidiecka lokalita, okolie</span>
+              <span data-i18n="loc_dedina">Dedina / obec</span>
+              <span class="loc-sub" data-i18n="loc_dedina_sub">vidiecka lokalita, okolie</span>
             </button>
           </div>
         </div>
 
         <!-- Dostupnosť občianskej vybavenosti -->
         <div class="form-group span-2">
-          <label>Dostupnosť MHD / centrom (pešo)</label>
+          <label data-i18n="lbl_transport">Dostupnosť MHD / centrom (pešo)</label>
           <select id="transport">
-            <option value="very_good">Do 5 minút — výborná dostupnosť</option>
-            <option value="good" selected>5–15 minút — dobrá dostupnosť</option>
-            <option value="medium">15–30 minút — priemerná dostupnosť</option>
-            <option value="low">30+ minút — obmedzená dostupnosť</option>
+            <option value="very_good" data-i18n="opt_transport_very_good">Do 5 minút — výborná dostupnosť</option>
+            <option value="good" selected data-i18n="opt_transport_good">5–15 minút — dobrá dostupnosť</option>
+            <option value="medium" data-i18n="opt_transport_medium">15–30 minút — priemerná dostupnosť</option>
+            <option value="low" data-i18n="opt_transport_low">30+ minút — obmedzená dostupnosť</option>
           </select>
         </div>
       </div>
@@ -861,107 +892,107 @@
 
     <!-- SEKCIA 2: Rozmery a plochy -->
     <div class="card">
-      <div class="card-title">Rozmery a plochy</div>
-      <div class="card-subtitle">Čisté číselné dáta — základ výpočtu ceny/m²</div>
+      <div class="card-title" data-i18n="card2_title">Rozmery a plochy</div>
+      <div class="card-subtitle" data-i18n="card2_sub">Čisté číselné dáta — základ výpočtu ceny/m²</div>
 
       <div class="form-grid">
         <!-- Počet izieb -->
         <div class="form-group span-2" id="roomsGroup">
-          <label>Počet izieb</label>
+          <label data-i18n="lbl_rooms">Počet izieb</label>
           <div class="rooms-grid">
-            <button class="room-btn" data-val="1" onclick="selectRoom(this)">1<span class="sub">izba</span></button>
-            <button class="room-btn" data-val="2" onclick="selectRoom(this)">2<span class="sub">izby</span></button>
-            <button class="room-btn selected" data-val="3" onclick="selectRoom(this)">3<span class="sub">izby</span></button>
-            <button class="room-btn" data-val="4" onclick="selectRoom(this)">4<span class="sub">izby</span></button>
-            <button class="room-btn" data-val="5" onclick="selectRoom(this)">5+<span class="sub">izieb</span></button>
+            <button class="room-btn" data-val="1" onclick="selectRoom(this)">1<span class="sub" data-i18n="room_sub_1">izba</span></button>
+            <button class="room-btn" data-val="2" onclick="selectRoom(this)">2<span class="sub" data-i18n="room_sub_2">izby</span></button>
+            <button class="room-btn selected" data-val="3" onclick="selectRoom(this)">3<span class="sub" data-i18n="room_sub_3">izby</span></button>
+            <button class="room-btn" data-val="4" onclick="selectRoom(this)">4<span class="sub" data-i18n="room_sub_4">izby</span></button>
+            <button class="room-btn" data-val="5" onclick="selectRoom(this)">5+<span class="sub" data-i18n="room_sub_5">izieb</span></button>
           </div>
         </div>
 
         <!-- Úžitková plocha -->
         <div class="form-group" id="areaGroup">
-          <label>Úžitková plocha (m²)</label>
+          <label data-i18n="lbl_area">Úžitková plocha (m²)</label>
           <input type="number" id="area" placeholder="napr. 68" min="10" max="1000">
         </div>
 
         <!-- Obytná plocha -->
         <div class="form-group" id="livingAreaGroup">
-          <label>Obytná plocha (m²) <span style="font-weight:300;opacity:0.6">voliteľné</span></label>
+          <label data-i18n="lbl_living_area">Obytná plocha (m²) <span style="font-weight:300;opacity:0.6" data-i18n="lbl_optional">voliteľné</span></label>
           <input type="number" id="livingArea" placeholder="napr. 52" min="5" max="1000">
         </div>
 
         <!-- Príslušenstvo: balkón/loggia/terasa -->
         <div class="form-group" id="balconyGroup">
-          <label>Balkón / loggia / terasa (m²)</label>
+          <label data-i18n="lbl_balcony">Balkón / loggia / terasa (m²)</label>
           <input type="number" id="balconyArea" placeholder="napr. 8" min="0" max="200">
         </div>
 
         <!-- Pivnica/kobka -->
         <div class="form-group" id="cellarGroup">
-          <label>Pivnica / kobka (m²)</label>
+          <label data-i18n="lbl_cellar">Pivnica / kobka (m²)</label>
           <input type="number" id="cellarArea" placeholder="napr. 4" min="0" max="100">
         </div>
 
         <!-- Parcela -->
         <div class="form-group hidden" id="landGroup">
-          <label>Plocha pozemku (m²)</label>
+          <label data-i18n="lbl_land">Plocha pozemku (m²)</label>
           <input type="number" id="landArea" placeholder="napr. 450" min="50" max="50000">
         </div>
 
         <!-- Zastavaná plocha domu -->
         <div class="form-group hidden" id="builtAreaGroup">
-          <label>Zastavaná plocha domu (m²)</label>
+          <label data-i18n="lbl_built_area">Zastavaná plocha domu (m²)</label>
           <input type="number" id="builtArea" placeholder="napr. 120" min="20" max="1000">
         </div>
 
         <!-- Svetlá výška -->
         <div class="form-group" id="ceilingGroup">
-          <label>Svetlá výška miestností</label>
+          <label data-i18n="lbl_ceiling">Svetlá výška miestností</label>
           <select id="ceilingHeight">
-            <option value="standard" selected>Štandard (2,5–2,7 m)</option>
-            <option value="high">Vysoká (2,7–3,2 m)</option>
-            <option value="loft">Loft / podkrovie (3,2 m+)</option>
+            <option value="standard" selected data-i18n="opt_ceiling_standard">Štandard (2,5–2,7 m)</option>
+            <option value="high" data-i18n="opt_ceiling_high">Vysoká (2,7–3,2 m)</option>
+            <option value="loft" data-i18n="opt_ceiling_loft">Loft / podkrovie (3,2 m+)</option>
           </select>
         </div>
 
         <!-- Poschodie -->
         <div class="form-group" id="floorGroup">
-          <label>Poschodie</label>
+          <label data-i18n="lbl_floor">Poschodie</label>
           <select id="floor">
-            <option value="0">Prízemie</option>
-            <option value="1">1. poschodie</option>
-            <option value="2">2. poschodie</option>
-            <option value="3">3. poschodie</option>
-            <option value="4">4. poschodie</option>
-            <option value="5">5. a vyššie</option>
+            <option value="0" data-i18n="opt_floor_0">Prízemie</option>
+            <option value="1" data-i18n="opt_floor_1">1. poschodie</option>
+            <option value="2" data-i18n="opt_floor_2">2. poschodie</option>
+            <option value="3" data-i18n="opt_floor_3">3. poschodie</option>
+            <option value="4" data-i18n="opt_floor_4">4. poschodie</option>
+            <option value="5" data-i18n="opt_floor_5">5. a vyššie</option>
           </select>
         </div>
 
         <!-- Počet podlaží dom -->
         <div class="form-group hidden" id="storeyGroup">
-          <label>Počet podlaží</label>
+          <label data-i18n="lbl_storeys">Počet podlaží</label>
           <select id="storeys">
-            <option value="1">1 podlažie</option>
-            <option value="2">2 podlažia</option>
-            <option value="3">3 podlažia</option>
+            <option value="1" data-i18n="opt_storeys_1">1 podlažie</option>
+            <option value="2" data-i18n="opt_storeys_2">2 podlažia</option>
+            <option value="3" data-i18n="opt_storeys_3">3 podlažia</option>
           </select>
         </div>
 
         <!-- Orientácia - byt -->
         <div class="form-group" id="orientationGroup">
-          <label>Orientácia / výhľad</label>
+          <label data-i18n="lbl_orientation">Orientácia / výhľad</label>
           <select id="orientation">
-            <option value="good" selected>Dobrý výhľad (juh, západ)</option>
-            <option value="average">Priemerný (sever, dvor)</option>
-            <option value="bad">Zlý (tienená strana, prízemie)</option>
+            <option value="good" selected data-i18n="opt_orient_good">Dobrý výhľad (juh, západ)</option>
+            <option value="average" data-i18n="opt_orient_average">Priemerný (sever, dvor)</option>
+            <option value="bad" data-i18n="opt_orient_bad">Zlý (tienená strana, prízemie)</option>
           </select>
         </div>
 
         <!-- Výťah -->
         <div class="form-group" id="liftGroup">
-          <label>Výťah v budove</label>
+          <label data-i18n="lbl_lift">Výťah v budove</label>
           <select id="lift">
-            <option value="yes">Áno</option>
-            <option value="no" selected>Nie</option>
+            <option value="yes" data-i18n="opt_lift_yes">Áno</option>
+            <option value="no" selected data-i18n="opt_lift_no">Nie</option>
           </select>
         </div>
       </div>
@@ -969,85 +1000,85 @@
 
     <!-- SEKCIA 3: Technický stav -->
     <div class="card">
-      <div class="card-title">Technický stav a kvalita</div>
-      <div class="card-subtitle">Parametre určujúce opotrebenie a životnosť stavby</div>
+      <div class="card-title" data-i18n="card3_title">Technický stav a kvalita</div>
+      <div class="card-subtitle" data-i18n="card3_sub">Parametre určujúce opotrebenie a životnosť stavby</div>
 
       <div class="form-grid">
         <!-- Stav nehnuteľnosti -->
         <div class="form-group span-2" id="condGroup">
-          <label>Stav nehnuteľnosti</label>
+          <label data-i18n="lbl_condition">Stav nehnuteľnosti</label>
           <div class="condition-grid" id="conditionGrid">
-            <button class="cond-btn" data-val="novostavba" onclick="selectCond(this)">🏗️<br>Novostavba</button>
-            <button class="cond-btn selected" data-val="po_rekonstrukcii" onclick="selectCond(this)">✨<br>Po rekonštr.</button>
-            <button class="cond-btn" data-val="dobry" onclick="selectCond(this)">👍<br>Dobrý stav</button>
-            <button class="cond-btn" data-val="na_rekonstrukciu" onclick="selectCond(this)">🔧<br>Na rekonštr.</button>
+            <button class="cond-btn" data-val="novostavba" onclick="selectCond(this)">🏗️<br><span data-i18n="cond_novostavba">Novostavba</span></button>
+            <button class="cond-btn selected" data-val="po_rekonstrukcii" onclick="selectCond(this)">✨<br><span data-i18n="cond_po_rekon">Po rekonštr.</span></button>
+            <button class="cond-btn" data-val="dobry" onclick="selectCond(this)">👍<br><span data-i18n="cond_dobry">Dobrý stav</span></button>
+            <button class="cond-btn" data-val="na_rekonstrukciu" onclick="selectCond(this)">🔧<br><span data-i18n="cond_na_rekon">Na rekonštr.</span></button>
           </div>
         </div>
 
         <!-- Rok výstavby -->
         <div class="form-group">
-          <label>Rok výstavby (orientačne)</label>
+          <label data-i18n="lbl_year">Rok výstavby (orientačne)</label>
           <select id="yearBuilt">
-            <option value="new">Po roku 2010</option>
-            <option value="mid" selected>1990 – 2010</option>
-            <option value="old">Pred rokom 1990</option>
+            <option value="new" data-i18n="opt_year_new">Po roku 2010</option>
+            <option value="mid" selected data-i18n="opt_year_mid">1990 – 2010</option>
+            <option value="old" data-i18n="opt_year_old">Pred rokom 1990</option>
           </select>
         </div>
 
         <!-- Energetický certifikát -->
         <div class="form-group">
-          <label>Energetický certifikát</label>
+          <label data-i18n="lbl_energy">Energetický certifikát</label>
           <select id="energyCert">
-            <option value="A0">A0 — Ultra nízkoenergetická</option>
-            <option value="A1">A1 — Nízkoenergetická</option>
-            <option value="B" selected>B — Veľmi úsporná</option>
-            <option value="C">C — Úsporná</option>
-            <option value="D">D — Menej úsporná</option>
-            <option value="E">E — Nehospodárna</option>
-            <option value="F">F — Veľmi nehospodárna</option>
-            <option value="unknown">Neznámy / nemá certifikát</option>
+            <option value="A0" data-i18n="opt_energy_a0">A0 — Ultra nízkoenergetická</option>
+            <option value="A1" data-i18n="opt_energy_a1">A1 — Nízkoenergetická</option>
+            <option value="B" selected data-i18n="opt_energy_b">B — Veľmi úsporná</option>
+            <option value="C" data-i18n="opt_energy_c">C — Úsporná</option>
+            <option value="D" data-i18n="opt_energy_d">D — Menej úsporná</option>
+            <option value="E" data-i18n="opt_energy_e">E — Nehospodárna</option>
+            <option value="F" data-i18n="opt_energy_f">F — Veľmi nehospodárna</option>
+            <option value="unknown" data-i18n="opt_energy_unknown">Neznámy / nemá certifikát</option>
           </select>
         </div>
 
         <!-- Materiálová skladba -->
         <div class="form-group" id="materialGroup">
-          <label>Nosné steny — materiál</label>
+          <label data-i18n="lbl_material">Nosné steny — materiál</label>
           <select id="material">
-            <option value="tehla" selected>Tehla</option>
-            <option value="panel">Panel</option>
-            <option value="porobeton">Pórobetón / Ytong</option>
-            <option value="drevo">Drevo / zrub</option>
-            <option value="iné">Iné / neznáme</option>
+            <option value="tehla" selected data-i18n="opt_material_tehla">Tehla</option>
+            <option value="panel" data-i18n="opt_material_panel">Panel</option>
+            <option value="porobeton" data-i18n="opt_material_porobeton">Pórobetón / Ytong</option>
+            <option value="drevo" data-i18n="opt_material_drevo">Drevo / zrub</option>
+            <option value="iné" data-i18n="opt_material_ine">Iné / neznáme</option>
           </select>
         </div>
 
         <!-- Zateplenie -->
         <div class="form-group">
-          <label>Zateplenie fasády</label>
+          <label data-i18n="lbl_insulation">Zateplenie fasády</label>
           <select id="insulation">
-            <option value="none">Bez zateplenia</option>
-            <option value="partial">Čiastočné (do 80 mm)</option>
-            <option value="good" selected>Dobré (80–120 mm)</option>
-            <option value="excellent">Výborné (120 mm+)</option>
+            <option value="none" data-i18n="opt_insulation_none">Bez zateplenia</option>
+            <option value="partial" data-i18n="opt_insulation_partial">Čiastočné (do 80 mm)</option>
+            <option value="good" selected data-i18n="opt_insulation_good">Dobré (80–120 mm)</option>
+            <option value="excellent" data-i18n="opt_insulation_excellent">Výborné (120 mm+)</option>
           </select>
         </div>
 
         <!-- Ťarchy / vecné bremená -->
         <div class="form-group span-2">
-          <label>Ťarchy a vecné bremená na LV</label>
+          <label data-i18n="lbl_encumbrance">Ťarchy a vecné bremená na LV</label>
           <select id="encumbrance">
-            <option value="none" selected>Žiadne — čistý LV</option>
-            <option value="mortgage">Hypotéka (splatiteľná pri prevode)</option>
-            <option value="easement">Vecné bremeno (napr. právo prechodu)</option>
-            <option value="lifetime">Právo doživotného dožitia</option>
-            <option value="multiple">Viacero bremien</option>
+            <option value="none" selected data-i18n="opt_enc_none">Žiadne — čistý LV</option>
+            <option value="mortgage" data-i18n="opt_enc_mortgage">Hypotéka (splatiteľná pri prevode)</option>
+            <option value="easement" data-i18n="opt_enc_easement">Vecné bremeno (napr. právo prechodu)</option>
+            <option value="lifetime" data-i18n="opt_enc_lifetime">Právo doživotného dožitia</option>
+            <option value="multiple" data-i18n="opt_enc_multiple">Viacero bremien</option>
           </select>
         </div>
       </div>
     </div>
 
     <button class="btn-primary" onclick="goToStep2()" id="btnStep1">
-      Vypočítať odhad ceny →
+      <span data-i18n="btn_step1">Vypočítať odhad ceny →</span>
     </button>
   </div>
 
@@ -1056,7 +1087,7 @@
     <div class="card">
 
       <div class="result-hero">
-        <div class="result-label">Odhadovaná trhová cena</div>
+        <div class="result-label" data-i18n="result_label">Odhadovaná trhová cena</div>
         <div class="result-price" id="resultPrice">—</div>
         <div class="result-range" id="resultRange"></div>
       </div>
@@ -1066,30 +1097,30 @@
       <div class="result-stats">
         <div class="stat-box">
           <div class="stat-val" id="statPriceM2">—</div>
-          <div class="stat-lbl">€ / m²<br>v lokalite</div>
+          <div class="stat-lbl" data-i18n="stat1_lbl">€ / m²<br>v lokalite</div>
         </div>
         <div class="stat-box">
           <div class="stat-val" id="statDays">28</div>
-          <div class="stat-lbl">priem. dní<br>predaja</div>
+          <div class="stat-lbl" data-i18n="stat2_lbl">priem. dní<br>predaja</div>
         </div>
         <div class="stat-box">
           <div class="stat-val" id="statDemand">Vysoký</div>
-          <div class="stat-lbl">dopyt<br>v oblasti</div>
+          <div class="stat-lbl" data-i18n="stat3_lbl">dopyt<br>v oblasti</div>
         </div>
       </div>
 
       <div class="buyers-highlight">
         <div class="buyers-icon">👥</div>
         <div class="buyers-text">
-          <strong id="buyersLocal">47</strong> overených kupujúcich
-          <p>aktívne hľadá nehnuteľnosť vo vašej lokalite práve teraz</p>
+          <strong id="buyersLocal">47</strong> <span data-i18n="buyers_highlight_suffix">overených kupujúcich</span>
+          <p data-i18n="buyers_highlight_p">aktívne hľadá nehnuteľnosť vo vašej lokalite práve teraz</p>
         </div>
       </div>
 
       <div class="flex-between mt-16">
-        <button class="btn-secondary" onclick="goBack(1)">← Späť</button>
+        <button class="btn-secondary" onclick="goBack(1)"><span data-i18n="btn_back">← Späť</span></button>
         <button class="btn-primary" style="width:auto;margin-top:0;padding:14px 32px" onclick="goToStep3()">
-          Zobraziť kupujúcich →
+          <span data-i18n="btn_step2">Zobraziť kupujúcich →</span>
         </button>
       </div>
 
@@ -1100,21 +1131,21 @@
   <div id="step3" class="hidden">
     <div class="card">
 
-      <div class="lead-title">Kontaktujte kupujúcich</div>
-      <div class="lead-subtitle">
+      <div class="lead-title" data-i18n="lead_title">Kontaktujte kupujúcich</div>
+      <div class="lead-subtitle" data-i18n="lead_sub">
         Zanechajte kontakt a ja vám do 24 hodín pošlem zoznam overených záujemcov spolu s podrobnou analýzou trhu vo vašej lokalite.
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label>Meno a priezvisko</label>
+          <label data-i18n="lbl_name">Meno a priezvisko</label>
           <div class="input-icon-wrap">
             <span class="input-icon">👤</span>
             <input type="text" id="leadName" placeholder="Ján Novák">
           </div>
         </div>
         <div class="form-group">
-          <label>Telefónne číslo</label>
+          <label data-i18n="lbl_phone">Telefónne číslo</label>
           <div class="input-icon-wrap">
             <span class="input-icon">📱</span>
             <input type="tel" id="leadPhone" placeholder="+421 9XX XXX XXX">
@@ -1123,7 +1154,7 @@
       </div>
 
       <div class="form-group">
-        <label>E-mailová adresa</label>
+        <label data-i18n="lbl_email">E-mailová adresa</label>
         <div class="input-icon-wrap">
           <span class="input-icon">✉️</span>
           <input type="email" id="leadEmail" placeholder="jan.novak@email.sk" style="padding-left:42px">
@@ -1133,16 +1164,16 @@
       <div id="leadError" class="error-msg hidden" style="margin-top:12px"></div>
 
       <button class="btn-primary" onclick="submitLead()" id="btnSubmit">
-        Odoslať a zobraziť kupujúcich →
+        <span data-i18n="btn_submit">Odoslať a zobraziť kupujúcich →</span>
       </button>
 
-      <div class="consent">
+      <div class="consent" data-i18n="consent_text">
         Odoslaním súhlasíte so spracovaním osobných údajov v súlade s GDPR.<br>
         Údaje budú použité výlučne na účely sprostredkovania predaja nehnuteľnosti.
       </div>
 
       <div class="flex-between mt-16">
-        <button class="btn-secondary" onclick="goBack(2)">← Späť</button>
+        <button class="btn-secondary" onclick="goBack(2)"><span data-i18n="btn_back">← Späť</span></button>
       </div>
 
     </div>
@@ -1153,12 +1184,12 @@
     <div class="card">
       <div class="success-wrap">
         <div class="success-icon">✓</div>
-        <h2>Výborne, <span id="successName"></span>!</h2>
-        <p>
+        <h2><span data-i18n="success_h2">Výborne,</span> <span id="successName"></span>!</h2>
+        <p data-i18n="success_p">
           Vaša žiadosť bola odoslaná. Ozvem sa vám do 24 hodín so zoznamom overených kupujúcich a podrobnou analýzou ceny vo vašej lokalite.
         </p>
         <div style="margin-top:32px;padding:20px;background:var(--dark-3);border:1px solid var(--border);border-radius:4px;text-align:left">
-          <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px">Súhrn vašej nehnuteľnosti</div>
+          <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px" data-i18n="summary_label">Súhrn vašej nehnuteľnosti</div>
           <div id="summaryText" style="font-size:14px;color:var(--text-muted);line-height:1.8"></div>
         </div>
       </div>
@@ -1193,11 +1224,11 @@
 <div class="floats" aria-label="Kontakt">
   <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20rád%20by%20som%20sa%20poradiť%20ohľadom%20ocenenia%20nehnuteľnosti."
      class="float-btn float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <span class="float-tip">Napíšte na WhatsApp</span>
+    <span class="float-tip" data-i18n="float_wa">Napíšte na WhatsApp</span>
     <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať Radovanovi">
-    <span class="float-tip">Zavolať Radovanovi</span>
+    <span class="float-tip" data-i18n="float_ph">Zavolať Radovanovi</span>
     <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
   </a>
 </div>
@@ -1213,25 +1244,25 @@
 const PRICE_DATA = {
   ruzomberok: {
     base: 2150,
-    demand: "Stredný",
+    demand: "stredny",
     avgDays: 32,
     buyers: 41
   },
   liptovsky_mikulas: {
     base: 2400,
-    demand: "Vysoký",
+    demand: "vysoky",
     avgDays: 24,
     buyers: 63
   },
   martin: {
     base: 2300,
-    demand: "Vysoký",
+    demand: "vysoky",
     avgDays: 28,
     buyers: 58
   },
   dolny_kubin: {
     base: 1950,
-    demand: "Stredný",
+    demand: "stredny",
     avgDays: 38,
     buyers: 34
   }
@@ -1340,10 +1371,10 @@ function goToStep2() {
   const area = parseFloat(document.getElementById("area").value);
   const type = state.type;
 
-  if (!location) { alert("Vyberte prosím lokalitu."); return; }
+  if (!location) { alert(t("alert_select_location")); return; }
 
   if (type !== "pozemok" && (!area || area < 10)) {
-    alert("Zadajte platnú úžitkovú plochu."); return;
+    alert(t("alert_invalid_area")); return;
   }
 
   // --- výpočet ---
@@ -1409,10 +1440,10 @@ function goToStep2() {
 
 function showResult(mid, low, high, pm2, locData, type, area) {
   document.getElementById("resultPrice").textContent = formatEur(mid);
-  document.getElementById("resultRange").textContent = `Rozpätie: ${formatEur(low)} – ${formatEur(high)}`;
+  document.getElementById("resultRange").textContent = `${t("range_prefix")} ${formatEur(low)} – ${formatEur(high)}`;
   document.getElementById("statPriceM2").textContent = `${pm2.toLocaleString("sk")}`;
   document.getElementById("statDays").textContent = locData.avgDays;
-  document.getElementById("statDemand").textContent = locData.demand;
+  document.getElementById("statDemand").textContent = t("demand_" + locData.demand);
   document.getElementById("buyersLocal").textContent = locData.buyers;
 
   // store for summary
@@ -1456,13 +1487,13 @@ async function submitLead() {
 
   errEl.classList.add("hidden");
 
-  if (!name)  { showError("Zadajte meno a priezvisko."); return; }
-  if (!phone) { showError("Zadajte telefónne číslo."); return; }
-  if (!email || !email.includes("@")) { showError("Zadajte platný e-mail."); return; }
+  if (!name)  { showError(t("err_name")); return; }
+  if (!phone) { showError(t("err_phone")); return; }
+  if (!email || !email.includes("@")) { showError(t("err_email")); return; }
 
   const btn = document.getElementById("btnSubmit");
   btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Odosiela sa...';
+  btn.innerHTML = '<span class="spinner"></span>' + t("sending");
 
   // Zostavíme poznámku s parametrami
   const location = document.getElementById("location").options[document.getElementById("location").selectedIndex]?.text || "";
@@ -1480,14 +1511,14 @@ async function submitLead() {
     if (data.success) {
       showSuccess(name, noteText);
     } else {
-      showError(data.error || "Nastala chyba pri odosielaní. Skúste to znova alebo volajte priamo.");
+      showError(data.error || t("err_submit"));
       btn.disabled = false;
-      btn.innerHTML = "Odoslať a zobraziť kupujúcich →";
+      btn.innerHTML = '<span data-i18n="btn_submit">' + t("btn_submit") + '</span>';
     }
   } catch (e) {
-    showError("Sieťová chyba. Skúste to prosím znova.");
+    showError(t("err_network"));
     btn.disabled = false;
-    btn.innerHTML = "Odoslať a zobraziť kupujúcich →";
+    btn.innerHTML = '<span data-i18n="btn_submit">' + t("btn_submit") + '</span>';
   }
 }
 
@@ -1550,6 +1581,469 @@ function buildSummary(name, location, area) {
 function formatEur(val) {
   return val.toLocaleString("sk-SK", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
 }
+
+// ============================================================
+// LANGUAGE SWITCHER
+// ============================================================
+const TRANSLATIONS = {
+  sk: {
+    nav_back: 'Späť na hlavnú',
+    hero_badge: 'Bezplatné ocenenie',
+    hero_h1_1: 'Zistite hodnotu',
+    hero_h1_2: 'vašej',
+    hero_h1_em: 'nehnuteľnosti',
+    hero_sub: 'Okamžitý odhad trhovej ceny. Bez záväzkov, bez čakania.',
+    buyers_label: 'overených kupujúcich<br>čaká na ponuku vo vašej oblasti',
+    card1_title: 'Základné údaje',
+    card1_sub: 'Poloha a typ nehnuteľnosti',
+    lbl_type: 'Typ nehnuteľnosti',
+    type_byt: 'Byt', type_dom: 'Dom', type_pozemok: 'Pozemok',
+    lbl_location: 'Najbližšie väčšie mesto',
+    opt_location_placeholder: '— Vyberte mesto —',
+    lbl_loctype: 'Poloha nehnuteľnosti',
+    loc_mesto: 'Mesto', loc_mesto_sub: 'centrum, mestská časť',
+    loc_dedina: 'Dedina / obec', loc_dedina_sub: 'vidiecka lokalita, okolie',
+    lbl_transport: 'Dostupnosť MHD / centrom (pešo)',
+    opt_transport_very_good: 'Do 5 minút — výborná dostupnosť',
+    opt_transport_good: '5–15 minút — dobrá dostupnosť',
+    opt_transport_medium: '15–30 minút — priemerná dostupnosť',
+    opt_transport_low: '30+ minút — obmedzená dostupnosť',
+    card2_title: 'Rozmery a plochy',
+    card2_sub: 'Čisté číselné dáta — základ výpočtu ceny/m²',
+    lbl_rooms: 'Počet izieb',
+    room_sub_1: 'izba', room_sub_2: 'izby', room_sub_3: 'izby', room_sub_4: 'izby', room_sub_5: 'izieb',
+    lbl_area: 'Úžitková plocha (m²)',
+    lbl_living_area: 'Obytná plocha (m²)',
+    lbl_optional: 'voliteľné',
+    lbl_balcony: 'Balkón / loggia / terasa (m²)',
+    lbl_cellar: 'Pivnica / kobka (m²)',
+    lbl_land: 'Plocha pozemku (m²)',
+    lbl_built_area: 'Zastavaná plocha domu (m²)',
+    lbl_ceiling: 'Svetlá výška miestností',
+    opt_ceiling_standard: 'Štandard (2,5–2,7 m)',
+    opt_ceiling_high: 'Vysoká (2,7–3,2 m)',
+    opt_ceiling_loft: 'Loft / podkrovie (3,2 m+)',
+    lbl_floor: 'Poschodie',
+    opt_floor_0: 'Prízemie', opt_floor_1: '1. poschodie', opt_floor_2: '2. poschodie',
+    opt_floor_3: '3. poschodie', opt_floor_4: '4. poschodie', opt_floor_5: '5. a vyššie',
+    lbl_storeys: 'Počet podlaží',
+    opt_storeys_1: '1 podlažie', opt_storeys_2: '2 podlažia', opt_storeys_3: '3 podlažia',
+    lbl_orientation: 'Orientácia / výhľad',
+    opt_orient_good: 'Dobrý výhľad (juh, západ)',
+    opt_orient_average: 'Priemerný (sever, dvor)',
+    opt_orient_bad: 'Zlý (tienená strana, prízemie)',
+    lbl_lift: 'Výťah v budove',
+    opt_lift_yes: 'Áno', opt_lift_no: 'Nie',
+    card3_title: 'Technický stav a kvalita',
+    card3_sub: 'Parametre určujúce opotrebenie a životnosť stavby',
+    lbl_condition: 'Stav nehnuteľnosti',
+    cond_novostavba: 'Novostavba', cond_po_rekon: 'Po rekonštr.', cond_dobry: 'Dobrý stav', cond_na_rekon: 'Na rekonštr.',
+    lbl_year: 'Rok výstavby (orientačne)',
+    opt_year_new: 'Po roku 2010', opt_year_mid: '1990 – 2010', opt_year_old: 'Pred rokom 1990',
+    lbl_energy: 'Energetický certifikát',
+    opt_energy_a0: 'A0 — Ultra nízkoenergetická',
+    opt_energy_a1: 'A1 — Nízkoenergetická',
+    opt_energy_b: 'B — Veľmi úsporná',
+    opt_energy_c: 'C — Úsporná',
+    opt_energy_d: 'D — Menej úsporná',
+    opt_energy_e: 'E — Nehospodárna',
+    opt_energy_f: 'F — Veľmi nehospodárna',
+    opt_energy_unknown: 'Neznámy / nemá certifikát',
+    lbl_material: 'Nosné steny — materiál',
+    opt_material_tehla: 'Tehla', opt_material_panel: 'Panel', opt_material_porobeton: 'Pórobetón / Ytong',
+    opt_material_drevo: 'Drevo / zrub', opt_material_ine: 'Iné / neznáme',
+    lbl_insulation: 'Zateplenie fasády',
+    opt_insulation_none: 'Bez zateplenia',
+    opt_insulation_partial: 'Čiastočné (do 80 mm)',
+    opt_insulation_good: 'Dobré (80–120 mm)',
+    opt_insulation_excellent: 'Výborné (120 mm+)',
+    lbl_encumbrance: 'Ťarchy a vecné bremená na LV',
+    opt_enc_none: 'Žiadne — čistý LV',
+    opt_enc_mortgage: 'Hypotéka (splatiteľná pri prevode)',
+    opt_enc_easement: 'Vecné bremeno (napr. právo prechodu)',
+    opt_enc_lifetime: 'Právo doživotného dožitia',
+    opt_enc_multiple: 'Viacero bremien',
+    btn_step1: 'Vypočítať odhad ceny →',
+    result_label: 'Odhadovaná trhová cena',
+    stat1_lbl: '€ / m²<br>v lokalite', stat2_lbl: 'priem. dní<br>predaja', stat3_lbl: 'dopyt<br>v oblasti',
+    buyers_highlight_suffix: 'overených kupujúcich',
+    buyers_highlight_p: 'aktívne hľadá nehnuteľnosť vo vašej lokalite práve teraz',
+    btn_back: '← Späť',
+    btn_step2: 'Zobraziť kupujúcich →',
+    lead_title: 'Kontaktujte kupujúcich',
+    lead_sub: 'Zanechajte kontakt a ja vám do 24 hodín pošlem zoznam overených záujemcov spolu s podrobnou analýzou trhu vo vašej lokalite.',
+    lbl_name: 'Meno a priezvisko',
+    lbl_phone: 'Telefónne číslo',
+    lbl_email: 'E-mailová adresa',
+    btn_submit: 'Odoslať a zobraziť kupujúcich →',
+    consent_text: 'Odoslaním súhlasíte so spracovaním osobných údajov v súlade s GDPR.<br>Údaje budú použité výlučne na účely sprostredkovania predaja nehnuteľnosti.',
+    success_h2: 'Výborne,',
+    success_p: 'Vaša žiadosť bola odoslaná. Ozvem sa vám do 24 hodín so zoznamom overených kupujúcich a podrobnou analýzou ceny vo vašej lokalite.',
+    summary_label: 'Súhrn vašej nehnuteľnosti',
+    float_wa: 'Napíšte na WhatsApp',
+    float_ph: 'Zavolať Radovanovi',
+    demand_stredny: 'Stredný',
+    demand_vysoky: 'Vysoký',
+    alert_select_location: 'Vyberte prosím lokalitu.',
+    alert_invalid_area: 'Zadajte platnú úžitkovú plochu.',
+    range_prefix: 'Rozpätie:',
+    err_name: 'Zadajte meno a priezvisko.',
+    err_phone: 'Zadajte telefónne číslo.',
+    err_email: 'Zadajte platný e-mail.',
+    sending: 'Odosiela sa...',
+    err_submit: 'Nastala chyba pri odosielaní. Skúste to znova alebo volajte priamo.',
+    err_network: 'Sieťová chyba. Skúste to prosím znova.',
+  },
+  en: {
+    nav_back: 'Back to home',
+    hero_badge: 'Free valuation',
+    hero_h1_1: 'Find out the value',
+    hero_h1_2: 'of your',
+    hero_h1_em: 'property',
+    hero_sub: 'Instant market price estimate. No obligation, no waiting.',
+    buyers_label: 'verified buyers<br>are waiting for an offer in your area',
+    card1_title: 'Basic details',
+    card1_sub: 'Location and property type',
+    lbl_type: 'Property type',
+    type_byt: 'Apartment', type_dom: 'House', type_pozemok: 'Land',
+    lbl_location: 'Nearest larger town',
+    opt_location_placeholder: '— Choose a town —',
+    lbl_loctype: 'Property location',
+    loc_mesto: 'Town', loc_mesto_sub: 'centre, urban district',
+    loc_dedina: 'Village / rural', loc_dedina_sub: 'rural location, surroundings',
+    lbl_transport: 'Public transport / centre distance (on foot)',
+    opt_transport_very_good: 'Under 5 minutes — excellent access',
+    opt_transport_good: '5–15 minutes — good access',
+    opt_transport_medium: '15–30 minutes — average access',
+    opt_transport_low: '30+ minutes — limited access',
+    card2_title: 'Dimensions and areas',
+    card2_sub: 'Plain numeric data — the basis of the price/m² calculation',
+    lbl_rooms: 'Number of rooms',
+    room_sub_1: 'room', room_sub_2: 'rooms', room_sub_3: 'rooms', room_sub_4: 'rooms', room_sub_5: 'rooms',
+    lbl_area: 'Usable floor area (m²)',
+    lbl_living_area: 'Living area (m²)',
+    lbl_optional: 'optional',
+    lbl_balcony: 'Balcony / loggia / terrace (m²)',
+    lbl_cellar: 'Cellar / storage room (m²)',
+    lbl_land: 'Land area (m²)',
+    lbl_built_area: 'Built-up area of the house (m²)',
+    lbl_ceiling: 'Ceiling height',
+    opt_ceiling_standard: 'Standard (2.5–2.7 m)',
+    opt_ceiling_high: 'High (2.7–3.2 m)',
+    opt_ceiling_loft: 'Loft / attic (3.2 m+)',
+    lbl_floor: 'Floor',
+    opt_floor_0: 'Ground floor', opt_floor_1: '1st floor', opt_floor_2: '2nd floor',
+    opt_floor_3: '3rd floor', opt_floor_4: '4th floor', opt_floor_5: '5th floor and above',
+    lbl_storeys: 'Number of storeys',
+    opt_storeys_1: '1 storey', opt_storeys_2: '2 storeys', opt_storeys_3: '3 storeys',
+    lbl_orientation: 'Orientation / view',
+    opt_orient_good: 'Good view (south, west)',
+    opt_orient_average: 'Average (north, courtyard)',
+    opt_orient_bad: 'Poor (shaded side, ground floor)',
+    lbl_lift: 'Lift in the building',
+    opt_lift_yes: 'Yes', opt_lift_no: 'No',
+    card3_title: 'Technical condition and quality',
+    card3_sub: 'Parameters that determine wear and the building’s lifespan',
+    lbl_condition: 'Property condition',
+    cond_novostavba: 'New build', cond_po_rekon: 'Renovated', cond_dobry: 'Good condition', cond_na_rekon: 'Needs renovation',
+    lbl_year: 'Year built (approx.)',
+    opt_year_new: 'After 2010', opt_year_mid: '1990 – 2010', opt_year_old: 'Before 1990',
+    lbl_energy: 'Energy certificate',
+    opt_energy_a0: 'A0 — Ultra low-energy',
+    opt_energy_a1: 'A1 — Low-energy',
+    opt_energy_b: 'B — Very economical',
+    opt_energy_c: 'C — Economical',
+    opt_energy_d: 'D — Less economical',
+    opt_energy_e: 'E — Inefficient',
+    opt_energy_f: 'F — Very inefficient',
+    opt_energy_unknown: 'Unknown / no certificate',
+    lbl_material: 'Load-bearing walls — material',
+    opt_material_tehla: 'Brick', opt_material_panel: 'Panel/prefab', opt_material_porobeton: 'Aerated concrete / Ytong',
+    opt_material_drevo: 'Wood / log', opt_material_ine: 'Other / unknown',
+    lbl_insulation: 'Façade insulation',
+    opt_insulation_none: 'No insulation',
+    opt_insulation_partial: 'Partial (up to 80 mm)',
+    opt_insulation_good: 'Good (80–120 mm)',
+    opt_insulation_excellent: 'Excellent (120 mm+)',
+    lbl_encumbrance: 'Liens and encumbrances on the title deed',
+    opt_enc_none: 'None — clean title',
+    opt_enc_mortgage: 'Mortgage (payable on transfer)',
+    opt_enc_easement: 'Easement (e.g. right of way)',
+    opt_enc_lifetime: 'Lifetime right of residence',
+    opt_enc_multiple: 'Several encumbrances',
+    btn_step1: 'Calculate the price estimate →',
+    result_label: 'Estimated market price',
+    stat1_lbl: '€ / m²<br>in the area', stat2_lbl: 'avg. days<br>to sell', stat3_lbl: 'demand<br>in the area',
+    buyers_highlight_suffix: 'verified buyers',
+    buyers_highlight_p: 'are actively looking for a property in your area right now',
+    btn_back: '← Back',
+    btn_step2: 'Show buyers →',
+    lead_title: 'Contact the buyers',
+    lead_sub: 'Leave your contact details and within 24 hours I’ll send you a list of verified prospects along with a detailed market analysis for your area.',
+    lbl_name: 'Full name',
+    lbl_phone: 'Phone number',
+    lbl_email: 'Email address',
+    btn_submit: 'Submit and show buyers →',
+    consent_text: 'By submitting, you agree to the processing of personal data in accordance with GDPR.<br>The data will be used solely for the purpose of brokering the property sale.',
+    success_h2: 'Great,',
+    success_p: 'Your request has been sent. I’ll get back to you within 24 hours with a list of verified buyers and a detailed price analysis for your area.',
+    summary_label: 'Summary of your property',
+    float_wa: 'Message on WhatsApp',
+    float_ph: 'Call Radovan',
+    demand_stredny: 'Medium',
+    demand_vysoky: 'High',
+    alert_select_location: 'Please select a location.',
+    alert_invalid_area: 'Please enter a valid usable floor area.',
+    range_prefix: 'Range:',
+    err_name: 'Please enter your full name.',
+    err_phone: 'Please enter a phone number.',
+    err_email: 'Please enter a valid email.',
+    sending: 'Sending...',
+    err_submit: 'Something went wrong while sending. Please try again or call directly.',
+    err_network: 'Network error. Please try again.',
+  },
+  ua: {
+    nav_back: 'Назад на головну',
+    hero_badge: 'Безкоштовна оцінка',
+    hero_h1_1: 'Дізнайтеся вартість',
+    hero_h1_2: 'вашої',
+    hero_h1_em: 'нерухомості',
+    hero_sub: 'Миттєва оцінка ринкової ціни. Без зобов’язань, без очікування.',
+    buyers_label: 'перевірених покупців<br>чекають на пропозицію у вашому регіоні',
+    card1_title: 'Основні дані',
+    card1_sub: 'Розташування та тип нерухомості',
+    lbl_type: 'Тип нерухомості',
+    type_byt: 'Квартира', type_dom: 'Будинок', type_pozemok: 'Земельна ділянка',
+    lbl_location: 'Найближче більше місто',
+    opt_location_placeholder: '— Оберіть місто —',
+    lbl_loctype: 'Розташування нерухомості',
+    loc_mesto: 'Місто', loc_mesto_sub: 'центр, міський район',
+    loc_dedina: 'Село / сільська місцевість', loc_dedina_sub: 'сільська місцевість, околиці',
+    lbl_transport: 'Доступність громадського транспорту / центру (пішки)',
+    opt_transport_very_good: 'До 5 хвилин — відмінна доступність',
+    opt_transport_good: '5–15 хвилин — добра доступність',
+    opt_transport_medium: '15–30 хвилин — середня доступність',
+    opt_transport_low: '30+ хвилин — обмежена доступність',
+    card2_title: 'Розміри та площі',
+    card2_sub: 'Чисті числові дані — основа розрахунку ціни/м²',
+    lbl_rooms: 'Кількість кімнат',
+    room_sub_1: 'кімната', room_sub_2: 'кімнати', room_sub_3: 'кімнати', room_sub_4: 'кімнати', room_sub_5: 'кімнат',
+    lbl_area: 'Корисна площа (м²)',
+    lbl_living_area: 'Житлова площа (м²)',
+    lbl_optional: 'необов’язково',
+    lbl_balcony: 'Балкон / лоджія / тераса (м²)',
+    lbl_cellar: 'Підвал / комірка (м²)',
+    lbl_land: 'Площа ділянки (м²)',
+    lbl_built_area: 'Забудована площа будинку (м²)',
+    lbl_ceiling: 'Висота стелі',
+    opt_ceiling_standard: 'Стандарт (2,5–2,7 м)',
+    opt_ceiling_high: 'Висока (2,7–3,2 м)',
+    opt_ceiling_loft: 'Лофт / мансарда (3,2 м+)',
+    lbl_floor: 'Поверх',
+    opt_floor_0: 'Перший поверх', opt_floor_1: '2-й поверх', opt_floor_2: '3-й поверх',
+    opt_floor_3: '4-й поверх', opt_floor_4: '5-й поверх', opt_floor_5: '6-й і вище',
+    lbl_storeys: 'Кількість поверхів',
+    opt_storeys_1: '1 поверх', opt_storeys_2: '2 поверхи', opt_storeys_3: '3 поверхи',
+    lbl_orientation: 'Орієнтація / вид',
+    opt_orient_good: 'Гарний вид (південь, захід)',
+    opt_orient_average: 'Середній (північ, двір)',
+    opt_orient_bad: 'Поганий (затінена сторона, перший поверх)',
+    lbl_lift: 'Ліфт у будівлі',
+    opt_lift_yes: 'Так', opt_lift_no: 'Ні',
+    card3_title: 'Технічний стан та якість',
+    card3_sub: 'Параметри, що визначають зношеність та строк служби будівлі',
+    lbl_condition: 'Стан нерухомості',
+    cond_novostavba: 'Новобудова', cond_po_rekon: 'Після ремонту', cond_dobry: 'Добрий стан', cond_na_rekon: 'Потребує ремонту',
+    lbl_year: 'Рік будівництва (орієнтовно)',
+    opt_year_new: 'Після 2010 року', opt_year_mid: '1990 – 2010', opt_year_old: 'До 1990 року',
+    lbl_energy: 'Енергетичний сертифікат',
+    opt_energy_a0: 'A0 — Ультранизькоенергетичний',
+    opt_energy_a1: 'A1 — Низькоенергетичний',
+    opt_energy_b: 'B — Дуже економний',
+    opt_energy_c: 'C — Економний',
+    opt_energy_d: 'D — Менш економний',
+    opt_energy_e: 'E — Неекономний',
+    opt_energy_f: 'F — Дуже неекономний',
+    opt_energy_unknown: 'Невідомий / немає сертифіката',
+    lbl_material: 'Несучі стіни — матеріал',
+    opt_material_tehla: 'Цегла', opt_material_panel: 'Панель', opt_material_porobeton: 'Газобетон / Ytong',
+    opt_material_drevo: 'Дерево / зруб', opt_material_ine: 'Інше / невідомо',
+    lbl_insulation: 'Утеплення фасаду',
+    opt_insulation_none: 'Без утеплення',
+    opt_insulation_partial: 'Часткове (до 80 мм)',
+    opt_insulation_good: 'Добре (80–120 мм)',
+    opt_insulation_excellent: 'Відмінне (120 мм+)',
+    lbl_encumbrance: 'Обтяження та сервітути у реєстрі',
+    opt_enc_none: 'Немає — чистий реєстр',
+    opt_enc_mortgage: 'Іпотека (погашається при передачі)',
+    opt_enc_easement: 'Сервітут (напр., право проходу)',
+    opt_enc_lifetime: 'Довічне право проживання',
+    opt_enc_multiple: 'Декілька обтяжень',
+    btn_step1: 'Розрахувати оцінку ціни →',
+    result_label: 'Орієнтовна ринкова ціна',
+    stat1_lbl: '€ / м²<br>у регіоні', stat2_lbl: 'сер. днів<br>продажу', stat3_lbl: 'попит<br>у регіоні',
+    buyers_highlight_suffix: 'перевірених покупців',
+    buyers_highlight_p: 'активно шукають нерухомість у вашому регіоні прямо зараз',
+    btn_back: '← Назад',
+    btn_step2: 'Показати покупців →',
+    lead_title: 'Зв’яжіться з покупцями',
+    lead_sub: 'Залиште контакт, і протягом 24 годин я надішлю вам список перевірених покупців разом з детальним аналізом ринку у вашому регіоні.',
+    lbl_name: 'Ім’я та прізвище',
+    lbl_phone: 'Номер телефону',
+    lbl_email: 'Електронна адреса',
+    btn_submit: 'Надіслати і показати покупців →',
+    consent_text: 'Надсилаючи форму, ви погоджуєтесь на обробку персональних даних відповідно до GDPR.<br>Дані будуть використані виключно для цілей посередництва у продажу нерухомості.',
+    success_h2: 'Чудово,',
+    success_p: 'Вашу заявку надіслано. Я зв’яжуся з вами протягом 24 годин зі списком перевірених покупців та детальним аналізом ціни у вашому регіоні.',
+    summary_label: 'Підсумок вашої нерухомості',
+    float_wa: 'Написати у WhatsApp',
+    float_ph: 'Зателефонувати Радовану',
+    demand_stredny: 'Середній',
+    demand_vysoky: 'Високий',
+    alert_select_location: 'Будь ласка, оберіть місцезнаходження.',
+    alert_invalid_area: 'Введіть дійсну корисну площу.',
+    range_prefix: 'Діапазон:',
+    err_name: 'Введіть ім’я та прізвище.',
+    err_phone: 'Введіть номер телефону.',
+    err_email: 'Введіть дійсний email.',
+    sending: 'Надсилається...',
+    err_submit: 'Сталася помилка під час надсилання. Спробуйте ще раз або зателефонуйте напряму.',
+    err_network: 'Помилка мережі. Спробуйте ще раз.',
+  },
+  de: {
+    nav_back: 'Zurück zur Startseite',
+    hero_badge: 'Kostenlose Bewertung',
+    hero_h1_1: 'Erfahren Sie den Wert',
+    hero_h1_2: 'Ihrer',
+    hero_h1_em: 'Immobilie',
+    hero_sub: 'Sofortige Marktpreisschätzung. Unverbindlich, ohne Wartezeit.',
+    buyers_label: 'verifizierte Käufer<br>warten auf ein Angebot in Ihrer Region',
+    card1_title: 'Grunddaten',
+    card1_sub: 'Lage und Art der Immobilie',
+    lbl_type: 'Immobilienart',
+    type_byt: 'Wohnung', type_dom: 'Haus', type_pozemok: 'Grundstück',
+    lbl_location: 'Nächstgelegene größere Stadt',
+    opt_location_placeholder: '— Stadt wählen —',
+    lbl_loctype: 'Lage der Immobilie',
+    loc_mesto: 'Stadt', loc_mesto_sub: 'Zentrum, Stadtteil',
+    loc_dedina: 'Dorf / ländlich', loc_dedina_sub: 'ländliche Lage, Umgebung',
+    lbl_transport: 'Erreichbarkeit ÖPNV / Zentrum (zu Fuß)',
+    opt_transport_very_good: 'Bis zu 5 Minuten — sehr gute Erreichbarkeit',
+    opt_transport_good: '5–15 Minuten — gute Erreichbarkeit',
+    opt_transport_medium: '15–30 Minuten — durchschnittliche Erreichbarkeit',
+    opt_transport_low: '30+ Minuten — eingeschränkte Erreichbarkeit',
+    card2_title: 'Maße und Flächen',
+    card2_sub: 'Reine Zahlendaten — Grundlage der Preis-pro-m²-Berechnung',
+    lbl_rooms: 'Anzahl der Zimmer',
+    room_sub_1: 'Zimmer', room_sub_2: 'Zimmer', room_sub_3: 'Zimmer', room_sub_4: 'Zimmer', room_sub_5: 'Zimmer',
+    lbl_area: 'Nutzfläche (m²)',
+    lbl_living_area: 'Wohnfläche (m²)',
+    lbl_optional: 'optional',
+    lbl_balcony: 'Balkon / Loggia / Terrasse (m²)',
+    lbl_cellar: 'Keller / Abstellraum (m²)',
+    lbl_land: 'Grundstücksfläche (m²)',
+    lbl_built_area: 'Bebaute Fläche des Hauses (m²)',
+    lbl_ceiling: 'Raumhöhe',
+    opt_ceiling_standard: 'Standard (2,5–2,7 m)',
+    opt_ceiling_high: 'Hoch (2,7–3,2 m)',
+    opt_ceiling_loft: 'Loft / Dachgeschoss (3,2 m+)',
+    lbl_floor: 'Stockwerk',
+    opt_floor_0: 'Erdgeschoss', opt_floor_1: '1. Stock', opt_floor_2: '2. Stock',
+    opt_floor_3: '3. Stock', opt_floor_4: '4. Stock', opt_floor_5: '5. Stock und höher',
+    lbl_storeys: 'Anzahl der Stockwerke',
+    opt_storeys_1: '1 Stockwerk', opt_storeys_2: '2 Stockwerke', opt_storeys_3: '3 Stockwerke',
+    lbl_orientation: 'Ausrichtung / Aussicht',
+    opt_orient_good: 'Gute Aussicht (Süden, Westen)',
+    opt_orient_average: 'Durchschnittlich (Norden, Hof)',
+    opt_orient_bad: 'Schlecht (schattige Seite, Erdgeschoss)',
+    lbl_lift: 'Aufzug im Gebäude',
+    opt_lift_yes: 'Ja', opt_lift_no: 'Nein',
+    card3_title: 'Technischer Zustand und Qualität',
+    card3_sub: 'Parameter, die Abnutzung und Lebensdauer des Gebäudes bestimmen',
+    lbl_condition: 'Zustand der Immobilie',
+    cond_novostavba: 'Neubau', cond_po_rekon: 'Renoviert', cond_dobry: 'Guter Zustand', cond_na_rekon: 'Renovierungsbedürftig',
+    lbl_year: 'Baujahr (ungefähr)',
+    opt_year_new: 'Nach 2010', opt_year_mid: '1990 – 2010', opt_year_old: 'Vor 1990',
+    lbl_energy: 'Energieausweis',
+    opt_energy_a0: 'A0 — Ultraniedrigenergie',
+    opt_energy_a1: 'A1 — Niedrigenergie',
+    opt_energy_b: 'B — Sehr sparsam',
+    opt_energy_c: 'C — Sparsam',
+    opt_energy_d: 'D — Weniger sparsam',
+    opt_energy_e: 'E — Unwirtschaftlich',
+    opt_energy_f: 'F — Sehr unwirtschaftlich',
+    opt_energy_unknown: 'Unbekannt / kein Zertifikat',
+    lbl_material: 'Tragende Wände — Material',
+    opt_material_tehla: 'Ziegel', opt_material_panel: 'Plattenbau', opt_material_porobeton: 'Porenbeton / Ytong',
+    opt_material_drevo: 'Holz / Blockhaus', opt_material_ine: 'Andere / unbekannt',
+    lbl_insulation: 'Fassadendämmung',
+    opt_insulation_none: 'Keine Dämmung',
+    opt_insulation_partial: 'Teilweise (bis 80 mm)',
+    opt_insulation_good: 'Gut (80–120 mm)',
+    opt_insulation_excellent: 'Ausgezeichnet (120 mm+)',
+    lbl_encumbrance: 'Belastungen und Dienstbarkeiten im Grundbuch',
+    opt_enc_none: 'Keine — lastenfrei',
+    opt_enc_mortgage: 'Hypothek (bei Übertragung fällig)',
+    opt_enc_easement: 'Dienstbarkeit (z. B. Wegerecht)',
+    opt_enc_lifetime: 'Lebenslanges Wohnrecht',
+    opt_enc_multiple: 'Mehrere Belastungen',
+    btn_step1: 'Preisschätzung berechnen →',
+    result_label: 'Geschätzter Marktpreis',
+    stat1_lbl: '€ / m²<br>in der Region', stat2_lbl: 'Ø Tage<br>bis Verkauf', stat3_lbl: 'Nachfrage<br>in der Region',
+    buyers_highlight_suffix: 'verifizierte Käufer',
+    buyers_highlight_p: 'suchen gerade aktiv eine Immobilie in Ihrer Region',
+    btn_back: '← Zurück',
+    btn_step2: 'Käufer anzeigen →',
+    lead_title: 'Käufer kontaktieren',
+    lead_sub: 'Hinterlassen Sie Ihre Kontaktdaten und ich sende Ihnen innerhalb von 24 Stunden eine Liste verifizierter Interessenten zusammen mit einer detaillierten Marktanalyse für Ihre Region.',
+    lbl_name: 'Vor- und Nachname',
+    lbl_phone: 'Telefonnummer',
+    lbl_email: 'E-Mail-Adresse',
+    btn_submit: 'Absenden und Käufer anzeigen →',
+    consent_text: 'Mit dem Absenden stimmen Sie der Verarbeitung personenbezogener Daten gemäß DSGVO zu.<br>Die Daten werden ausschließlich zur Vermittlung des Immobilienverkaufs verwendet.',
+    success_h2: 'Ausgezeichnet,',
+    success_p: 'Ihre Anfrage wurde gesendet. Ich melde mich innerhalb von 24 Stunden mit einer Liste verifizierter Käufer und einer detaillierten Preisanalyse für Ihre Region.',
+    summary_label: 'Zusammenfassung Ihrer Immobilie',
+    float_wa: 'Auf WhatsApp schreiben',
+    float_ph: 'Radovan anrufen',
+    demand_stredny: 'Mittel',
+    demand_vysoky: 'Hoch',
+    alert_select_location: 'Bitte wählen Sie einen Standort.',
+    alert_invalid_area: 'Bitte geben Sie eine gültige Nutzfläche ein.',
+    range_prefix: 'Spanne:',
+    err_name: 'Bitte geben Sie Ihren Vor- und Nachnamen ein.',
+    err_phone: 'Bitte geben Sie eine Telefonnummer ein.',
+    err_email: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+    sending: 'Wird gesendet...',
+    err_submit: 'Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder rufen Sie direkt an.',
+    err_network: 'Netzwerkfehler. Bitte versuchen Sie es erneut.',
+  },
+};
+
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || (TRANSLATIONS.sk && TRANSLATIONS.sk[key]) || key;
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+}
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
+})();
 </script>
 </body>
 </html>
