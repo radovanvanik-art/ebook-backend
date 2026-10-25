@@ -50,6 +50,11 @@ a{text-decoration:none;color:inherit}
 .nav-link{color:rgba(255,255,255,0.5);font-size:0.82rem;font-weight:500;transition:color 0.2s}
 .nav-link:hover{color:white}
 @media(max-width:640px){.nav-center .nav-link:not(.nav-link--active){display:none}}
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border:1px solid var(--border-d);border-radius:999px;padding:3px;}
+.lang-btn{background:transparent;border:none;cursor:pointer;width:28px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:999px;opacity:0.5;transition:opacity 0.18s,background 0.18s,transform 0.15s,box-shadow 0.18s;}
+.lang-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.lang-btn.active{background:var(--gold);opacity:1;box-shadow:0 2px 10px rgba(200,133,31,0.45)}
+.lang-btn img{width:20px;height:14px;object-fit:cover;border-radius:3px;display:block;pointer-events:none}
 
 /* FOOTER */
 footer{background:#000;border-top:1px solid rgba(200,133,31,0.15);padding:2rem clamp(1.25rem,5vw,3rem);text-align:center}
@@ -326,25 +331,31 @@ footer a:hover{color:var(--gold)}
     <span>radovanvanik.com</span>
   </a>
   <div class="nav-center">
-    <a href="/" class="nav-link">Domov</a>
-    <a href="/projekty" class="nav-link nav-link--active" style="color:white">Iné projekty</a>
+    <a href="/" class="nav-link" data-i18n="nav_home">Domov</a>
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+    </div>
+    <a href="/projekty" class="nav-link nav-link--active" style="color:white" data-i18n="nav_other">Iné projekty</a>
   </div>
 </header>
 
 <!-- HERO -->
 <section class="hero-dash">
   <div class="hero-dash-inner reveal">
-    <p class="eyebrow">Iné projekty · Náklady Dashboard</p>
-    <h1>Appka, ktorá nahradila Excel</h1>
-    <p>Postavil som ju pre Adamov jarmočný biznis (GastroFest) — správa nákladov, faktúr, skladu a miezd na dvoch stánkoch, prehľadne a v reálnom čase.</p>
-    <span class="sample-badge">⚠️ Ukážka s vzorovými dátami — žiadne reálne čísla klienta</span>
+    <p class="eyebrow" data-i18n="hero_eyebrow">Iné projekty · Náklady Dashboard</p>
+    <h1 data-i18n="hero_h1">Appka, ktorá nahradila Excel</h1>
+    <p data-i18n="hero_p">Postavil som ju pre Adamov jarmočný biznis (GastroFest) — správa nákladov, faktúr, skladu a miezd na dvoch stánkoch, prehľadne a v reálnom čase.</p>
+    <span class="sample-badge" data-i18n="sample_badge">⚠️ Ukážka s vzorovými dátami — žiadne reálne čísla klienta</span>
   </div>
 </section>
 
 <!-- MOCKUP -->
 <section class="mockup-section">
   <div class="mockup-eyebrow-row reveal">
-    <p>👆 Prezrite si appku naživo — prepínajte medzi náhľadmi</p>
+    <p data-i18n="mockup_eyebrow">👆 Prezrite si appku naživo — prepínajte medzi náhľadmi</p>
   </div>
   <div class="mockup-carousel reveal reveal-d1" role="region" aria-roledescription="karusel" aria-label="Ukážky appky Náklady Dashboard" tabindex="0">
     <div class="mockup-viewport">
@@ -359,53 +370,53 @@ footer a:hover{color:var(--gold)}
             <div class="mockup-body">
               <div class="mockup-topbar">
                 <span class="mockup-brand">📊 Náklady Dashboard</span>
-                <span class="mockup-filter">Tento mesiac · Oba stánky ▾</span>
+                <span class="mockup-filter" data-i18n="s1_filter">Tento mesiac · Oba stánky ▾</span>
               </div>
               <div class="mockup-stats">
                 <div class="mockup-stat mockup-anim">
-                  <div class="mockup-stat-label">Príjmy</div>
+                  <div class="mockup-stat-label" data-i18n="s1_income">Príjmy</div>
                   <div class="mockup-stat-num">4 820 €</div>
                 </div>
                 <div class="mockup-stat mockup-stat--cost mockup-anim">
-                  <div class="mockup-stat-label">Náklady</div>
+                  <div class="mockup-stat-label" data-i18n="s1_costs">Náklady</div>
                   <div class="mockup-stat-num">1 940 €</div>
                 </div>
                 <div class="mockup-stat mockup-stat--profit mockup-anim">
-                  <div class="mockup-stat-label">Zisk</div>
+                  <div class="mockup-stat-label" data-i18n="s1_profit">Zisk</div>
                   <div class="mockup-stat-num">2 880 €</div>
                 </div>
                 <div class="mockup-stat mockup-anim">
-                  <div class="mockup-stat-label">Marža</div>
+                  <div class="mockup-stat-label" data-i18n="s1_margin">Marža</div>
                   <div class="mockup-stat-num">59,7 %</div>
                 </div>
               </div>
               <div class="mockup-grid2">
                 <div>
-                  <div class="mockup-panel-title">Náklady podľa kategórie</div>
+                  <div class="mockup-panel-title" data-i18n="s1_by_category">Náklady podľa kategórie</div>
                   <div class="mockup-donut-row">
                     <div class="mockup-donut-wrap">
                       <div class="mockup-donut">
-                        <div class="mockup-donut-center"><b>1 940 €</b><span>spolu</span></div>
+                        <div class="mockup-donut-center"><b>1 940 €</b><span data-i18n="s1_total">spolu</span></div>
                       </div>
                     </div>
                     <div class="mockup-legend">
-                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold)"></span><span class="mockup-legend-label">Suroviny</span><span class="mockup-legend-pct">38 %</span></div>
-                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold-mid)"></span><span class="mockup-legend-label">Nájom stánku</span><span class="mockup-legend-pct">22 %</span></div>
-                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--green)"></span><span class="mockup-legend-label">Mzdy</span><span class="mockup-legend-pct">18 %</span></div>
-                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--blue)"></span><span class="mockup-legend-label">Palivo</span><span class="mockup-legend-pct">12 %</span></div>
-                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:#CFC9BA"></span><span class="mockup-legend-label">Ostatné</span><span class="mockup-legend-pct">10 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold)"></span><span class="mockup-legend-label" data-i18n="cat_food">Suroviny</span><span class="mockup-legend-pct">38 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--gold-mid)"></span><span class="mockup-legend-label" data-i18n="cat_rent_stand">Nájom stánku</span><span class="mockup-legend-pct">22 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--green)"></span><span class="mockup-legend-label" data-i18n="cat_wages">Mzdy</span><span class="mockup-legend-pct">18 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:var(--blue)"></span><span class="mockup-legend-label" data-i18n="cat_fuel">Palivo</span><span class="mockup-legend-pct">12 %</span></div>
+                      <div class="mockup-legend-row mockup-anim"><span class="mockup-legend-dot" style="background:#CFC9BA"></span><span class="mockup-legend-label" data-i18n="cat_other">Ostatné</span><span class="mockup-legend-pct">10 %</span></div>
                     </div>
                   </div>
                 </div>
                 <div>
-                  <div class="mockup-panel-title">Posledné náklady</div>
+                  <div class="mockup-panel-title" data-i18n="s1_recent">Posledné náklady</div>
                   <table class="mockup-table">
-                    <thead><tr><th>Položka</th><th>Kategória</th><th style="text-align:right">Suma</th></tr></thead>
+                    <thead><tr><th data-i18n="th_item">Položka</th><th data-i18n="th_category">Kategória</th><th style="text-align:right" data-i18n="th_amount">Suma</th></tr></thead>
                     <tbody>
-                      <tr><td>Korenené víno – dodávka</td><td><span class="mockup-cat mockup-cat--food">Suroviny</span></td><td style="text-align:right">312 €</td></tr>
-                      <tr><td>Nájom – jarmok Ružomberok</td><td><span class="mockup-cat">Nájom</span></td><td style="text-align:right">180 €</td></tr>
-                      <tr><td>Brigádnik – sobota</td><td><span class="mockup-cat mockup-cat--wage">Mzdy</span></td><td style="text-align:right">96 €</td></tr>
-                      <tr><td>Nafta – dodávka</td><td><span class="mockup-cat">Palivo</span></td><td style="text-align:right">64 €</td></tr>
+                      <tr><td data-i18n="row1_item">Korenené víno – dodávka</td><td><span class="mockup-cat mockup-cat--food" data-i18n="cat_food">Suroviny</span></td><td style="text-align:right">312 €</td></tr>
+                      <tr><td data-i18n="row2_item">Nájom – jarmok Ružomberok</td><td><span class="mockup-cat" data-i18n="cat_rent">Nájom</span></td><td style="text-align:right">180 €</td></tr>
+                      <tr><td data-i18n="row3_item">Brigádnik – sobota</td><td><span class="mockup-cat mockup-cat--wage" data-i18n="cat_wages">Mzdy</span></td><td style="text-align:right">96 €</td></tr>
+                      <tr><td data-i18n="row4_item">Nafta – dodávka</td><td><span class="mockup-cat" data-i18n="cat_fuel">Palivo</span></td><td style="text-align:right">64 €</td></tr>
                     </tbody>
                   </table>
                 </div>
@@ -423,27 +434,27 @@ footer a:hover{color:var(--gold)}
             <div class="mockup-body">
               <div class="mockup-topbar">
                 <span class="mockup-brand">🗺️ Tržby stánkov</span>
-                <span class="mockup-filter">Dnes · Sobota ▾</span>
+                <span class="mockup-filter" data-i18n="s2_filter">Dnes · Sobota ▾</span>
               </div>
               <div class="mockup-map">
                 <div class="mockup-map-road" style="left:0;right:0;top:46%;height:6px;"></div>
                 <div class="mockup-map-road" style="top:0;bottom:0;left:32%;width:6px;"></div>
                 <div class="mockup-pin" style="left:32%;top:42%;">
-                  <div class="mockup-pin-card"><b>📍 Stánok 1 — Ružomberok</b>Tržby dnes: <span class="rev">640 €</span></div>
+                  <div class="mockup-pin-card"><b data-i18n="pin1_title">📍 Stánok 1 — Ružomberok</b><span data-i18n="pin_today">Tržby dnes:</span> <span class="rev">640 €</span></div>
                   <div class="mockup-pin-dot"></div>
                 </div>
                 <div class="mockup-pin" style="left:68%;top:66%;">
-                  <div class="mockup-pin-card"><b>📍 Stánok 2 — Lipt. Mikuláš</b>Tržby dnes: <span class="rev">480 €</span></div>
+                  <div class="mockup-pin-card"><b data-i18n="pin2_title">📍 Stánok 2 — Lipt. Mikuláš</b><span data-i18n="pin_today">Tržby dnes:</span> <span class="rev">480 €</span></div>
                   <div class="mockup-pin-dot" style="background:var(--green)"></div>
                 </div>
               </div>
               <div class="mockup-stats" style="margin-top:1.25rem;margin-bottom:0">
                 <div class="mockup-stat mockup-stat--profit mockup-anim">
-                  <div class="mockup-stat-label">Tržby spolu dnes</div>
+                  <div class="mockup-stat-label" data-i18n="s2_total_today">Tržby spolu dnes</div>
                   <div class="mockup-stat-num">1 120 €</div>
                 </div>
                 <div class="mockup-stat mockup-anim">
-                  <div class="mockup-stat-label">Najlepší stánok</div>
+                  <div class="mockup-stat-label" data-i18n="s2_best_stand">Najlepší stánok</div>
                   <div class="mockup-stat-num">Ružomberok</div>
                 </div>
               </div>
@@ -460,55 +471,55 @@ footer a:hover{color:var(--gold)}
             <div class="mockup-body">
               <div class="mockup-topbar">
                 <span class="mockup-brand">🧾 Mzdy brigádnikov</span>
-                <span class="mockup-filter">Tento mesiac ▾</span>
+                <span class="mockup-filter" data-i18n="s3_filter">Tento mesiac ▾</span>
               </div>
               <div class="mockup-stats" style="margin-bottom:1.5rem">
                 <div class="mockup-stat mockup-stat--cost mockup-anim">
-                  <div class="mockup-stat-label">Mzdy spolu</div>
+                  <div class="mockup-stat-label" data-i18n="s3_total_wages">Mzdy spolu</div>
                   <div class="mockup-stat-num">612 €</div>
                 </div>
                 <div class="mockup-stat mockup-anim">
-                  <div class="mockup-stat-label">Odpracované hodiny</div>
+                  <div class="mockup-stat-label" data-i18n="s3_hours">Odpracované hodiny</div>
                   <div class="mockup-stat-num">112 h</div>
                 </div>
                 <div class="mockup-stat mockup-anim">
-                  <div class="mockup-stat-label">Priemerná sadzba</div>
+                  <div class="mockup-stat-label" data-i18n="s3_avg_rate">Priemerná sadzba</div>
                   <div class="mockup-stat-num">5,50 €/h</div>
                 </div>
               </div>
-              <div class="mockup-panel-title">Brigádnici</div>
+              <div class="mockup-panel-title" data-i18n="s3_staff">Brigádnici</div>
               <div>
                 <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--gold)">PK</div>
                   <div>
                     <div class="mockup-wage-name">Peter K.</div>
-                    <div class="mockup-wage-meta">32 h · 5,50 €/h · Stánok Ružomberok</div>
+                    <div class="mockup-wage-meta" data-i18n="wage1_meta">32 h · 5,50 €/h · Stánok Ružomberok</div>
                   </div>
                   <div class="mockup-wage-amount">
                     <div class="mockup-wage-net">152 €</div>
-                    <div class="mockup-wage-gross">hrubá 176 €</div>
+                    <div class="mockup-wage-gross" data-i18n="wage1_gross">hrubá 176 €</div>
                   </div>
                 </div>
                 <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--green)">JS</div>
                   <div>
                     <div class="mockup-wage-name">Jana S.</div>
-                    <div class="mockup-wage-meta">24 h · 5,50 €/h · Stánok L. Mikuláš</div>
+                    <div class="mockup-wage-meta" data-i18n="wage2_meta">24 h · 5,50 €/h · Stánok L. Mikuláš</div>
                   </div>
                   <div class="mockup-wage-amount">
                     <div class="mockup-wage-net">114 €</div>
-                    <div class="mockup-wage-gross">hrubá 132 €</div>
+                    <div class="mockup-wage-gross" data-i18n="wage2_gross">hrubá 132 €</div>
                   </div>
                 </div>
                 <div class="mockup-wage-row mockup-anim">
                   <div class="mockup-avatar" style="background:var(--blue)">MV</div>
                   <div>
                     <div class="mockup-wage-name">Marek V.</div>
-                    <div class="mockup-wage-meta">56 h · 5,50 €/h · Oba stánky</div>
+                    <div class="mockup-wage-meta" data-i18n="wage3_meta">56 h · 5,50 €/h · Oba stánky</div>
                   </div>
                   <div class="mockup-wage-amount">
                     <div class="mockup-wage-net">266 €</div>
-                    <div class="mockup-wage-gross">hrubá 308 €</div>
+                    <div class="mockup-wage-gross" data-i18n="wage3_gross">hrubá 308 €</div>
                   </div>
                 </div>
               </div>
@@ -523,9 +534,9 @@ footer a:hover{color:var(--gold)}
     <div class="mockup-tabs-wrap">
       <div class="mockup-tabs" id="mockupTabs" role="tablist" aria-label="Vybrať náhľad">
         <span class="mockup-tab-highlight" id="mockupHighlight" aria-hidden="true"></span>
-        <button class="mockup-tab active" data-slide="0" role="tab" aria-selected="true"><span class="mockup-tab-ico">📊</span>Dashboard</button>
-        <button class="mockup-tab" data-slide="1" role="tab" aria-selected="false"><span class="mockup-tab-ico">🗺️</span>Tržby na mape</button>
-        <button class="mockup-tab" data-slide="2" role="tab" aria-selected="false"><span class="mockup-tab-ico">🧾</span>Mzdy</button>
+        <button class="mockup-tab active" data-slide="0" role="tab" aria-selected="true"><span class="mockup-tab-ico">📊</span><span data-i18n="tab1">Dashboard</span></button>
+        <button class="mockup-tab" data-slide="1" role="tab" aria-selected="false"><span class="mockup-tab-ico">🗺️</span><span data-i18n="tab2">Tržby na mape</span></button>
+        <button class="mockup-tab" data-slide="2" role="tab" aria-selected="false"><span class="mockup-tab-ico">🧾</span><span data-i18n="tab3">Mzdy</span></button>
       </div>
     </div>
   </div>
@@ -535,40 +546,40 @@ footer a:hover{color:var(--gold)}
 <section class="features-section">
   <div class="features-inner">
     <div class="reveal" style="max-width:560px">
-      <p class="section-eyebrow">Čo appka vie</p>
-      <h2 class="section-h2">Všetko, čo Excel nezvládal</h2>
-      <p class="section-p">Postavená presne na mieru pre jarmočný predaj na dvoch stánkoch — ale rovnaký princíp funguje pre akýkoľvek malý biznis, ktorý si vedie náklady ručne.</p>
+      <p class="section-eyebrow" data-i18n="feat_eyebrow">Čo appka vie</p>
+      <h2 class="section-h2" data-i18n="feat_h2">Všetko, čo Excel nezvládal</h2>
+      <p class="section-p" data-i18n="feat_p">Postavená presne na mieru pre jarmočný predaj na dvoch stánkoch — ale rovnaký princíp funguje pre akýkoľvek malý biznis, ktorý si vedie náklady ručne.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card reveal reveal-d1">
         <div class="feature-icon">📈</div>
-        <h3>Prehľad v reálnom čase</h3>
-        <p>Príjmy, náklady a zisk za týždeň, mesiac či kvartál — s grafmi podľa kategórie a stánku, na jeden pohľad.</p>
+        <h3 data-i18n="f1_title">Prehľad v reálnom čase</h3>
+        <p data-i18n="f1_text">Príjmy, náklady a zisk za týždeň, mesiac či kvartál — s grafmi podľa kategórie a stánku, na jeden pohľad.</p>
       </div>
       <div class="feature-card reveal reveal-d2">
         <div class="feature-icon">📸</div>
-        <h3>Náklad jedným odfotením</h3>
-        <p>Vyfoťte účtenku mobilom, doplňte sumu a kategóriu — hotovo. Žiadne prepisovanie do tabuliek.</p>
+        <h3 data-i18n="f2_title">Náklad jedným odfotením</h3>
+        <p data-i18n="f2_text">Vyfoťte účtenku mobilom, doplňte sumu a kategóriu — hotovo. Žiadne prepisovanie do tabuliek.</p>
       </div>
       <div class="feature-card reveal reveal-d1">
         <div class="feature-icon">📩</div>
-        <h3>Faktúry rovno z e-mailu</h3>
-        <p>Appka má vlastnú prijímaciu adresu — faktúry sa spracujú automaticky a suma sa skúsi vytiahnuť sama.</p>
+        <h3 data-i18n="f3_title">Faktúry rovno z e-mailu</h3>
+        <p data-i18n="f3_text">Appka má vlastnú prijímaciu adresu — faktúry sa spracujú automaticky a suma sa skúsi vytiahnuť sama.</p>
       </div>
       <div class="feature-card reveal reveal-d2">
         <div class="feature-icon">📦</div>
-        <h3>Sklad tovaru</h3>
-        <p>Spoločný sklad pre viacero predajných miest — nákupná/predajná cena a marža sa počítajú automaticky.</p>
+        <h3 data-i18n="f4_title">Sklad tovaru</h3>
+        <p data-i18n="f4_text">Spoločný sklad pre viacero predajných miest — nákupná/predajná cena a marža sa počítajú automaticky.</p>
       </div>
       <div class="feature-card reveal reveal-d1">
         <div class="feature-icon">🧾</div>
-        <h3>Mzdy brigádnikov</h3>
-        <p>Hodinová sadzba a odpracované hodiny → automatický prepočet hrubej/čistej mzdy, odvodov a ceny práce.</p>
+        <h3 data-i18n="f5_title">Mzdy brigádnikov</h3>
+        <p data-i18n="f5_text">Hodinová sadzba a odpracované hodiny → automatický prepočet hrubej/čistej mzdy, odvodov a ceny práce.</p>
       </div>
       <div class="feature-card reveal reveal-d2">
         <div class="feature-icon">⚙️</div>
-        <h3>Vlastné kategórie a stánky</h3>
-        <p>Nastavenia sa prispôsobia štruktúre vášho biznisu — nie vy appke, ale appka vám.</p>
+        <h3 data-i18n="f6_title">Vlastné kategórie a stánky</h3>
+        <p data-i18n="f6_text">Nastavenia sa prispôsobia štruktúre vášho biznisu — nie vy appke, ale appka vám.</p>
       </div>
     </div>
   </div>
@@ -576,10 +587,10 @@ footer a:hover{color:var(--gold)}
 
 <!-- CTA -->
 <section class="dash-cta-section">
-  <h2>Podobná appka pre váš biznis?</h2>
-  <p>Toto je presne appka, akú by som postavil aj pre vás — na mieru vášmu podnikaniu, bez zbytočných funkcií, ktoré nepoužijete.</p>
-  <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20zaujala%20by%20ma%20podobná%20appka%20ako%20Náklady%20Dashboard." class="dash-cta-btn" target="_blank" rel="noopener">💬 Napísať na WhatsApp</a>
-  <a href="/projekty" class="dash-cta-back">← Späť na Iné projekty</a>
+  <h2 data-i18n="cta_h2">Podobná appka pre váš biznis?</h2>
+  <p data-i18n="cta_p">Toto je presne appka, akú by som postavil aj pre vás — na mieru vášmu podnikaniu, bez zbytočných funkcií, ktoré nepoužijete.</p>
+  <a href="https://wa.me/421948310950?text=Dobrý%20deň%2C%20zaujala%20by%20ma%20podobná%20appka%20ako%20Náklady%20Dashboard." class="dash-cta-btn" target="_blank" rel="noopener" data-i18n="cta_wa">💬 Napísať na WhatsApp</a>
+  <a href="/projekty" class="dash-cta-back" data-i18n="cta_back">← Späť na Iné projekty</a>
 </section>
 
 <footer>
@@ -596,6 +607,175 @@ footer a:hover{color:var(--gold)}
 </div>
 
 <script>
+const TRANSLATIONS = {
+  sk: {
+    nav_home: 'Domov',
+    nav_other: 'Iné projekty',
+    hero_eyebrow: 'Iné projekty · Náklady Dashboard',
+    hero_h1: 'Appka, ktorá nahradila Excel',
+    hero_p: 'Postavil som ju pre Adamov jarmočný biznis (GastroFest) — správa nákladov, faktúr, skladu a miezd na dvoch stánkoch, prehľadne a v reálnom čase.',
+    sample_badge: '⚠️ Ukážka s vzorovými dátami — žiadne reálne čísla klienta',
+    mockup_eyebrow: '👆 Prezrite si appku naživo — prepínajte medzi náhľadmi',
+    s1_filter: 'Tento mesiac · Oba stánky ▾',
+    s1_income: 'Príjmy', s1_costs: 'Náklady', s1_profit: 'Zisk', s1_margin: 'Marža',
+    s1_by_category: 'Náklady podľa kategórie', s1_total: 'spolu', s1_recent: 'Posledné náklady',
+    cat_food: 'Suroviny', cat_rent_stand: 'Nájom stánku', cat_wages: 'Mzdy', cat_fuel: 'Palivo', cat_other: 'Ostatné', cat_rent: 'Nájom',
+    th_item: 'Položka', th_category: 'Kategória', th_amount: 'Suma',
+    row1_item: 'Korenené víno – dodávka', row2_item: 'Nájom – jarmok Ružomberok', row3_item: 'Brigádnik – sobota', row4_item: 'Nafta – dodávka',
+    s2_filter: 'Dnes · Sobota ▾',
+    pin1_title: '📍 Stánok 1 — Ružomberok', pin2_title: '📍 Stánok 2 — Lipt. Mikuláš', pin_today: 'Tržby dnes:',
+    s2_total_today: 'Tržby spolu dnes', s2_best_stand: 'Najlepší stánok',
+    s3_filter: 'Tento mesiac ▾',
+    s3_total_wages: 'Mzdy spolu', s3_hours: 'Odpracované hodiny', s3_avg_rate: 'Priemerná sadzba', s3_staff: 'Brigádnici',
+    wage1_meta: '32 h · 5,50 €/h · Stánok Ružomberok', wage1_gross: 'hrubá 176 €',
+    wage2_meta: '24 h · 5,50 €/h · Stánok L. Mikuláš', wage2_gross: 'hrubá 132 €',
+    wage3_meta: '56 h · 5,50 €/h · Oba stánky', wage3_gross: 'hrubá 308 €',
+    tab1: 'Dashboard', tab2: 'Tržby na mape', tab3: 'Mzdy',
+    feat_eyebrow: 'Čo appka vie', feat_h2: 'Všetko, čo Excel nezvládal',
+    feat_p: 'Postavená presne na mieru pre jarmočný predaj na dvoch stánkoch — ale rovnaký princíp funguje pre akýkoľvek malý biznis, ktorý si vedie náklady ručne.',
+    f1_title: 'Prehľad v reálnom čase', f1_text: 'Príjmy, náklady a zisk za týždeň, mesiac či kvartál — s grafmi podľa kategórie a stánku, na jeden pohľad.',
+    f2_title: 'Náklad jedným odfotením', f2_text: 'Vyfoťte účtenku mobilom, doplňte sumu a kategóriu — hotovo. Žiadne prepisovanie do tabuliek.',
+    f3_title: 'Faktúry rovno z e-mailu', f3_text: 'Appka má vlastnú prijímaciu adresu — faktúry sa spracujú automaticky a suma sa skúsi vytiahnuť sama.',
+    f4_title: 'Sklad tovaru', f4_text: 'Spoločný sklad pre viacero predajných miest — nákupná/predajná cena a marža sa počítajú automaticky.',
+    f5_title: 'Mzdy brigádnikov', f5_text: 'Hodinová sadzba a odpracované hodiny → automatický prepočet hrubej/čistej mzdy, odvodov a ceny práce.',
+    f6_title: 'Vlastné kategórie a stánky', f6_text: 'Nastavenia sa prispôsobia štruktúre vášho biznisu — nie vy appke, ale appka vám.',
+    cta_h2: 'Podobná appka pre váš biznis?',
+    cta_p: 'Toto je presne appka, akú by som postavil aj pre vás — na mieru vášmu podnikaniu, bez zbytočných funkcií, ktoré nepoužijete.',
+    cta_wa: '💬 Napísať na WhatsApp', cta_back: '← Späť na Iné projekty'
+  },
+  en: {
+    nav_home: 'Home',
+    nav_other: 'Other projects',
+    hero_eyebrow: 'Other projects · Náklady Dashboard',
+    hero_h1: 'The app that replaced Excel',
+    hero_p: 'I built it for Adam\'s market-stall business (GastroFest) — managing costs, invoices, stock and wages across two stands, clearly and in real time.',
+    sample_badge: '⚠️ Demo with sample data — no real client figures',
+    mockup_eyebrow: '👆 See the app live — switch between the previews',
+    s1_filter: 'This month · Both stands ▾',
+    s1_income: 'Revenue', s1_costs: 'Costs', s1_profit: 'Profit', s1_margin: 'Margin',
+    s1_by_category: 'Costs by category', s1_total: 'total', s1_recent: 'Recent costs',
+    cat_food: 'Ingredients', cat_rent_stand: 'Stand rent', cat_wages: 'Wages', cat_fuel: 'Fuel', cat_other: 'Other', cat_rent: 'Rent',
+    th_item: 'Item', th_category: 'Category', th_amount: 'Amount',
+    row1_item: 'Mulled wine – delivery', row2_item: 'Rent – Ružomberok market', row3_item: 'Part-timer – Saturday', row4_item: 'Diesel – delivery van',
+    s2_filter: 'Today · Saturday ▾',
+    pin1_title: '📍 Stand 1 — Ružomberok', pin2_title: '📍 Stand 2 — Lipt. Mikuláš', pin_today: 'Revenue today:',
+    s2_total_today: 'Total revenue today', s2_best_stand: 'Best stand',
+    s3_filter: 'This month ▾',
+    s3_total_wages: 'Total wages', s3_hours: 'Hours worked', s3_avg_rate: 'Average rate', s3_staff: 'Part-timers',
+    wage1_meta: '32 h · €5.50/h · Ružomberok stand', wage1_gross: 'gross €176',
+    wage2_meta: '24 h · €5.50/h · L. Mikuláš stand', wage2_gross: 'gross €132',
+    wage3_meta: '56 h · €5.50/h · Both stands', wage3_gross: 'gross €308',
+    tab1: 'Dashboard', tab2: 'Revenue map', tab3: 'Wages',
+    feat_eyebrow: 'What the app can do', feat_h2: 'Everything Excel couldn\'t handle',
+    feat_p: 'Built exactly to fit market-stall sales across two stands — but the same principle works for any small business tracking costs by hand.',
+    f1_title: 'Real-time overview', f1_text: 'Revenue, costs and profit by week, month or quarter — with charts by category and stand, at a glance.',
+    f2_title: 'Log a cost with one photo', f2_text: 'Photograph the receipt on your phone, add the amount and category — done. No more copying into spreadsheets.',
+    f3_title: 'Invoices straight from email', f3_text: 'The app has its own receiving address — invoices are processed automatically and it tries to pull out the amount itself.',
+    f4_title: 'Stock management', f4_text: 'A shared stock for multiple sales points — purchase/sale price and margin are calculated automatically.',
+    f5_title: 'Part-timer wages', f5_text: 'Hourly rate and hours worked → automatic calculation of gross/net pay, levies and labor cost.',
+    f6_title: 'Custom categories and stands', f6_text: 'The settings adapt to your business structure — you don\'t adapt to the app, it adapts to you.',
+    cta_h2: 'A similar app for your business?',
+    cta_p: 'This is exactly the kind of app I\'d build for you too — tailored to your business, without unnecessary features you\'d never use.',
+    cta_wa: '💬 Message on WhatsApp', cta_back: '← Back to Other projects'
+  },
+  ua: {
+    nav_home: 'Головна',
+    nav_other: 'Інші проєкти',
+    hero_eyebrow: 'Інші проєкти · Náklady Dashboard',
+    hero_h1: 'Застосунок, що замінив Excel',
+    hero_p: 'Я створив його для ярмаркового бізнесу Адама (GastroFest) — облік витрат, рахунків, складу та зарплат на двох точках, наочно й у реальному часі.',
+    sample_badge: '⚠️ Демонстрація з прикладовими даними — жодних реальних цифр клієнта',
+    mockup_eyebrow: '👆 Подивіться на застосунок наживо — перемикайте перегляди',
+    s1_filter: 'Цей місяць · Обидві точки ▾',
+    s1_income: 'Дохід', s1_costs: 'Витрати', s1_profit: 'Прибуток', s1_margin: 'Маржа',
+    s1_by_category: 'Витрати за категоріями', s1_total: 'разом', s1_recent: 'Останні витрати',
+    cat_food: 'Сировина', cat_rent_stand: 'Оренда точки', cat_wages: 'Зарплати', cat_fuel: 'Паливо', cat_other: 'Інше', cat_rent: 'Оренда',
+    th_item: 'Позиція', th_category: 'Категорія', th_amount: 'Сума',
+    row1_item: 'Глінтвейн – постачання', row2_item: 'Оренда – ярмарок Ружомберок', row3_item: 'Підробіток – субота', row4_item: 'Дизпаливо – доставка',
+    s2_filter: 'Сьогодні · Субота ▾',
+    pin1_title: '📍 Точка 1 — Ружомберок', pin2_title: '📍 Точка 2 — Ліпт. Мікулаш', pin_today: 'Дохід сьогодні:',
+    s2_total_today: 'Дохід разом сьогодні', s2_best_stand: 'Найкраща точка',
+    s3_filter: 'Цей місяць ▾',
+    s3_total_wages: 'Зарплати разом', s3_hours: 'Відпрацьовані години', s3_avg_rate: 'Середня ставка', s3_staff: 'Підробітчики',
+    wage1_meta: '32 год · 5,50 €/год · Точка Ружомберок', wage1_gross: 'брутто 176 €',
+    wage2_meta: '24 год · 5,50 €/год · Точка Л. Мікулаш', wage2_gross: 'брутто 132 €',
+    wage3_meta: '56 год · 5,50 €/год · Обидві точки', wage3_gross: 'брутто 308 €',
+    tab1: 'Дашборд', tab2: 'Дохід на мапі', tab3: 'Зарплати',
+    feat_eyebrow: 'Що вміє застосунок', feat_h2: 'Все, з чим не впорався Excel',
+    feat_p: 'Створено точно під ярмарковий продаж на двох точках — але той самий принцип працює для будь-якого малого бізнесу, що веде облік витрат вручну.',
+    f1_title: 'Огляд у реальному часі', f1_text: 'Дохід, витрати та прибуток за тиждень, місяць чи квартал — з графіками за категорією та точкою, одним поглядом.',
+    f2_title: 'Витрата одним фото', f2_text: 'Сфотографуйте чек телефоном, додайте суму й категорію — готово. Жодного переписування в таблиці.',
+    f3_title: 'Рахунки прямо з пошти', f3_text: 'Застосунок має власну адресу для прийому — рахунки обробляються автоматично, і сума намагається визначитися сама.',
+    f4_title: 'Складський облік', f4_text: 'Спільний склад для кількох точок продажу — закупівельна/продажна ціна та маржа рахуються автоматично.',
+    f5_title: 'Зарплати підробітчиків', f5_text: 'Погодинна ставка та відпрацьовані години → автоматичний розрахунок брутто/нетто зарплати, зборів і вартості праці.',
+    f6_title: 'Власні категорії та точки', f6_text: 'Налаштування підлаштовуються під структуру вашого бізнесу — не ви під застосунок, а застосунок під вас.',
+    cta_h2: 'Подібний застосунок для вашого бізнесу?',
+    cta_p: 'Це саме такий застосунок, який я б створив і для вас — під ваш бізнес, без зайвих функцій, якими ви не користуватиметесь.',
+    cta_wa: '💬 Написати у WhatsApp', cta_back: '← Назад до інших проєктів'
+  },
+  de: {
+    nav_home: 'Startseite',
+    nav_other: 'Weitere Projekte',
+    hero_eyebrow: 'Weitere Projekte · Náklady Dashboard',
+    hero_h1: 'Die App, die Excel ersetzt hat',
+    hero_p: 'Ich habe sie für Adams Marktstand-Geschäft (GastroFest) gebaut — Verwaltung von Kosten, Rechnungen, Lager und Löhnen an zwei Ständen, übersichtlich und in Echtzeit.',
+    sample_badge: '⚠️ Demo mit Beispieldaten — keine echten Kundenzahlen',
+    mockup_eyebrow: '👆 Sehen Sie sich die App live an — wechseln Sie zwischen den Vorschauen',
+    s1_filter: 'Dieser Monat · Beide Stände ▾',
+    s1_income: 'Einnahmen', s1_costs: 'Kosten', s1_profit: 'Gewinn', s1_margin: 'Marge',
+    s1_by_category: 'Kosten nach Kategorie', s1_total: 'gesamt', s1_recent: 'Letzte Kosten',
+    cat_food: 'Zutaten', cat_rent_stand: 'Standmiete', cat_wages: 'Löhne', cat_fuel: 'Kraftstoff', cat_other: 'Sonstiges', cat_rent: 'Miete',
+    th_item: 'Posten', th_category: 'Kategorie', th_amount: 'Betrag',
+    row1_item: 'Glühwein – Lieferung', row2_item: 'Miete – Markt Ružomberok', row3_item: 'Aushilfe – Samstag', row4_item: 'Diesel – Lieferwagen',
+    s2_filter: 'Heute · Samstag ▾',
+    pin1_title: '📍 Stand 1 — Ružomberok', pin2_title: '📍 Stand 2 — Lipt. Mikuláš', pin_today: 'Umsatz heute:',
+    s2_total_today: 'Umsatz heute gesamt', s2_best_stand: 'Bester Stand',
+    s3_filter: 'Dieser Monat ▾',
+    s3_total_wages: 'Löhne gesamt', s3_hours: 'Geleistete Stunden', s3_avg_rate: 'Durchschnittlicher Satz', s3_staff: 'Aushilfen',
+    wage1_meta: '32 Std · 5,50 €/Std · Stand Ružomberok', wage1_gross: 'brutto 176 €',
+    wage2_meta: '24 Std · 5,50 €/Std · Stand L. Mikuláš', wage2_gross: 'brutto 132 €',
+    wage3_meta: '56 Std · 5,50 €/Std · Beide Stände', wage3_gross: 'brutto 308 €',
+    tab1: 'Dashboard', tab2: 'Umsatzkarte', tab3: 'Löhne',
+    feat_eyebrow: 'Was die App kann', feat_h2: 'Alles, was Excel nicht konnte',
+    feat_p: 'Genau zugeschnitten auf den Marktverkauf an zwei Ständen — aber das gleiche Prinzip funktioniert für jedes kleine Unternehmen, das Kosten manuell erfasst.',
+    f1_title: 'Echtzeit-Überblick', f1_text: 'Einnahmen, Kosten und Gewinn nach Woche, Monat oder Quartal — mit Diagrammen nach Kategorie und Stand, auf einen Blick.',
+    f2_title: 'Kosten mit einem Foto erfassen', f2_text: 'Beleg mit dem Handy fotografieren, Betrag und Kategorie ergänzen — fertig. Kein Abtippen in Tabellen mehr.',
+    f3_title: 'Rechnungen direkt per E-Mail', f3_text: 'Die App hat eine eigene Empfangsadresse — Rechnungen werden automatisch verarbeitet, und der Betrag wird selbständig zu erkennen versucht.',
+    f4_title: 'Lagerverwaltung', f4_text: 'Gemeinsames Lager für mehrere Verkaufsstellen — Einkaufs-/Verkaufspreis und Marge werden automatisch berechnet.',
+    f5_title: 'Löhne der Aushilfen', f5_text: 'Stundensatz und geleistete Stunden → automatische Berechnung von Brutto-/Nettolohn, Abgaben und Lohnkosten.',
+    f6_title: 'Eigene Kategorien und Stände', f6_text: 'Die Einstellungen passen sich der Struktur Ihres Geschäfts an — nicht Sie der App, sondern die App Ihnen.',
+    cta_h2: 'Eine ähnliche App für Ihr Geschäft?',
+    cta_p: 'Genau so eine App würde ich auch für Sie bauen — maßgeschneidert für Ihr Geschäft, ohne unnötige Funktionen, die Sie nie nutzen würden.',
+    cta_wa: '💬 Auf WhatsApp schreiben', cta_back: '← Zurück zu weiteren Projekten'
+  }
+};
+
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+}
+
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
+})();
+
 const obs = new IntersectionObserver(entries => entries.forEach(e => {
   if (e.isIntersecting) e.target.classList.add('visible');
 }), {threshold:0.1});
