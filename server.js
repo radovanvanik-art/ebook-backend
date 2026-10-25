@@ -5,6 +5,7 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
 const fs = require('fs');
+const { renderLocalized } = require('./lib/i18n-render');
 
 function escapeHtml(str) {
     return String(str || '').replace(/[&<>"']/g, (ch) => ({
@@ -30,6 +31,29 @@ function sendHtmlNoCache(res, filePath) {
     res.sendFile(filePath);
 }
 
+// Prečíta stránku, doplní hreflang/canonical (a prípadne preloží obsah pre en/ua/de)
+// a pošle výsledné HTML. urlLangSegment = null pre sk, inak 'en' | 'ua' | 'de'.
+function sendLocalizedHtml(res, filePath, canonicalPath, urlLangSegment) {
+    fs.readFile(filePath, 'utf8', (err, html) => {
+        if (err) {
+            console.error('[sendLocalizedHtml] read error:', err);
+            return res.status(404).send('Stránka nebola nájdená.');
+        }
+        let out;
+        try {
+            out = renderLocalized(html, canonicalPath, urlLangSegment);
+        } catch (renderErr) {
+            console.error('[sendLocalizedHtml] render error:', renderErr);
+            out = html;
+        }
+        res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+        res.setHeader('Pragma', 'no-cache');
+        res.setHeader('Expires', '0');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.send(out);
+    });
+}
+
 // ─── HTTP → HTTPS + non-www → www redirect (produkcia) ──────────────────
 app.use((req, res, next) => {
     const proto = req.headers['x-forwarded-proto'];
@@ -45,6 +69,12 @@ app.use((req, res, next) => {
 app.use(compression());
 app.use(cors());
 app.use(express.json());
+
+// ─── Homepage (sk, default) — pred static middleware, aby sme mohli doplniť hreflang ──
+app.get('/', (req, res) => {
+    sendLocalizedHtml(res, path.join(__dirname, 'public', 'index.html'), '/', null);
+});
+
 app.use(express.static(path.join(__dirname, 'public'), {
     maxAge: '7d',
     setHeaders: (res, filePath) => {
@@ -125,21 +155,35 @@ app.get('/index.html', (req, res) => {
     res.redirect(301, '/');
 });
 
-// ─── Jazykové varianty /en/ /de/ /ua/ neexistujú → 410 Gone ─────────────
-app.get('/:lang(en|de|ua)/:page', (req, res) => {
-    res.status(410).end();
-});
-
 // ─── PODSTRÁNKY E-KNÍH ────────────────────────────────────────────────────
 const subpages = ['prvy-byt', 'dedicstvo', 'exekucia', 'rozvod', 'retazovy-obchod', 'o-mne', 'mapa', 'faq', 'blogy', 'ocenenie-bytu', 'eknihy', 'kalkulacka', 'projekty', 'naklady-dashboard'];
 subpages.forEach(page => {
     app.get(`/${page}`, (req, res) => {
-        sendHtmlNoCache(res, path.join(__dirname, 'public', `${page}.html`));
+        sendLocalizedHtml(res, path.join(__dirname, 'public', `${page}.html`), `/${page}`, null);
     });
     // Presmerovanie /stránka.html → /stránka
     app.get(`/${page}.html`, (req, res) => {
         res.redirect(301, `/${page}`);
     });
+});
+
+// ─── JAZYKOVÉ VARIANTY /en /ua /de — server-side preložené verzie ─────────
+// (SEO: crawler vidí reálny preložený obsah priamo v HTML, nielen po JS swape)
+const LOCALIZED_PAGE_FILES = { '': 'index.html' };
+subpages.forEach(page => { LOCALIZED_PAGE_FILES[page] = `${page}.html`; });
+
+app.get('/:lang(en|ua|de)/:page?', (req, res, next) => {
+    const { lang } = req.params;
+    const page = req.params.page || '';
+    const fileName = LOCALIZED_PAGE_FILES[page];
+    if (!fileName) return next();
+    const canonicalPath = page === '' ? '/' : `/${page}`;
+    sendLocalizedHtml(res, path.join(__dirname, 'public', fileName), canonicalPath, lang);
+});
+
+// Presmerovanie /en/stránka.html → /en/stránka
+app.get(/^\/(en|ua|de)\/(.+)\.html$/, (req, res) => {
+    res.redirect(301, `/${req.params[0]}/${req.params[1]}`);
 });
 
 // ─── POST /api/lead (ocenenie-bytu) ──────────────────────────────────────

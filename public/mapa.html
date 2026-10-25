@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="sk">
 <head>
 <meta charset="UTF-8"/>
@@ -362,11 +362,15 @@ const TRANSLATIONS = {
 };
 
 function t(key) {
-  const lang = localStorage.getItem('lang') || 'sk';
+  const lang = (location.pathname.match(/^\/(en|ua|de)(?:\/|$)/)||[])[1] || localStorage.getItem('lang') || 'sk';
   return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
 }
 
-function setLang(lang) {
+function setLang(lang){
+  var _lp = location.pathname.replace(/^\/(en|ua|de)(?=\/|$)/, '');
+  var _lt = (lang === 'sk' ? '' : '/' + lang) + (_lp === '' ? '/' : _lp);
+  if (_lt !== location.pathname) { localStorage.setItem('lang', lang); location.href = _lt; return; }
+
   localStorage.setItem('lang', lang);
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const k = el.getAttribute('data-i18n');
@@ -379,7 +383,7 @@ function setLang(lang) {
 }
 
 (function () {
-  const saved = localStorage.getItem('lang') || 'sk';
+  const saved = (location.pathname.match(/^\/(en|ua|de)(?:\/|$)/)||[])[1] || localStorage.getItem('lang') || 'sk';
   if (saved !== 'sk') setLang(saved);
   else ['sk', 'en', 'ua', 'de'].forEach(l => {
     const b = document.getElementById('lang-' + l);
