@@ -282,10 +282,10 @@ body { touch-action: pan-y pinch-zoom; }
       <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="22" height="15" loading="lazy"></button>
       <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="22" height="15" loading="lazy"></button>
     </div>
-    <a href="/" class="nav-link">Domov</a>
-    <a href="/#books" class="nav-link">E-knihy</a>
-    <a href="/o-mne" class="nav-link">O mne</a>
-    <a href="/faq" class="nav-link active">FAQ</a>
+    <a href="/" class="nav-link" data-i18n="nav_domov">Domov</a>
+    <a href="/#books" class="nav-link" data-i18n="nav_eknihy">E-knihy</a>
+    <a href="/o-mne" class="nav-link" data-i18n="nav_omne">O mne</a>
+    <a href="/faq" class="nav-link active" data-i18n="nav_faq">FAQ</a>
     <a href="/#books" class="nav-cta" data-i18n="nav_cta_ebook">Vybrať e-knihu →</a>
   </div>
   <div class="nav-right">
@@ -520,7 +520,7 @@ body { touch-action: pan-y pinch-zoom; }
 <script>
 const TRANSLATIONS = {
   sk: {
-    nav_cta_ebook:'Vybrať e-knihu →',
+    nav_cta_ebook:'Vybrať e-knihu →', nav_domov:'Domov', nav_eknihy:'E-knihy', nav_omne:'O mne', nav_faq:'FAQ',
     hero_eyebrow:'Časté otázky',
     hero_h1:'Všetko čo potrebujete vedieť o <em>nehnuteľnostiach</em>',
     hero_sub:'Odpovede na najčastejšie otázky o predaji, kúpe, dedičstve a rozvode nehnuteľností v regióne Ružomberok, Liptovský Mikuláš a Dolný Kubín.',
@@ -560,7 +560,7 @@ const TRANSLATIONS = {
     faq_a11:'Áno, rezervačná zmluva je <strong>právne záväzný dokument</strong>. Predávajúci sa zaväzuje, že nehnuteľnosť nebude ponúkať iným záujemcom po dohodnutú dobu, a kupujúci zloží rezervačný poplatok. Pred podpisom si vždy nechajte zmluvu skontrolovať - ja to robím za vás ako súčasť mojich služieb.<br><a class="faq-link" href="/prvy-byt">📖 Zistiť viac →</a>',
   },
   en: {
-    nav_cta_ebook:'Choose e-book →',
+    nav_cta_ebook:'Choose e-book →', nav_domov:'Home', nav_eknihy:'E-books', nav_omne:'About me', nav_faq:'FAQ',
     hero_eyebrow:'Frequently asked questions',
     hero_h1:'Everything you need to know about <em>real estate</em>',
     hero_sub:'Answers to the most common questions about buying, selling, inheritance and divorce involving property in the Ružomberok, Liptovský Mikuláš and Dolný Kubín region.',
@@ -600,7 +600,7 @@ const TRANSLATIONS = {
     faq_a11:'Yes, a reservation agreement is a <strong>legally binding document</strong>. The seller commits not to offer the property to other buyers for an agreed period. Always have the contract checked before signing - I do this for you as part of my services.<br><a class="faq-link" href="/prvy-byt">📖 Find out more →</a>',
   },
   ua: {
-    nav_cta_ebook:'Обрати е-книгу →',
+    nav_cta_ebook:'Обрати е-книгу →', nav_domov:'Головна', nav_eknihy:'Електронні книги', nav_omne:'Про мене', nav_faq:'FAQ',
     hero_eyebrow:'Часті запитання',
     hero_h1:'Все, що вам потрібно знати про <em>нерухомість</em>',
     hero_sub:'Відповіді на найпоширеніші запитання про продаж, покупку, спадщину та розлучення.',
@@ -640,7 +640,7 @@ const TRANSLATIONS = {
     faq_a11:'Так, резервна угода - це <strong>юридично обов\'язковий документ</strong>. Продавець зобов\'язується не пропонувати нерухомість іншим покупцям протягом узгодженого терміну. Завжди перевіряйте угоду перед підписанням - я роблю це за вас.<br><a class="faq-link" href="/prvy-byt">📖 Дізнатися більше →</a>',
   },
   de: {
-    nav_cta_ebook:'E-Book wählen →',
+    nav_cta_ebook:'E-Book wählen →', nav_domov:'Start', nav_eknihy:'E-Books', nav_omne:'Über mich', nav_faq:'FAQ',
     hero_eyebrow:'Häufig gestellte Fragen',
     hero_h1:'Alles, was Sie über <em>Immobilien</em> wissen müssen',
     hero_sub:'Antworten auf die häufigsten Fragen zu Kauf, Verkauf, Erbschaft und Scheidung in der Region Ružomberok, Liptovský Mikuláš und Dolný Kubín.',

@@ -306,13 +306,13 @@ body { touch-action: pan-y pinch-zoom; }
       <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="22" height="15" loading="lazy"></button>
       <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="22" height="15" loading="lazy"></button>
     </div>
-    <a href="/" class="nav-link">Domov</a>
-    <a href="/dedicstvo" class="nav-link">Dedičstvo</a>
-    <a href="/exekucia" class="nav-link">Exekúcia</a>
-    <a href="/prvy-byt" class="nav-link">Prvý byt</a>
-    <a href="/retazovy-obchod" class="nav-link">Reťazový obchod</a>
-    <a href="/rozvod" class="nav-link">Rozvod</a>
-    <a href="/o-mne" class="nav-link" style="color:white">O mne</a>
+    <a href="/" class="nav-link" data-i18n="nav_domov">Domov</a>
+    <a href="/dedicstvo" class="nav-link" data-i18n="nav_dedicstvo">Dedičstvo</a>
+    <a href="/exekucia" class="nav-link" data-i18n="nav_exekucia">Exekúcia</a>
+    <a href="/prvy-byt" class="nav-link" data-i18n="nav_prvybyt">Prvý byt</a>
+    <a href="/retazovy-obchod" class="nav-link" data-i18n="nav_retazovy">Reťazový obchod</a>
+    <a href="/rozvod" class="nav-link" data-i18n="nav_rozvod">Rozvod</a>
+    <a href="/o-mne" class="nav-link" data-i18n="nav_omne" style="color:white">O mne</a>
     <a href="/#books" class="nav-cta" data-i18n="nav_cta_ebook">Vybrať e-knihu →</a>
   </div>
   <div class="nav-right">
@@ -360,9 +360,9 @@ body { touch-action: pan-y pinch-zoom; }
     <!-- CONTENT -->
     <div class="about-panel reveal reveal-d2">
       <div class="about-breadcrumb">
-        <a href="/">Domov</a>
+        <a href="/" data-i18n="nav_domov">Domov</a>
         <span>›</span>
-        <span>O mne</span>
+        <span data-i18n="nav_omne">O mne</span>
       </div>
       <div class="about-tag">
         <span class="about-tag-dot"></span>
@@ -591,7 +591,7 @@ body { touch-action: pan-y pinch-zoom; }
 <script>
 const TRANSLATIONS = {
   sk: {
-    nav_cta_ebook:'Vybrať e-knihu →', float_wa:'Napíšte na WhatsApp', float_ph:'Zavolať Radovanovi',
+    nav_cta_ebook:'Vybrať e-knihu →', nav_domov:'Domov', nav_dedicstvo:'Dedičstvo', nav_exekucia:'Exekúcia', nav_prvybyt:'Prvý byt', nav_retazovy:'Reťazový obchod', nav_rozvod:'Rozvod', nav_omne:'O mne', float_wa:'Napíšte na WhatsApp', float_ph:'Zavolať Radovanovi',
     about_tag:'Certifikovaný maklér · Reality Najbývanie',
     about_text1:'Pomáham ľuďom v regiónoch <strong>Ružomberok, Liptovský Mikuláš a Dolný Kubín</strong> prejsť realitnými zmenami - predajom, dedičstvom aj rozvodom - bez stresu a zbytočných finančných strát.',
     about_text2:'Verím, že každý klient si zasluží niekoho, kto mu situáciu <strong>vysvetlí po ľudsky</strong> - nie v právnickom jazyku. Preto som vytvoril 5 bezplatných príručiek, aby ste prišli pripravení.',
@@ -623,7 +623,7 @@ const TRANSLATIONS = {
     el5_tag:'Predaj + kúpa', el5_title:'Reťazový obchod',
   },
   en: {
-    nav_cta_ebook:'Choose e-book →', float_wa:'Write on WhatsApp', float_ph:'Call Radovan',
+    nav_cta_ebook:'Choose e-book →', nav_domov:'Home', nav_dedicstvo:'Inheritance', nav_exekucia:'Enforcement', nav_prvybyt:'First home', nav_retazovy:'Chain transaction', nav_rozvod:'Divorce', nav_omne:'About me', float_wa:'Write on WhatsApp', float_ph:'Call Radovan',
     about_tag:'Certified real estate agent · Reality Najbývanie',
     about_text1:'I help people in the regions of <strong>Ružomberok, Liptovský Mikuláš and Dolný Kubín</strong> navigate real estate changes - selling, inheritance and divorce - without stress or unnecessary financial loss.',
     about_text2:'I believe every client deserves someone who explains the situation <strong>in plain language</strong> - not in legal jargon. That\'s why I created 5 free guides, so you come prepared.',
@@ -655,7 +655,7 @@ const TRANSLATIONS = {
     el5_tag:'Sale + purchase', el5_title:'Chain deal',
   },
   ua: {
-    nav_cta_ebook:'Обрати е-книгу →', float_wa:'Написати у WhatsApp', float_ph:'Подзвонити Радовану',
+    nav_cta_ebook:'Обрати е-книгу →', nav_domov:'Головна', nav_dedicstvo:'Спадщина', nav_exekucia:'Виконавче провадження', nav_prvybyt:'Перше житло', nav_retazovy:'Ланцюгова угода', nav_rozvod:'Розлучення', nav_omne:'Про мене', float_wa:'Написати у WhatsApp', float_ph:'Подзвонити Радовану',
     about_tag:'Сертифікований агент · Reality Najbývanie',
     about_text1:'Допомагаю людям у регіонах <strong>Ružomberok, Liptovský Mikuláš і Dolný Kubín</strong> пройти зміни в нерухомості - продаж, спадщина, розлучення - без стресу.',
     about_text2:'Вірю, що кожен клієнт заслуговує людину, яка <strong>пояснить зрозуміло</strong> - не юридичною мовою. Тому я створив 5 безкоштовних посібників.',
@@ -687,7 +687,7 @@ const TRANSLATIONS = {
     el5_tag:'Продаж + купівля', el5_title:'Ланцюгова угода',
   },
   de: {
-    nav_cta_ebook:'E-Book wählen →', float_wa:'WhatsApp schreiben', float_ph:'Radovan anrufen',
+    nav_cta_ebook:'E-Book wählen →', nav_domov:'Start', nav_dedicstvo:'Erbschaft', nav_exekucia:'Zwangsvollstreckung', nav_prvybyt:'Erste Wohnung', nav_retazovy:'Kettengeschäft', nav_rozvod:'Scheidung', nav_omne:'Über mich', float_wa:'WhatsApp schreiben', float_ph:'Radovan anrufen',
     about_tag:'Zertifizierter Makler · Reality Najbývanie',
     about_text1:'Ich helfe Menschen in den Regionen <strong>Ružomberok, Liptovský Mikuláš und Dolný Kubín</strong>, Immobilienveränderungen zu meistern - Verkauf, Erbschaft und Scheidung - ohne Stress und unnötige Verluste.',
     about_text2:'Ich glaube, jeder Kunde verdient jemanden, der die Situation <strong>in verständlicher Sprache erklärt</strong> - nicht im Juristendeutsch. Deshalb habe ich 5 kostenlose Leitfäden erstellt.',
