@@ -363,12 +363,12 @@ body { touch-action: pan-y pinch-zoom; }
       <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="22" height="15" loading="lazy"></button>
       <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="22" height="15" loading="lazy"></button>
     </div>
-    <a href="/dedicstvo" class="nav-link">Dedičstvo</a>
-    <a href="/exekucia" class="nav-link">Exekúcia</a>
-    <a href="/prvy-byt" class="nav-link">Prvý byt</a>
-    <a href="/retazovy-obchod" class="nav-link">Reťazový obchod</a>
-    <a href="/rozvod" class="nav-link">Rozvod</a>
-    <a href="/o-mne" class="nav-link">O mne</a>
+    <a href="/dedicstvo" class="nav-link" data-i18n="nav_dedicstvo">Dedičstvo</a>
+    <a href="/exekucia" class="nav-link" data-i18n="nav_exekucia">Exekúcia</a>
+    <a href="/prvy-byt" class="nav-link" data-i18n="nav_prvybyt">Prvý byt</a>
+    <a href="/retazovy-obchod" class="nav-link" data-i18n="nav_retazovy">Reťazový obchod</a>
+    <a href="/rozvod" class="nav-link" data-i18n="nav_rozvod">Rozvod</a>
+    <a href="/o-mne" class="nav-link" data-i18n="nav_omne">O mne</a>
     <a href="tel:+421948310950" class="nav-cta" data-i18n="nav_cta_phone">📞 Poradiť sa</a>
   </div>
   <div class="nav-right">
@@ -386,39 +386,39 @@ body { touch-action: pan-y pinch-zoom; }
   <div class="hero-sub-inner">
     <div>
       <div class="hero-sub-breadcrumb">
-        <a href="/">Domov</a>
+        <a href="/" data-i18n="crumb_home">Domov</a>
         <span>›</span>
-        <a href="/#books">E-knihy</a>
+        <a href="/#books" data-i18n="crumb_eknihy">E-knihy</a>
         <span>›</span>
-        <span style="color:rgba(255,255,255,0.82)">Rozvod a predaj majetku</span>
+        <span style="color:rgba(255,255,255,0.82)" data-i18n="hero_h1">Rozvod a predaj majetku</span>
       </div>
       <h1 data-i18n="hero_h1">Rozvod a predaj majetku</h1>
       <p class="hero-sub-desc" data-i18n="hero_desc">Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.</p>
       <div class="hero-sub-meta">
         <div class="hero-sub-meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/></svg>
-          24 strán
+          <span data-i18n="meta_pages">24 strán</span>
         </div>
         <div class="hero-sub-meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-          Zadarmo · PDF
+          <span data-i18n="meta_free">Zadarmo · PDF</span>
         </div>
         <div class="hero-sub-meta-item">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"/></svg>
-          Aktualizované 2025
+          <span data-i18n="meta_updated">Aktualizované 2025</span>
         </div>
       </div>
     </div>
     <div class="book-visual">
       <div class="book-3d" onclick="document.getElementById('email-input').focus()">
         <div class="book-cover">
-          <div class="book-cover-tag">Rozvod · Bolesť, nový začiatok</div>
+          <div class="book-cover-tag" data-i18n="form_card_tag">Rozvod · Bolesť, nový začiatok</div>
           <div class="book-cover-emoji">⚖️</div>
-          <div class="book-cover-title">Rozvod a predaj majetku</div>
+          <div class="book-cover-title" data-i18n="hero_h1">Rozvod a predaj majetku</div>
           <div class="book-cover-deco"></div>
           <div class="book-cover-author">Radovan Vaník · 2025</div>
         </div>
-        <div class="book-cover-pages"><strong>24</strong>strán</div>
+        <div class="book-cover-pages"><strong>24</strong><span data-i18n="meta_pages_word">strán</span></div>
       </div>
       <div class="book-shadow"></div>
     </div>
@@ -588,7 +588,7 @@ body { touch-action: pan-y pinch-zoom; }
 <script>
 const TRANSLATIONS = {
   sk: {
-    nav_cta_phone:'📞 Poradiť sa', float_wa:'Napíšte na WhatsApp', float_ph:'Zavolať Radovanovi',
+    nav_cta_phone:'📞 Poradiť sa', float_wa:'Napíšte na WhatsApp', float_ph:'Zavolať Radovanovi', nav_dedicstvo:'Dedičstvo', nav_exekucia:'Exekúcia', nav_prvybyt:'Prvý byt', nav_retazovy:'Reťazový obchod', nav_rozvod:'Rozvod', nav_omne:'O mne', crumb_home:'Domov', crumb_eknihy:'E-knihy', meta_free:'Zadarmo · PDF', meta_updated:'Aktualizované 2025', meta_pages:'24 strán', meta_pages_word:'strán',
     hero_tag:'⚖️ Rozvod · Bolesť, nový začiatok', hero_h1:'Rozvod a predaj majetku',
     hero_desc:'Citlivý sprievodca pre páry, ktoré sa rozchádzajú a potrebujú vyriešiť spoločnú nehnuteľnosť. BSM, možnosti vysporiadania, predaj bytu počas rozvodu.',
     form_card_tag:'Rozvod · Bolesť, nový začiatok', form_h3:'Stiahnuť zadarmo',
@@ -607,7 +607,7 @@ const TRANSLATIONS = {
     ob_prv_tag:'Prvá kúpa · Nový začiatok', ob_prv_title:'Váš prvý byt', ob_prv_pages:'26 strán', ob_ded_tag:'Dedičstvo · Zmätok, papierovačky', ob_ded_title:'Zdedili ste nehnuteľnosť?', ob_ded_pages:'20 strán', ob_exe_tag:'Dlhová kríza · Strach, naliehavosť', ob_exe_title:'Exekúcia na dverách', ob_exe_pages:'26 strán', ob_ret_tag:'Predaj + kúpa · Koordinácia', ob_ret_title:'Reťazový obchod', ob_ret_pages:'32 strán',
   },
   en: {
-    nav_cta_phone:'📞 Get Advice', float_wa:'Write on WhatsApp', float_ph:'Call Radovan',
+    nav_cta_phone:'📞 Get Advice', float_wa:'Write on WhatsApp', float_ph:'Call Radovan', nav_dedicstvo:'Inheritance', nav_exekucia:'Enforcement', nav_prvybyt:'First home', nav_retazovy:'Chain transaction', nav_rozvod:'Divorce', nav_omne:'About me', crumb_home:'Home', crumb_eknihy:'E-books', meta_free:'Free · PDF', meta_updated:'Updated 2025', meta_pages:'24 pages', meta_pages_word:'pages',
     hero_tag:'⚖️ Divorce · Pain, new beginning', hero_h1:'Divorce and property sale',
     hero_desc:'A sensitive guide for couples separating who need to resolve jointly owned property. Community property, settlement options, selling an apartment during divorce.',
     form_card_tag:'Divorce · Pain, new beginning', form_h3:'Download free',
@@ -626,7 +626,7 @@ const TRANSLATIONS = {
     ob_prv_tag:'First purchase · New beginning', ob_prv_title:'Your first flat', ob_prv_pages:'26 pages', ob_ded_tag:'Inheritance · Confusion, paperwork', ob_ded_title:'Did you inherit a property?', ob_ded_pages:'20 pages', ob_exe_tag:'Debt crisis · Fear, urgency', ob_exe_title:'Bailiff at the door', ob_exe_pages:'26 pages', ob_ret_tag:'Sale + purchase · Coordination', ob_ret_title:'Chain deal', ob_ret_pages:'32 pages',
   },
   ua: {
-    nav_cta_phone:'📞 Порадитися', float_wa:'Написати у WhatsApp', float_ph:'Подзвонити Радовану',
+    nav_cta_phone:'📞 Порадитися', float_wa:'Написати у WhatsApp', float_ph:'Подзвонити Радовану', nav_dedicstvo:'Спадщина', nav_exekucia:'Виконавче провадження', nav_prvybyt:'Перше житло', nav_retazovy:'Ланцюгова угода', nav_rozvod:'Розлучення', nav_omne:'Про мене', crumb_home:'Головна', crumb_eknihy:'Електронні книги', meta_free:'Безкоштовно · PDF', meta_updated:'Оновлено 2025', meta_pages:'24 сторінок', meta_pages_word:'сторінок',
     hero_tag:'⚖️ Розлучення · Біль, новий початок', hero_h1:'Розділ та продаж майна',
     hero_desc:'Чутливий посібник для пар, які розлучаються і потребують вирішити спільну нерухомість. Спільне майно, варіанти регулювання, продаж квартири під час розлучення.',
     form_card_tag:'Розлучення · Біль, новий початок', form_h3:'Завантажити безкоштовно',
@@ -645,7 +645,7 @@ const TRANSLATIONS = {
     ob_prv_tag:'Перша купівля · Новий початок', ob_prv_title:'Ваша перша квартира', ob_prv_pages:'26 сторінок', ob_ded_tag:'Спадщина · Нерозуміння, папери', ob_ded_title:'Ви успадкували нерухомість?', ob_ded_pages:'20 сторінок', ob_exe_tag:'Боргова криза · Страх, терміновість', ob_exe_title:'Виконавець біля дверей', ob_exe_pages:'26 сторінок', ob_ret_tag:'Продаж + купівля · Координація', ob_ret_title:'Ланцюгова угода', ob_ret_pages:'32 сторінки',
   },
   de: {
-    nav_cta_phone:'📞 Beratung anfordern', float_wa:'WhatsApp schreiben', float_ph:'Radovan anrufen',
+    nav_cta_phone:'📞 Beratung anfordern', float_wa:'WhatsApp schreiben', float_ph:'Radovan anrufen', nav_dedicstvo:'Erbschaft', nav_exekucia:'Zwangsvollstreckung', nav_prvybyt:'Erste Wohnung', nav_retazovy:'Kettengeschäft', nav_rozvod:'Scheidung', nav_omne:'Über mich', crumb_home:'Start', crumb_eknihy:'E-Books', meta_free:'Kostenlos · PDF', meta_updated:'Aktualisiert 2025', meta_pages:'24 Seiten', meta_pages_word:'Seiten',
     hero_tag:'⚖️ Scheidung · Schmerz, Neuanfang', hero_h1:'Scheidung und Immobilienverkauf',
     hero_desc:'Ein erühlsamer Leitfaden für Paare, die sich trennen und eine gemeinsame Immobilie regeln müssen. Gemeinschaftseigentum, Ausgleichsoptionen, Wohnungsverkauf während der Scheidung.',
     form_card_tag:'Scheidung · Schmerz, Neuanfang', form_h3:'Kostenlos herunterladen',
