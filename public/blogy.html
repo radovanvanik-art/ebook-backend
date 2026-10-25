@@ -1256,6 +1256,7 @@
             <button type="submit" class="cta-email-btn" data-i18n="cta_strip_btn">Rezervovať ocenenie</button>
           </form>
           <div class="cta-email-success" id="ctaSuccess" style="display:none" data-i18n="cta_strip_success">✅ Ďakujeme! Ozveme sa do 24 hodín.</div>
+          <div class="cta-email-success" id="ctaError" style="display:none;color:#ff6b6b" data-i18n="cta_strip_error">⚠️ Niečo sa nepodarilo. Skúste to znova alebo nám napíšte na WhatsApp.</div>
           <a href="tel:+421948310950" class="btn-gold">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
             <span data-i18n="cta_strip_call">Zavolať</span>
@@ -1341,7 +1342,9 @@
       c6_cta: 'Domov →',
       cta_strip_title: 'Zdedili ste nehnuteľnosť?<br>Nechajte si ju oceniť.',
       cta_strip_btn: 'Rezervovať ocenenie',
+      cta_strip_sending: 'Odosielam...',
       cta_strip_success: '✅ Ďakujeme! Ozveme sa do 24 hodín.',
+      cta_strip_error: '⚠️ Niečo sa nepodarilo. Skúste to znova alebo nám napíšte na WhatsApp.',
       cta_strip_call: 'Zavolať',
       email_placeholder: 'váš@email.sk'
     },
@@ -1378,7 +1381,9 @@
       c6_cta: 'Home →',
       cta_strip_title: 'Inherited a property?<br>Get it valued.',
       cta_strip_btn: 'Book a valuation',
+      cta_strip_sending: 'Sending...',
       cta_strip_success: '✅ Thank you! We\'ll get back to you within 24 hours.',
+      cta_strip_error: '⚠️ Something went wrong. Please try again or message us on WhatsApp.',
       cta_strip_call: 'Call',
       email_placeholder: 'your@email.com'
     },
@@ -1415,7 +1420,9 @@
       c6_cta: 'Головна →',
       cta_strip_title: 'Успадкували нерухомість?<br>Дайте її оцінити.',
       cta_strip_btn: 'Забронювати оцінку',
+      cta_strip_sending: 'Надсилаємо...',
       cta_strip_success: '✅ Дякуємо! Зв’яжемось протягом 24 годин.',
+      cta_strip_error: '⚠️ Щось не вдалося. Спробуйте ще раз або напишіть нам у WhatsApp.',
       cta_strip_call: 'Зателефонувати',
       email_placeholder: 'vash@email.com'
     },
@@ -1452,7 +1459,9 @@
       c6_cta: 'Startseite →',
       cta_strip_title: 'Eine Immobilie geerbt?<br>Lassen Sie sie bewerten.',
       cta_strip_btn: 'Bewertung reservieren',
+      cta_strip_sending: 'Wird gesendet...',
       cta_strip_success: '✅ Danke! Wir melden uns innerhalb von 24 Stunden.',
+      cta_strip_error: '⚠️ Etwas ist schiefgelaufen. Versuchen Sie es erneut oder schreiben Sie uns auf WhatsApp.',
       cta_strip_call: 'Anrufen',
       email_placeholder: 'ihre@email.de'
     }
@@ -1535,18 +1544,33 @@
   }
 
   // ── CTA EMAIL FORM ───────────────────────────────────
-  function ctaEmailSubmit(e) {
+  async function ctaEmailSubmit(e) {
     e.preventDefault();
     const form = e.target;
     const email = form.querySelector('input[type="email"]').value;
-    form.style.display = 'none';
-    document.getElementById('ctaSuccess').style.display = 'block';
-    // Odoslanie na server (ak endpoint existuje)
-    fetch('/api/rezervacia', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, typ: 'ocenenie-dedicstvo' })
-    }).catch(() => {}); // silent fail ak endpoint neexistuje
+    const btn = form.querySelector('.cta-email-btn');
+    const errEl = document.getElementById('ctaError');
+    errEl.style.display = 'none';
+    const sendingLabel = t('cta_strip_sending');
+    const originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = sendingLabel;
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, bookType: 'blog-cta-dedicstvo' })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.success) throw new Error(data.error || 'Chyba servera');
+      form.style.display = 'none';
+      document.getElementById('ctaSuccess').style.display = 'block';
+      if (typeof gtag !== 'undefined') gtag('event', 'lead_submit', { source: 'blog_cta_strip' });
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      errEl.style.display = 'block';
+    }
   }
 
   // ── SCROLL REVEAL ────────────────────────────────────
