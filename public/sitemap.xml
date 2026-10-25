@@ -1,93 +1,663 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.radovanvanik.com/</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.radovanvanik.com/dedicstvo</loc>
-    <lastmod>2026-03-30</lastmod>
+    <loc>https://www.radovanvanik.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/dedicstvo</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/dedicstvo" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/dedicstvo</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/dedicstvo" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/dedicstvo</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/dedicstvo" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/dedicstvo</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/dedicstvo" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/dedicstvo" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.radovanvanik.com/exekucia</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/exekucia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/exekucia" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/exekucia" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/exekucia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/exekucia" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/exekucia</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/exekucia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/exekucia" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/exekucia" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/exekucia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/exekucia" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/exekucia</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/exekucia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/exekucia" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/exekucia" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/exekucia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/exekucia" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/exekucia</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/exekucia" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/exekucia" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/exekucia" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/exekucia" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/exekucia" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.radovanvanik.com/prvy-byt</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/prvy-byt" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/prvy-byt</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/prvy-byt" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/prvy-byt</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/prvy-byt" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/prvy-byt</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/prvy-byt" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/prvy-byt" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.radovanvanik.com/retazovy-obchod</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/retazovy-obchod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/retazovy-obchod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/retazovy-obchod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/retazovy-obchod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/retazovy-obchod" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.radovanvanik.com/rozvod</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/rozvod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/rozvod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/rozvod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/rozvod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/rozvod" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.radovanvanik.com/faq</loc>
-    <lastmod>2026-03-30</lastmod>
+    <loc>https://www.radovanvanik.com/en/rozvod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/rozvod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/rozvod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/rozvod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/rozvod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/rozvod" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/rozvod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/rozvod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/rozvod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/rozvod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/rozvod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/rozvod" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/rozvod</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/rozvod" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/rozvod" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/rozvod" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/rozvod" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/rozvod" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/faq</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/faq" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/faq" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/faq" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/faq</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/faq" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/faq" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/faq" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/faq</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/faq" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/faq" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/faq" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/faq</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/faq" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/faq" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/faq" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.radovanvanik.com/mapa</loc>
-    <lastmod>2026-03-30</lastmod>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/mapa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/mapa" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/mapa" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/mapa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/mapa" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.radovanvanik.com/ocenenie-bytu</loc>
-    <lastmod>2026-04-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.radovanvanik.com/eknihy</loc>
-    <lastmod>2026-04-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.radovanvanik.com/kalkulacka</loc>
-    <lastmod>2026-04-07</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.radovanvanik.com/o-mne</loc>
-    <lastmod>2026-03-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.radovanvanik.com/blogy</loc>
-    <lastmod>2026-04-01</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://www.radovanvanik.com/projekty</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.radovanvanik.com/en/mapa</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/mapa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/mapa" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/mapa" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/mapa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/mapa" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.radovanvanik.com/naklady-dashboard</loc>
-    <lastmod>2026-08-28</lastmod>
+    <loc>https://www.radovanvanik.com/ua/mapa</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/mapa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/mapa" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/mapa" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/mapa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/mapa" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/mapa</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/mapa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/mapa" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/mapa" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/mapa" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/mapa" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ocenenie-bytu</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/ocenenie-bytu</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/ocenenie-bytu</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/ocenenie-bytu</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/ocenenie-bytu" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/ocenenie-bytu" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/eknihy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/eknihy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/eknihy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/eknihy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/eknihy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/eknihy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/eknihy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/eknihy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/eknihy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/eknihy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/eknihy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/eknihy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/eknihy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/eknihy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/eknihy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/eknihy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/eknihy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/eknihy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/eknihy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/eknihy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/eknihy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/eknihy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/eknihy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/eknihy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/kalkulacka</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/kalkulacka" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/kalkulacka</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/kalkulacka" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/kalkulacka</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/kalkulacka" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/kalkulacka</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/kalkulacka" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/kalkulacka" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/o-mne</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/o-mne" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/o-mne" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/o-mne" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/o-mne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/o-mne" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/o-mne</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/o-mne" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/o-mne" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/o-mne" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/o-mne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/o-mne" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/o-mne</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/o-mne" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/o-mne" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/o-mne" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/o-mne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/o-mne" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/o-mne</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/o-mne" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/o-mne" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/o-mne" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/o-mne" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/o-mne" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/blogy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/blogy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/blogy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/blogy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/blogy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/blogy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/blogy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/blogy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/blogy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/blogy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/blogy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/blogy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/blogy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/blogy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/blogy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/blogy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/blogy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/blogy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/blogy</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/blogy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/blogy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/blogy" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/blogy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/blogy" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/projekty</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/projekty" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/projekty" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/projekty" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/projekty" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/projekty" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/projekty</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/projekty" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/projekty" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/projekty" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/projekty" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/projekty" />
+    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/projekty</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/projekty" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/projekty" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/projekty" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/projekty" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/projekty" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/projekty</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/projekty" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/projekty" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/projekty" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/projekty" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/projekty" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/naklady-dashboard</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/en/naklady-dashboard</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/ua/naklady-dashboard</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://www.radovanvanik.com/de/naklady-dashboard</loc>
+    <xhtml:link rel="alternate" hreflang="sk" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.radovanvanik.com/en/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="uk" href="https://www.radovanvanik.com/ua/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.radovanvanik.com/de/naklady-dashboard" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.radovanvanik.com/naklady-dashboard" />
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>
