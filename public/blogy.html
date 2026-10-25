@@ -118,6 +118,12 @@
     }
     .nav-social:hover { color: var(--white); background: rgba(255,255,255,0.09); }
     .nav-social svg { pointer-events: none; }
+    .lang-switcher { display: flex; align-items: center; gap: 2px; background: rgba(255,255,255,0.06); border: 1px solid var(--border-d); border-radius: 999px; padding: 3px; }
+    .lang-btn { background: transparent; border: none; cursor: pointer; width: 28px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 999px; opacity: 0.5; transition: opacity 0.18s, background 0.18s, transform 0.15s, box-shadow 0.18s; }
+    .lang-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .lang-btn.active { background: var(--gold); opacity: 1; box-shadow: 0 2px 10px rgba(200,133,31,0.45); }
+    .lang-btn img { width: 20px; height: 14px; object-fit: cover; border-radius: 3px; display: block; pointer-events: none; }
+    .lang-switcher--mobile { justify-content: center; margin: 0.5rem 0; }
     .nav-cta {
       background: var(--gold); color: var(--white);
       padding: 0.5rem 1.15rem; border-radius: 6px;
@@ -162,6 +168,7 @@
       .nav-hamburger { display: flex; }
       .nav-center { gap: 0.4rem; flex: 1; min-width: 0; overflow: hidden; }
       .nav-center > a { display: none; }
+      .nav-center > .lang-switcher { display: none; }
       .nav-phone { width: 34px; height: 34px; padding: 0; gap: 0; justify-content: center; border-radius: 999px; }
       .nav-phone svg { width: 15px; height: 15px; }
       .nav-phone-label { display: none; }
@@ -914,12 +921,18 @@
     <span class="nav-phone-label">+421 948 310 950</span>
   </a>
   <div class="nav-center">
-    <a href="/" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Domov</a>
-    <a href="/o-mne" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
-    <a href="/mapa" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
-    <a href="/faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
-    <a href="/blogy" style="color:var(--gold);font-size:0.82rem;font-weight:600;text-decoration:none;">Blog</a>
-    <a href="/" class="nav-cta">Vybrať e-knihu →</a>
+    <a href="/" data-i18n="nav_home" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Domov</a>
+    <a href="/o-mne" data-i18n="nav_about" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">O mne</a>
+    <a href="/mapa" data-i18n="nav_map" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">Mapa ponúk</a>
+    <a href="/faq" data-i18n="nav_faq" style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-weight:500;text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.55)'">FAQ</a>
+    <a href="/blogy" data-i18n="nav_blog" style="color:var(--gold);font-size:0.82rem;font-weight:600;text-decoration:none;">Blog</a>
+    <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+      <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+      <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+    </div>
+    <a href="/" class="nav-cta" data-i18n="nav_cta">Vybrať e-knihu →</a>
   </div>
   <button class="nav-hamburger" id="navHamburger" aria-label="Otvoriť menu" onclick="toggleMobileMenu()">
     <span></span><span></span><span></span>
@@ -936,13 +949,20 @@
 
 <!-- MOBILE MENU -->
 <nav class="mobile-menu" id="mobileMenu" aria-label="Mobilná navigácia">
-  <a href="/" onclick="closeMobileMenu()">Domov</a>
-  <a href="/o-mne" onclick="closeMobileMenu()">O mne</a>
-  <a href="/mapa" onclick="closeMobileMenu()">Mapa ponúk</a>
-  <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
-  <a href="/blogy" onclick="closeMobileMenu()" style="color:var(--gold);font-weight:600;">Blog</a>
+  <a href="/" data-i18n="nav_home" onclick="closeMobileMenu()">Domov</a>
+  <a href="/o-mne" data-i18n="nav_about" onclick="closeMobileMenu()">O mne</a>
+  <a href="/mapa" data-i18n="nav_map" onclick="closeMobileMenu()">Mapa ponúk</a>
+  <a href="/faq" data-i18n="nav_faq" onclick="closeMobileMenu()">FAQ</a>
+  <a href="/blogy" data-i18n="nav_blog" onclick="closeMobileMenu()" style="color:var(--gold);font-weight:600;">Blog</a>
   <div class="mobile-menu-sep"></div>
-  <button class="mob-cta" onclick="closeMobileMenu(); window.location.href='/'">Stiahnuť e-knihu zadarmo →</button>
+  <div class="lang-switcher lang-switcher--mobile" role="group" aria-label="Jazyk / Language">
+    <button class="lang-btn active" id="lang-sk-m" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-en-m" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-ua-m" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-de-m" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+  </div>
+  <div class="mobile-menu-sep"></div>
+  <button class="mob-cta" data-i18n="mob_cta" onclick="closeMobileMenu(); window.location.href='/'">Stiahnuť e-knihu zadarmo →</button>
 </nav>
 
 <main id="main-content">
@@ -1005,24 +1025,24 @@
       </g>
     </svg>
     <div class="blog-hero-inner reveal">
-      <div class="bh-tag">Realitný blog · Radovan Vaník</div>
-      <h1>Reality bez<br/>zbytočných<br/>slov.</h1>
+      <div class="bh-tag" data-i18n="hero_tag">Realitný blog · Radovan Vaník</div>
+      <h1 data-i18n="hero_h1">Reality bez<br/>zbytočných<br/>slov.</h1>
       <div class="bh-rule"></div>
-      <p class="blog-hero-sub">Väčšina ľudí to zistí neskoro. Vy to zistíte teraz.</p>
+      <p class="blog-hero-sub" data-i18n="hero_sub">Väčšina ľudí to zistí neskoro. Vy to zistíte teraz.</p>
       <div class="bh-stats">
         <div class="bh-stat">
           <span class="bh-stat-num">6</span>
-          <span class="bh-stat-label">Článkov</span>
+          <span class="bh-stat-label" data-i18n="stat_articles">Článkov</span>
         </div>
         <div class="bh-stat-sep"></div>
         <div class="bh-stat">
           <span class="bh-stat-num">5</span>
-          <span class="bh-stat-label">E-knihy zadarmo</span>
+          <span class="bh-stat-label" data-i18n="stat_ebooks">E-knihy zadarmo</span>
         </div>
         <div class="bh-stat-sep"></div>
         <div class="bh-stat">
           <span class="bh-stat-num">260+</span>
-          <span class="bh-stat-label">Stiahnutí</span>
+          <span class="bh-stat-label" data-i18n="stat_downloads">Stiahnutí</span>
         </div>
       </div>
     </div>
@@ -1031,13 +1051,13 @@
   <!-- FILTER BAR -->
   <div class="filter-bar" role="navigation" aria-label="Kategórie">
     <div class="filter-inner">
-      <button class="filter-btn active" onclick="filterPosts('all', this)">Všetky</button>
-      <button class="filter-btn" onclick="filterPosts('predaj', this)">Predaj</button>
-      <button class="filter-btn" onclick="filterPosts('kupа', this)">Kúpa</button>
-      <button class="filter-btn" onclick="filterPosts('dedicstvo', this)">Dedičstvo</button>
-      <button class="filter-btn" onclick="filterPosts('rozvod', this)">Rozvod</button>
-      <button class="filter-btn" onclick="filterPosts('exekucia', this)">Exekúcia</button>
-      <button class="filter-btn" onclick="filterPosts('trh', this)">Trh & ceny</button>
+      <button class="filter-btn active" onclick="filterPosts('all', this)" data-i18n="filt_all">Všetky</button>
+      <button class="filter-btn" onclick="filterPosts('predaj', this)" data-i18n="filt_sale">Predaj</button>
+      <button class="filter-btn" onclick="filterPosts('kupа', this)" data-i18n="filt_buy">Kúpa</button>
+      <button class="filter-btn" onclick="filterPosts('dedicstvo', this)" data-i18n="filt_inherit">Dedičstvo</button>
+      <button class="filter-btn" onclick="filterPosts('rozvod', this)" data-i18n="filt_divorce">Rozvod</button>
+      <button class="filter-btn" onclick="filterPosts('exekucia', this)" data-i18n="filt_exec">Exekúcia</button>
+      <button class="filter-btn" onclick="filterPosts('trh', this)" data-i18n="filt_market">Trh & ceny</button>
     </div>
   </div>
 
@@ -1072,25 +1092,25 @@
           </div>
         </div>
         <div class="featured-body">
-          <span class="post-category">Predaj & kúpa zároveň</span>
-          <h2 class="featured-title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h2>
+          <span class="post-category" data-i18n="feat_cat">Predaj & kúpa zároveň</span>
+          <h2 class="featured-title" data-i18n="feat_title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h2>
           <div class="featured-excerpt">
-            <span class="fx-intro">Reťazový obchod sú tri domino kocky - a ak jedna padne, padnú všetky.</span>
+            <span class="fx-intro" data-i18n="feat_intro">Reťazový obchod sú tri domino kocky - a ak jedna padne, padnú všetky.</span>
             <ul class="fx-steps">
-              <li><span class="fx-num">Prvá</span> Predaj vášho bytu</li>
-              <li><span class="fx-num">Druhá</span> Kúpa nového</li>
-              <li><span class="fx-num">Tretia</span> Odovzdanie kľúčov</li>
+              <li><span class="fx-num" data-i18n="feat_step1_num">Prvá</span> <span data-i18n="feat_step1">Predaj vášho bytu</span></li>
+              <li><span class="fx-num" data-i18n="feat_step2_num">Druhá</span> <span data-i18n="feat_step2">Kúpa nového</span></li>
+              <li><span class="fx-num" data-i18n="feat_step3_num">Tretia</span> <span data-i18n="feat_step3">Odovzdanie kľúčov</span></li>
             </ul>
-            <span class="fx-warn">Ak niektorá zostane stáť, riskujete hypotéku na dvoch bytoch zároveň.</span>
+            <span class="fx-warn" data-i18n="feat_warn">Ak niektorá zostane stáť, riskujete hypotéku na dvoch bytoch zároveň.</span>
           </div>
           <div class="post-meta">
             <span>Radovan Vaník</span>
             <span class="post-meta-dot"></span>
-            <span>Úryvok z e-knihy</span>
+            <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
             <span class="post-meta-dot"></span>
-            <span>Zadarmo</span>
+            <span data-i18n="meta_free">Zadarmo</span>
           </div>
-          <span class="featured-read-more">Stiahnuť celú e-knihu <span>→</span></span>
+          <span class="featured-read-more" data-i18n="feat_cta">Stiahnuť celú e-knihu <span>→</span></span>
         </div>
       </a>
 
@@ -1104,16 +1124,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Kúpa nehnuteľnosti</span>
-            <h3 class="card-title">Prvý byt: 7 chýb, ktoré robia mladí kupujúci</h3>
-            <p class="card-excerpt">„Pred podpisom si vytlačte list vlastníctva a prejdite každý riadok. Záložné právo na byte sa bežne objaví až pri podpise kúpnej zmluvy. Vtedy už býva neskoro..."</p>
+            <span class="card-category" data-i18n="c1_cat">Kúpa nehnuteľnosti</span>
+            <h3 class="card-title" data-i18n="c1_title">Prvý byt: 7 chýb, ktoré robia mladí kupujúci</h3>
+            <p class="card-excerpt" data-i18n="c1_excerpt">„Pred podpisom si vytlačte list vlastníctva a prejdite každý riadok. Záložné právo na byte sa bežne objaví až pri podpise kúpnej zmluvy. Vtedy už býva neskoro..."</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Úryvok z e-knihy</span>
+                <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
                 <span class="card-meta-dot"></span>
-                <span>Zadarmo</span>
+                <span data-i18n="meta_free">Zadarmo</span>
               </div>
-              <span class="card-read-more">Stiahnuť e-knihu →</span>
+              <span class="card-read-more" data-i18n="card_cta">Stiahnuť e-knihu →</span>
             </div>
           </div>
         </a>
@@ -1125,16 +1145,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Rozvod & nehnuteľnosť</span>
-            <h3 class="card-title">Predaj pri rozvode: Čo hovorí zákon a ako to urýchliť</h3>
-            <p class="card-excerpt">„Spoločný majetok nevzniká sobášom. Vzniká každou splátkou hypotéky a každou rekonštrukciou. Zaniká len dvoma spôsobmi: dohodou, alebo rozhodnutím súdu..."</p>
+            <span class="card-category" data-i18n="c2_cat">Rozvod & nehnuteľnosť</span>
+            <h3 class="card-title" data-i18n="c2_title">Predaj pri rozvode: Čo hovorí zákon a ako to urýchliť</h3>
+            <p class="card-excerpt" data-i18n="c2_excerpt">„Spoločný majetok nevzniká sobášom. Vzniká každou splátkou hypotéky a každou rekonštrukciou. Zaniká len dvoma spôsobmi: dohodou, alebo rozhodnutím súdu..."</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Úryvok z e-knihy</span>
+                <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
                 <span class="card-meta-dot"></span>
-                <span>Zadarmo</span>
+                <span data-i18n="meta_free">Zadarmo</span>
               </div>
-              <span class="card-read-more">Stiahnuť e-knihu →</span>
+              <span class="card-read-more" data-i18n="card_cta">Stiahnuť e-knihu →</span>
             </div>
           </div>
         </a>
@@ -1146,16 +1166,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Dedičstvo</span>
-            <h3 class="card-title">Zdedil som byt - čo teraz? Postup krok za krokom</h3>
-            <p class="card-excerpt">„Zdediť byt neznamená dostať ho zadarmo. Spolu s ním prídu záložné práva, dlhy a niekedy aj príbuzní, o ktorých ste netušili. Notár vám povie čo ste zdedili, táto e-kniha vám povie čo s tým..."</p>
+            <span class="card-category" data-i18n="c3_cat">Dedičstvo</span>
+            <h3 class="card-title" data-i18n="c3_title">Zdedil som byt - čo teraz? Postup krok za krokom</h3>
+            <p class="card-excerpt" data-i18n="c3_excerpt">„Zdediť byt neznamená dostať ho zadarmo. Spolu s ním prídu záložné práva, dlhy a niekedy aj príbuzní, o ktorých ste netušili. Notár vám povie čo ste zdedili, táto e-kniha vám povie čo s tým..."</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Úryvok z e-knihy</span>
+                <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
                 <span class="card-meta-dot"></span>
-                <span>Zadarmo</span>
+                <span data-i18n="meta_free">Zadarmo</span>
               </div>
-              <span class="card-read-more">Stiahnuť e-knihu →</span>
+              <span class="card-read-more" data-i18n="card_cta">Stiahnuť e-knihu →</span>
             </div>
           </div>
         </a>
@@ -1167,16 +1187,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Exekúcia</span>
-            <h3 class="card-title">Môžem predať dom zaťažený exekúciou?</h3>
-            <p class="card-excerpt">„Mám exekúciu, nemôžem predať. Môžete. Ak je hodnota bytu vyššia ako dlh, exekútor väčšinou súhlasí, lebo aj on chce aby sa dlh vyrovnal. Záleží na komunikácii a správnom poradí krokov...”</p>
+            <span class="card-category" data-i18n="c4_cat">Exekúcia</span>
+            <h3 class="card-title" data-i18n="c4_title">Môžem predať dom zaťažený exekúciou?</h3>
+            <p class="card-excerpt" data-i18n="c4_excerpt">„Mám exekúciu, nemôžem predať. Môžete. Ak je hodnota bytu vyššia ako dlh, exekútor väčšinou súhlasí, lebo aj on chce aby sa dlh vyrovnal. Záleží na komunikácii a správnom poradí krokov...”</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Úryvok z e-knihy</span>
+                <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
                 <span class="card-meta-dot"></span>
-                <span>Zadarmo</span>
+                <span data-i18n="meta_free">Zadarmo</span>
               </div>
-              <span class="card-read-more">Stiahnuť e-knihu →</span>
+              <span class="card-read-more" data-i18n="card_cta">Stiahnuť e-knihu →</span>
             </div>
           </div>
         </a>
@@ -1188,16 +1208,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Predaj & kúpa zároveň</span>
-            <h3 class="card-title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h3>
-            <p class="card-excerpt">„Predajú rýchlo a kúpia neskoro, mesiac spia u rodičov. Alebo kúpia rýchlo a predajú neskoro, dva mesiace platia dve hypotéky. Načasovanie nie je šťastie, je to plán..."</p>
+            <span class="card-category" data-i18n="c5_cat">Predaj & kúpa zároveň</span>
+            <h3 class="card-title" data-i18n="c5_title">Reťazový obchod: Predaj aj kúpa naraz bez stresu</h3>
+            <p class="card-excerpt" data-i18n="c5_excerpt">„Predajú rýchlo a kúpia neskoro, mesiac spia u rodičov. Alebo kúpia rýchlo a predajú neskoro, dva mesiace platia dve hypotéky. Načasovanie nie je šťastie, je to plán..."</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Úryvok z e-knihy</span>
+                <span data-i18n="meta_excerpt">Úryvok z e-knihy</span>
                 <span class="card-meta-dot"></span>
-                <span>Zadarmo</span>
+                <span data-i18n="meta_free">Zadarmo</span>
               </div>
-              <span class="card-read-more">Stiahnuť e-knihu →</span>
+              <span class="card-read-more" data-i18n="card_cta">Stiahnuť e-knihu →</span>
             </div>
           </div>
         </a>
@@ -1209,16 +1229,16 @@
             </div>
           </div>
           <div class="card-body">
-            <span class="card-category">Trh & ceny</span>
-            <h3 class="card-title">Ceny nehnuteľností v Ružomberku 2025 – kde smerujeme?</h3>
-            <p class="card-excerpt">„Pred piatimi rokmi stál trojizbový byt v Ružomberku pod 90 000 eur. Dnes je to vyše 130 000. Nepomohla šikovnosť kupujúcich, zmenili sa úroky, inflácia a migrácia ľudí z väčších miest..."</p>
+            <span class="card-category" data-i18n="c6_cat">Trh & ceny</span>
+            <h3 class="card-title" data-i18n="c6_title">Ceny nehnuteľností v Ružomberku 2025 – kde smerujeme?</h3>
+            <p class="card-excerpt" data-i18n="c6_excerpt">„Pred piatimi rokmi stál trojizbový byt v Ružomberku pod 90 000 eur. Dnes je to vyše 130 000. Nepomohla šikovnosť kupujúcich, zmenili sa úroky, inflácia a migrácia ľudí z väčších miest..."</p>
             <div class="card-footer">
               <div class="card-meta">
-                <span>Pohľad makléra</span>
+                <span data-i18n="meta_agent_view">Pohľad makléra</span>
                 <span class="card-meta-dot"></span>
                 <span>2025</span>
               </div>
-              <span class="card-read-more">Domov →</span>
+              <span class="card-read-more" data-i18n="c6_cta">Domov →</span>
             </div>
           </div>
         </a>
@@ -1228,17 +1248,17 @@
       <!-- CTA STRIP -->
       <div class="cta-strip reveal">
         <div class="cta-strip-text">
-          <div class="cta-strip-title">Zdedili ste nehnuteľnosť?<br>Nechajte si ju oceniť.</div>
+          <div class="cta-strip-title" data-i18n="cta_strip_title">Zdedili ste nehnuteľnosť?<br>Nechajte si ju oceniť.</div>
         </div>
         <div class="cta-strip-actions">
           <form class="cta-email-form" onsubmit="ctaEmailSubmit(event)">
-            <input type="email" class="cta-email-input" placeholder="váš@email.sk" required aria-label="Váš email">
-            <button type="submit" class="cta-email-btn">Rezervovať ocenenie</button>
+            <input type="email" class="cta-email-input" id="ctaEmailInput" placeholder="váš@email.sk" required aria-label="Váš email">
+            <button type="submit" class="cta-email-btn" data-i18n="cta_strip_btn">Rezervovať ocenenie</button>
           </form>
-          <div class="cta-email-success" id="ctaSuccess" style="display:none">✅ Ďakujeme! Ozveme sa do 24 hodín.</div>
+          <div class="cta-email-success" id="ctaSuccess" style="display:none" data-i18n="cta_strip_success">✅ Ďakujeme! Ozveme sa do 24 hodín.</div>
           <a href="tel:+421948310950" class="btn-gold">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            Zavolať
+            <span data-i18n="cta_strip_call">Zavolať</span>
           </a>
         </div>
       </div>
@@ -1287,6 +1307,189 @@
 </div>
 
 <script>
+  const TRANSLATIONS = {
+    sk: {
+      nav_home: 'Domov', nav_about: 'O mne', nav_map: 'Mapa ponúk', nav_faq: 'FAQ', nav_blog: 'Blog',
+      nav_cta: 'Vybrať e-knihu →', mob_cta: 'Stiahnuť e-knihu zadarmo →',
+      hero_tag: 'Realitný blog · Radovan Vaník',
+      hero_h1: 'Reality bez<br/>zbytočných<br/>slov.',
+      hero_sub: 'Väčšina ľudí to zistí neskoro. Vy to zistíte teraz.',
+      stat_articles: 'Článkov', stat_ebooks: 'E-knihy zadarmo', stat_downloads: 'Stiahnutí',
+      filt_all: 'Všetky', filt_sale: 'Predaj', filt_buy: 'Kúpa', filt_inherit: 'Dedičstvo', filt_divorce: 'Rozvod', filt_exec: 'Exekúcia', filt_market: 'Trh & ceny',
+      feat_cat: 'Predaj & kúpa zároveň',
+      feat_title: 'Reťazový obchod: Predaj aj kúpa naraz bez stresu',
+      feat_intro: 'Reťazový obchod sú tri domino kocky - a ak jedna padne, padnú všetky.',
+      feat_step1_num: 'Prvá', feat_step1: 'Predaj vášho bytu',
+      feat_step2_num: 'Druhá', feat_step2: 'Kúpa nového',
+      feat_step3_num: 'Tretia', feat_step3: 'Odovzdanie kľúčov',
+      feat_warn: 'Ak niektorá zostane stáť, riskujete hypotéku na dvoch bytoch zároveň.',
+      meta_excerpt: 'Úryvok z e-knihy', meta_free: 'Zadarmo', meta_agent_view: 'Pohľad makléra',
+      feat_cta: 'Stiahnuť celú e-knihu <span>→</span>',
+      card_cta: 'Stiahnuť e-knihu →',
+      c1_cat: 'Kúpa nehnuteľnosti', c1_title: 'Prvý byt: 7 chýb, ktoré robia mladí kupujúci',
+      c1_excerpt: '„Pred podpisom si vytlačte list vlastníctva a prejdite každý riadok. Záložné právo na byte sa bežne objaví až pri podpise kúpnej zmluvy. Vtedy už býva neskoro..."',
+      c2_cat: 'Rozvod & nehnuteľnosť', c2_title: 'Predaj pri rozvode: Čo hovorí zákon a ako to urýchliť',
+      c2_excerpt: '„Spoločný majetok nevzniká sobášom. Vzniká každou splátkou hypotéky a každou rekonštrukciou. Zaniká len dvoma spôsobmi: dohodou, alebo rozhodnutím súdu..."',
+      c3_cat: 'Dedičstvo', c3_title: 'Zdedil som byt - čo teraz? Postup krok za krokom',
+      c3_excerpt: '„Zdediť byt neznamená dostať ho zadarmo. Spolu s ním prídu záložné práva, dlhy a niekedy aj príbuzní, o ktorých ste netušili. Notár vám povie čo ste zdedili, táto e-kniha vám povie čo s tým..."',
+      c4_cat: 'Exekúcia', c4_title: 'Môžem predať dom zaťažený exekúciou?',
+      c4_excerpt: '„Mám exekúciu, nemôžem predať. Môžete. Ak je hodnota bytu vyššia ako dlh, exekútor väčšinou súhlasí, lebo aj on chce aby sa dlh vyrovnal. Záleží na komunikácii a správnom poradí krokov...”',
+      c5_cat: 'Predaj & kúpa zároveň', c5_title: 'Reťazový obchod: Predaj aj kúpa naraz bez stresu',
+      c5_excerpt: '„Predajú rýchlo a kúpia neskoro, mesiac spia u rodičov. Alebo kúpia rýchlo a predajú neskoro, dva mesiace platia dve hypotéky. Načasovanie nie je šťastie, je to plán..."',
+      c6_cat: 'Trh & ceny', c6_title: 'Ceny nehnuteľností v Ružomberku 2025 – kde smerujeme?',
+      c6_excerpt: '„Pred piatimi rokmi stál trojizbový byt v Ružomberku pod 90 000 eur. Dnes je to vyše 130 000. Nepomohla šikovnosť kupujúcich, zmenili sa úroky, inflácia a migrácia ľudí z väčších miest..."',
+      c6_cta: 'Domov →',
+      cta_strip_title: 'Zdedili ste nehnuteľnosť?<br>Nechajte si ju oceniť.',
+      cta_strip_btn: 'Rezervovať ocenenie',
+      cta_strip_success: '✅ Ďakujeme! Ozveme sa do 24 hodín.',
+      cta_strip_call: 'Zavolať',
+      email_placeholder: 'váš@email.sk'
+    },
+    en: {
+      nav_home: 'Home', nav_about: 'About', nav_map: 'Listings map', nav_faq: 'FAQ', nav_blog: 'Blog',
+      nav_cta: 'Choose an e-book →', mob_cta: 'Download the e-book for free →',
+      hero_tag: 'Real estate blog · Radovan Vaník',
+      hero_h1: 'Real estate<br/>without the<br/>fluff.',
+      hero_sub: 'Most people find out too late. You\'ll find out now.',
+      stat_articles: 'Articles', stat_ebooks: 'Free e-books', stat_downloads: 'Downloads',
+      filt_all: 'All', filt_sale: 'Selling', filt_buy: 'Buying', filt_inherit: 'Inheritance', filt_divorce: 'Divorce', filt_exec: 'Foreclosure', filt_market: 'Market & prices',
+      feat_cat: 'Selling & buying at once',
+      feat_title: 'Chain transaction: Selling and buying at once without the stress',
+      feat_intro: 'A chain transaction is three dominoes - and if one falls, they all fall.',
+      feat_step1_num: 'First', feat_step1: 'Selling your flat',
+      feat_step2_num: 'Second', feat_step2: 'Buying the new one',
+      feat_step3_num: 'Third', feat_step3: 'Handing over the keys',
+      feat_warn: 'If any one stays standing, you risk paying a mortgage on two flats at once.',
+      meta_excerpt: 'Excerpt from the e-book', meta_free: 'Free', meta_agent_view: 'An agent\'s view',
+      feat_cta: 'Download the whole e-book <span>→</span>',
+      card_cta: 'Download the e-book →',
+      c1_cat: 'Buying property', c1_title: 'First flat: 7 mistakes young buyers make',
+      c1_excerpt: '"Before signing, print out the land registry extract and go through every line. A lien on the flat usually turns up only when signing the purchase contract. By then it\'s often too late..."',
+      c2_cat: 'Divorce & property', c2_title: 'Selling during a divorce: What the law says and how to speed it up',
+      c2_excerpt: '"Joint property isn\'t created by marriage. It\'s created by every mortgage payment and every renovation. It ends only two ways: by agreement, or by court decision..."',
+      c3_cat: 'Inheritance', c3_title: 'I inherited a flat - now what? A step-by-step guide',
+      c3_excerpt: '"Inheriting a flat doesn\'t mean getting it for free. Along with it come liens, debts and sometimes relatives you didn\'t know about. The notary tells you what you inherited, this e-book tells you what to do with it..."',
+      c4_cat: 'Foreclosure', c4_title: 'Can I sell a house burdened with foreclosure?',
+      c4_excerpt: '"I have a foreclosure, I can\'t sell. You can. If the flat\'s value is higher than the debt, the bailiff usually agrees, because they also want the debt settled. It comes down to communication and the right order of steps..."',
+      c5_cat: 'Selling & buying at once', c5_title: 'Chain transaction: Selling and buying at once without the stress',
+      c5_excerpt: '"They sell fast and buy late, spend a month sleeping at their parents\'. Or they buy fast and sell late, pay two mortgages for two months. Timing isn\'t luck, it\'s a plan..."',
+      c6_cat: 'Market & prices', c6_title: 'Property prices in Ružomberok 2025 – where are we headed?',
+      c6_excerpt: '"Five years ago a three-room flat in Ružomberok cost under €90,000. Today it\'s over €130,000. It wasn\'t buyer skill that changed - it was interest rates, inflation and people migrating from bigger cities..."',
+      c6_cta: 'Home →',
+      cta_strip_title: 'Inherited a property?<br>Get it valued.',
+      cta_strip_btn: 'Book a valuation',
+      cta_strip_success: '✅ Thank you! We\'ll get back to you within 24 hours.',
+      cta_strip_call: 'Call',
+      email_placeholder: 'your@email.com'
+    },
+    ua: {
+      nav_home: 'Головна', nav_about: 'Про мене', nav_map: 'Карта пропозицій', nav_faq: 'FAQ', nav_blog: 'Блог',
+      nav_cta: 'Вибрати е-книгу →', mob_cta: 'Завантажити е-книгу безкоштовно →',
+      hero_tag: 'Блог про нерухомість · Радован Ваник',
+      hero_h1: 'Нерухомість<br/>без зайвих<br/>слів.',
+      hero_sub: 'Більшість людей дізнається запізно. Ви дізнаєтесь зараз.',
+      stat_articles: 'Статей', stat_ebooks: 'Безкоштовних е-книг', stat_downloads: 'Завантажень',
+      filt_all: 'Всі', filt_sale: 'Продаж', filt_buy: 'Купівля', filt_inherit: 'Спадщина', filt_divorce: 'Розлучення', filt_exec: 'Виконавче провадження', filt_market: 'Ринок і ціни',
+      feat_cat: 'Продаж і купівля одночасно',
+      feat_title: 'Ланцюгова угода: продаж і купівля одночасно без стресу',
+      feat_intro: 'Ланцюгова угода — це три доміношки, і якщо одна впаде, впадуть усі.',
+      feat_step1_num: 'Перший', feat_step1: 'Продаж вашої квартири',
+      feat_step2_num: 'Другий', feat_step2: 'Купівля нової',
+      feat_step3_num: 'Третій', feat_step3: 'Передача ключів',
+      feat_warn: 'Якщо хоч один крок застрягне, ви ризикуєте платити іпотеку за дві квартири одночасно.',
+      meta_excerpt: 'Уривок з е-книги', meta_free: 'Безкоштовно', meta_agent_view: 'Погляд агента',
+      feat_cta: 'Завантажити всю е-книгу <span>→</span>',
+      card_cta: 'Завантажити е-книгу →',
+      c1_cat: 'Купівля нерухомості', c1_title: 'Перша квартира: 7 помилок молодих покупців',
+      c1_excerpt: '„Перед підписанням роздрукуйте витяг з реєстру нерухомості і перевірте кожен рядок. Застава на квартирі зазвичай виявляється лише при підписанні договору купівлі. Тоді вже часто пізно..."',
+      c2_cat: 'Розлучення і нерухомість', c2_title: 'Продаж під час розлучення: що каже закон і як це прискорити',
+      c2_excerpt: '„Спільне майно виникає не через шлюб. Воно виникає з кожним платежем іпотеки і кожним ремонтом. Припиняється лише двома способами: за згодою або за рішенням суду..."',
+      c3_cat: 'Спадщина', c3_title: 'Я успадкував квартиру - що тепер? Покрокова інструкція',
+      c3_excerpt: '„Успадкувати квартиру не означає отримати її безкоштовно. Разом з нею приходять застави, борги, а іноді й родичі, про яких ви не знали. Нотаріус скаже, що ви успадкували, ця е-книга скаже, що з цим робити..."',
+      c4_cat: 'Виконавче провадження', c4_title: 'Чи можу я продати будинок, обтяжений виконавчим провадженням?',
+      c4_excerpt: '„У мене виконавче провадження, я не можу продати. Можете. Якщо вартість квартири вища за борг, виконавець зазвичай погоджується, бо й він хоче, щоб борг погасили. Все залежить від комунікації та правильного порядку кроків..."',
+      c5_cat: 'Продаж і купівля одночасно', c5_title: 'Ланцюгова угода: продаж і купівля одночасно без стресу',
+      c5_excerpt: '„Продають швидко і купують пізно, місяць сплять у батьків. Або купують швидко і продають пізно, два місяці платять дві іпотеки. Таймінг - це не удача, це план..."',
+      c6_cat: 'Ринок і ціни', c6_title: 'Ціни на нерухомість у Ружомберку 2025 – куди прямуємо?',
+      c6_excerpt: '„П’ять років тому трикімнатна квартира в Ружомберку коштувала менше 90 000 євро. Сьогодні це понад 130 000. Допомогла не вправність покупців - змінилися ставки, інфляція і міграція людей з більших міст..."',
+      c6_cta: 'Головна →',
+      cta_strip_title: 'Успадкували нерухомість?<br>Дайте її оцінити.',
+      cta_strip_btn: 'Забронювати оцінку',
+      cta_strip_success: '✅ Дякуємо! Зв’яжемось протягом 24 годин.',
+      cta_strip_call: 'Зателефонувати',
+      email_placeholder: 'vash@email.com'
+    },
+    de: {
+      nav_home: 'Startseite', nav_about: 'Über mich', nav_map: 'Angebotskarte', nav_faq: 'FAQ', nav_blog: 'Blog',
+      nav_cta: 'E-Book wählen →', mob_cta: 'E-Book kostenlos herunterladen →',
+      hero_tag: 'Immobilien-Blog · Radovan Vaník',
+      hero_h1: 'Immobilien<br/>ohne<br/>Geschwätz.',
+      hero_sub: 'Die meisten Leute erfahren es zu spät. Sie erfahren es jetzt.',
+      stat_articles: 'Artikel', stat_ebooks: 'Kostenlose E-Books', stat_downloads: 'Downloads',
+      filt_all: 'Alle', filt_sale: 'Verkauf', filt_buy: 'Kauf', filt_inherit: 'Erbschaft', filt_divorce: 'Scheidung', filt_exec: 'Zwangsvollstreckung', filt_market: 'Markt & Preise',
+      feat_cat: 'Verkauf & Kauf zugleich',
+      feat_title: 'Kettengeschäft: Verkauf und Kauf gleichzeitig ohne Stress',
+      feat_intro: 'Ein Kettengeschäft sind drei Dominosteine - fällt einer, fallen alle.',
+      feat_step1_num: 'Erstens', feat_step1: 'Verkauf Ihrer Wohnung',
+      feat_step2_num: 'Zweitens', feat_step2: 'Kauf der neuen',
+      feat_step3_num: 'Drittens', feat_step3: 'Schlüsselübergabe',
+      feat_warn: 'Bleibt einer stehen, riskieren Sie, zwei Hypotheken auf zwei Wohnungen gleichzeitig zu zahlen.',
+      meta_excerpt: 'Auszug aus dem E-Book', meta_free: 'Kostenlos', meta_agent_view: 'Sicht eines Maklers',
+      feat_cta: 'Das ganze E-Book herunterladen <span>→</span>',
+      card_cta: 'E-Book herunterladen →',
+      c1_cat: 'Immobilienkauf', c1_title: 'Erste Wohnung: 7 Fehler junger Käufer',
+      c1_excerpt: '„Drucken Sie vor der Unterschrift den Grundbuchauszug aus und gehen Sie jede Zeile durch. Ein Pfandrecht auf der Wohnung taucht meist erst bei der Unterzeichnung des Kaufvertrags auf. Dann ist es oft schon zu spät..."',
+      c2_cat: 'Scheidung & Immobilie', c2_title: 'Verkauf bei Scheidung: Was das Gesetz sagt und wie man es beschleunigt',
+      c2_excerpt: '„Gemeinsames Vermögen entsteht nicht durch die Heirat. Es entsteht durch jede Hypothekenrate und jede Renovierung. Es endet nur auf zwei Arten: durch Einigung oder durch Gerichtsentscheid..."',
+      c3_cat: 'Erbschaft', c3_title: 'Ich habe eine Wohnung geerbt - was nun? Schritt für Schritt',
+      c3_excerpt: '„Eine Wohnung zu erben heißt nicht, sie umsonst zu bekommen. Mit ihr kommen Pfandrechte, Schulden und manchmal Verwandte, von denen Sie nichts wussten. Der Notar sagt Ihnen, was Sie geerbt haben, dieses E-Book sagt Ihnen, was Sie damit tun..."',
+      c4_cat: 'Zwangsvollstreckung', c4_title: 'Kann ich ein mit Zwangsvollstreckung belastetes Haus verkaufen?',
+      c4_excerpt: '„Ich habe eine Zwangsvollstreckung, ich kann nicht verkaufen. Doch, Sie können. Ist der Wert der Wohnung höher als die Schuld, stimmt der Gerichtsvollzieher meist zu, denn auch er will die Schuld beglichen sehen. Es kommt auf Kommunikation und die richtige Reihenfolge der Schritte an..."',
+      c5_cat: 'Verkauf & Kauf zugleich', c5_title: 'Kettengeschäft: Verkauf und Kauf gleichzeitig ohne Stress',
+      c5_excerpt: '„Sie verkaufen schnell und kaufen spät, schlafen einen Monat bei den Eltern. Oder sie kaufen schnell und verkaufen spät, zahlen zwei Monate lang zwei Hypotheken. Timing ist kein Glück, es ist ein Plan..."',
+      c6_cat: 'Markt & Preise', c6_title: 'Immobilienpreise in Ružomberok 2025 – wohin geht die Reise?',
+      c6_excerpt: '„Vor fünf Jahren kostete eine Dreizimmerwohnung in Ružomberok unter 90.000 Euro. Heute sind es über 130.000. Nicht das Geschick der Käufer half - Zinsen, Inflation und die Migration aus größeren Städten haben sich geändert..."',
+      c6_cta: 'Startseite →',
+      cta_strip_title: 'Eine Immobilie geerbt?<br>Lassen Sie sie bewerten.',
+      cta_strip_btn: 'Bewertung reservieren',
+      cta_strip_success: '✅ Danke! Wir melden uns innerhalb von 24 Stunden.',
+      cta_strip_call: 'Anrufen',
+      email_placeholder: 'ihre@email.de'
+    }
+  };
+
+  function t(key) {
+    const lang = localStorage.getItem('lang') || 'sk';
+    return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
+  }
+
+  function setLang(lang) {
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const k = el.getAttribute('data-i18n');
+      if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+    });
+    const emailInput = document.getElementById('ctaEmailInput');
+    if (emailInput) emailInput.setAttribute('placeholder', t('email_placeholder'));
+    ['sk', 'en', 'ua', 'de'].forEach(l => {
+      const b = document.getElementById('lang-' + l);
+      if (b) b.classList.toggle('active', l === lang);
+      const bm = document.getElementById('lang-' + l + '-m');
+      if (bm) bm.classList.toggle('active', l === lang);
+    });
+  }
+
+  (function () {
+    const saved = localStorage.getItem('lang') || 'sk';
+    if (saved !== 'sk') setLang(saved);
+    else ['sk', 'en', 'ua', 'de'].forEach(l => {
+      const b = document.getElementById('lang-' + l);
+      if (b) b.classList.toggle('active', l === 'sk');
+      const bm = document.getElementById('lang-' + l + '-m');
+      if (bm) bm.classList.toggle('active', l === 'sk');
+    });
+  })();
+
   // ── MOBILE MENU ──────────────────────────────────────
   function toggleMobileMenu() {
     const menu = document.getElementById('mobileMenu');
