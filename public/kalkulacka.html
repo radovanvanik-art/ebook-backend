@@ -58,6 +58,11 @@ a{text-decoration:none;color:inherit}
 .nav-right{display:flex;align-items:center;gap:0.4rem}
 .nav-social{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.76);transition:color 0.2s,background 0.2s;}
 .nav-social:hover{color:white;background:rgba(255,255,255,0.09)}
+.lang-switcher{display:flex;align-items:center;gap:2px;background:rgba(255,255,255,0.06);border:1px solid var(--border-d);border-radius:999px;padding:3px;}
+.lang-btn{background:transparent;border:none;cursor:pointer;width:28px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:999px;opacity:0.5;transition:opacity 0.18s,background 0.18s,transform 0.15s,box-shadow 0.18s;}
+.lang-btn:hover{opacity:0.9;transform:translateY(-1px)}
+.lang-btn.active{background:var(--gold);opacity:1;box-shadow:0 2px 10px rgba(200,133,31,0.45)}
+.lang-btn img{width:20px;height:14px;object-fit:cover;border-radius:3px;display:block;pointer-events:none}
 
 /* HERO */
 .page-hero{
@@ -208,8 +213,14 @@ footer a:hover{color:var(--gold)}
 <header class="nav" role="banner">
   <a href="/" class="nav-back" aria-label="Späť na hlavnú stránku">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
-    Späť na hlavnú
+    <span data-i18n="nav_back">Späť na hlavnú</span>
   </a>
+  <div class="lang-switcher" role="group" aria-label="Jazyk / Language">
+    <button class="lang-btn active" id="lang-sk" onclick="setLang('sk')" title="Slovenčina"><img src="https://flagcdn.com/w40/sk.png" alt="SK" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-en" onclick="setLang('en')" title="English"><img src="https://flagcdn.com/w40/gb.png" alt="EN" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-ua" onclick="setLang('ua')" title="Українська"><img src="https://flagcdn.com/w40/ua.png" alt="UA" width="20" height="14" loading="lazy"></button>
+    <button class="lang-btn" id="lang-de" onclick="setLang('de')" title="Deutsch"><img src="https://flagcdn.com/w40/de.png" alt="DE" width="20" height="14" loading="lazy"></button>
+  </div>
   <a href="tel:+421948310950" class="nav-cta">📞<span class="nav-phone-txt"> +421 948 310 950</span></a>
   <div class="nav-right">
     <a href="https://www.facebook.com/radovan.vanik" target="_blank" rel="noopener" class="nav-social" aria-label="Facebook">
@@ -223,16 +234,16 @@ footer a:hover{color:var(--gold)}
 
 <!-- HERO -->
 <section class="page-hero" aria-label="Hypotekárna kalkulačka">
-  <span class="eyebrow">Bezplatný nástroj</span>
-  <h1>Hypotekárna <em>kalkulačka</em></h1>
-  <p>Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
+  <span class="eyebrow" data-i18n="hero_eyebrow">Bezplatný nástroj</span>
+  <h1 data-i18n="hero_h1">Hypotekárna <em>kalkulačka</em></h1>
+  <p data-i18n="hero_sub">Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.</p>
 </section>
 
 <!-- KALKULAČKA -->
 <section class="kalk-section" aria-label="Kalkulačka hypotéky">
   <div class="kalk-wrap">
 
-    <div style="margin-bottom:2rem;padding:1rem 1.25rem;border-radius:10px;background:rgba(200,133,31,0.07);border:1px solid rgba(200,133,31,0.2);font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;text-align:center;">
+    <div style="margin-bottom:2rem;padding:1rem 1.25rem;border-radius:10px;background:rgba(200,133,31,0.07);border:1px solid rgba(200,133,31,0.2);font-size:12px;color:rgba(255,255,255,0.45);line-height:1.7;text-align:center;" data-i18n="disclaimer">
       ⚠️ Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.
     </div>
 
@@ -240,11 +251,11 @@ footer a:hover{color:var(--gold)}
 
       <!-- SLIDERS -->
       <div class="kalk-panel">
-        <div class="kalk-panel-title">Parametre úveru</div>
+        <div class="kalk-panel-title" data-i18n="panel_params">Parametre úveru</div>
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Výška úveru</span>
+            <span data-i18n="lbl_loan">Výška úveru</span>
             <strong id="loanVal">100 000 €</strong>
           </div>
           <input type="range" id="loan" min="10000" max="500000" step="5000" value="100000" class="kalk-range" aria-label="Výška úveru">
@@ -253,7 +264,7 @@ footer a:hover{color:var(--gold)}
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Úroková sadzba</span>
+            <span data-i18n="lbl_rate">Úroková sadzba</span>
             <strong id="rateVal">3.5 %</strong>
           </div>
           <input type="range" id="rate" min="0.5" max="10" step="0.1" value="3.5" class="kalk-range" aria-label="Úroková sadzba">
@@ -262,56 +273,56 @@ footer a:hover{color:var(--gold)}
 
         <div class="kalk-slider-group">
           <div class="kalk-slider-label">
-            <span>Doba splácania</span>
+            <span data-i18n="lbl_years">Doba splácania</span>
             <strong id="yearsVal">25 rokov</strong>
           </div>
           <input type="range" id="years" min="5" max="30" step="1" value="25" class="kalk-range" aria-label="Doba splácania">
-          <div class="kalk-slider-range"><span>5 rokov</span><span>30 rokov</span></div>
+          <div class="kalk-slider-range"><span data-i18n="years_5">5 rokov</span><span data-i18n="years_30">30 rokov</span></div>
         </div>
       </div>
 
       <!-- RESULTS -->
       <div class="kalk-panel kalk-result">
         <div class="kalk-result-top">
-          <div class="kalk-result-label">Mesačná splátka</div>
+          <div class="kalk-result-label" data-i18n="result_label">Mesačná splátka</div>
           <div class="kalk-result-amount" id="monthly">500 €</div>
-          <div class="kalk-result-per">mesačne</div>
+          <div class="kalk-result-per" data-i18n="result_per">mesačne</div>
         </div>
         <div class="kalk-rows">
-          <div class="kalk-row"><span>Výška úveru</span><span id="resLoan">100 000 €</span></div>
-          <div class="kalk-row"><span>Celková suma</span><span id="resTotal">150 000 €</span></div>
-          <div class="kalk-row"><span>Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
-          <div class="kalk-row"><span>Počet splátok</span><span id="resPayments">300</span></div>
+          <div class="kalk-row"><span data-i18n="row_loan">Výška úveru</span><span id="resLoan">100 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="row_total">Celková suma</span><span id="resTotal">150 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="row_interest">Zaplatené úroky</span><span id="resInterest">50 000 €</span></div>
+          <div class="kalk-row"><span data-i18n="row_payments">Počet splátok</span><span id="resPayments">300</span></div>
         </div>
         <div class="kalk-progress">
-          <div class="kalk-progress-labels"><span>Istina</span><span>Úroky</span></div>
+          <div class="kalk-progress-labels"><span data-i18n="progress_principal">Istina</span><span data-i18n="progress_interest">Úroky</span></div>
           <div class="kalk-progress-bar"><div class="kalk-progress-fill" id="kalkBar" style="width:67%"></div></div>
         </div>
       </div>
 
       <!-- DONUT -->
       <div class="kalk-panel kalk-chart">
-        <div class="kalk-panel-title">Rozloženie platieb</div>
+        <div class="kalk-panel-title" data-i18n="chart_title">Rozloženie platieb</div>
         <div class="kalk-chart-flex">
           <div class="kalk-donut-wrap">
             <canvas id="donut" width="200" height="200"></canvas>
             <div class="kalk-donut-center">
               <strong id="donutPct">67%</strong>
-              <span>istina</span>
+              <span data-i18n="donut_principal">istina</span>
             </div>
           </div>
           <div class="kalk-legend">
             <div class="kalk-legend-item">
               <div class="kalk-legend-dot kalk-legend-dot--p"></div>
               <div>
-                <span class="kalk-legend-lbl">Istina (úver)</span>
+                <span class="kalk-legend-lbl" data-i18n="legend_principal">Istina (úver)</span>
                 <span class="kalk-legend-val" id="legendPrincipal">100 000 €</span>
               </div>
             </div>
             <div class="kalk-legend-item">
               <div class="kalk-legend-dot kalk-legend-dot--i"></div>
               <div>
-                <span class="kalk-legend-lbl">Zaplatené úroky</span>
+                <span class="kalk-legend-lbl" data-i18n="legend_interest">Zaplatené úroky</span>
                 <span class="kalk-legend-val" id="legendInterest">50 000 €</span>
               </div>
             </div>
@@ -321,19 +332,19 @@ footer a:hover{color:var(--gold)}
 
       <!-- AMORTIZATION -->
       <div class="kalk-panel kalk-amort">
-        <div class="kalk-panel-title">Ročný prehľad splátok</div>
+        <div class="kalk-panel-title" data-i18n="amort_title">Ročný prehľad splátok</div>
         <button class="kalk-amort-toggle" id="amortToggle" onclick="toggleAmort()">
-          <span>Zobraziť tabuľku</span>
+          <span data-i18n="amort_show">Zobraziť tabuľku</span>
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin-top:1.25rem">
         <table class="kalk-amort-table" id="amortTable" style="margin-top:0">
           <thead><tr>
-            <th>Rok</th>
-            <th>Splátka / rok</th>
-            <th>Istina</th>
-            <th>Úroky</th>
-            <th>Zostatok</th>
+            <th data-i18n="amort_year">Rok</th>
+            <th data-i18n="amort_payment">Splátka / rok</th>
+            <th data-i18n="amort_principal">Istina</th>
+            <th data-i18n="amort_interest">Úroky</th>
+            <th data-i18n="amort_balance">Zostatok</th>
           </tr></thead>
           <tbody id="amortBody"></tbody>
         </table>
@@ -344,8 +355,8 @@ footer a:hover{color:var(--gold)}
 
     <!-- CTA BOX -->
     <div class="kalk-cta-box">
-      <p>Potrebujete presné čísla pre konkrétnu banku?<br>Radovan Vaník vám bezplatne pomôže porovnať hypotekárne ponuky a vybrať tú najvýhodnejšiu.</p>
-      <a href="tel:+421948310950" class="cta-btn">📞 Zavolať Radovanovi zadarmo</a>
+      <p data-i18n="cta_text">Potrebujete presné čísla pre konkrétnu banku?<br>Radovan Vaník vám bezplatne pomôže porovnať hypotekárne ponuky a vybrať tú najvýhodnejšiu.</p>
+      <a href="tel:+421948310950" class="cta-btn" data-i18n="cta_btn">📞 Zavolať Radovanovi zadarmo</a>
     </div>
 
   </div>
@@ -382,11 +393,192 @@ footer a:hover{color:var(--gold)}
   </a>
   <a href="tel:+421948310950" class="float-btn float-ph" aria-label="Zavolať">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-    <span class="float-label">Zavolať</span>
+    <span class="float-label" data-i18n="float_call">Zavolať</span>
   </a>
 </div>
 
 <script>
+const TRANSLATIONS = {
+  sk: {
+    nav_back: 'Späť na hlavnú',
+    hero_eyebrow: 'Bezplatný nástroj',
+    hero_h1: 'Hypotekárna <em>kalkulačka</em>',
+    hero_sub: 'Nastavte si parametre a okamžite uvidíte mesačnú splátku, celkovú sumu aj pomer istiny a úrokov.',
+    disclaimer: '⚠️ Výpočet je orientačný pri fixnej sadzbe. Skutočná splátka závisí od konkrétnej banky, poplatkov a vašej bonity. Pre presnú ponuku kontaktujte Radovana Vaníka.',
+    panel_params: 'Parametre úveru',
+    lbl_loan: 'Výška úveru',
+    lbl_rate: 'Úroková sadzba',
+    lbl_years: 'Doba splácania',
+    years_5: '5 rokov',
+    years_30: '30 rokov',
+    years_suffix: 'rokov',
+    result_label: 'Mesačná splátka',
+    result_per: 'mesačne',
+    row_loan: 'Výška úveru',
+    row_total: 'Celková suma',
+    row_interest: 'Zaplatené úroky',
+    row_payments: 'Počet splátok',
+    progress_principal: 'Istina',
+    progress_interest: 'Úroky',
+    chart_title: 'Rozloženie platieb',
+    donut_principal: 'istina',
+    legend_principal: 'Istina (úver)',
+    legend_interest: 'Zaplatené úroky',
+    amort_title: 'Ročný prehľad splátok',
+    amort_show: 'Zobraziť tabuľku',
+    amort_hide: 'Skryť tabuľku',
+    amort_year: 'Rok',
+    amort_payment: 'Splátka / rok',
+    amort_principal: 'Istina',
+    amort_interest: 'Úroky',
+    amort_balance: 'Zostatok',
+    cta_text: 'Potrebujete presné čísla pre konkrétnu banku?<br>Radovan Vaník vám bezplatne pomôže porovnať hypotekárne ponuky a vybrať tú najvýhodnejšiu.',
+    cta_btn: '📞 Zavolať Radovanovi zadarmo',
+    float_wa: 'WhatsApp',
+    float_call: 'Zavolať'
+  },
+  en: {
+    nav_back: 'Back to homepage',
+    hero_eyebrow: 'Free tool',
+    hero_h1: 'Mortgage <em>calculator</em>',
+    hero_sub: 'Set your parameters and instantly see the monthly payment, total amount and the principal-to-interest ratio.',
+    disclaimer: '⚠️ This calculation is an estimate for a fixed rate. The actual payment depends on the specific bank, fees and your creditworthiness. Contact Radovan Vaník for an exact offer.',
+    panel_params: 'Loan parameters',
+    lbl_loan: 'Loan amount',
+    lbl_rate: 'Interest rate',
+    lbl_years: 'Repayment period',
+    years_5: '5 years',
+    years_30: '30 years',
+    years_suffix: 'years',
+    result_label: 'Monthly payment',
+    result_per: 'per month',
+    row_loan: 'Loan amount',
+    row_total: 'Total amount',
+    row_interest: 'Interest paid',
+    row_payments: 'Number of payments',
+    progress_principal: 'Principal',
+    progress_interest: 'Interest',
+    chart_title: 'Payment breakdown',
+    donut_principal: 'principal',
+    legend_principal: 'Principal (loan)',
+    legend_interest: 'Interest paid',
+    amort_title: 'Annual payment overview',
+    amort_show: 'Show table',
+    amort_hide: 'Hide table',
+    amort_year: 'Year',
+    amort_payment: 'Payment / year',
+    amort_principal: 'Principal',
+    amort_interest: 'Interest',
+    amort_balance: 'Balance',
+    cta_text: 'Need exact figures for a specific bank?<br>Radovan Vaník will help you compare mortgage offers for free and pick the best one.',
+    cta_btn: '📞 Call Radovan for free',
+    float_wa: 'WhatsApp',
+    float_call: 'Call'
+  },
+  ua: {
+    nav_back: 'Назад на головну',
+    hero_eyebrow: 'Безкоштовний інструмент',
+    hero_h1: 'Іпотечний <em>калькулятор</em>',
+    hero_sub: 'Налаштуйте параметри та миттєво побачите щомісячний платіж, загальну суму та співвідношення тіла кредиту й відсотків.',
+    disclaimer: '⚠️ Розрахунок є орієнтовним для фіксованої ставки. Реальний платіж залежить від конкретного банку, зборів та вашої кредитоспроможності. Для точної пропозиції зверніться до Радована Ваніка.',
+    panel_params: 'Параметри кредиту',
+    lbl_loan: 'Сума кредиту',
+    lbl_rate: 'Відсоткова ставка',
+    lbl_years: 'Термін погашення',
+    years_5: '5 років',
+    years_30: '30 років',
+    years_suffix: 'років',
+    result_label: 'Щомісячний платіж',
+    result_per: 'на місяць',
+    row_loan: 'Сума кредиту',
+    row_total: 'Загальна сума',
+    row_interest: 'Сплачені відсотки',
+    row_payments: 'Кількість платежів',
+    progress_principal: 'Тіло кредиту',
+    progress_interest: 'Відсотки',
+    chart_title: 'Розподіл платежів',
+    donut_principal: 'тіло кредиту',
+    legend_principal: 'Тіло кредиту',
+    legend_interest: 'Сплачені відсотки',
+    amort_title: 'Річний огляд платежів',
+    amort_show: 'Показати таблицю',
+    amort_hide: 'Сховати таблицю',
+    amort_year: 'Рік',
+    amort_payment: 'Платіж / рік',
+    amort_principal: 'Тіло кредиту',
+    amort_interest: 'Відсотки',
+    amort_balance: 'Залишок',
+    cta_text: 'Потрібні точні цифри для конкретного банку?<br>Радован Ваник безкоштовно допоможе порівняти іпотечні пропозиції та вибрати найвигіднішу.',
+    cta_btn: '📞 Зателефонувати Радовану безкоштовно',
+    float_wa: 'WhatsApp',
+    float_call: 'Зателефонувати'
+  },
+  de: {
+    nav_back: 'Zurück zur Startseite',
+    hero_eyebrow: 'Kostenloses Tool',
+    hero_h1: 'Hypotheken<em>rechner</em>',
+    hero_sub: 'Stellen Sie Ihre Parameter ein und sehen Sie sofort die monatliche Rate, den Gesamtbetrag und das Verhältnis von Tilgung zu Zinsen.',
+    disclaimer: '⚠️ Die Berechnung ist eine Orientierung bei einem Fixzinssatz. Die tatsächliche Rate hängt von der konkreten Bank, den Gebühren und Ihrer Bonität ab. Für ein genaues Angebot kontaktieren Sie Radovan Vaník.',
+    panel_params: 'Kreditparameter',
+    lbl_loan: 'Kreditbetrag',
+    lbl_rate: 'Zinssatz',
+    lbl_years: 'Tilgungsdauer',
+    years_5: '5 Jahre',
+    years_30: '30 Jahre',
+    years_suffix: 'Jahre',
+    result_label: 'Monatliche Rate',
+    result_per: 'monatlich',
+    row_loan: 'Kreditbetrag',
+    row_total: 'Gesamtbetrag',
+    row_interest: 'Gezahlte Zinsen',
+    row_payments: 'Anzahl der Raten',
+    progress_principal: 'Tilgung',
+    progress_interest: 'Zinsen',
+    chart_title: 'Zahlungsaufteilung',
+    donut_principal: 'Tilgung',
+    legend_principal: 'Tilgung (Kredit)',
+    legend_interest: 'Gezahlte Zinsen',
+    amort_title: 'Jährliche Zahlungsübersicht',
+    amort_show: 'Tabelle anzeigen',
+    amort_hide: 'Tabelle ausblenden',
+    amort_year: 'Jahr',
+    amort_payment: 'Rate / Jahr',
+    amort_principal: 'Tilgung',
+    amort_interest: 'Zinsen',
+    amort_balance: 'Restschuld',
+    cta_text: 'Brauchen Sie genaue Zahlen für eine bestimmte Bank?<br>Radovan Vaník hilft Ihnen kostenlos, Hypothekenangebote zu vergleichen und das beste auszuwählen.',
+    cta_btn: '📞 Radovan kostenlos anrufen',
+    float_wa: 'WhatsApp',
+    float_call: 'Anrufen'
+  }
+};
+
+function t(key) {
+  const lang = localStorage.getItem('lang') || 'sk';
+  return (TRANSLATIONS[lang] && TRANSLATIONS[lang][key]) || TRANSLATIONS.sk[key] || key;
+}
+
+function setLang(lang) {
+  localStorage.setItem('lang', lang);
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (TRANSLATIONS[lang] && TRANSLATIONS[lang][k]) el.innerHTML = TRANSLATIONS[lang][k];
+  });
+  ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === lang);
+  });
+  const yearsEl = document.getElementById('years');
+  if (yearsEl) document.getElementById('yearsVal').textContent = yearsEl.value + ' ' + t('years_suffix');
+  const amortTable = document.getElementById('amortTable');
+  const amortBtn = document.getElementById('amortToggle');
+  if (amortTable && amortBtn) {
+    amortBtn.querySelector('span').textContent = amortTable.classList.contains('kalk-show')
+      ? t('amort_hide')
+      : t('amort_show');
+  }
+}
+
 (function(){
   const fmtK = v => Math.round(v).toLocaleString('sk') + ' €';
   const loanEl = document.getElementById('loan');
@@ -404,7 +596,7 @@ footer a:hover{color:var(--gold)}
     const n = +yearsEl.value * 12;
     document.getElementById('loanVal').textContent = fmtK(L);
     document.getElementById('rateVal').textContent = (+rateEl.value).toFixed(1) + ' %';
-    document.getElementById('yearsVal').textContent = yearsEl.value + ' rokov';
+    document.getElementById('yearsVal').textContent = yearsEl.value + ' ' + t('years_suffix');
     updateTrack(loanEl); updateTrack(rateEl); updateTrack(yearsEl);
     const M = r > 0 ? L * (r * Math.pow(1+r,n)) / (Math.pow(1+r,n)-1) : L / n;
     const total = M * n;
@@ -465,14 +657,23 @@ footer a:hover{color:var(--gold)}
     table.classList.toggle('kalk-show');
     btn.classList.toggle('kalk-open');
     btn.querySelector('span').textContent = table.classList.contains('kalk-show')
-      ? 'Skryť tabuľku'
-      : 'Zobraziť tabuľku';
+      ? t('amort_hide')
+      : t('amort_show');
   };
 
   loanEl.addEventListener('input', kCalc);
   rateEl.addEventListener('input', kCalc);
   yearsEl.addEventListener('input', kCalc);
   kCalc();
+})();
+
+(function () {
+  const saved = localStorage.getItem('lang') || 'sk';
+  if (saved !== 'sk') setLang(saved);
+  else ['sk', 'en', 'ua', 'de'].forEach(l => {
+    const b = document.getElementById('lang-' + l);
+    if (b) b.classList.toggle('active', l === 'sk');
+  });
 })();
 </script>
 </body>
